@@ -12,6 +12,26 @@ a {
     text-decoration: none;
 }
 
+label, input {
+    display: block;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    font: inherit;
+}
+
+input[type=email], input[type=password] {
+    margin-bottom: 16px;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+}
+
 .navigation__wrapper, .body__wrapper {
     margin: 0 auto;
     width: 90%;
