@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: BlinkMacSystemFont;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navigation__wrapper, .body__wrapper {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 960px;
+}
+
+.navigation {
+    background: #333;
+}
+
+.navigation__wrapper {
+    height: 64px;
+}
+
+.navigation__wrapper ul {
+    list-style: none;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.navigation__wrapper ul li a {
+    color: #DDD;
+}
+
+.navigation__wrapper ul li a:hover {
+    color: #FFF;
+}
+
+.body__wrapper {
+    margin: 48px auto;
+}
