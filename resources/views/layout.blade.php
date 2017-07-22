@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Budget</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,300i" />
         <link rel="stylesheet" href="/style.css" />
     </head>
     <body>

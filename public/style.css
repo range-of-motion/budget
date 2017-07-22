@@ -5,11 +5,25 @@
 }
 
 body {
-    font-family: BlinkMacSystemFont;
+    font-family: Muli;
+    background: #F1F5F8;
+}
+
+h1 {
+    margin-bottom: 24px;
 }
 
 a {
     text-decoration: none;
+}
+
+.box {
+    background: #FFF;
+    border-radius: 3px;
+}
+
+.box__section {
+    padding: 32px;
 }
 
 label, input {
@@ -18,6 +32,7 @@ label, input {
 
 label {
     margin-bottom: 8px;
+    color: #989FA5;
 }
 
 input {
@@ -28,8 +43,13 @@ input[type=email], input[type=password] {
     margin-bottom: 16px;
     padding: 8px;
     width: 100%;
-    border: 1px solid #DDD;
+    border: 1px solid #E8ECEF;
     border-radius: 3px;
+}
+
+input[type=email]:focus, input[type=password]:focus {
+    outline: 0;
+    border-color: #2071F8;
 }
 
 .navigation__wrapper, .body__wrapper {
@@ -39,7 +59,7 @@ input[type=email], input[type=password] {
 }
 
 .navigation {
-    background: #333;
+    background: #FFF;
 }
 
 .navigation__wrapper {
@@ -54,11 +74,11 @@ input[type=email], input[type=password] {
 }
 
 .navigation__wrapper ul li a {
-    color: #DDD;
+    color: #989FA5;
 }
 
 .navigation__wrapper ul li a:hover {
-    color: #FFF;
+    color: #2071F8;
 }
 
 .body__wrapper {
