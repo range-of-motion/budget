@@ -63,7 +63,7 @@ input {
     font: inherit;
 }
 
-input[type=email], input[type=password] {
+input[type=text], input[type=email], input[type=password] {
     margin-bottom: 16px;
     padding: 8px;
     width: 100%;
@@ -71,7 +71,7 @@ input[type=email], input[type=password] {
     border-radius: 3px;
 }
 
-input[type=email]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
     outline: 0;
     border-color: #2071F8;
 }
