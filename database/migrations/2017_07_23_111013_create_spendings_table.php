@@ -9,6 +9,7 @@ class CreateSpendingsTable extends Migration {
         Schema::create('spendings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('tag_id')->unsigned()->nullable();
             $table->date('date');
             $table->string('description');
             $table->float('amount');
