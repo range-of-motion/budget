@@ -12,6 +12,9 @@
                     <li>
                         <a href="/dashboard">Dashboard</a>
                     </li>
+                    <li>
+                        <a href="/settings">Settings</a>
+                    </li>
                 </ul>
             </div>
         </div>
