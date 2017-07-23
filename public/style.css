@@ -38,6 +38,18 @@ ul.box__section li:first-child {
     padding: 0;
 }
 
+table.box__section {
+    width: 100%;
+}
+
+table.box__section tr td {
+    padding: 32px 0 0;
+}
+
+table.box__section tr:first-child td {
+    padding: 0;
+}
+
 label, input {
     display: block;
 }

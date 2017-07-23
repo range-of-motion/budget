@@ -11,6 +11,7 @@ class CreateSpendingsTable extends Migration {
             $table->integer('user_id')->unsigned();
             $table->date('date');
             $table->string('description');
+            $table->float('amount');
         });
     }
 
