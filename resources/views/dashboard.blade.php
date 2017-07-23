@@ -3,12 +3,10 @@
 @section('body')
     <h1>Spendings</h1>
     <div class="box">
-        <div class="box__section">
-            <ul>
-                @foreach (Auth::user()->spendings as $spending)
-                    <li>{{ $spending->description }}</li>
-                @endforeach
-            </ul>
-        </div>
+        <ul class="box__section">
+            @foreach (Auth::user()->spendings as $spending)
+                <li>{{ $spending->description }}</li>
+            @endforeach
+        </ul>
     </div>
 @endsection

@@ -26,6 +26,18 @@ a {
     padding: 32px;
 }
 
+ul.box__section {
+    list-style: none;
+}
+
+ul.box__section li {
+    padding: 32px 0 0;
+}
+
+ul.box__section li:first-child {
+    padding: 0;
+}
+
 label, input {
     display: block;
 }
