@@ -98,7 +98,12 @@ input[type=email]:focus, input[type=password]:focus {
 }
 
 .navigation__wrapper ul li a {
+    margin: 0 0 0 32px;
     color: #989FA5;
+}
+
+.navigation__wrapper ul li:first-child a {
+    margin: 0;
 }
 
 .navigation__wrapper ul li a:hover {
