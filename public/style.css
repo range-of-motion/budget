@@ -5,48 +5,46 @@
 }
 
 body {
-    font-family: Muli;
-    background: #F1F5F8;
-}
-
-h1 {
-    margin: 48px 0 24px;
+    font-family: Nunito;
+    background: #F5F7FA;
 }
 
 a {
     text-decoration: none;
 }
 
+h1 {
+    margin-bottom: 48px;
+}
+
+.spacing-bottom-large {
+    margin-bottom: 48px;
+}
+
 .box {
     background: #FFF;
-    border-radius: 3px;
+    border: 1px solid #EBEDF0;
+    border-radius: 4px;
 }
 
-.box__section {
-    padding: 32px;
+.box .box__section {
+    padding: 24px;
+    border-bottom: 1px solid #EBEDF0;
 }
 
-ul.box__section {
-    list-style: none;
+.box .box__section:last-child {
+    border: none;
 }
 
-ul.box__section li {
-    padding: 32px 0 0;
-}
-
-ul.box__section li:first-child {
-    padding: 0;
-}
-
-table.box__section {
+.box table.box__section {
     width: 100%;
 }
 
-table.box__section tr td {
-    padding: 32px 0 0;
+.box table.box__section td {
+    padding-top: 24px;
 }
 
-table.box__section tr:first-child td {
+.box table.box__section tr:first-child td {
     padding: 0;
 }
 
@@ -56,7 +54,6 @@ label, input {
 
 label {
     margin-bottom: 8px;
-    color: #989FA5;
 }
 
 input {
@@ -64,52 +61,38 @@ input {
 }
 
 input[type=text], input[type=email], input[type=password] {
-    margin-bottom: 16px;
-    padding: 8px;
+    margin-bottom: 24px;
+    padding: 12px;
     width: 100%;
-    border: 1px solid #E8ECEF;
-    border-radius: 3px;
-}
-
-input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
-    outline: 0;
-    border-color: #2071F8;
-}
-
-.navigation__wrapper, .body__wrapper {
-    margin: 0 auto;
-    width: 90%;
-    max-width: 960px;
+    border: 1px solid #EBEDF0;
+    border-radius: 4px;
 }
 
 .navigation {
+    display: flex;
+    justify-content: space-between;
     background: #FFF;
+    border-bottom: 1px solid #EBEDF0;
 }
 
-.navigation__wrapper {
-    height: 64px;
-}
-
-.navigation__wrapper ul {
+.navigation ul {
     list-style: none;
     display: flex;
-    height: 100%;
-    align-items: center;
 }
 
-.navigation__wrapper ul li a {
-    margin: 0 0 0 32px;
-    color: #989FA5;
+.navigation ul a {
+    color: #000;
+    margin: 24px;
+    display: block;
 }
 
-.navigation__wrapper ul li:first-child a {
-    margin: 0;
+.navigation ul a:hover {
+    color: #4980FF;
 }
 
-.navigation__wrapper ul li a:hover {
-    color: #2071F8;
-}
-
-.body__wrapper {
-    margin: 48px auto;
+.body {
+    margin: 0 auto;
+    padding: 48px 0;
+    width: 90%;
+    max-width: 960px;
 }

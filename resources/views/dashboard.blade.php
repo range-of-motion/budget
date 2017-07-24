@@ -1,8 +1,11 @@
 @extends('layout')
 
 @section('body')
-    <h1>Earnings</h1>
-    <div class="box">
+    <h1>Dashboard</h1>
+    <div class="box spacing-bottom-large">
+        <div class="box__section">
+            <span style="font-size: 18px;">Earnings</span>
+        </div>
         <table class="box__section">
             <tbody>
                 @foreach (Auth::user()->earnings as $earning)
@@ -14,8 +17,10 @@
             </tbody>
         </table>
     </div>
-    <h1>Spendings</h1>
     <div class="box">
+        <div class="box__section">
+            <span style="font-size: 18px;">Spendings</span>
+        </div>
         <table class="box__section">
             <tbody>
                 @foreach (Auth::user()->spendings as $spending)
