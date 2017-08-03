@@ -8,6 +8,7 @@ class CreateBudgetsTable extends Migration {
     public function up() {
         Schema::create('budgets', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->integer('month');
             $table->integer('year');
             $table->float('amount');
