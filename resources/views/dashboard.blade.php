@@ -11,7 +11,7 @@
                 @foreach (Auth::user()->earnings as $earning)
                     <tr>
                         <td>{{ $earning->description }}</td>
-                        <td>{{ $earning->amount }}</td>
+                        <td>{{ Auth::user()->currency->symbol }} {{ $earning->amount }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -26,7 +26,7 @@
                 @foreach (Auth::user()->spendings as $spending)
                     <tr>
                         <td>{{ $spending->description }}</td>
-                        <td>{{ $spending->amount }}</td>
+                        <td>{{ Auth::user()->currency->symbol }} {{ $spending->amount }}</td>
                     </tr>
                 @endforeach
             </tbody>
