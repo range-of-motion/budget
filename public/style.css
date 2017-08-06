@@ -21,6 +21,27 @@ h1 {
     margin-bottom: 48px;
 }
 
+.spacing-bottom-small {
+    margin-bottom: 16px;
+}
+
+.row {
+    display: flex;
+}
+
+.row .row__column {
+    flex: 1;
+    padding: 0 24px;
+}
+
+.row .row__column:first-child {
+    padding: 0 24px 0 0;
+}
+
+.row .row__column:last-child {
+    padding: 0 0 0 24px;
+}
+
 .box {
     background: #FFF;
     border: 1px solid #EBEDF0;
@@ -34,6 +55,10 @@ h1 {
 
 .box .box__section:last-child {
     border: none;
+}
+
+.box .box__section.box__section--align-center {
+    text-align: center;
 }
 
 .box table.box__section {

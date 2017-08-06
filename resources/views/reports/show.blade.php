@@ -2,6 +2,32 @@
 
 @section('body')
     <h1>Report for @lang('months.' . $month), {{ $year }}</h1>
+    <div class="row spacing-bottom-large">
+        <div class="row__column">
+            <div class="box">
+                <div class="box__section box__section--align-center">
+                    <h2 class="spacing-bottom-small">@include('partials.currency') {{ App\Earning::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') }}</h2>
+                    <p>Earned</p>
+                </div>
+            </div>
+        </div>
+        <div class="row__column">
+            <div class="box">
+                <div class="box__section box__section--align-center">
+                    <h2 class="spacing-bottom-small">@include('partials.currency') {{ App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') }}</h2>
+                    <p>Spent</p>
+                </div>
+            </div>
+        </div>
+        <div class="row__column">
+            <div class="box">
+                <div class="box__section box__section--align-center">
+                    <h2 class="spacing-bottom-small">@include('partials.currency') {{ App\Earning::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') - App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') }}</h2>
+                    <p>Net</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="box spacing-bottom-large">
         <div class="box__section">
             <p>Alerts</p>
