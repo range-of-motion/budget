@@ -82,8 +82,16 @@ input[type=text], input[type=email], input[type=password] {
 
 .navigation ul a {
     color: #000;
-    margin: 24px;
+    margin: 24px 12px;
     display: block;
+}
+
+.navigation ul li:first-child a {
+    margin-left: 24px;
+}
+
+.navigation ul li:last-child a {
+    margin-right: 24px;
 }
 
 .navigation ul a:hover {
