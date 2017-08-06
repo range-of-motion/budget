@@ -2,7 +2,7 @@
 
 @section('body')
     <h1>Reports</h1>
-    <div class="box spacing-bottom-large">
+    <div class="box">
         <table class="box__section">
             <tbody>
                 @for ($y = 2017; $y <= date('Y'); $y ++)

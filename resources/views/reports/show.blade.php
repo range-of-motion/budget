@@ -44,7 +44,7 @@
             </tbody>
         </table>
     </div>
-    <div class="box spacing-bottom-large">
+    <div class="box">
         <div class="box__section">
             <p>Budgets</p>
         </div>
