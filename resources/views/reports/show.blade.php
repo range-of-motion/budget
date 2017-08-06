@@ -11,7 +11,7 @@
                 @foreach (App\Budget::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->get() as $budget)
                     <tr>
                         <td>{{ $budget->tag->name }}</td>
-                        <td>{{ Auth::user()->currency->symbol }} {{ App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->where('tag_id', $budget->tag->id)->sum('amount') }} of {{ Auth::user()->currency->symbol }} {{ $budget->amount }}</td>
+                        <td>@include('partials.currency') {{ App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->where('tag_id', $budget->tag->id)->sum('amount') }} of @include('partials.currency') {{ $budget->amount }}</td>
                     </tr>
                 @endforeach
             </tbody>
