@@ -10,7 +10,7 @@
                         @if (App\Budget::where('user_id', Auth::user()->id)->whereMonth('date', $m)->whereYear('date', $y)->count())
                             <tr>
                                 <td>
-                                    <a href="/reports/{{ $y }}/{{ $m }}">{{ $m }}, {{ $y }}</a>
+                                    <a href="/reports/{{ $y }}/{{ $m }}">@lang('months.' . $m), {{ $y }}</a>
                                 </td>
                             </tr>
                         @endif
