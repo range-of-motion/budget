@@ -6,6 +6,9 @@ Route::post('/login', 'LoginController@store')->name('login_post');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard_get');
 
+    Route::get('/earnings/create', 'EarningsController@create')->name('earnings_create_get');
+    Route::post('/earnings', 'EarningsController@store')->name('earnings_store_post');
+
     Route::get('/reports', 'ReportsController@index')->name('reports_index_get');
     Route::get('/reports/{year}/{month}', 'ReportsController@show')->name('reports_show_get');
 
