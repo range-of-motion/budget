@@ -18,9 +18,9 @@ class LoginController extends Controller {
             'email' => $email,
             'password' => $password
         ])) {
-            return redirect()->route('dashboard_get');
+            return redirect()->route('dashboard.index');
         } else {
-            return redirect()->route('login_get');
+            return redirect()->route('login.index');
         }
     }
 }

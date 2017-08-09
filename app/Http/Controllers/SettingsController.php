@@ -18,6 +18,6 @@ class SettingsController extends Controller {
 
         $user->save();
 
-        return redirect()->route('settings_get');
+        return redirect()->route('settings.index');
     }
 }
