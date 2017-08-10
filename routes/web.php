@@ -8,6 +8,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/earnings', 'EarningsController', ['only' => ['create', 'store']]);
 
+    Route::resource('/spendings', 'SpendingsController', ['only' => ['create', 'store']]);
+
     Route::get('/reports', 'ReportsController@index')->name('reports.index');
     Route::get('/reports/{year}/{month}', 'ReportsController@show')->name('reports.show');
 
