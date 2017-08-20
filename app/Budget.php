@@ -16,14 +16,9 @@ class Budget extends Model {
     public function spendings() {
         $user = Auth::user();
 
-        $date = $this->attributes['date'];
-
-        $month = date('m', strtotime($date));
-        $year = date('Y', strtotime($date));
-
         return Spending::where('user_id', $user->id)
-            ->whereMonth('date', $month)
-            ->whereYear('date', $year)
+            ->where('year', $this->attributes['year'])
+            ->where('month', $this->attributes['month'])
             ->where('tag_id', $this->attributes['tag_id'])
             ->get();
     }
