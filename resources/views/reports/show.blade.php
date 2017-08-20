@@ -6,7 +6,7 @@
         <div class="row__column">
             <div class="box">
                 <div class="box__section box__section--align-center">
-                    <h2 class="spacing-bottom-small">@include('partials.currency') {{ App\Earning::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') }}</h2>
+                    <h2 class="spacing-bottom-small">{{ $currency }} {{ $earnings }}</h2>
                     <p>Earned</p>
                 </div>
             </div>
@@ -14,7 +14,7 @@
         <div class="row__column">
             <div class="box">
                 <div class="box__section box__section--align-center">
-                    <h2 class="spacing-bottom-small">@include('partials.currency') {{ App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') }}</h2>
+                    <h2 class="spacing-bottom-small">{{ $currency }} {{ $spendings }}</h2>
                     <p>Spent</p>
                 </div>
             </div>
@@ -22,27 +22,11 @@
         <div class="row__column">
             <div class="box">
                 <div class="box__section box__section--align-center">
-                    <h2 class="spacing-bottom-small">@include('partials.currency') {{ App\Earning::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') - App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->sum('amount') }}</h2>
+                    <h2 class="spacing-bottom-small">{{ $currency }} {{ $earnings - $spendings }}</h2>
                     <p>Net</p>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="box spacing-bottom-large">
-        <div class="box__section">
-            <p>Alerts</p>
-        </div>
-        <table class="box__section">
-            <tbody>
-                @foreach (App\Budget::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->get() as $budget)
-                    @if (App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->where('tag_id', $budget->tag->id)->sum('amount') > $budget->amount)
-                        <tr>
-                            <td>Exceeded budget for '{{ $budget->tag->name }}' by @include('partials.currency') {{ App\Spending::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->where('tag_id', $budget->tag->id)->sum('amount') - $budget->amount }}</td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
     </div>
     <div class="box">
         <div class="box__section">
@@ -50,10 +34,10 @@
         </div>
         <table class="box__section">
             <tbody>
-                @foreach (App\Budget::where('user_id', Auth::user()->id)->whereMonth('date', $month)->whereYear('date', $year)->get() as $budget)
+                @foreach ($budgets as $budget)
                     <tr>
                         <td>{{ $budget->tag->name }}</td>
-                        <td>@include('partials.currency') {{ $budget->spendings()->sum('amount') }} of @include('partials.currency') {{ $budget->amount }}</td>
+                        <td>{{ $currency }} {{ $budget->spendings()->sum('amount') }} of {{ $currency }} {{ $budget->amount }}</td>
                     </tr>
                 @endforeach
             </tbody>

@@ -5,17 +5,13 @@
     <div class="box">
         <table class="box__section">
             <tbody>
-                @for ($y = 2017; $y <= date('Y'); $y ++)
-                    @for ($m = 1; $m <= 12; $m ++)
-                        @if (App\Budget::where('user_id', Auth::user()->id)->whereMonth('date', $m)->whereYear('date', $y)->count())
-                            <tr>
-                                <td>
-                                    <a href="/reports/{{ $y }}/{{ $m }}">@lang('months.' . $m), {{ $y }}</a>
-                                </td>
-                            </tr>
-                        @endif
-                    @endfor
-                @endfor
+                @foreach ($budgets as $budget)
+                    <tr>
+                        <td>
+                            <a href="/reports/{{ $budget->year }}/{{ $budget->month }}">@lang('months.' . $budget->month), {{ $budget->year }}<a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
