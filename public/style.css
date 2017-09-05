@@ -98,9 +98,25 @@ body {
     display: flex;
 }
 
+.row.tight .column {
+    flex: none;
+}
+
 .row .column {
     padding: 0 16px;
     flex: 1;
+}
+
+.row .column.size-560 {
+    max-width: 560px;
+}
+
+.row .column.align-center {
+    margin: 0 auto;
+}
+
+.row .column.align-middle {
+    align-self: center;
 }
 
 /* Form */
