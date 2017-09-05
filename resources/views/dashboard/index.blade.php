@@ -2,11 +2,9 @@
 
 @section('body')
     <h1>Dashboard</h1>
-    <div class="box spacing-bottom-large">
-        <div class="box__section">
-            <span style="font-size: 18px;">Earnings</span>
-        </div>
-        <table class="box__section">
+    <h2 class="spacing-top-large spacing-bottom-medium">Earnings</h2>
+    <div class="box">
+        <table>
             <tbody>
                 @foreach (Auth::user()->earnings as $earning)
                     <tr>
@@ -17,11 +15,9 @@
             </tbody>
         </table>
     </div>
+    <h2 class="spacing-top-large spacing-bottom-medium">Spendings</h2>
     <div class="box">
-        <div class="box__section">
-            <span style="font-size: 18px;">Spendings</span>
-        </div>
-        <table class="box__section">
+        <table>
             <tbody>
                 @foreach (Auth::user()->spendings as $spending)
                     <tr>

@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('body')
-    <h1>Reports</h1>
+    <h1 class="spacing-bottom-large">Reports</h1>
     <div class="box">
-        <table class="box__section">
+        <table>
             <tbody>
                 @foreach ($budgets as $budget)
                     <tr>

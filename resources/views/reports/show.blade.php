@@ -1,38 +1,30 @@
 @extends('layout')
 
 @section('body')
-    <h1>Report for @lang('months.' . $month), {{ $year }}</h1>
-    <div class="row spacing-bottom-large">
-        <div class="row__column">
-            <div class="box">
-                <div class="box__section box__section--align-center">
-                    <h2 class="spacing-bottom-small">{{ $currency }} {{ $earnings }}</h2>
-                    <p>Earned</p>
-                </div>
+    <h1 class="spacing-bottom-large">Report for @lang('months.' . $month), {{ $year }}</h1>
+    <div class="row">
+        <div class="column">
+            <div class="box spacing-large">
+                <h1 class="color-green spacing-bottom-small">{{ $currency }} {{ $earnings }}</h1>
+                <p>Earnings</p>
             </div>
         </div>
-        <div class="row__column">
-            <div class="box">
-                <div class="box__section box__section--align-center">
-                    <h2 class="spacing-bottom-small">{{ $currency }} {{ $spendings }}</h2>
-                    <p>Spent</p>
-                </div>
+        <div class="column">
+            <div class="box spacing-large">
+                <h1 class="color-red spacing-bottom-small">{{ $currency }} {{ $spendings }}</h1>
+                <p>Spendings</p>
             </div>
         </div>
-        <div class="row__column">
-            <div class="box">
-                <div class="box__section box__section--align-center">
-                    <h2 class="spacing-bottom-small">{{ $currency }} {{ $earnings - $spendings }}</h2>
-                    <p>Net</p>
-                </div>
+        <div class="column">
+            <div class="box spacing-large">
+                <h1 class="color-blue spacing-bottom-small">{{ $currency }} {{ $earnings - $spendings }}</h1>
+                <p>Balance</p>
             </div>
         </div>
     </div>
+    <h2 class="spacing-top-large spacing-bottom-medium">Budgets</h2>
     <div class="box">
-        <div class="box__section">
-            <p>Budgets</p>
-        </div>
-        <table class="box__section">
+        <table>
             <tbody>
                 @foreach ($budgets as $budget)
                     <tr>
