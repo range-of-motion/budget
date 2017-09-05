@@ -7,24 +7,26 @@
         <link rel="stylesheet" href="/style.css" />
     </head>
     <body>
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="/dashboard">Dashboard</a>
-                </li>
-                <li>
-                    <a href="/reports">Reports</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="/settings">Settings</a>
-                </li>
-                <li>
-                    <a href="/logout">Log out</a>
-                </li>
-            </ul>
-        </div>
+        @if (Auth::check())
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/reports">Reports</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="/settings">Settings</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        @endif
         <div class="body">
             @yield('body')
         </div>
