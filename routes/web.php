@@ -12,7 +12,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/budgets', 'BudgetsController', ['only' => ['index']]);
 
-    Route::resource('/tags', 'TagsController', ['only' => ['index']]);
+    Route::resource('/tags', 'TagsController', ['only' => ['index', 'create', 'store']]);
 
     Route::get('/reports', 'ReportsController@index')->name('reports.index');
     Route::get('/reports/{year}/{month}', 'ReportsController@show')->name('reports.show');

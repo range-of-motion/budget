@@ -6,7 +6,7 @@
             <h1>Tags</h1>
         </div>
         <div class="column align-right">
-            <a href="#" class="button">Create</a>
+            <a href="/tags/create" class="button">Create</a>
         </div>
     </div>
     <div class="box spacing-top-large">
