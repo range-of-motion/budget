@@ -35,6 +35,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Spending');
     }
 
+    public function tags() {
+        return $this->hasMany('App\Tag');
+    }
+
     public function budgets() {
         return $this->hasMany('App\Budget');
     }
