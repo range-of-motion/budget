@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('body')
-    <h1>Tags PLACEHOLDER Create</h1>
+    <h1>Tags &middot; Create</h1>
     <div class="box spacing-small spacing-top-large">
         <form method="POST" action="/tags">
             {{ csrf_field() }}
