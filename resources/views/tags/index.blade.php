@@ -1,7 +1,14 @@
 @extends('layout')
 
 @section('body')
-    <h1>Tags</h1>
+    <div class="row">
+        <div class="column align-middle">
+            <h1>Tags</h1>
+        </div>
+        <div class="column align-right">
+            <a href="#" class="button">Create</a>
+        </div>
+    </div>
     <div class="box spacing-top-large">
         <table>
             <tbody>

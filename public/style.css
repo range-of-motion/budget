@@ -119,6 +119,10 @@ body {
     align-self: center;
 }
 
+.row .column.align-right {
+    text-align: right;
+}
+
 /* Form */
 
 label, input {
@@ -130,8 +134,10 @@ label {
 }
 
 input {
-    display: block;
     font: inherit;
+}
+
+input, .button {
     border-radius: 4px;
 }
 
@@ -146,10 +152,21 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
     outline: 0;
 }
 
-input[type=submit] {
+.button, input[type=submit] {
     padding: 12px 24px;
     background: #4880FE;
     color: #FFF;
+}
+
+.button {
+    display: inline-block;
+}
+
+.button:hover {
+    color: #FFF;
+}
+
+input[type=submit] {
     border: none;
 }
 
