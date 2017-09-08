@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('body')
-    <h1 class="spacing-bottom-large">Create spending</h1>
+    <h1 class="spacing-bottom-large">Spendings &middot; Create</h1>
     <div class="box spacing-small">
         <form method="POST" action="/spendings">
             {{ csrf_field() }}
@@ -18,7 +18,7 @@
             <input type="text" name="description" />
             <label>Amount</label>
             <input type="text" name="amount" />
-            <input type="submit" value="Create spending" />
+            <input type="submit" value="Create" />
         </form>
     </div>
 @endsection
