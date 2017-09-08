@@ -16,6 +16,8 @@ class ReportsController extends Controller {
 
         $budgets = Budget::where('user_id', $user->id)
             ->groupBy('year', 'month')
+            ->orderBy('year', 'DESC')
+            ->orderBy('month', 'DESC')
             ->get(['id', 'year', 'month']);
 
         return view('reports.index', compact('budgets'));
