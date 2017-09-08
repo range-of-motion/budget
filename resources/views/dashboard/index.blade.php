@@ -2,7 +2,14 @@
 
 @section('body')
     <h1>Dashboard</h1>
-    <h2 class="spacing-top-large spacing-bottom-medium">Earnings</h2>
+    <div class="row spacing-top-large spacing-bottom-medium">
+        <div class="column align-middle">
+            <h2>Earnings</h2>
+        </div>
+        <div class="column align-right">
+            <a href="/earnings/create" class="button">Create</a>
+        </div>
+    </div>
     <div class="box">
         <table>
             <tbody>
@@ -15,7 +22,14 @@
             </tbody>
         </table>
     </div>
-    <h2 class="spacing-top-large spacing-bottom-medium">Spendings</h2>
+    <div class="row spacing-top-large spacing-bottom-medium">
+        <div class="column align-middle">
+            <h2>Spendings</h2>
+        </div>
+        <div class="column align-right">
+            <a href="/spendings/create" class="button">Create</a>
+        </div>
+    </div>
     <div class="box">
         <table>
             <tbody>
