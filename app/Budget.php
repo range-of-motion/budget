@@ -9,6 +9,8 @@ use App\Spending;
 use Auth;
 
 class Budget extends Model {
+    public $timestamps = false;
+
     public function tag() {
         return $this->belongsTo('App\Tag');
     }

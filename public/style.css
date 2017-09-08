@@ -125,7 +125,7 @@ body {
 
 /* Form */
 
-label, input {
+label, input, select {
     display: block;
 }
 
@@ -133,22 +133,27 @@ label {
     margin-bottom: 8px;
 }
 
-input {
+input, select {
     font: inherit;
 }
 
-input, .button {
+input, select, .button {
     border-radius: 4px;
 }
 
-input[type=text], input[type=email], input[type=password] {
+select {
+    -webkit-appearance: none;
+    background: #FFF;
+}
+
+input[type=text], input[type=email], input[type=password], select {
     margin-bottom: 32px;
     padding: 12px;
     width: 100%;
     border: 1px solid #E5E9F2;
 }
 
-input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, select:focus {
     outline: 0;
 }
 
