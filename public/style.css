@@ -179,6 +179,20 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
+form.test {
+    display: inline-block;
+}
+
+form.test input[type=submit] {
+    background: none;
+    padding: 0;
+    color: #8B93A6;
+}
+
+form.test input[type=submit]:hover {
+    color: #4880FE;
+}
+
 /* Spacing */
 
 .spacing-top-small {

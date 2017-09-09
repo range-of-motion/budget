@@ -40,4 +40,10 @@ class BudgetsController extends Controller {
 
         return redirect('/budgets');
     }
+
+    public function destroy($id) {
+        Budget::destroy($id);
+
+        return redirect('/budgets');
+    }
 }

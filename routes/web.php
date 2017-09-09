@@ -10,7 +10,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/spendings', 'SpendingsController', ['only' => ['create', 'store']]);
 
-    Route::resource('/budgets', 'BudgetsController', ['only' => ['index', 'create', 'store']]);
+    Route::resource('/budgets', 'BudgetsController', ['only' => ['index', 'create', 'store', 'destroy']]);
 
     Route::resource('/tags', 'TagsController', ['only' => ['index', 'create', 'store']]);
 
