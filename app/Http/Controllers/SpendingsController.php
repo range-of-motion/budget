@@ -10,6 +10,18 @@ use App\Tag;
 use Auth;
 
 class SpendingsController extends Controller {
+    public function index() {
+        $user = Auth::user();
+
+        $spendings = $user->spendings()
+            ->orderBy('date', 'DESC')
+            ->get();
+
+        $currency = $user->currency;
+
+        return view('spendings.index', compact('spendings', 'currency'));
+    }
+
     public function create() {
         $tags = Tag::where('user_id', Auth::user()->id)->get();
 

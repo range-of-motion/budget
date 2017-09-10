@@ -23,6 +23,9 @@
                         <a href="/earnings">Earnings</a>
                     </li>
                     <li>
+                        <a href="/spendings">Spendings</a>
+                    </li>
+                    <li>
                         <a href="/tags">Tags</a>
                     </li>
                 </ul>
