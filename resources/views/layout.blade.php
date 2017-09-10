@@ -20,6 +20,9 @@
                         <a href="/budgets">Budgets</a>
                     </li>
                     <li>
+                        <a href="/earnings">Earnings</a>
+                    </li>
+                    <li>
                         <a href="/tags">Tags</a>
                     </li>
                 </ul>

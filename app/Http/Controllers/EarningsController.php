@@ -9,6 +9,18 @@ use App\Earning;
 use Auth;
 
 class EarningsController extends Controller {
+    public function index() {
+        $user = Auth::user();
+
+        $earnings = $user->earnings()
+            ->orderBy('date', 'DESC')
+            ->get();
+
+        $currency = $user->currency;
+
+        return view('earnings.index', compact('earnings', 'currency'));
+    }
+
     public function create() {
         return view('earnings.create');
     }
