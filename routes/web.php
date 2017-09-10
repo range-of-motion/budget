@@ -3,6 +3,9 @@
 Route::get('/login', 'LoginController@index')->name('login.index');
 Route::post('/login', 'LoginController@store')->name('login.store');
 
+Route::get('/register', 'RegisterController@index');
+Route::post('/register', 'RegisterController@store');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
