@@ -15,6 +15,13 @@
                 @foreach ($tags as $tag)
                     <tr>
                         <td>{{ $tag->name }}</td>
+                        <td>
+                            <form class="test" method="POST" action="/tags/{{ $tag->id }}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <input type="submit" value="Delete" />
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

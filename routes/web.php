@@ -15,7 +15,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/budgets', 'BudgetsController', ['only' => ['index', 'create', 'store', 'destroy']]);
 
-    Route::resource('/tags', 'TagsController', ['only' => ['index', 'create', 'store']]);
+    Route::resource('/tags', 'TagsController', ['only' => ['index', 'create', 'store', 'destroy']]);
 
     Route::get('/reports', 'ReportsController@index')->name('reports.index');
     Route::get('/reports/{year}/{month}', 'ReportsController@show')->name('reports.show');

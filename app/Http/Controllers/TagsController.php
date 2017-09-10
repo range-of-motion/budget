@@ -28,4 +28,10 @@ class TagsController extends Controller {
 
         return redirect('/tags');
     }
+
+    public function destroy($id) {
+        Tag::destroy($id);
+
+        return redirect('/tags');
+    }
 }
