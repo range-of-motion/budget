@@ -1,8 +1,15 @@
 @extends('layout')
 
 @section('body')
-    <h1>Spendings</h1>
-    <div class="box spacing-top-large">
+    <div class="row spacing-bottom-large">
+        <div class="column align-middle">
+            <h1>Spendings</h1>
+        </div>
+        <div class="column align-right">
+            <a href="/spendings/create" class="button">Create</a>
+        </div>
+    </div>
+    <div class="box">
         <table>
             <tbody>
                 @foreach ($spendings as $spending)
