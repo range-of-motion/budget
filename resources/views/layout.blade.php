@@ -3,7 +3,7 @@
     <head>
         <title>Budget</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i" />
         <link rel="stylesheet" href="/style.css" />
     </head>
     <body>
