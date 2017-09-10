@@ -2,44 +2,25 @@
 
 @section('body')
     <h1>Dashboard</h1>
-    <div class="row spacing-top-large spacing-bottom-medium">
-        <div class="column align-middle">
-            <h2>Earnings</h2>
+    <h2 class="spacing-top-large spacing-bottom-medium">@lang('months.' . $month)</h2>
+    <div class="row">
+        <div class="column">
+            <div class="box spacing-large">
+                <h1 class="color-green spacing-bottom-small">{{ $currency->symbol }} {{ $earnings }}</h1>
+                <p>Earnings</p>
+            </div>
         </div>
-        <div class="column align-right">
-            <a href="/earnings/create" class="button">Create</a>
+        <div class="column">
+            <div class="box spacing-large">
+                <h1 class="color-red spacing-bottom-small">{{ $currency->symbol }} {{ $spendings }}</h1>
+                <p>Spendings</p>
+            </div>
         </div>
-    </div>
-    <div class="box">
-        <table>
-            <tbody>
-                @foreach (Auth::user()->earnings as $earning)
-                    <tr>
-                        <td>{{ $earning->description }}</td>
-                        <td>{{ $currency->symbol }} {{ $earning->amount }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div class="row spacing-top-large spacing-bottom-medium">
-        <div class="column align-middle">
-            <h2>Spendings</h2>
+        <div class="column">
+            <div class="box spacing-large">
+                <h1 class="color-blue spacing-bottom-small">{{ $currency->symbol }} {{ $earnings - $spendings }}</h1>
+                <p>Balance</p>
+            </div>
         </div>
-        <div class="column align-right">
-            <a href="/spendings/create" class="button">Create</a>
-        </div>
-    </div>
-    <div class="box">
-        <table>
-            <tbody>
-                @foreach (Auth::user()->spendings as $spending)
-                    <tr>
-                        <td>{{ $spending->description }}</td>
-                        <td>{{ $currency->symbol }} {{ $spending->amount }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
 @endsection

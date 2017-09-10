@@ -8,8 +8,23 @@ use Auth;
 
 class DashboardController extends Controller {
     public function index() {
-        $currency = Auth::user()->currency;
+        $user = Auth::user();
 
-        return view('dashboard.index', compact('currency'));
+        $year = date('Y');
+        $month = date('n');
+
+        $currency = $user->currency;
+
+        $earnings = $user->earnings()
+            ->whereYear('date', $year)
+            ->whereMonth('date', $month)
+            ->sum('amount');
+
+        $spendings = $user->spendings()
+            ->whereYear('date', $year)
+            ->whereMonth('date', $month)
+            ->sum('amount');
+
+        return view('dashboard.index', compact('currency', 'month', 'earnings', 'spendings'));
     }
 }
