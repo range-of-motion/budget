@@ -16,6 +16,7 @@
                     <tr>
                         <td>{{ $tag->name }}</td>
                         <td>
+                            <a href="/tags/{{ $tag->id }}/edit">Edit</a> &middot;
                             <form class="test" method="POST" action="/tags/{{ $tag->id }}">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
