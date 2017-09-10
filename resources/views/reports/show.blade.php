@@ -5,19 +5,19 @@
     <div class="row">
         <div class="column">
             <div class="box spacing-large">
-                <h1 class="color-green spacing-bottom-small">{{ $currency }} {{ $earnings }}</h1>
+                <h1 class="color-green spacing-bottom-small">{{ $currency->symbol }} {{ $earnings }}</h1>
                 <p>Earnings</p>
             </div>
         </div>
         <div class="column">
             <div class="box spacing-large">
-                <h1 class="color-red spacing-bottom-small">{{ $currency }} {{ $spendings }}</h1>
+                <h1 class="color-red spacing-bottom-small">{{ $currency->symbol }} {{ $spendings }}</h1>
                 <p>Spendings</p>
             </div>
         </div>
         <div class="column">
             <div class="box spacing-large">
-                <h1 class="color-blue spacing-bottom-small">{{ $currency }} {{ $earnings - $spendings }}</h1>
+                <h1 class="color-blue spacing-bottom-small">{{ $currency->symbol }} {{ $earnings - $spendings }}</h1>
                 <p>Balance</p>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 @foreach ($budgets as $budget)
                     <tr>
                         <td>{{ $budget->tag->name }}</td>
-                        <td>{{ $currency }} {{ $budget->spendings()->sum('amount') }} of {{ $currency }} {{ $budget->amount }}</td>
+                        <td>{{ $currency->symbol }} {{ $budget->spendings()->sum('amount') }} of {{ $currency->symbol }} {{ $budget->amount }}</td>
                     </tr>
                 @endforeach
             </tbody>

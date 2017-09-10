@@ -26,7 +26,7 @@ class ReportsController extends Controller {
     public function show($year, $month) {
         $user = Auth::user();
 
-        $currency = view('partials.currency');
+        $currency = $user->currency;
 
         $earnings = Earning::where('user_id', $user->id)
             ->whereYear('date', $year)

@@ -16,7 +16,7 @@
                 @foreach (Auth::user()->earnings as $earning)
                     <tr>
                         <td>{{ $earning->description }}</td>
-                        <td>@include('partials.currency') {{ $earning->amount }}</td>
+                        <td>{{ $currency->symbol }} {{ $earning->amount }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -36,7 +36,7 @@
                 @foreach (Auth::user()->spendings as $spending)
                     <tr>
                         <td>{{ $spending->description }}</td>
-                        <td>@include('partials.currency') {{ $spending->amount }}</td>
+                        <td>{{ $currency->symbol }} {{ $spending->amount }}</td>
                     </tr>
                 @endforeach
             </tbody>

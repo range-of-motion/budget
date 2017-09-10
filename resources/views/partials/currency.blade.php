@@ -1,1 +1,0 @@
-{{ Auth::user()->currency->symbol }}
