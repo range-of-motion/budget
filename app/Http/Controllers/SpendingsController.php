@@ -46,4 +46,10 @@ class SpendingsController extends Controller {
 
         return redirect()->route('dashboard.index');
     }
+
+    public function destroy($id) {
+        Spending::destroy($id);
+
+        return redirect('/spendings');
+    }
 }
