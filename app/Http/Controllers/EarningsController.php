@@ -41,4 +41,10 @@ class EarningsController extends Controller {
 
         return redirect()->route('dashboard.index');
     }
+
+    public function destroy($id) {
+        Earning::destroy($id);
+
+        return redirect('/earnings');
+    }
 }

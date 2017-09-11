@@ -17,6 +17,13 @@
                         <td>{{ date('F jS, Y', strtotime($earning->date)) }}</td>
                         <td>{{ $currency->symbol }} {{ $earning->amount }}</td>
                         <td>{{ $earning->description }}</td>
+                        <td>
+                            <form class="test" method="POST" action="/earnings/{{ $earning->id }}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <input type="submit" value="Delete" />
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

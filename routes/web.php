@@ -9,7 +9,7 @@ Route::post('/register', 'RegisterController@store');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
-    Route::resource('/earnings', 'EarningsController', ['only' => ['index', 'create', 'store']]);
+    Route::resource('/earnings', 'EarningsController', ['only' => ['index', 'create', 'store', 'destroy']]);
 
     Route::resource('/spendings', 'SpendingsController', ['only' => ['index', 'create', 'store', 'destroy']]);
 
