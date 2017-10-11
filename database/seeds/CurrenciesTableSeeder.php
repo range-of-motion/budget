@@ -8,7 +8,7 @@ class CurrenciesTableSeeder extends Seeder {
     public function run() {
         Currency::create([
             'name' => 'Euro',
-            'symbol' => '&eur;'
+            'symbol' => '&euro;'
         ]);
     }
 }
