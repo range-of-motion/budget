@@ -20,7 +20,11 @@ class LoginController extends Controller {
         ])) {
             return redirect()->route('dashboard.index');
         } else {
-            return redirect()->route('login.index');
+            return redirect()
+                ->route('login.index')
+                ->withErrors([
+                    'credentials' => 'There\'s no user with that email address/password'
+                ]);
         }
     }
 }

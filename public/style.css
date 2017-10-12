@@ -239,3 +239,13 @@ table {
 table td {
     padding: 32px;
 }
+
+/* Alert */
+
+.alert {
+    padding: 24px;
+    text-align: center;
+    background: #FC5865;
+    border-radius: 8px;
+    color: #FFF;
+}
