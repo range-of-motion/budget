@@ -3,6 +3,11 @@
 @section('body')
     <div class="row">
         <div class="column size-560 align-center">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert spacing-bottom-large">{{ $error }}</div>
+                @endforeach
+            @endif
             <h1 class="spacing-bottom-large">Register</h1>
             <div class="box spacing-small">
                 <form method="POST">

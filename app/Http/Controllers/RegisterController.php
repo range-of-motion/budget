@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use App\Http\Controllers\Controller;
 
 use App\Currency;
 use App\User;
@@ -16,6 +17,13 @@ class RegisterController extends Controller {
     }
 
     public function store(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'currency_id' => 'required'
+        ]);
+
         $user = new User;
 
         $user->name = $request->name;
