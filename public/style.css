@@ -262,3 +262,9 @@ table th, table td {
     border-radius: 8px;
     color: #FFF;
 }
+
+.alert-inline {
+    margin-top: -24px;
+    margin-bottom: 32px;
+    color: #FA5764;
+}
