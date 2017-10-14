@@ -125,6 +125,10 @@ body {
 
 /* Form */
 
+form.tight input {
+    margin: 0;
+}
+
 label, input, select {
     display: block;
 }
