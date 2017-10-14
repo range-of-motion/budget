@@ -28,7 +28,7 @@ a:hover {
     color: #4880FE;
 }
 
-body, h1, h2 {
+body, h1, h2, th {
     font-weight: 400;
 }
 
@@ -234,9 +234,14 @@ form.test input[type=submit]:hover {
 table {
     width: 100%;
     border-collapse: collapse;
+    text-align: left;
 }
 
-table td {
+table th {
+    color: #333;
+}
+
+table th, table td {
     padding: 32px;
 }
 
