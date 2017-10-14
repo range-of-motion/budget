@@ -107,6 +107,10 @@ body {
     flex: 1;
 }
 
+.row .column.tight {
+    flex: none;
+}
+
 .row .column.size-560 {
     max-width: 560px;
 }

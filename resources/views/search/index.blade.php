@@ -7,7 +7,7 @@
             <div class="column">
                 <input type="text" name="query" />
             </div>
-            <div class="column">
+            <div class="column tight">
                 <input type="submit" value="Search" />
             </div>
         </div>
