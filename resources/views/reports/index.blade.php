@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('body')
-    <h1 class="spacing-bottom-large">Reports</h1>
+    <h1>Reports</h1>
+    <p class="spacing-top-small spacing-bottom-large">Your monthly reports summarizing budgets, earnings and spendings</p>
     <div class="box">
         <table>
             <tbody>
