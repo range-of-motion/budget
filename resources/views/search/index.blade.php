@@ -41,7 +41,9 @@
                 <tbody>
                     @foreach ($spendings as $spending)
                         <tr>
-                            <td>{{ $spending->description }}</td>
+                            <td>
+                                <a href="/spendings/{{ $spending->id }}">{{ $spending->description }}</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
