@@ -13,7 +13,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/earnings', 'EarningsController', ['only' => ['index', 'create', 'store', 'destroy']]);
 
-    Route::resource('/spendings', 'SpendingsController', ['only' => ['index', 'create', 'store', 'destroy']]);
+    Route::resource('/spendings', 'SpendingsController', ['only' => ['index', 'show', 'create', 'store', 'destroy']]);
 
     Route::resource('/budgets', 'BudgetsController', ['only' => ['index', 'create', 'store', 'destroy']]);
 

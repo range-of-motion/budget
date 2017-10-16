@@ -22,6 +22,16 @@ class SpendingsController extends Controller {
         return view('spendings.index', compact('spendings', 'currency'));
     }
 
+    public function show($id) {
+        $user = Auth::user();
+
+        $currency = $user->currency;
+
+        $spending = Spending::find($id);
+
+        return view('spendings.show', compact('currency', 'spending'));
+    }
+
     public function create() {
         $tags = Tag::where('user_id', Auth::user()->id)->get();
 
