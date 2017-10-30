@@ -28,11 +28,11 @@ a:hover {
     color: #4880FE;
 }
 
-body, h1, h2, th {
+body, h1, h2, h3, th {
     font-weight: 400;
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: #18223C;
 }
 
@@ -42,6 +42,10 @@ h1 {
 
 h2 {
     font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
 }
 
 /* Foundation */
@@ -117,6 +121,10 @@ body {
 
 .row .column.align-center {
     margin: 0 auto;
+}
+
+.row .column.align-center {
+    text-align: center;
 }
 
 .row .column.align-middle {

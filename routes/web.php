@@ -7,7 +7,7 @@ Route::get('/register', 'RegisterController@index');
 Route::post('/register', 'RegisterController@store');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+    Route::get('/dashboard/{year?}/{month?}', 'DashboardController@index')->name('dashboard.index');
 
     Route::get('/search', 'SearchController@index');
 
