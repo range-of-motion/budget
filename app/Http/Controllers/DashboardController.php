@@ -31,6 +31,18 @@ class DashboardController extends Controller {
 
         $currency = $user->currency;
 
+        $totalEarnings = $user->earnings()
+            ->whereYear('date', $year)
+            ->whereMonth('date', $month)
+            ->sum('amount');
+
+        $totalSpendings = $user->spendings()
+            ->whereYear('date', $year)
+            ->whereMonth('date', $month)
+            ->sum('amount');
+
+        $balance = $totalEarnings - $totalSpendings;
+
         $earnings = $user->earnings()
             ->whereYear('date', $year)
             ->whereMonth('date', $month)
@@ -54,6 +66,9 @@ class DashboardController extends Controller {
             'previousMonth',
             'nextMonth',
             'currency',
+            'totalEarnings',
+            'totalSpendings',
+            'balance',
             'earnings',
             'spendings',
             'budgets'
