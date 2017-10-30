@@ -48,6 +48,10 @@ h3 {
     font-size: 18px;
 }
 
+h1.align-center, h2.align-center, h3.align-center {
+    text-align: center;
+}
+
 /* Foundation */
 
 body {
@@ -121,10 +125,6 @@ body {
 
 .row .column.align-center {
     margin: 0 auto;
-}
-
-.row .column.align-center {
-    text-align: center;
 }
 
 .row .column.align-middle {
