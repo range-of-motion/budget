@@ -49,28 +49,44 @@
             </div>
         </div>
     </div>
-    <h2 class="spacing-top-large spacing-bottom-medium">Earnings</h2>
-    <table class="box spacing-large">
-        <tbody>
-            @foreach ($earnings as $earning)
-                <tr>
-                    <td>{{ $earning->description }}</td>
-                    <td>{{ $currency->symbol }} {{ $earning->amount }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <h2 class="spacing-top-large spacing-bottom-medium">Spendings</h2>
-    <table class="box spacing-large">
-        <tbody>
-            @foreach ($spendings as $spending)
-                <tr>
-                    <td>{{ $spending->description }}</td>
-                    <td>{{ $currency->symbol }} {{ $spending->amount }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="row spacing-top-large">
+        <div class="column">
+            <h2 class="spacing-bottom-medium">Earnings</h2>
+            <ul class="box">
+                @foreach ($earnings as $earning)
+                    <li>
+                        <div class="row">
+                            <div class="column">
+                                <a href="#">{{ $earning->description }}</a>
+                                <p class="spacing-top-nano">{{ date('jS', strtotime($earning->date)) }}</p>
+                            </div>
+                            <div class="column align-right align-middle">
+                                <h3 class="color-green">{{ $currency->symbol }} {{ $earning->amount }}</h3>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="column">
+            <h2 class="spacing-bottom-medium">Spendings</h2>
+            <ul class="box">
+                @foreach ($spendings as $spending)
+                    <li>
+                        <div class="row">
+                            <div class="column">
+                                <a href="#">{{ $spending->description }}</a>
+                                <p class="spacing-top-nano">{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
+                            </div>
+                            <div class="column align-right align-middle">
+                                <h3 class="color-red">{{ $currency->symbol }} {{ $spending->amount }}</h3>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
     <h2 class="spacing-top-large spacing-bottom-medium">Budgets</h2>
     <table class="box spacing-large">
         <tbody>
