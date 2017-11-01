@@ -58,6 +58,9 @@
                         <p>{{ $budget->tag->name }}</p>
                     </div>
                     <div class="column">
+                        <progress value="{{ $budget->spendings()->sum('amount') }}" max="{{ $budget->amount }}"></progress>
+                    </div>
+                    <div class="column">
                         <p>{{ $currency->symbol }} {{ $budget->spendings()->sum('amount') }} of {{ $currency->symbol }} {{ $budget->amount }}</p>
                     </div>
                 </div>
