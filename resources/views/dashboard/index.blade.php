@@ -49,6 +49,21 @@
             </div>
         </div>
     </div>
+    <h2 class="spacing-top-large spacing-bottom-medium">Budgets</h2>
+    <ul class="box">
+        @foreach ($budgets as $budget)
+            <li>
+                <div class="row">
+                    <div class="column">
+                        <p>{{ $budget->tag->name }}</p>
+                    </div>
+                    <div class="column">
+                        <p>{{ $currency->symbol }} {{ $budget->spendings()->sum('amount') }} of {{ $currency->symbol }} {{ $budget->amount }}</p>
+                    </div>
+                </div>
+            </li>
+        @endforeach
+    </ul>
     <div class="row spacing-top-large">
         <div class="column">
             <h2 class="spacing-bottom-medium">Earnings</h2>
@@ -87,15 +102,4 @@
             </ul>
         </div>
     </div>
-    <h2 class="spacing-top-large spacing-bottom-medium">Budgets</h2>
-    <table class="box spacing-large">
-        <tbody>
-            @foreach ($budgets as $budget)
-                <tr>
-                    <td>{{ $budget->tag->name }}</td>
-                    <td>{{ $currency->symbol }} {{ $budget->amount }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
 @endsection
