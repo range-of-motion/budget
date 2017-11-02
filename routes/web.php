@@ -11,7 +11,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/search', 'SearchController@index');
 
-    Route::resource('/earnings', 'EarningsController', ['only' => ['index', 'show', 'create', 'store', 'destroy']]);
+    Route::resource('/earnings', 'EarningsController', ['only' => ['show', 'create', 'store', 'destroy']]);
 
     Route::resource('/spendings', 'SpendingsController', ['only' => ['index', 'show', 'create', 'store', 'destroy']]);
 
