@@ -17,9 +17,6 @@
                         <a href="/search">Search</a>
                     </li>
                     <li>
-                        <a href="/reports">Reports</a>
-                    </li>
-                    <li>
                         <a href="/budgets">Budgets</a>
                     </li>
                     <li>
