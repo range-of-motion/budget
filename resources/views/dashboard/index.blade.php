@@ -102,7 +102,7 @@
                         <li>
                             <div class="row">
                                 <div class="column">
-                                    <a href="#">{{ $spending->description }}</a>
+                                    <a href="/spendings/{{ $spending->id }}">{{ $spending->description }}</a>
                                     <p class="spacing-top-nano">{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
                                 </div>
                                 <div class="column align-right align-middle">
