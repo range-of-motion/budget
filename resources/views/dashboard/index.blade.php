@@ -74,13 +74,13 @@
     <div class="row spacing-top-large">
         <div class="column">
             <h2 class="spacing-bottom-medium">Earnings</h2>
-            @if ($budgets->count())
+            @if ($earnings->count())
                 <ul class="box">
                     @foreach ($earnings as $earning)
                         <li>
                             <div class="row">
                                 <div class="column">
-                                    <a href="#">{{ $earning->description }}</a>
+                                    <a href="/earnings/{{ $earning->id }}">{{ $earning->description }}</a>
                                     <p class="spacing-top-nano">{{ date('jS', strtotime($earning->date)) }}</p>
                                 </div>
                                 <div class="column align-right align-middle">
@@ -96,7 +96,7 @@
         </div>
         <div class="column">
             <h2 class="spacing-bottom-medium">Spendings</h2>
-            @if ($budgets->count())
+            @if ($spendings->count())
                 <ul class="box">
                     @foreach ($spendings as $spending)
                         <li>
