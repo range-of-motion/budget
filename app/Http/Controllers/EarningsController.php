@@ -21,6 +21,12 @@ class EarningsController extends Controller {
         return view('earnings.index', compact('earnings', 'currency'));
     }
 
+    public function show($id) {
+        $earning = Earning::find($id);
+
+        return view('earnings.show', compact('earning'));
+    }
+
     public function create() {
         return view('earnings.create');
     }
