@@ -2,31 +2,14 @@
 
 @section('body')
     <div class="row">
-        <div class="column align-middle">
-            <div class="row">
-                <div class="column tight align-middle">
-                    <a href="/dashboard/{{ $year - 1 }}/{{ $month }}">Previous</a>
-                </div>
-                <div class="column tight align-middle">
-                    <h1>{{ $year }}</h1>
-                </div>
-                <div class="column tight align-middle">
-                    <a href="/dashboard/{{ $year + 1 }}/{{ $month }}">Next</a>
-                </div>
-            </div>
+        <div class="column tight align-middle">
+            <a href="/dashboard/{{ $previousYear }}/{{ $previousMonth }}">Previous</a>
         </div>
-        <div class="column tight align-middle align-right">
-            <div class="row">
-                <div class="column tight align-middle">
-                    <a href="/dashboard/{{ $previousYear }}/{{ $previousMonth }}">Previous</a>
-                </div>
-                <div class="column tight align-middle">
-                    <h2>@lang('months.' . $month)</h2>
-                </div>
-                <div class="column tight align-middle">
-                    <a href="/dashboard/{{ $nextYear }}/{{ $nextMonth }}">Next</a>
-                </div>
-            </div>
+        <div class="column tight align-middle">
+            <h1>@lang('months.' . $month), {{ $year }}</h1>
+        </div>
+        <div class="column tight align-middle">
+            <a href="/dashboard/{{ $nextYear }}/{{ $nextMonth }}">Next</a>
         </div>
     </div>
     <div class="row spacing-top-large">
