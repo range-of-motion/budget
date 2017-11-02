@@ -19,9 +19,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/tags', 'TagsController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
 
-    Route::get('/reports', 'ReportsController@index')->name('reports.index');
-    Route::get('/reports/{year}/{month}', 'ReportsController@show')->name('reports.show');
-
     Route::get('/settings', 'SettingsController@index')->name('settings.index');
     Route::post('/settings', 'SettingsController@store')->name('settings.store');
 });
