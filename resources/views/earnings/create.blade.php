@@ -6,7 +6,7 @@
         <form method="POST" action="/earnings">
             {{ csrf_field() }}
             <label>Date</label>
-            <input type="text" name="date" />
+            <DatePicker></DatePicker>
             <label>Description</label>
             <input type="text" name="description" />
             <label>Amount</label>

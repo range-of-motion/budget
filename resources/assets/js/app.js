@@ -1,6 +1,6 @@
 window.Vue = require('vue')
 
-Vue.component('example', require('./components/Example.vue'))
+Vue.component('datepicker', require('./components/DatePicker.vue'))
 
 const app = new Vue({
     el: '#app'
