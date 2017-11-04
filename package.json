@@ -12,6 +12,7 @@
     "devDependencies": {
         "cross-env": "^5.0.1",
         "laravel-mix": "^1.0",
-        "lodash": "^4.17.4"
+        "lodash": "^4.17.4",
+        "vue": "^2.5.3"
     }
 }

@@ -8,31 +8,34 @@
         <link rel="stylesheet" href="/css/app.css" />
     </head>
     <body>
-        @if (Auth::check())
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="/dashboard">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="/search">Search</a>
-                    </li>
-                    <li>
-                        <a href="/tags">Tags</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="/settings">Settings</a>
-                    </li>
-                    <li>
-                        <a href="/logout">Log out</a>
-                    </li>
-                </ul>
+        <div id="app">
+            @if (Auth::check())
+                <div class="navigation">
+                    <ul>
+                        <li>
+                            <a href="/dashboard">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/search">Search</a>
+                        </li>
+                        <li>
+                            <a href="/tags">Tags</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="/settings">Settings</a>
+                        </li>
+                        <li>
+                            <a href="/logout">Log out</a>
+                        </li>
+                    </ul>
+                </div>
+            @endif
+            <div class="body">
+                @yield('body')
             </div>
-        @endif
-        <div class="body">
-            @yield('body')
         </div>
+        <script src="/js/app.js"></script>
     </body>
 </html>
