@@ -32,7 +32,14 @@
             </div>
         </div>
     </div>
-    <h2 class="spacing-top-large spacing-bottom-medium">Budgets</h2>
+    <div class="row spacing-top-large spacing-bottom-medium">
+        <div class="column tight align-middle">
+            <h2>Budgets</h2>
+        </div>
+        <div class="column tight align-middle">
+            <a class="button small" href="/budgets/create">Create</a>
+        </div>
+    </div>
     @if ($budgets->count())
         <ul class="box">
             @foreach ($budgets as $budget)
@@ -56,7 +63,14 @@
     @endif
     <div class="row spacing-top-large">
         <div class="column">
-            <h2 class="spacing-bottom-medium">Earnings</h2>
+            <div class="row spacing-bottom-medium">
+                <div class="column tight align-middle">
+                    <h2>Earnings</h2>
+                </div>
+                <div class="column tight align-middle">
+                    <a class="button small" href="/earnings/create">Create</a>
+                </div>
+            </div>
             @if ($earnings->count())
                 <ul class="box">
                     @foreach ($earnings as $earning)
@@ -78,7 +92,14 @@
             @endif
         </div>
         <div class="column">
-            <h2 class="spacing-bottom-medium">Spendings</h2>
+            <div class="row spacing-bottom-medium">
+                <div class="column tight align-middle">
+                    <h2>Spendings</h2>
+                </div>
+                <div class="column tight align-middle">
+                    <a class="button small" href="/spendings/create">Create</a>
+                </div>
+            </div>
             @if ($spendings->count())
                 <ul class="box">
                     @foreach ($spendings as $spending)

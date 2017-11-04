@@ -200,6 +200,15 @@ input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, sel
     color: #FFF;
 }
 
+.button.small {
+    background: none;
+    color: #4880FE;
+    border: 1px solid #4880FE;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
 input[type=submit] {
     border: none;
 }
