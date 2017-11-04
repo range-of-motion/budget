@@ -18,9 +18,6 @@
                         <a href="/search">Search</a>
                     </li>
                     <li>
-                        <a href="/budgets">Budgets</a>
-                    </li>
-                    <li>
                         <a href="/tags">Tags</a>
                     </li>
                 </ul>
