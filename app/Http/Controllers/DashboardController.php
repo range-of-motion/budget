@@ -46,11 +46,13 @@ class DashboardController extends Controller {
         $earnings = $user->earnings()
             ->whereYear('date', $year)
             ->whereMonth('date', $month)
+            ->orderBy('date', 'DESC')
             ->get();
 
         $spendings = $user->spendings()
             ->whereYear('date', $year)
             ->whereMonth('date', $month)
+            ->orderBy('date', 'DESC')
             ->get();
 
         $budgets = $user->budgets()
