@@ -23,10 +23,10 @@ class LoginController extends Controller {
             'email' => $email,
             'password' => $password
         ])) {
-            return redirect()->route('dashboard.index');
+            return redirect()->route('dashboard');
         } else {
             return redirect()
-                ->route('login.index')
+                ->route('login')
                 ->withErrors([
                     'credentials' => 'There\'s no user with that email address/password'
                 ]);

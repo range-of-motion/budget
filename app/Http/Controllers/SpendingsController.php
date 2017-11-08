@@ -32,6 +32,6 @@ class SpendingsController extends Controller {
 
         $spending->save();
 
-        return redirect()->route('dashboard.index');
+        return redirect()->route('dashboard');
     }
 }

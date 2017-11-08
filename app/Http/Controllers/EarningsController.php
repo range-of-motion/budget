@@ -27,6 +27,6 @@ class EarningsController extends Controller {
 
         $earning->save();
 
-        return redirect()->route('dashboard.index');
+        return redirect()->route('dashboard');
     }
 }
