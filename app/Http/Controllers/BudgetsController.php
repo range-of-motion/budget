@@ -25,6 +25,6 @@ class BudgetsController extends Controller {
 
         $budget->save();
 
-        return redirect('/budgets');
+        return redirect()->route('dashboard');
     }
 }
