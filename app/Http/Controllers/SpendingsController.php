@@ -10,16 +10,6 @@ use App\Tag;
 use Auth;
 
 class SpendingsController extends Controller {
-    public function show($id) {
-        $user = Auth::user();
-
-        $currency = $user->currency;
-
-        $spending = Spending::find($id);
-
-        return view('spendings.show', compact('currency', 'spending'));
-    }
-
     public function create() {
         $tags = Tag::where('user_id', Auth::user()->id)->get();
 
@@ -43,11 +33,5 @@ class SpendingsController extends Controller {
         $spending->save();
 
         return redirect()->route('dashboard.index');
-    }
-
-    public function destroy($id) {
-        Spending::destroy($id);
-
-        return redirect('/spendings');
     }
 }

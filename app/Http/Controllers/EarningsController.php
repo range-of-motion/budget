@@ -9,12 +9,6 @@ use App\Earning;
 use Auth;
 
 class EarningsController extends Controller {
-    public function show($id) {
-        $earning = Earning::find($id);
-
-        return view('earnings.show', compact('earning'));
-    }
-
     public function create() {
         return view('earnings.create');
     }
@@ -34,11 +28,5 @@ class EarningsController extends Controller {
         $earning->save();
 
         return redirect()->route('dashboard.index');
-    }
-
-    public function destroy($id) {
-        Earning::destroy($id);
-
-        return redirect('/earnings');
     }
 }
