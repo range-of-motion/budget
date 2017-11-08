@@ -1,0 +1,40 @@
+@import '../variables/colors';
+
+label, input, button, select {
+    display: block;
+}
+
+label {
+    padding-bottom: 16px;
+}
+
+input, select, button {
+    font: inherit;
+    border-radius: 4px;
+}
+
+input, select {
+    margin-bottom: 32px;
+    padding: 12px;
+    width: 100%;
+    border: 1px solid $colors-border;
+
+    &:focus {
+        outline: 0;
+    }
+
+    &.tight {
+        margin: 0;
+    }
+}
+
+button {
+    padding: 12px 24px;
+    background: $colors-primary;
+    color: #FFF;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

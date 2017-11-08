@@ -1,31 +1,23 @@
 @extends('layout')
 
 @section('body')
-    <div class="row">
-        <div class="column align-middle">
-            <h1>Tags</h1>
-        </div>
-        <div class="column align-right">
-            <a href="/tags/create" class="button">Create</a>
-        </div>
-    </div>
-    <div class="box spacing-top-large">
-        <table>
-            <tbody>
+    <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div class="box">
+            <div class="section">
+                <div class="row">
+                    <div class="column align-middle">
+                        <h3>Tags</h3>
+                    </div>
+                    <div class="column align-middle text-align-right">
+                        <a href="/tags/create">Create</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="section">
                 @foreach ($tags as $tag)
-                    <tr>
-                        <td>{{ $tag->name }}</td>
-                        <td>
-                            <a href="/tags/{{ $tag->id }}/edit">Edit</a> &middot;
-                            <form class="test" method="POST" action="/tags/{{ $tag->id }}">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <input type="submit" value="Delete" />
-                            </form>
-                        </td>
-                    </tr>
+                    <li>{{ $tag->name }}</li>
                 @endforeach
-            </tbody>
-        </table>
+            </ul>
+        </div>
     </div>
 @endsection

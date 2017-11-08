@@ -1,124 +1,142 @@
 @extends('layout')
 
 @section('body')
-    <div class="row">
-        <div class="column tight align-middle">
-            <a href="/dashboard/{{ $previousYear }}/{{ $previousMonth }}">Previous</a>
-        </div>
-        <div class="column tight align-middle">
-            <h1>@lang('months.' . $month), {{ $year }}</h1>
-        </div>
-        <div class="column tight align-middle">
-            <a href="/dashboard/{{ $nextYear }}/{{ $nextMonth }}">Next</a>
-        </div>
-    </div>
-    <div class="row spacing-top-large">
-        <div class="column">
-            <div class="box spacing-large">
-                <h1 class="color-green spacing-bottom-small">{{ $currency->symbol }} {{ $totalEarnings }}</h1>
-                <p>Earnings</p>
+    <div class="banner">
+        <div class="row gutter">
+            <div class="column tight align-middle">
+                <a href="/dashboard/{{ $previousYear }}/{{ $previousMonth }}">Previous</a>
             </div>
-        </div>
-        <div class="column">
-            <div class="box spacing-large">
-                <h1 class="color-red spacing-bottom-small">{{ $currency->symbol }} {{ $totalSpendings }}</h1>
-                <p>Spendings</p>
+            <div class="column tight align-middle">
+                <h1>@lang('months.' . $month), {{ $year }}</h1>
             </div>
-        </div>
-        <div class="column">
-            <div class="box spacing-large">
-                <h1 class="color-blue spacing-bottom-small">{{ $currency->symbol }} {{ $balance }}</h1>
-                <p>Balance</p>
+            <div class="column tight align-middle">
+                <a href="/dashboard/{{ $nextYear }}/{{ $nextMonth }}">Next</a>
             </div>
         </div>
     </div>
-    <div class="row spacing-top-large spacing-bottom-medium">
-        <div class="column tight align-middle">
-            <h2>Budgets</h2>
+    <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div class="row gutter spacing-bottom-large">
+            <div class="column">
+                <div class="box">
+                    <div class="section">
+                        <p class="spacing-bottom-small">Earnings</p>
+                        <h1>{{ $currency->symbol }} {{ $totalEarnings }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box">
+                    <div class="section">
+                        <p class="spacing-bottom-small">Spendings</p>
+                        <h1>{{ $currency->symbol }} {{ $totalSpendings }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="box">
+                    <div class="section">
+                        <p class="spacing-bottom-small">Balance</p>
+                        <h1>{{ $currency->symbol }} {{ $balance }}</h1>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="column tight align-middle">
-            <a class="button small" href="/budgets/create">Create</a>
+        <div class="box">
+            <div class="section">
+                <div class="row">
+                    <div class="column">
+                        <h3>Budgets</h3>
+                    </div>
+                    <div class="column align-middle text-align-right">
+                        <a href="/budgets/create">Create</a>
+                    </div>
+                </div>
+            </div>
+            @if ($budgets->count())
+                <ul class="section">
+                    @foreach ($budgets as $budget)
+                        <li>
+                            <div class="row">
+                                <div class="column">{{ $budget->tag->name }}</div>
+                                <div class="column align-middle">
+                                    <progress min="0" max="{{ $budget->amount }}" value="{{ $budget->spendings()->sum('amount') }}"></progress>
+                                </div>
+                                <div class="column text-align-right align-middle">{{ $currency->symbol }} {{ $budget->spendings()->sum('amount') }} of {{ $currency->symbol }} {{ $budget->amount }}</div>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <div class="section">You don't have any budgets</div>
+            @endif
         </div>
-    </div>
-    @if ($budgets->count())
-        <ul class="box">
-            @foreach ($budgets as $budget)
-                <li>
-                    <div class="row">
-                        <div class="column">
-                            <p>{{ $budget->tag->name }}</p>
-                        </div>
-                        <div class="column">
-                            <progress value="{{ $budget->spendings()->sum('amount') }}" max="{{ $budget->amount }}"></progress>
-                        </div>
-                        <div class="column">
-                            <p>{{ $currency->symbol }} {{ $budget->spendings()->sum('amount') }} of {{ $currency->symbol }} {{ $budget->amount }}</p>
+        <div class="row gutter spacing-top-large">
+            <div class="column">
+                <div class="box">
+                    <div class="section">
+                        <div class="row">
+                            <div class="column">
+                                <h3>Earnings</h3>
+                            </div>
+                            <div class="column align-middle text-align-right">
+                                <a href="/earnings/create">Create</a>
+                            </div>
                         </div>
                     </div>
-                </li>
-            @endforeach
-        </ul>
-    @else
-        <div class="box spacing-small">You don't have any budgets</div>
-    @endif
-    <div class="row spacing-top-large">
-        <div class="column">
-            <div class="row spacing-bottom-medium">
-                <div class="column tight align-middle">
-                    <h2>Earnings</h2>
-                </div>
-                <div class="column tight align-middle">
-                    <a class="button small" href="/earnings/create">Create</a>
-                </div>
-            </div>
-            @if ($earnings->count())
-                <ul class="box">
-                    @foreach ($earnings as $earning)
-                        <li>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="/earnings/{{ $earning->id }}">{{ $earning->description }}</a>
-                                    <p class="spacing-top-nano">{{ date('jS', strtotime($earning->date)) }}</p>
-                                </div>
-                                <div class="column align-right align-middle">
-                                    <h3 class="color-green">{{ $currency->symbol }} {{ $earning->amount }}</h3>
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            @else
-                <div class="box spacing-small">You don't have any earnings</div>
-            @endif
-        </div>
-        <div class="column">
-            <div class="row spacing-bottom-medium">
-                <div class="column tight align-middle">
-                    <h2>Spendings</h2>
-                </div>
-                <div class="column tight align-middle">
-                    <a class="button small" href="/spendings/create">Create</a>
+                    @if ($earnings->count())
+                        <ul class="section">
+                            @foreach ($earnings as $earning)
+                                <li>
+                                    <div class="row">
+                                        <div class="column">
+                                            <p class="spacing-bottom-small">{{ $earning->description }}</p>
+                                            <p>{{ date('jS', strtotime($earning->date)) }}</p>
+                                        </div>
+                                        <div class="column text-align-right align-middle">
+                                            <h3>{{ $currency->symbol }} {{ $earning->amount }}</h3>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <div class="section">You don't have any earnings</div>
+                    @endif
                 </div>
             </div>
-            @if ($spendings->count())
-                <ul class="box">
-                    @foreach ($spendings as $spending)
-                        <li>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="/spendings/{{ $spending->id }}">{{ $spending->description }}</a>
-                                    <p class="spacing-top-nano">{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
-                                </div>
-                                <div class="column align-right align-middle">
-                                    <h3 class="color-red">{{ $currency->symbol }} {{ $spending->amount }}</h3>
-                                </div>
+            <div class="column">
+                <div class="box">
+                    <div class="section">
+                        <div class="row">
+                            <div class="column">
+                                <h3>Spendings</h3>
                             </div>
-                        </li>
-                    @endforeach
-                </ul>
-            @else
-                <div class="box spacing-small">You don't have any spendings</div>
-            @endif
+                            <div class="column align-middle text-align-right">
+                                <a href="/spendings/create">Create</a>
+                            </div>
+                        </div>
+                    </div>
+                    @if ($spendings->count())
+                        <ul class="section">
+                            @foreach ($spendings as $spending)
+                                <li>
+                                    <div class="row">
+                                        <div class="column">
+                                            <p class="spacing-bottom-small">{{ $spending->description }}</p>
+                                            <p>{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
+                                        </div>
+                                        <div class="column text-align-right align-middle">
+                                            <h3>{{ $currency->symbol }} {{ $spending->amount }}</h3>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <div class="section">You don't have any spendings</div>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 @endsection

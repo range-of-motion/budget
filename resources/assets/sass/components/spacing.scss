@@ -1,0 +1,17 @@
+.spacing {
+    &-top {
+        &-large {
+            padding-top: 48px;
+        }
+    }
+
+    &-bottom {
+        &-large {
+            padding-bottom: 48px;
+        }
+
+        &-small {
+            padding-bottom: 16px;
+        }
+    }
+}

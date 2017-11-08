@@ -1,53 +1,28 @@
 @extends('layout')
 
 @section('body')
-    <h1>Search</h1>
-    <form method="GET" class="tight">
-        <div class="row spacing-top-large">
-            <div class="column">
-                <input type="text" name="query" />
+    <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div class="box">
+            <div class="section">
+                <div class="row">
+                    <div class="column align-middle">
+                        <h3>Search</h3>
+                    </div>
+                    <div class="column">
+                        <form method="GET">
+                            <div class="row gutter">
+                                <div class="column">
+                                    <input class="tight" type="text" name="query" />
+                                </div>
+                                <div class="column tight">
+                                    <button>Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="column tight">
-                <input type="submit" value="Search" />
-            </div>
+            <div class="section">Search is temporarily out of order</div>
         </div>
-    </form>
-    @if (!empty($query))
-        @if (sizeof($earnings))
-            <h2 class="spacing-top-large spacing-bottom-medium">Earnings</h2>
-            <table class="box">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                    </tr>
-                </thread>
-                <tbody>
-                    @foreach ($earnings as $earning)
-                        <tr>
-                            <td>{{ $earning->description }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
-        @if (sizeof($spendings))
-            <h2 class="spacing-top-large spacing-bottom-medium">Spendings</h2>
-            <table class="box">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                    </tr>
-                </thread>
-                <tbody>
-                    @foreach ($spendings as $spending)
-                        <tr>
-                            <td>
-                                <a href="/spendings/{{ $spending->id }}">{{ $spending->description }}</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
-    @endif
+    </div>
 @endsection

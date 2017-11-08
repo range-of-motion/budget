@@ -1,0 +1,45 @@
+@import '../variables/colors';
+
+* {
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: Muli;
+    color: $colors-text;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #000;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    color: $colors-primary;
+}
+
+.text-align {
+    &-center {
+        text-align: center;
+    }
+
+    &-right {
+        text-align: right;
+    }
+}

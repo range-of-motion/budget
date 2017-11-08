@@ -1,25 +1,21 @@
 @extends('layout')
 
 @section('body')
-    <div class="row">
-        <div class="column size-560 align-center">
-            <h1 class="spacing-bottom-large">Log in</h1>
-            <div class="box spacing-small">
+    <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div class="box">
+            <div class="section">
+                <h3>Log in</h3>
+            </div>
+            <div class="section">
                 <form method="POST">
                     {{ csrf_field() }}
                     <label>E-mail</label>
                     <input type="email" name="email" />
-                    @if ($errors->has('email'))
-                        <div class="alert-inline">{{ $errors->first('email') }}</div>
-                    @endif
                     <label>Password</label>
                     <input type="password" name="password" />
-                    @if ($errors->has('password'))
-                        <div class="alert-inline">{{ $errors->first('password') }}</div>
-                    @endif
-                    <div class="row tight">
-                        <div class="column">
-                            <input type="submit" value="Log in" />
+                    <div class="row gutter">
+                        <div class="column tight">
+                            <button>Log in</button>
                         </div>
                         <div class="column align-middle">
                             <a href="/register">Register</a>

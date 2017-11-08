@@ -11,13 +11,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/search', 'SearchController@index');
 
-    Route::resource('/earnings', 'EarningsController', ['only' => ['show', 'create', 'store', 'destroy']]);
+    Route::resource('/earnings', 'EarningsController', ['only' => ['create', 'store']]);
 
-    Route::resource('/spendings', 'SpendingsController', ['only' => ['show', 'create', 'store', 'destroy']]);
+    Route::resource('/spendings', 'SpendingsController', ['only' => ['create', 'store']]);
 
-    Route::resource('/budgets', 'BudgetsController', ['only' => ['create', 'store', 'destroy']]);
+    Route::resource('/budgets', 'BudgetsController', ['only' => ['create', 'store']]);
 
-    Route::resource('/tags', 'TagsController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'destroy']]);
+    Route::resource('/tags', 'TagsController', ['only' => ['index', 'create', 'store']]);
 
     Route::get('/settings', 'SettingsController@index')->name('settings.index');
     Route::post('/settings', 'SettingsController@store')->name('settings.store');

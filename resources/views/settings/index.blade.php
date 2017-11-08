@@ -1,21 +1,21 @@
 @extends('layout')
 
 @section('body')
-    <h1 class="spacing-bottom-large">Settings</h1>
-    <div class="box spacing-small">
-        <form method="POST">
-            {{ csrf_field() }}
-            <div class="row">
-                <div class="column">
+    <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div class="box">
+            <div class="section">
+                <h3>Settings</h3>
+            </div>
+            <div class="section">
+                <form method="POST">
+                    {{ csrf_field() }}
                     <label>Name</label>
                     <input type="text" name="name" value="{{ Auth::user()->name }}" />
-                </div>
-                <div class="column">
                     <label>E-mail</label>
-                    <input type="email" name="email" value="{{ Auth::user()->email }}" />
-                </div>
+                    <input type="text" name="email" value="{{ Auth::user()->email }}" />
+                    <button>Update</button>
+                </form>
             </div>
-            <input type="submit" value="Update" />
-        </form>
+        </div>
     </div>
 @endsection
