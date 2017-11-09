@@ -1,20 +1,38 @@
 <template>
-    <div>
+    <div class="row spacing-bottom-medium" style="justify-content: space-between;">
         <input type="hidden" name="date" :value="year + '-' + month + '-' + date" />
-        <div>
-            <button v-on:click="previousYear">Previous</button>
-            {{ year }}
-            <button @click="nextYear">Next</button>
+        <div class="column tight">
+            <div class="row gutter">
+                <div class="column tight">
+                    <button v-on:click="previousYear">Previous</button>
+                </div>
+                <div class="column tight align-middle">{{ year }}</div>
+                <div class="column tight">
+                    <button @click="nextYear">Next</button>
+                </div>
+            </div>
         </div>
-        <div>
-            <button @click="previousMonth">Previous</button>
-            {{ month }}
-            <button @click="nextMonth">Next</button>
+        <div class="column tight">
+            <div class="row gutter">
+                <div class="column tight">
+                    <button @click="previousMonth">Previous</button>
+                </div>
+                <div class="column tight align-middle">{{ month }}</div>
+                <div class="column tight">
+                    <button @click="nextMonth">Next</button>
+                </div>
+            </div>
         </div>
-        <div>
-            <button @click="previousDate">Previous</button>
-            {{ date }}
-            <button @click="nextDate">Next</button>
+        <div class="column tight">
+            <div class="row gutter">
+                <div class="column tight">
+                    <button @click="previousDate">Previous</button>
+                </div>
+                <div class="column tight align-middle">{{ date }}</div>
+                <div class="column tight">
+                    <button @click="nextDate">Next</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
