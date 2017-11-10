@@ -11,6 +11,10 @@ label {
 input, select, button {
     font: inherit;
     border-radius: 4px;
+
+    &:focus {
+        outline: 0;
+    }
 }
 
 input, select {
@@ -18,10 +22,6 @@ input, select {
     padding: 12px;
     width: 100%;
     border: 1px solid $colors-border;
-
-    &:focus {
-        outline: 0;
-    }
 
     &.tight {
         margin: 0;
