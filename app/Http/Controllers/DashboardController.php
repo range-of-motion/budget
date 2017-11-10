@@ -56,9 +56,19 @@ class DashboardController extends Controller {
             ->get();
 
         $budgets = $user->budgets()
-          ->where('year', $year)
-          ->where('month', $month)
-          ->get();
+            ->where('year', $year)
+            ->where('month', $month)
+            ->get();
+
+        $spendingsByTags = [];
+
+        foreach ($spendings as $spending) {
+            if (!isset($spendingsByTag[$spending->tag->name])) {
+                $spendingsByTags[$spending->tag->name] = 0;
+            }
+
+            $spendingsByTags[$spending->tag->name] += $spending->amount;
+        }
 
         return view('dashboard.index', compact(
             'year',
@@ -73,7 +83,8 @@ class DashboardController extends Controller {
             'balance',
             'earnings',
             'spendings',
-            'budgets'
+            'budgets',
+            'spendingsByTags'
         ));
     }
 }

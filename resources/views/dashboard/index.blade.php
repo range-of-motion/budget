@@ -117,6 +117,9 @@
                         </div>
                     </div>
                     @if ($spendings->count())
+                        <div class="section">
+                            <BarChart slices='{!! json_encode($spendingsByTags) !!}'></BarChart>
+                        </div>
                         <ul class="section">
                             @foreach ($spendings as $spending)
                                 <li>
