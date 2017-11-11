@@ -87,7 +87,7 @@
 
                     // Tags
                     this.drawCircle(context, tagX, this.barHeight + this.barTagsOffset + this.tagsDiameter / 2, this.tagsDiameter / 2, color)
-                    this.drawText(context, tagX + 16, this.barHeight + this.barTagsOffset + this.tagsDiameter / 2, key)
+                    this.drawText(context, tagX + 16, this.barHeight + this.barTagsOffset + this.tagsDiameter / 2, key, this.textColor)
 
                     barX += barWidth
                     tagX += 16 + context.measureText(key).width + 32
