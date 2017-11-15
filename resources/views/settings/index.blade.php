@@ -13,6 +13,11 @@
                     <input type="text" name="name" value="{{ Auth::user()->name }}" />
                     <label>E-mail</label>
                     <input type="text" name="email" value="{{ Auth::user()->email }}" />
+                    <label>Language</label>
+                    <select name="language">
+                        <option value="en">English</option>
+                        <option value="nl">Nederlands</option>
+                    </select>
                     <button>Update</button>
                 </form>
             </div>
