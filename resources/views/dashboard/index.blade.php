@@ -4,13 +4,17 @@
     <div class="banner">
         <div class="row gutter">
             <div class="column tight align-middle">
-                <a href="/dashboard/{{ $previousYear }}/{{ $previousMonth }}">Previous</a>
+                <a href="/dashboard/{{ $previousYear }}/{{ $previousMonth }}">
+                    <i class="fa fa-angle-left" style="font-size: 24px;"></i>
+                </a>
             </div>
             <div class="column tight align-middle">
                 <h1>@lang('months.' . $month), {{ $year }}</h1>
             </div>
             <div class="column tight align-middle">
-                <a href="/dashboard/{{ $nextYear }}/{{ $nextMonth }}">Next</a>
+                <a href="/dashboard/{{ $nextYear }}/{{ $nextMonth }}">
+                    <i class="fa fa-angle-right" style="font-size: 24px;"></i>
+                </a>
             </div>
         </div>
     </div>
