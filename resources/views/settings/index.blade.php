@@ -15,8 +15,9 @@
                     <input type="text" name="email" value="{{ Auth::user()->email }}" />
                     <label>Language</label>
                     <select name="language">
-                        <option value="en">English</option>
-                        <option value="nl">Nederlands</option>
+                        @foreach ($languages as $language)
+                            <option value="{{ $language }}" @if (Auth::user()->language === $language) selected @endif>{{ $language }}</option>
+                        @endforeach
                     </select>
                     <button>Update</button>
                 </form>

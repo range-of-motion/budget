@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller {
     public function index() {
-        return view('settings.index');
+        $languages = ['en', 'nl'];
+
+        return view('settings.index', compact('languages'));
     }
 
     public function store(Request $request) {
