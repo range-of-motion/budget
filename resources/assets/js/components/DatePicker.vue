@@ -41,9 +41,9 @@
     export default {
         data() {
             return {
-                year: 2017,
-                month: 11,
-                date: 4
+                year: new Date().getFullYear(),
+                month: new Date().getMonth(),
+                date: new Date().getDate()
             }
         },
 
