@@ -6,7 +6,7 @@
             <div class="section">
                 <div class="row">
                     <div class="column align-middle">
-                        <h3>Search</h3>
+                        <span class="color-dark">Search</span>
                     </div>
                     <div class="column">
                         <form method="GET">
@@ -22,7 +22,40 @@
                     </div>
                 </div>
             </div>
-            <div class="section">Search is temporarily out of order</div>
+            @if (count($earnings))
+                <ul class="section">
+                    @foreach ($earnings as $earning)
+                        <li>
+                            <div class="row">
+                                <div class="column">
+                                    <p class="spacing-bottom-small">{{ $earning->description }}</p>
+                                    <p>{{ date('jS', strtotime($earning->date)) }}</p>
+                                </div>
+                                <div class="column text-align-right align-middle">
+                                    <h3>{{ $currency->symbol }} {{ $earning->amount }}</h3>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+            @if (count($spendings))
+                <ul class="section">
+                    @foreach ($spendings as $spending)
+                        <li>
+                            <div class="row">
+                                <div class="column">
+                                    <p class="spacing-bottom-small">{{ $spending->description }}</p>
+                                    <p>{{ $spending->tag->name }} &middot; {{ date('F jS, Y', strtotime($spending->date)) }}</p>
+                                </div>
+                                <div class="column text-align-right align-middle">
+                                    <h3>{{ $currency->symbol }} {{ $spending->amount }}</h3>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
 @endsection
