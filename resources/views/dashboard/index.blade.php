@@ -49,7 +49,7 @@
             <div class="section">
                 <div class="row">
                     <div class="column">
-                        <h3>Budgets</h3>
+                        <span class="color-dark">Budgets</span>
                     </div>
                     <div class="column align-middle text-align-right">
                         <a href="/budgets/create">Create</a>
@@ -80,7 +80,7 @@
                     <div class="section">
                         <div class="row">
                             <div class="column">
-                                <h3>Earnings</h3>
+                                <span class="color-dark">@lang('dashboard.earnings')</span>
                             </div>
                             <div class="column align-middle text-align-right">
                                 <a href="/earnings/create">Create</a>
@@ -113,7 +113,7 @@
                     <div class="section">
                         <div class="row">
                             <div class="column">
-                                <h3>Spendings</h3>
+                                <span class="color-dark">@lang('dashboard.spendings')</span>
                             </div>
                             <div class="column align-middle text-align-right">
                                 <a href="/spendings/create">Create</a>
