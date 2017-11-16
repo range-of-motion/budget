@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/', 'IndexController@index')->name('index');
+
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@store');
 
