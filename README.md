@@ -1,6 +1,4 @@
-<p align="center">
-    <img src="/public/images/logo.png" width=160 />
-</p>
+![](https://i.imgur.com/1z405Un.png)
 
 # Budget
 
