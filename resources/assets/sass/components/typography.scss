@@ -43,3 +43,9 @@ a {
         text-align: right;
     }
 }
+
+.color {
+    &-dark {
+        color: #000;
+    }
+}
