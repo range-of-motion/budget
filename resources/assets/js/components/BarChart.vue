@@ -8,9 +8,9 @@
             return {
                 colors: ['#2F323A', '#5E9CF2', '#FED52F', '#9CD926'],
                 textColor: '#758193',
-                barHeight: 8,
-                barTagsOffset: 16,
-                tagsDiameter: 16,
+                barHeight: 6,
+                barTagsOffset: 24,
+                tagsDiameter: 12,
                 font: 'Muli'
             }
         },
