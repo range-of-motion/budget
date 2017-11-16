@@ -23,7 +23,7 @@
             <div class="column">
                 <div class="box">
                     <div class="section">
-                        <p class="spacing-bottom-small">Earnings</p>
+                        <p class="spacing-bottom-small">@lang('dashboard.earnings')</p>
                         <h1>{{ $currency->symbol }} {{ $totalEarnings }}</h1>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             <div class="column">
                 <div class="box">
                     <div class="section">
-                        <p class="spacing-bottom-small">Spendings</p>
+                        <p class="spacing-bottom-small">@lang('dashboard.spendings')</p>
                         <h1>{{ $currency->symbol }} {{ $totalSpendings }}</h1>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             <div class="column">
                 <div class="box">
                     <div class="section">
-                        <p class="spacing-bottom-small">Balance</p>
+                        <p class="spacing-bottom-small">@lang('dashboard.balance')</p>
                         <h1>{{ $currency->symbol }} {{ $balance }}</h1>
                     </div>
                 </div>
