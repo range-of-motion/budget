@@ -13,16 +13,18 @@ class SearchController extends Controller {
 
         $currency = $user->currency;
 
+        $query = $request->get('query');
+
         $earnings = [];
 
         $spendings = [];
 
         if ($request->has('query')) {
-            $earnings = Earning::where('description', 'like', '%' . $request->get('query') . '%')->get();
+            $earnings = Earning::where('description', 'like', '%' . $query . '%')->get();
 
-            $spendings = Spending::where('description', 'like', '%' . $request->get('query') . '%')->get();
+            $spendings = Spending::where('description', 'like', '%' . $query . '%')->get();
         }
 
-        return view('search.index', compact('currency', 'earnings', 'spendings'));
+        return view('search.index', compact('currency', 'query', 'earnings', 'spendings'));
     }
 }

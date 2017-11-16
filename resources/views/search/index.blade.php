@@ -22,6 +22,9 @@
                     </div>
                 </div>
             </div>
+            @if (!is_null($query) && !count($earnings) && !count($spendings))
+                <div class="section">There were no earnings/spendings found with that search query</div>
+            @endif
             @if (count($earnings))
                 <ul class="section">
                     @foreach ($earnings as $earning)
