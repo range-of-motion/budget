@@ -4,7 +4,14 @@
     <div class="wrapper narrow spacing-top-large spacing-bottom-large">
         <div class="box">
             <div class="section">
-                <h3>Register</h3>
+                <div class="row">
+                    <div class="column ">
+                        <span class="color-dark">Register</span>
+                    </div>
+                    <div class="column align-middle text-align-right">
+                        <a href="/login">Log in</a>
+                    </div>
+                </div>
             </div>
             <div class="section">
                 <form method="POST">
@@ -21,14 +28,7 @@
                             <option value="{{ $currency->id }}">{{ $currency->symbol }} &middot; {{ $currency->name }}</option>
                         @endforeach
                     </select>
-                    <div class="row gutter">
-                        <div class="column tight">
-                            <button>Register</button>
-                        </div>
-                        <div class="column align-middle">
-                            <a href="/login">Log in</a>
-                        </div>
-                    </div>
+                    <button>Register</button>
                 </form>
             </div>
         </div>

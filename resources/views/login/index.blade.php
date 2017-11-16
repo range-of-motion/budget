@@ -4,7 +4,14 @@
     <div class="wrapper narrow spacing-top-large spacing-bottom-large">
         <div class="box">
             <div class="section">
-                <h3>Log in</h3>
+                <div class="row">
+                    <div class="column ">
+                        <span class="color-dark">Log in</span>
+                    </div>
+                    <div class="column align-middle text-align-right">
+                        <a href="/register">Register</a>
+                    </div>
+                </div>
             </div>
             <div class="section">
                 <form method="POST">
@@ -13,14 +20,7 @@
                     <input type="email" name="email" />
                     <label>Password</label>
                     <input type="password" name="password" />
-                    <div class="row gutter">
-                        <div class="column tight">
-                            <button>Log in</button>
-                        </div>
-                        <div class="column align-middle">
-                            <a href="/register">Register</a>
-                        </div>
-                    </div>
+                    <button>Log in</button>
                 </form>
             </div>
         </div>
