@@ -1,21 +1,21 @@
 .spacing {
     &-top {
         &-large {
-            padding-top: 48px;
+            margin-top: 48px;
         }
     }
 
     &-bottom {
         &-large {
-            padding-bottom: 48px;
+            margin-bottom: 48px;
         }
 
         &-medium {
-            padding-bottom: 32px;
+            margin-bottom: 32px;
         }
 
         &-small {
-            padding-bottom: 16px;
+            margin-bottom: 16px;
         }
     }
 }
