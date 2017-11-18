@@ -25,6 +25,6 @@ class SearchController extends Controller {
             $spendings = Spending::where('description', 'like', '%' . $query . '%')->get();
         }
 
-        return view('search.index', compact('currency', 'query', 'earnings', 'spendings'));
+        return view('search', compact('currency', 'query', 'earnings', 'spendings'));
     }
 }

@@ -9,7 +9,7 @@ class SettingsController extends Controller {
     public function index() {
         $languages = ['en', 'nl'];
 
-        return view('settings.index', compact('languages'));
+        return view('settings', compact('languages'));
     }
 
     public function store(Request $request) {

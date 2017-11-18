@@ -13,7 +13,7 @@ class RegisterController extends Controller {
     public function index() {
         $currencies = Currency::all();
 
-        return view('register.index', compact('currencies'));
+        return view('register', compact('currencies'));
     }
 
     public function store(Request $request) {

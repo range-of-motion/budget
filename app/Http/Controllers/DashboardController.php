@@ -70,7 +70,7 @@ class DashboardController extends Controller {
             $spendingsByTags[$spending->tag->name] += $spending->amount;
         }
 
-        return view('dashboard.index', compact(
+        return view('dashboard', compact(
             'year',
             'month',
             'previousYear',
