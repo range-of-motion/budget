@@ -129,8 +129,8 @@
                                 <li>
                                     <div class="row">
                                         <div class="column">
-                                            <p class="spacing-bottom-small">{{ $spending->description }}</p>
-                                            <p>{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
+                                            <a href="/spendings/{{ $spending->id }}">{{ $spending->description }}</a>
+                                            <p class="spacing-top-small">{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
                                         </div>
                                         <div class="column text-align-right align-middle">
                                             <h3>{{ $currency->symbol }} {{ $spending->amount }}</h3>

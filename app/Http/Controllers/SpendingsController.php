@@ -34,4 +34,14 @@ class SpendingsController extends Controller {
 
         return redirect()->route('dashboard');
     }
+
+    public function show($id) {
+        $user = Auth::user();
+
+        $currency = $user->currency;
+
+        $spending = Spending::find($id);
+
+        return view('spendings.show', compact('currency', 'spending'));
+    }
 }
