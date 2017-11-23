@@ -32,6 +32,11 @@
                         <h3>{{ $currency->symbol }} {{ $spending->amount }}</h3>
                     </div>
                 </div>
+                <form method="POST" action="/spendings/{{ $spending->id }}">
+                    {{ method_field('delete') }}
+                    {{ csrf_field() }}
+                    <button>Delete</button>
+                </form>
             </div>
         </div>
     </div>

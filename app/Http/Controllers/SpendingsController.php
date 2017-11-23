@@ -44,4 +44,15 @@ class SpendingsController extends Controller {
 
         return view('spendings.show', compact('currency', 'spending'));
     }
+
+    public function destroy($id) {
+        $spending = Spending::find($id);
+
+        $year = date('Y', strtotime($spending->date));
+        $month = date('n', strtotime($spending->date));
+
+        $spending->delete();
+
+        return redirect()->route('dashboard', compact('year', 'month'));
+    }
 }
