@@ -29,4 +29,14 @@ class EarningsController extends Controller {
 
         return redirect()->route('dashboard');
     }
+
+    public function show($id) {
+        $user = Auth::user();
+
+        $currency = $user->currency;
+
+        $earning = Earning::find($id);
+
+        return view('earnings.show', compact('currency', 'earning'));
+    }
 }

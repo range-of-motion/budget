@@ -93,8 +93,8 @@
                                 <li>
                                     <div class="row">
                                         <div class="column">
-                                            <p class="spacing-bottom-small">{{ $earning->description }}</p>
-                                            <p>{{ date('jS', strtotime($earning->date)) }}</p>
+                                            <a href="/earnings/{{ $earning->id }}">{{ $earning->description }}</a>
+                                            <p class="spacing-top-small">{{ date('jS', strtotime($earning->date)) }}</p>
                                         </div>
                                         <div class="column text-align-right align-middle">
                                             <h3>{{ $currency->symbol }} {{ $earning->amount }}</h3>
