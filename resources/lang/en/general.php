@@ -5,5 +5,9 @@ return [
     'spendings' => 'Spendings',
     'balance' => 'Balance',
     'tags' => 'Tags',
-    'of' => 'of'
+    'of' => 'of',
+    'dashboard' => 'Dashboard',
+    'search' => 'Search',
+    'settings' => 'Settings',
+    'logout' => 'Log out'
 ];
