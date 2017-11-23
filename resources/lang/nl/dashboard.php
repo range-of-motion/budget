@@ -3,5 +3,7 @@
 return [
     'earnings' => 'Inkomsten',
     'spendings' => 'Uitgaven',
-    'balance' => 'Saldo'
+    'balance' => 'Saldo',
+    'tags' => 'Etiketten',
+    'of' => 'van'
 ];

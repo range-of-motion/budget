@@ -3,5 +3,7 @@
 return [
     'earnings' => 'Earnings',
     'spendings' => 'Spendings',
-    'balance' => 'Balance'
+    'balance' => 'Balance',
+    'tags' => 'Tags',
+    'of' => 'of'
 ];

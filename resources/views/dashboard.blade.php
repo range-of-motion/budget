@@ -49,7 +49,7 @@
             <div class="section">
                 <div class="row">
                     <div class="column">
-                        <span class="color-dark">Budgets</span>
+                        <span class="color-dark">@lang('dashboard.tags')</span>
                     </div>
                     <div class="column align-middle text-align-right">
                         <a href="/budgets/create">Create</a>
@@ -65,7 +65,7 @@
                                 <div class="column align-middle">
                                     <progress min="0" max="{{ $budget->amount }}" value="{{ $budget->spendings()->sum('amount') }}"></progress>
                                 </div>
-                                <div class="column text-align-right align-middle">{{ $currency->symbol }} {{ $budget->spendings()->sum('amount') }} of {{ $currency->symbol }} {{ $budget->amount }}</div>
+                                <div class="column text-align-right align-middle">{{ $currency->symbol }} {{ $budget->spendings()->sum('amount') }} @lang('dashboard.of') {{ $currency->symbol }} {{ $budget->amount }}</div>
                             </div>
                         </li>
                     @endforeach
