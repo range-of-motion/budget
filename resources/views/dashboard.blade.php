@@ -49,7 +49,7 @@
             <div class="section">
                 <div class="row">
                     <div class="column">
-                        <span class="color-dark">@lang('general.tags')</span>
+                        <span class="color-dark">@lang('general.budgets')</span>
                     </div>
                     <div class="column align-middle text-align-right">
                         <a href="/budgets/create">Create</a>
