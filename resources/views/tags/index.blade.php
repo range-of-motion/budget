@@ -6,7 +6,7 @@
             <div class="section">
                 <div class="row">
                     <div class="column align-middle">
-                        <span class="color-dark">Tags</span>
+                        <span class="color-dark">@lang('general.tags')</span>
                     </div>
                     <div class="column align-middle text-align-right">
                         <a href="/tags/create">Create</a>

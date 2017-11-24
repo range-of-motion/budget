@@ -4,7 +4,7 @@
     <div class="wrapper spacing-top-large spacing-bottom-large">
         <div class="box">
             <div class="section">
-                <span class="color-dark">Settings</span>
+                <span class="color-dark">@lang('general.settings')</span>
             </div>
             <div class="section">
                 <form method="POST">

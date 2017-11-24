@@ -6,7 +6,7 @@
             <div class="section">
                 <div class="row">
                     <div class="column align-middle">
-                        <span class="color-dark">Search</span>
+                        <span class="color-dark">@lang('general.search')</span>
                     </div>
                     <div class="column">
                         <form method="GET">
