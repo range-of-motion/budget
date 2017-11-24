@@ -6,7 +6,7 @@
             <div class="section">
                 <div class="row">
                     <div class="column align-middle">
-                        <h3>Tags</h3>
+                        <span class="color-dark">Tags</span>
                     </div>
                     <div class="column align-middle text-align-right">
                         <a href="/tags/create">Create</a>

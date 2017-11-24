@@ -4,7 +4,7 @@
     <div class="wrapper spacing-top-large spacing-bottom-large">
         <div class="box">
             <div class="section">
-                <h3>Settings</h3>
+                <span class="color-dark">Settings</span>
             </div>
             <div class="section">
                 <form method="POST">
