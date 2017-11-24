@@ -42,7 +42,11 @@ class SpendingsController extends Controller {
 
         $spending = Spending::find($id);
 
-        return view('spendings.show', compact('currency', 'spending'));
+        if ($spending->user_id === $user->id) {
+            return view('spendings.show', compact('currency', 'spending'));
+        }
+
+        return view('errors.404');
     }
 
     public function destroy($id) {
