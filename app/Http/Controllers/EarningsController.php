@@ -30,12 +30,10 @@ class EarningsController extends Controller {
         return redirect()->route('dashboard');
     }
 
-    public function show($id) {
+    public function show(Earning $earning) {
         $user = Auth::user();
 
         $currency = $user->currency;
-
-        $earning = Earning::find($id);
 
         return view('earnings.show', compact('currency', 'earning'));
     }

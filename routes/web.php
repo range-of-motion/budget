@@ -15,7 +15,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/earnings/create', 'EarningsController@create')->name('earnings.create');
     Route::post('/earnings', 'EarningsController@store');
-    Route::get('/earnings/{id}', 'EarningsController@show')->name('earnings.show');
+    Route::get('/earnings/{earning}', 'EarningsController@show')->name('earnings.show')->middleware('can:view,earning');
 
     Route::get('/spendings/create', 'SpendingsController@create')->name('spendings.create');
     Route::post('/spendings', 'SpendingsController@store');
