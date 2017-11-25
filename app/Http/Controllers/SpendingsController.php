@@ -35,18 +35,12 @@ class SpendingsController extends Controller {
         return redirect()->route('dashboard');
     }
 
-    public function show($id) {
+    public function show(Spending $spending) {
         $user = Auth::user();
 
         $currency = $user->currency;
 
-        $spending = Spending::find($id);
-
-        if ($spending->user_id === $user->id) {
-            return view('spendings.show', compact('currency', 'spending'));
-        }
-
-        return view('errors.404');
+        return view('spendings.show', compact('currency', 'spending'));
     }
 
     public function destroy($id) {
