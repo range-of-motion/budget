@@ -9,7 +9,7 @@
                         <span class="color-dark">@lang('general.tags')</span>
                     </div>
                     <div class="column align-middle text-align-right">
-                        <a href="/tags/create">Create</a>
+                        <a href="/tags/create">@lang('actions.create')</a>
                     </div>
                 </div>
             </div>

@@ -52,7 +52,7 @@
                         <span class="color-dark">@lang('general.budgets')</span>
                     </div>
                     <div class="column align-middle text-align-right">
-                        <a href="/budgets/create">Create</a>
+                        <a href="/budgets/create">@lang('actions.create')</a>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                                 <span class="color-dark">@lang('general.earnings')</span>
                             </div>
                             <div class="column align-middle text-align-right">
-                                <a href="/earnings/create">Create</a>
+                                <a href="/earnings/create">@lang('actions.create')</a>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                                 <span class="color-dark">@lang('general.spendings')</span>
                             </div>
                             <div class="column align-middle text-align-right">
-                                <a href="/spendings/create">Create</a>
+                                <a href="/spendings/create">@lang('actions.create')</a>
                             </div>
                         </div>
                     </div>

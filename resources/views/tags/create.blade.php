@@ -11,7 +11,7 @@
                     {{ csrf_field() }}
                     <label>Name</label>
                     <input type="text" name="name" />
-                    <button>Create</button>
+                    <button>@lang('actions.create')</button>
                 </form>
             </div>
         </div>

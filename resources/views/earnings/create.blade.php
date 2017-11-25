@@ -15,7 +15,7 @@
                     <input type="text" name="description" />
                     <label>Amount</label>
                     <input type="text" name="amount" />
-                    <button>Create</button>
+                    <button>@lang('actions.create')</button>
                 </form>
             </div>
         </div>
