@@ -57,3 +57,14 @@ button {
         cursor: pointer;
     }
 }
+
+form.action {
+    display: inline-block;
+
+    button {
+        padding: 0;
+        display: inline-block;
+        background: none;
+        color: $colors-primary;
+    }
+}

@@ -18,7 +18,7 @@
                     <li class="row">
                         <div class="column">{{ $tag->name }}</div>
                         <div class="column">
-                            <form method="POST" action="/tags/{{ $tag->id }}">
+                            <form class="action" method="POST" action="/tags/{{ $tag->id }}">
                                 {{ method_field('delete') }}
                                 {{ csrf_field() }}
                                 <button>@lang('actions.delete')</button>
