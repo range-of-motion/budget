@@ -21,7 +21,7 @@
                             <form method="POST" action="/tags/{{ $tag->id }}">
                                 {{ method_field('delete') }}
                                 {{ csrf_field() }}
-                                <button>Delete</button>
+                                <button>@lang('actions.delete')</button>
                             </form>
                         </div>
                     </li>

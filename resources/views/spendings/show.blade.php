@@ -35,7 +35,7 @@
                 <form method="POST" action="/spendings/{{ $spending->id }}">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
-                    <button>Delete</button>
+                    <button>@lang('actions.delete')</button>
                 </form>
             </div>
         </div>
