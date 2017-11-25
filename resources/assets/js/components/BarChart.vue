@@ -72,18 +72,24 @@
                     const slice = slices[key]
 
                     const color = this.colors[index]
-                    const barWidth = (slice / total) * canvas.width
 
-                    // Bar
+                    let barStart = barX
+                    let barWidth = (slice / total) * canvas.width
+
                     if (index === 0) {
                         this.drawCircle(context, barX + this.barHeight / 2, this.barHeight / 2, this.barHeight / 2, color)
-                        this.drawRectangle(context, barX + this.barHeight / 2, 0, barWidth - this.barHeight / 2, this.barHeight, color)
-                    } else if (index === last) {
-                        this.drawCircle(context, barX + barWidth - this.barHeight / 2, this.barHeight / 2, this.barHeight / 2, color)
-                        this.drawRectangle(context, barX, 0, barWidth - this.barHeight / 2, this.barHeight, color)
-                    } else {
-                        this.drawRectangle(context, barX, 0, barWidth, this.barHeight, color)
+
+                        barStart += this.barHeight / 2
+                        barWidth -= this.barHeight / 2
                     }
+
+                    if (index === last) {
+                        this.drawCircle(context, barStart + barWidth - this.barHeight / 2, this.barHeight / 2, this.barHeight / 2, color)
+
+                        barWidth -= this.barHeight / 2
+                    }
+
+                    this.drawRectangle(context, barStart, 0, barWidth, this.barHeight, color)
 
                     // Tags
                     this.drawCircle(context, tagX, this.barHeight + this.barTagsOffset + this.tagsDiameter / 2, this.tagsDiameter / 2, color)
