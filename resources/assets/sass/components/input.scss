@@ -45,6 +45,10 @@ input, select {
     &.tight {
         margin: 0;
     }
+
+    &:focus {
+        border-color: $colors-primary;
+    }
 }
 
 button {
