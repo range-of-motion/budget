@@ -19,6 +19,7 @@
                         <li class="row">
                             <div class="column">{{ $tag->name }}</div>
                             <div class="column">
+                                <a href="/tags/{{ $tag->id }}/edit">Edit</a> &middot;
                                 <form class="action" method="POST" action="/tags/{{ $tag->id }}">
                                     {{ method_field('delete') }}
                                     {{ csrf_field() }}

@@ -29,6 +29,22 @@ class TagsController extends Controller {
         return redirect('/tags');
     }
 
+    public function edit($id) {
+        $tag = Tag::find($id);
+
+        return view('tags.edit', compact('tag'));
+    }
+
+    public function update(Request $request, $id) {
+        $tag = Tag::find($id);
+
+        $tag->name = $request->input('name');
+
+        $tag->save();
+
+        return redirect()->route('tags');
+    }
+
     public function destroy($id) {
         $tag = Tag::find($id);
 
