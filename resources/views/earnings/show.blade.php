@@ -28,6 +28,11 @@
                         <h3>{{ $currency->symbol }} {{ $earning->amount }}</h3>
                     </div>
                 </div>
+                <form method="POST" action="/earnings/{{ $earning->id }}">
+                    {{ method_field('delete') }}
+                    {{ csrf_field() }}
+                    <button>@lang('actions.delete')</button>
+                </form>
             </div>
         </div>
     </div>
