@@ -29,15 +29,11 @@ class TagsController extends Controller {
         return redirect('/tags');
     }
 
-    public function edit($id) {
-        $tag = Tag::find($id);
-
+    public function edit(Tag $tag) {
         return view('tags.edit', compact('tag'));
     }
 
-    public function update(Request $request, $id) {
-        $tag = Tag::find($id);
-
+    public function update(Request $request, Tag $tag) {
         $tag->name = $request->input('name');
 
         $tag->save();
