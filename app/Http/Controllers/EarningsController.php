@@ -38,9 +38,7 @@ class EarningsController extends Controller {
         return view('earnings.show', compact('currency', 'earning'));
     }
 
-    public function destroy($id) {
-        $earning = Earning::find($id);
-
+    public function destroy(Earning $earning) {
         $year = date('Y', strtotime($earning->date));
         $month = date('n', strtotime($earning->date));
 

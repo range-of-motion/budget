@@ -16,7 +16,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/earnings/create', 'EarningsController@create')->name('earnings.create');
     Route::post('/earnings', 'EarningsController@store');
     Route::get('/earnings/{earning}', 'EarningsController@show')->name('earnings.show')->middleware('can:view,earning');
-    Route::delete('/earnings/{id}', 'EarningsController@destroy');
+    Route::delete('/earnings/{earning}', 'EarningsController@destroy')->middleware('can:delete,earning');
 
     Route::get('/spendings/create', 'SpendingsController@create')->name('spendings.create');
     Route::post('/spendings', 'SpendingsController@store');
