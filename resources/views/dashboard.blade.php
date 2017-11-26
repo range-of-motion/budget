@@ -130,7 +130,11 @@
                                     <div class="row">
                                         <div class="column">
                                             <a href="/spendings/{{ $spending->id }}">{{ $spending->description }}</a>
-                                            <p class="spacing-top-small">{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
+                                            @if ($spending->tag)
+                                                <p class="spacing-top-small">{{ $spending->tag->name }} &middot; {{ date('jS', strtotime($spending->date)) }}</p>
+                                            @else
+                                                <p class="spacing-top-small">{{ date('jS', strtotime($spending->date)) }}</p>
+                                            @endif
                                         </div>
                                         <div class="column text-align-right align-middle">
                                             <h3>{{ $currency->symbol }} {{ $spending->amount }}</h3>

@@ -63,11 +63,13 @@ class DashboardController extends Controller {
         $spendingsByTags = [];
 
         foreach ($spendings as $spending) {
-            if (!isset($spendingsByTag[$spending->tag->name])) {
-                $spendingsByTags[$spending->tag->name] = 0;
-            }
+            if ($spending->tag) {
+                if (!isset($spendingsByTag[$spending->tag->name])) {
+                    $spendingsByTags[$spending->tag->name] = 0;
+                }
 
-            $spendingsByTags[$spending->tag->name] += $spending->amount;
+                $spendingsByTags[$spending->tag->name] += $spending->amount;
+            }
         }
 
         return view('dashboard', compact(
