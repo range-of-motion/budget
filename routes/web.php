@@ -16,12 +16,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/earnings/create', 'EarningsController@create')->name('earnings.create');
     Route::post('/earnings', 'EarningsController@store');
     Route::get('/earnings/{earning}', 'EarningsController@show')->name('earnings.show')->middleware('can:view,earning');
-    Route::delete('/earnings/{id}', 'EarningsController@destroy')->name('earnings.destroy');
+    Route::delete('/earnings/{id}', 'EarningsController@destroy');
 
     Route::get('/spendings/create', 'SpendingsController@create')->name('spendings.create');
     Route::post('/spendings', 'SpendingsController@store');
     Route::get('/spendings/{spending}', 'SpendingsController@show')->name('spendings.show')->middleware('can:view,spending');
-    Route::delete('/spendings/{id}', 'SpendingsController@destroy')->name('spendings.destroy');
+    Route::delete('/spendings/{id}', 'SpendingsController@destroy');
 
     Route::get('/budgets/create', 'BudgetsController@create')->name('budgets.create');
     Route::post('/budgets', 'BudgetsController@store');
@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/tags', 'TagsController@store');
     Route::get('/tags/{tag}/edit', 'TagsController@edit')->name('tags.edit')->middleware('can:update,tag');
     Route::patch('/tags/{tag}', 'TagsController@update')->middleware('can:update,tag');
-    Route::delete('/tags/{tag}', 'TagsController@destroy')->name('tags.destroy')->middleware('can:delete,tag');
+    Route::delete('/tags/{tag}', 'TagsController@destroy')->middleware('can:delete,tag');
 
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');
