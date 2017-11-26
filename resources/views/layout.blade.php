@@ -14,21 +14,21 @@
                     <div class="wrapper">
                         <ul>
                             <li>
-                                <a href="/dashboard">@lang('general.dashboard')</a>
+                                <a href="/dashboard"><i class="fa fa-home"></i> @lang('general.dashboard')</a>
                             </li>
                             <li>
-                                <a href="/search">@lang('general.search')</a>
+                                <a href="/search"><i class="fa fa-search"></i> @lang('general.search')</a>
                             </li>
                             <li>
-                                <a href="/tags">@lang('general.tags')</a>
+                                <a href="/tags"><i class="fa fa-tag"></i> @lang('general.tags')</a>
                             </li>
                         </ul>
                         <ul>
                             <li>
-                                <a href="/settings">@lang('general.settings')</a>
+                                <a href="/settings"><i class="fa fa-cog"></i> @lang('general.settings')</a>
                             </li>
                             <li>
-                                <a href="/logout">@lang('general.logout')</a>
+                                <a href="/logout"><i class="fa fa-power-off"></i> @lang('general.logout')</a>
                             </li>
                         </ul>
                     </div>
