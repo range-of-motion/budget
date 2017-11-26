@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/tags', 'TagsController@store');
     Route::get('/tags/{tag}/edit', 'TagsController@edit')->name('tags.edit')->middleware('can:update,tag');
     Route::patch('/tags/{tag}', 'TagsController@update')->middleware('can:update,tag');
-    Route::delete('/tags/{id}', 'TagsController@destroy')->name('tags.destroy');
+    Route::delete('/tags/{tag}', 'TagsController@destroy')->name('tags.destroy')->middleware('can:delete,tag');
 
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');

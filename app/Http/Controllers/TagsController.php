@@ -41,9 +41,7 @@ class TagsController extends Controller {
         return redirect()->route('tags');
     }
 
-    public function destroy($id) {
-        $tag = Tag::find($id);
-
+    public function destroy(Tag $tag) {
         $tag->delete();
 
         return redirect()->route('tags');
