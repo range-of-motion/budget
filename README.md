@@ -1,4 +1,4 @@
-![](https://i.imgur.com/1z405Un.png)
+![](https://i.imgur.com/jxYSNj1.png)
 
 # Budget
 
