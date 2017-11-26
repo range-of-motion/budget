@@ -17,7 +17,11 @@
             padding: 28px 16px;
 
             a {
-                color: #FFF;
+                color: $colors-text;
+
+                &:hover {
+                    color: #FFF;
+                }
 
                 i {
                     margin-right: 4px;
