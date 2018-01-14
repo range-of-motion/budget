@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use DB;
 
 class DashboardController extends Controller {
     public function index($year = null, $month = null) {
@@ -30,6 +31,19 @@ class DashboardController extends Controller {
         $user = Auth::user();
 
         $currency = $user->currency;
+
+        $spendingsByTag = DB::select('
+            SELECT
+                tags.id,
+                tags.name,
+                SUM(spendings.amount) AS spendings
+            FROM tags
+            INNER JOIN spendings
+                ON spendings.tag_id = tags.id
+            WHERE YEAR(spendings.date) = ? AND MONTH(spendings.date) = ?
+            GROUP BY tags.id
+            ORDER BY spendings DESC
+        ', [$year, $month]);
 
         $totalEarnings = $user->earnings()
             ->whereYear('date', $year)
@@ -80,6 +94,7 @@ class DashboardController extends Controller {
             'previousMonth',
             'nextMonth',
             'currency',
+            '$spendingsByTag',
             'totalEarnings',
             'totalSpendings',
             'balance',

@@ -18,7 +18,26 @@
             </div>
         </div>
     </div>
+
     <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div class="box spacing-bottom-large">
+            <div class="section">
+                <h3>Spendings by Tag</h3>
+                <ul class="t st-3">
+                    @foreach ($spendingsByTag as $tag)
+                        <li class="row">
+                            <div class="column">
+                                {{ $tag->name }}
+                            </div>
+                            <div class="column tight sl-1">
+                                {{ $currency->symbol }} {{ $tag->spendings }}
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
         <div class="row gutter spacing-bottom-large">
             <div class="column">
                 <div class="box">
