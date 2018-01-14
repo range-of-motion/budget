@@ -94,7 +94,7 @@ class DashboardController extends Controller {
             'previousMonth',
             'nextMonth',
             'currency',
-            '$spendingsByTag',
+            'spendingsByTag',
             'totalEarnings',
             'totalSpendings',
             'balance',
