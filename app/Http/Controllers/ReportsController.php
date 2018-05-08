@@ -17,13 +17,21 @@ class ReportsController extends Controller {
         $monthlyEarnings = [];
 
         for ($i = 1; $i <= 12; $i ++) {
-            $monthlyEarnings[] = $user->earnings()->whereRaw('MONTH(date) = ?', [$i])->sum('amount');
+            $monthlyEarnings[] = $user
+                ->earnings()
+                ->whereRaw('MONTH(date) = ?', [$i])
+                ->whereRaw('YEAR(date) = ?', [$currentYear])
+                ->sum('amount');
         }
 
         $monthlySpendings = [];
 
         for ($i = 1; $i <= 12; $i ++) {
-            $monthlySpendings[] = $user->spendings()->whereRaw('MONTH(date) = ?', [$i])->sum('amount');
+            $monthlySpendings[] = $user
+                ->spendings()
+                ->whereRaw('MONTH(date) = ?', [$i])
+                ->whereRaw('YEAR(date) = ?', [$currentYear])
+                ->sum('amount');
         }
 
         //
@@ -31,7 +39,7 @@ class ReportsController extends Controller {
         $tc = [];
         $td = [];
 
-        foreach ($user->spendings()->whereNotNull('tag_id')->get() as $spending) {
+        foreach ($user->spendings()->whereRaw('YEAR(date)', [$currentYear])->whereNotNull('tag_id')->get() as $spending) {
             $hit = null;
 
             for ($i = 0; $i < count($tl); $i ++) {
