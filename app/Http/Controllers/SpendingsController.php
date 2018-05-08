@@ -10,6 +10,24 @@ use App\Tag;
 use Auth;
 
 class SpendingsController extends Controller {
+    public function index(Request $request) {
+        $user = Auth::user();
+
+        $limit = 5;
+
+        $currentPage = 1;
+
+        if ($request->has('page')) {
+            $currentPage = $request->get('page');
+        }
+
+        return view('spendings.index', [
+            'spendings' => $user->spendings()->offset($currentPage * $limit - $limit)->limit($limit)->get(),
+            'currentPage' => $currentPage,
+            'totalPages' => ceil($user->spendings->count() / $limit)
+        ]);
+    }
+
     public function create() {
         $tags = Tag::where('user_id', Auth::user()->id)->get();
 
