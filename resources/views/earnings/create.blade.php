@@ -9,12 +9,18 @@
             <div class="section">
                 <form method="POST" action="/earnings">
                     {{ csrf_field() }}
-                    <label>Date</label>
-                    <DatePicker></DatePicker>
-                    <label>Description</label>
-                    <input type="text" name="description" />
-                    <label>Amount</label>
-                    <input type="text" name="amount" />
+                    <div class="row gutter">
+                        <div class="column">
+                            <label>Date</label>
+                            <DatePicker></DatePicker>
+                        </div>
+                        <div class="column">
+                            <label>Description</label>
+                            <input type="text" name="description" />
+                            <label>Amount</label>
+                            <input type="text" name="amount" />
+                        </div>
+                    </div>
                     <button>@lang('actions.create')</button>
                 </form>
             </div>

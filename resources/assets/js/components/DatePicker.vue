@@ -1,37 +1,22 @@
 <template>
-    <div class="row spacing-bottom-medium" style="justify-content: space-between;">
-        <input type="hidden" name="date" :value="year + '-' + month + '-' + date" />
-        <div class="column tight">
-            <div class="row gutter">
-                <div class="column tight">
-                    <button v-on:click="previousYear">Previous</button>
-                </div>
-                <div class="column tight align-middle">{{ year }}</div>
-                <div class="column tight">
-                    <button @click="nextYear">Next</button>
-                </div>
+    <div>
+        <input type="text" name="date" v-model="form" />
+        <div class="date-picker">
+            <div class="date-picker__top">
+                <button @click="previous">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+                <div>{{ displayYear }}, {{ displayMonth }}</div>
+                <button @click="next">
+                    <i class="fa fa-arrow-right"></i>
+                </button>
             </div>
-        </div>
-        <div class="column tight">
-            <div class="row gutter">
-                <div class="column tight">
-                    <button @click="previousMonth">Previous</button>
-                </div>
-                <div class="column tight align-middle">{{ month }}</div>
-                <div class="column tight">
-                    <button @click="nextMonth">Next</button>
-                </div>
-            </div>
-        </div>
-        <div class="column tight">
-            <div class="row gutter">
-                <div class="column tight">
-                    <button @click="previousDate">Previous</button>
-                </div>
-                <div class="column tight align-middle">{{ date }}</div>
-                <div class="column tight">
-                    <button @click="nextDate">Next</button>
-                </div>
+            <div class="date-picker__bottom">
+                <button
+                    v-for="i in maxDays(displayYear, displayMonth)"
+                    @click="choose($event, i)"
+                    :class="{ active: isActive(i) }"
+                >{{ i }}</button>
             </div>
         </div>
     </div>
@@ -41,91 +26,73 @@
     export default {
         data() {
             return {
+                displayYear: new Date().getFullYear(),
+                displayMonth: new Date().getMonth() + 1,
                 year: new Date().getFullYear(),
                 month: new Date().getMonth() + 1,
                 date: new Date().getDate()
             }
         },
 
+        computed: {
+            form: function () {
+                return this.year + '-' + this.addPotentialDigit(this.month) + '-' + this.addPotentialDigit(this.date)
+            }
+        },
+
         methods: {
-            nextYear(e) {
-                if (e) {
-                    e.preventDefault()
+            isActive: function (index) {
+                if (this.year == this.displayYear && this.month == this.displayMonth && this.date == index) {
+                    return true
                 }
 
-                this.year ++
+                return false
             },
 
-            previousYear(e) {
-                if (e) {
-                    e.preventDefault()
+            addPotentialDigit(x) {
+                if (x.toString().length == 1) {
+                    x = '0' + x
                 }
 
-                this.year --
+                return x
             },
 
-            nextMonth(e) {
+            previous(e) {
                 if (e) {
                     e.preventDefault()
                 }
 
-                this.month ++
+                this.displayMonth --
 
-                if (this.month > 12) {
-                    this.nextYear()
+                if (this.displayMonth < 1) {
+                    this.displayMonth = 12
 
-                    this.month = 1
-                }
-
-                if (this.date > this.maxDays(this.year, this.month)) {
-                    this.date = this.maxDays(this.year, this.month)
+                    this.displayYear --
                 }
             },
 
-            previousMonth(e) {
+            next(e) {
                 if (e) {
                     e.preventDefault()
                 }
 
-                this.month --
+                this.displayMonth ++
 
-                if (this.month < 1) {
-                    this.previousYear()
+                if (this.displayMonth > 12) {
+                    this.displayMonth = 1
 
-                    this.month = 12
-                }
-
-                if (this.date > this.maxDays(this.year, this.month)) {
-                    this.date = this.maxDays(this.year, this.month)
+                    this.displayYear ++
                 }
             },
 
-            nextDate(e) {
+            choose(e, index) {
                 if (e) {
                     e.preventDefault()
                 }
 
-                this.date ++
-
-                if (this.date > this.maxDays(this.year, this.month)) {
-                    this.nextMonth()
-
-                    this.date = 1
-                }
-            },
-
-            previousDate(e) {
-                if (e) {
-                    e.preventDefault()
-                }
-
-                this.date --
-
-                if (this.date < 1) {
-                    this.previousMonth()
-
-                    this.date = this.maxDays(this.year, this.month)
-                }
+                this.year = this.displayYear
+                this.month = this.displayMonth
+                this.date = index
             },
 
             maxDays(year, month) {
