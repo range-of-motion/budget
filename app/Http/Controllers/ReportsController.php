@@ -13,6 +13,7 @@ class ReportsController extends Controller {
 
         $currentYear = date('Y');
 
+        //
         $monthlyEarnings = [];
 
         for ($i = 1; $i <= 12; $i ++) {
@@ -25,6 +26,32 @@ class ReportsController extends Controller {
             $monthlySpendings[] = $user->spendings()->whereRaw('MONTH(date) = ?', [$i])->sum('amount');
         }
 
-        return view('reports', compact('currentYear', 'monthlyEarnings', 'monthlySpendings'));
+        //
+        $tl = [];
+        $tc = [];
+        $td = [];
+
+        foreach ($user->spendings()->whereNotNull('tag_id')->get() as $spending) {
+            $hit = null;
+
+            for ($i = 0; $i < count($tl); $i ++) {
+                if ($tl[$i] == $spending->tag->name) {
+                    $hit = $i;
+
+                    break;
+                }
+            }
+
+            if (!is_numeric($hit)) {
+                $tl[] = $spending->tag->name;
+                $tc[] = '#' . dechex(rand(0x000000, 0xFFFFFF));
+                $td[] = $spending->amount;
+            } else {
+                $td[$i] += $spending->amount;
+            }
+        }
+
+        //
+        return view('reports', compact('currentYear', 'monthlyEarnings', 'monthlySpendings', 'tl', 'tc', 'td'));
     }
 }
