@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('/tags/{tag}', 'TagsController@update')->middleware('can:update,tag');
     Route::delete('/tags/{tag}', 'TagsController@destroy')->middleware('can:delete,tag');
 
+    Route::get('/reports', 'ReportsController@get')->name('reports');
+
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');
 });

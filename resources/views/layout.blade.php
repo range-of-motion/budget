@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i" />
         <link rel="stylesheet" href="/css/app.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
     </head>
     <body>
         <div id="app">
@@ -22,6 +23,9 @@
                             <li>
                                 <a href="/tags"><i class="fa fa-tag"></i> @lang('general.tags')</a>
                             </li>
+                            <li>
+                                <a href="/reports"><i class="fa fa-pie-chart"></i> Reports</a>
+                            </li>
                         </ul>
                         <ul>
                             <li>
@@ -37,5 +41,6 @@
             @yield('body')
         </div>
         <script src="/js/app.js"></script>
+        @yield('scripts')
     </body>
 </html>
