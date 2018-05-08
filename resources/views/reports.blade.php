@@ -29,7 +29,7 @@
         var context = document.getElementById('earningsSpendingsChart').getContext('2d');
 
         var chart = new Chart(context, {
-            type: 'line',
+            type: 'bar',
 
             data: {
                 labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -38,13 +38,11 @@
                     {
                         label: 'Earnings',
                         data: {!! json_encode($monthlyEarnings) !!},
-                        borderColor: 'rgba(151, 206, 86, 1)',
-                        backgroundColor: 'rgba(151, 206, 86, .1)'
+                        backgroundColor: 'rgba(151, 206, 86, 1)'
                     }, {
                         label: 'Spendings',
                         data: {!! json_encode($monthlySpendings) !!},
-                        borderColor: 'rgba(255, 95, 94, 1)',
-                        backgroundColor: 'rgba(255, 95, 94, .1)'
+                        backgroundColor: 'rgba(255, 95, 94, 1)'
                     }
                 ]
             },
@@ -58,6 +56,10 @@
                     line: {
                         tension: .2
                     }
+                },
+
+                scales: {
+                    yAxes: [{ display: false }]
                 }
             }
         });
