@@ -21,10 +21,29 @@ class SpendingsController extends Controller {
             $currentPage = $request->get('page');
         }
 
+        $sort = null;
+
+        $sortColumn = 'date';
+        $sortDirection = 'DESC';
+
+        if ($request->has('sort')) {
+            $sort = $request->get('sort');
+
+            $parts = explode('-', $sort);
+
+            $sortColumn = $parts[0];
+            $sortDirection = $parts[1];
+
+            if ($sortColumn == 'price') {
+                $sortColumn = 'amount';
+            }
+        }
+
         return view('spendings.index', [
-            'spendings' => $user->spendings()->offset($currentPage * $limit - $limit)->limit($limit)->get(),
+            'spendings' => $user->spendings()->orderBy($sortColumn, $sortDirection)->offset($currentPage * $limit - $limit)->limit($limit)->get(),
             'currentPage' => $currentPage,
-            'totalPages' => ceil($user->spendings->count() / $limit)
+            'totalPages' => ceil($user->spendings->count() / $limit),
+            'sort' => $sort
         ]);
     }
 
