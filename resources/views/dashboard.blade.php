@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Dashboard')
+
 @section('body')
     <div class="wrapper spacing-top-large spacing-bottom-large">
         <div class="row gutter spacing-bottom-large">

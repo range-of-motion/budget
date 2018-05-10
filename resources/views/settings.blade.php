@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Settings')
+
 @section('body')
     <div class="wrapper spacing-top-large spacing-bottom-large">
         <div class="row row--gutter">

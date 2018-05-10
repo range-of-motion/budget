@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Reports')
+
 @section('body')
     <div class="banner">
         <h1>Reports for {{ $currentYear }}</h1>
