@@ -5,6 +5,33 @@
     border: 1px solid $colors-border;
     border-radius: 8px;
 
+    .box__section {
+        padding: 25px;
+        border-bottom: 1px solid $colors-border;
+
+        &.box__section--small {
+            padding: 20px;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    ul.box__section {
+        padding: 0; // TODO REMOVE THIS
+        list-style: none;
+
+        li {
+            padding: 25px;
+            border-bottom: 1px solid $colors-border;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
     .section {
         padding: 32px;
         border-bottom: 1px solid $colors-border;

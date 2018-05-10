@@ -40,6 +40,17 @@ canvas {
     bottom: 0;
 }
 
+// Colors
+.color {
+    &-green {
+        color: green;
+    }
+
+    &-red {
+        color: red;
+    }
+}
+
 // Date Picker
 .date-picker {
     width: 352px;

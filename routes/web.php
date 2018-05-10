@@ -9,7 +9,7 @@ Route::get('/register', 'RegisterController@index')->name('register');
 Route::post('/register', 'RegisterController@store');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard/{year?}/{month?}', 'DashboardController@index')->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::get('/search', 'SearchController@index')->name('search');
 
