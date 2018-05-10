@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
+use Auth;
 
 class SettingsController extends Controller {
     public function index() {
+        $user = Auth::user();
+
+        //
         $languages = ['en', 'nl'];
 
-        return view('settings', compact('languages'));
+        $tags = $user->tags;
+
+        return view('settings', compact('languages', 'tags'));
     }
 
     public function store(Request $request) {

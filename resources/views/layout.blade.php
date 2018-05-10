@@ -18,9 +18,6 @@
                                 <a href="/dashboard"><i class="fa fa-home"></i> @lang('general.dashboard')</a>
                             </li>
                             <li>
-                                <a href="/tags"><i class="fa fa-tag"></i> @lang('general.tags')</a>
-                            </li>
-                            <li>
                                 <a href="/reports"><i class="fa fa-pie-chart"></i> Reports</a>
                             </li>
                         </ul>

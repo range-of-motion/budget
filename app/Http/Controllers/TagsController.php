@@ -8,12 +8,6 @@ use Auth;
 use App\Tag;
 
 class TagsController extends Controller {
-    public function index() {
-        $tags = Auth::user()->tags;
-
-        return view('tags.index', compact('tags'));
-    }
-
     public function create() {
         return view('tags.create');
     }
