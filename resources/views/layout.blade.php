@@ -15,15 +15,15 @@
                     <div class="wrapper">
                         <ul>
                             <li>
-                                <a href="/dashboard"><i class="fa fa-home"></i> @lang('general.dashboard')</a>
+                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fa fa-home"></i> @lang('general.dashboard')</a>
                             </li>
                             <li>
-                                <a href="/reports"><i class="fa fa-pie-chart"></i> Reports</a>
+                                <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><i class="fa fa-pie-chart"></i> Reports</a>
                             </li>
                         </ul>
                         <ul>
                             <li>
-                                <a href="/settings"><i class="fa fa-cog"></i> @lang('general.settings')</a>
+                                <a href="/settings" {!! (Request::path() == 'settings') ? 'class="active"' : '' !!}><i class="fa fa-cog"></i> @lang('general.settings')</a>
                             </li>
                             <li>
                                 <a href="/logout"><i class="fa fa-power-off"></i> @lang('general.logout')</a>

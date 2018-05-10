@@ -19,7 +19,7 @@
             a {
                 color: $colors-text;
 
-                &:hover {
+                &:hover, &.active {
                     color: #FFF;
                 }
 
