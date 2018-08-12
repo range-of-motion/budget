@@ -18,16 +18,20 @@
                     {{ csrf_field() }}
                     <label>Name</label>
                     <input type="text" name="name" />
+                    @include('partials.validation_error', ['payload' => 'name'])
                     <label>E-mail</label>
                     <input type="email" name="email" />
+                    @include('partials.validation_error', ['payload' => 'email'])
                     <label>Password</label>
                     <input type="password" name="password" />
+                    @include('partials.validation_error', ['payload' => 'password'])
                     <label>Currency</label>
                     <select name="currency">
                         @foreach ($currencies as $currency)
                             <option value="{{ $currency->id }}">{{ $currency->symbol }} &middot; {{ $currency->name }}</option>
                         @endforeach
                     </select>
+                    @include('partials.validation_error', ['payload' => 'currency'])
                     <button>Register</button>
                 </form>
             </div>
