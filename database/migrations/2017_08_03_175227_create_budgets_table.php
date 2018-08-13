@@ -12,7 +12,7 @@ class CreateBudgetsTable extends Migration {
             $table->integer('tag_id')->unsigned();
             $table->integer('year');
             $table->integer('month');
-            $table->float('amount');
+            $table->integer('amount');
         });
     }
 
