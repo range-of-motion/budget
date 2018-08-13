@@ -13,7 +13,7 @@
             @if (Auth::check())
                 <div class="navigation">
                     <div class="wrapper">
-                        <ul>
+                        <ul class="navigation__menu">
                             <li>
                                 <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fa fa-home"></i> @lang('general.dashboard')</a>
                             </li>
@@ -21,12 +21,32 @@
                                 <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><i class="fa fa-pie-chart"></i> Reports</a>
                             </li>
                         </ul>
-                        <ul>
-                            <li>
-                                <a href="/settings" {!! (Request::path() == 'settings') ? 'class="active"' : '' !!}><i class="fa fa-cog"></i> @lang('general.settings')</a>
+                        <ul class="navigation__menu">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown__toggle">
+                                    <i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i>
+                                </a>
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="/earnings/create">New earning</a>
+                                    </li>
+                                    <li>
+                                        <a href="/spendings/create">New spending</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="/logout"><i class="fa fa-power-off"></i> @lang('general.logout')</a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown__toggle">
+                                    <i class="fa fa-user"></i> <i class="fa fa-caret-down"></i>
+                                </a>
+                                <ul class="dropdown__list">
+                                    <li>
+                                        <a href="/settings">Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="/logout">Log out</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -36,5 +56,44 @@
         </div>
         <script src="/js/app.js"></script>
         @yield('scripts')
+        <script>
+            var dropdowns = document.querySelectorAll('.dropdown__toggle');
+
+            for (var i = 0; i < dropdowns.length; i ++) {
+                var a = dropdowns[i];
+
+                trigger(a);
+            }
+
+            function trigger(el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    closeAll(el);
+
+                    var parent = e.target.parentNode;
+
+                    if (parent.nodeName != 'LI') {
+                        parent = parent.parentNode;
+                    }
+
+                    var x = parent.querySelector('.dropdown__list');
+
+                    if (x.style.display == 'flex') {
+                        x.style.display = 'none';
+                    } else {
+                        x.style.display = 'flex';
+                    }
+                });
+            }
+
+            function closeAll(skip) {
+                for (var i = 0; i < dropdowns.length; i ++) {
+                    if (dropdowns[i] != skip) {
+                        dropdowns[i].parentNode.querySelector('.dropdown__list').style.display = 'none';
+                    }
+                }
+            }
+        </script>
     </body>
 </html>

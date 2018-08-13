@@ -8,15 +8,15 @@
         justify-content: space-between;
     }
 
-    ul {
+    .navigation__menu {
         margin: 0 -16px;
         list-style: none;
         display: flex;
 
-        li {
+        > li {
             padding: 28px 16px;
 
-            a {
+            > a {
                 color: $colors-text;
 
                 &:hover, &.active {
