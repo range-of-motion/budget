@@ -21,7 +21,7 @@ class RegisterController extends Controller {
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
-            'currency' => 'required'
+            'currency' => 'required|exists:currencies,id'
         ]);
 
         $user = new User;
