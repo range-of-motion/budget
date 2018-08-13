@@ -42,7 +42,7 @@
                                     <button class="link">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                </a>
+                                </form>
                             </div>
                         </li>
                     @endforeach
