@@ -27,7 +27,7 @@
                     @include('partials.validation_error', ['payload' => 'password'])
                     <label>Verify Password</label>
                     <input type="password" name="password_confirmation" />
-                    @include('partials.validation_error', ['payload' => 'password'])
+                    @include('partials.validation_error', ['payload' => 'password_confirmation'])
                     <label>Currency</label>
                     <select name="currency">
                         @foreach ($currencies as $currency)
