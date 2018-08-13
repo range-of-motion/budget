@@ -4,6 +4,24 @@
 
 @section('body')
     <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div class="row row--gutter mb-4">
+            <div class="row__column">
+                <div class="box">
+                    <div class="box__section">
+                        <h2>{{ $currency->symbol }} {{ number_format($spendingsToday / 100, 2) }}</h2>
+                        <div class="mt-1">Spent today</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row__column">
+                <div class="box">
+                    <div class="box__section">
+                        <h2>{{ $currency->symbol }} {{ number_format($spendingsMonth / 100, 2) }}</h2>
+                        <div class="mt-1">Spent this month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row gutter spacing-bottom-large">
             <div class="column">
                 <div class="color-dark spacing-bottom-large">Recent Earnings</div>

@@ -36,7 +36,10 @@ class TagsController extends Controller {
     }
 
     public function destroy(Tag $tag) {
-        $tag->delete();
+
+        if ($tag->somethign) {
+            $tag->delete();
+        }
 
         return redirect('/settings');
     }
