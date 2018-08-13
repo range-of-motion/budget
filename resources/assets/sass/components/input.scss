@@ -28,4 +28,11 @@ button {
     &:hover {
         cursor: pointer;
     }
+
+    &.link {
+        padding: 0;
+        font-size: 16px;
+        color: $colors-primary;
+        background: none;
+    }
 }

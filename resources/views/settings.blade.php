@@ -35,6 +35,15 @@
                                     <i class="fa fa-pencil"></i>
                                 </a>
                             </div>
+                            <div class="row__column row__column--compact ml-2">
+                                <form method="POST" action="/tags/{{ $tag->id }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="link">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </a>
+                            </div>
                         </li>
                     @endforeach
                 </ul>

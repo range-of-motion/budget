@@ -38,6 +38,6 @@ class TagsController extends Controller {
     public function destroy(Tag $tag) {
         $tag->delete();
 
-        return redirect()->route('tags');
+        return redirect('/settings');
     }
 }
