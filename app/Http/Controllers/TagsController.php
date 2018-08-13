@@ -20,7 +20,7 @@ class TagsController extends Controller {
 
         $tag->save();
 
-        return redirect('/tags');
+        return redirect('/settings');
     }
 
     public function edit(Tag $tag) {

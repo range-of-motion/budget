@@ -41,6 +41,14 @@
             @else
                 <div class="box__section text-center">You don't have any tags</div>
             @endif
+            <div class="box__section">
+                <form method="POST" action="/tags">
+                    {{ csrf_field() }}
+                    <input type="text" name="name" />
+                    @include('partials.validation_error', ['payload' => 'name'])
+                    <button>Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
