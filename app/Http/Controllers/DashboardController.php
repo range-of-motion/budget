@@ -10,18 +10,25 @@ class DashboardController extends Controller {
     public function index() {
         $user = Auth::user();
 
-        $spendingsToday = $user->spendings()->whereRaw('DATE(date) = ?', [date('Y-m-d')])->sum('amount') * 100;
-        $spendingsMonth = $user->spendings()->whereRaw('MONTH(date) = ?', [date('m')])->sum('amount') * 100;
+        $spendingsToday = $user
+            ->spendings()
+            ->whereRaw('DATE(happened_on) = ?', [date('Y-m-d')])
+            ->sum('amount');
+
+        $spendingsMonth = $user
+            ->spendings()
+            ->whereRaw('MONTH(happened_on) = ?', [date('m')])
+            ->sum('amount');
 
         $recentEarnings = $user
             ->earnings()
-            ->orderBy('date', 'DESC')
+            ->orderBy('happened_on', 'DESC')
             ->limit(3)
             ->get();
 
         $recentSpendings = $user
             ->spendings()
-            ->orderBy('date', 'DESC')
+            ->orderBy('happened_on', 'DESC')
             ->limit(3)
             ->get();
 

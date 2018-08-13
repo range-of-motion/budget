@@ -33,9 +33,9 @@
                                     <div class="row">
                                         <div class="column">
                                             <div class="color-dark">{{ $earning->description }}</div>
-                                            <div style="margin-top: 10px;">{{ intval((time() - strtotime($earning->date)) / 86400) }} day(s) ago</div>
+                                            <div style="margin-top: 10px;">{{ intval((time() - strtotime($earning->happened_on)) / 86400) }} day(s) ago</div>
                                         </div>
-                                        <div class="column text-align-right align-middle color-green">{{ $currency->symbol }} {{ $earning->amount }}</h3></div>
+                                        <div class="column text-align-right align-middle color-green">{{ $currency->symbol }} {{ number_format($earning->amount / 100, 2) }}</h3></div>
                                     </div>
                                 </li>
                             @endforeach
@@ -58,9 +58,9 @@
                                     <div class="row">
                                         <div class="column">
                                             <div class="color-dark">{{ $spending->description }}</div>
-                                            <div style="margin-top: 10px;">{{ intval((time() - strtotime($spending->date)) / 86400) }} day(s) ago</div>
+                                            <div style="margin-top: 10px;">{{ intval((time() - strtotime($spending->happened_on)) / 86400) }} day(s) ago</div>
                                         </div>
-                                        <div class="column text-align-right align-middle color-red">{{ $currency->symbol }} {{ $spending->amount }}</h3></div>
+                                        <div class="column text-align-right align-middle color-red">{{ $currency->symbol }} {{ number_format($spending->amount / 100, 2) }}</h3></div>
                                     </div>
                                 </li>
                             @endforeach
