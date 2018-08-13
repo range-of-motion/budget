@@ -19,7 +19,7 @@ class RegisterController extends Controller {
     public function store(Request $request) {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
             'currency' => 'required'
         ]);
