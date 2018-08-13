@@ -10,6 +10,7 @@ class CreateSpendingsTable extends Migration {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('tag_id')->unsigned()->nullable();
+            $table->date('happened_on');
             $table->string('description');
             $table->integer('amount');
             $table->timestamps();

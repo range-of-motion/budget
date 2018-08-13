@@ -9,6 +9,7 @@ class CreateEarningsTable extends Migration {
         Schema::create('earnings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->date('happened_on');
             $table->string('description');
             $table->integer('amount');
             $table->timestamps();
