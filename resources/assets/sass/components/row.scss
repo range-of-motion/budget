@@ -26,6 +26,10 @@
         &.row__column--compact {
             flex: none;
         }
+
+        &.row__column--middle {
+            align-self: center;
+        }
     }
 
     .column {

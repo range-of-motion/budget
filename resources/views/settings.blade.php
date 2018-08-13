@@ -44,9 +44,15 @@
             <div class="box__section">
                 <form method="POST" action="/tags">
                     {{ csrf_field() }}
-                    <input type="text" name="name" />
-                    @include('partials.validation_error', ['payload' => 'name'])
-                    <button>Submit</button>
+                    <div class="row">
+                        <div class="row__column" style="max-width: 400px;">
+                            <input type="text" name="name" />
+                            @include('partials.validation_error', ['payload' => 'name'])
+                        </div>
+                        <div class="row__column row__column--compact row__column--middle ml-2">
+                            <button>Submit</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
