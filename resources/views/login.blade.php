@@ -2,6 +2,16 @@
 
 @section('body')
     <div class="wrapper narrow spacing-top-large spacing-bottom-large">
+        @if (session('status'))
+            <div style="
+                padding: 10px;
+                margin-bottom: 20px;
+                text-align: center;
+                color: #FFF;
+                background: #FE7C4D;
+                border-radius: 5px;
+            ">{{ session('status') }}</div>
+        @endif
         <div class="box">
             <div class="section">
                 <div class="row">

@@ -11,24 +11,16 @@ class LoginController extends Controller {
     }
 
     public function store(Request $request) {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        $email = $request->input('email');
-        $password = $request->input('password');
-
         if (Auth::attempt([
-            'email' => $email,
-            'password' => $password
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ])) {
             return redirect()->route('dashboard');
         } else {
             return redirect()
                 ->route('login')
-                ->withErrors([
-                    'credentials' => 'There\'s no user with that email address/password'
+                ->with([
+                    'status' => 'Failed to login'
                 ]);
         }
     }
