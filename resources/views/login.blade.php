@@ -16,10 +16,14 @@
             <div class="section">
                 <form method="POST">
                     {{ csrf_field() }}
-                    <label>E-mail</label>
-                    <input type="email" name="email" />
-                    <label>Password</label>
-                    <input type="password" name="password" />
+                    <div class="input">
+                        <label>E-mail</label>
+                        <input type="email" name="email" />
+                    </div>
+                    <div class="input">
+                        <label>Password</label>
+                        <input type="password" name="password" />
+                    </div>
                     <button>Log in</button>
                 </form>
             </div>

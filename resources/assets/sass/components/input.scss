@@ -1,5 +1,18 @@
 @import '../variables/colors';
 
+.input {
+    margin-bottom: 20px;
+
+    label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    &.input--small {
+        max-width: 400px;
+    }
+}
+
 input, button {
     font: inherit;
     border-radius: 5px;

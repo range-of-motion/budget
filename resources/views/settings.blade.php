@@ -9,16 +9,22 @@
             <div class="section">
                 <form method="POST">
                     {{ csrf_field() }}
-                    <label>Name</label>
-                    <input type="text" name="name" value="{{ Auth::user()->name }}" />
-                    <label>E-mail</label>
-                    <input type="text" name="email" value="{{ Auth::user()->email }}" />
-                    <label>Language</label>
-                    <select name="language">
-                        @foreach ($languages as $language)
-                            <option value="{{ $language }}" @if (Auth::user()->language === $language) selected @endif>{{ $language }}</option>
-                        @endforeach
-                    </select>
+                    <div class="input input--small">
+                        <label>Name</label>
+                        <input type="text" name="name" value="{{ Auth::user()->name }}" />
+                    </div>
+                    <div class="input input--small">
+                        <label>E-mail</label>
+                        <input type="text" name="email" value="{{ Auth::user()->email }}" />
+                    </div>
+                    <div class="input input--small">
+                        <label>Language</label>
+                        <select name="language">
+                            @foreach ($languages as $language)
+                                <option value="{{ $language }}" @if (Auth::user()->language === $language) selected @endif>{{ $language }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <button>Update</button>
                 </form>
             </div>
