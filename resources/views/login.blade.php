@@ -2,6 +2,7 @@
 
 @section('body')
     <div class="wrapper narrow spacing-top-large spacing-bottom-large">
+        <h2 class="text-center spacing-bottom-large">Log in</h2>
         @if (session('status'))
             <div style="
                 padding: 10px;
@@ -13,16 +14,6 @@
             ">{{ session('status') }}</div>
         @endif
         <div class="box">
-            <div class="section">
-                <div class="row">
-                    <div class="column ">
-                        <span class="color-dark">Log in</span>
-                    </div>
-                    <div class="column align-middle text-align-right">
-                        <a href="/register">Register</a>
-                    </div>
-                </div>
-            </div>
             <div class="section">
                 <form method="POST">
                     {{ csrf_field() }}
@@ -37,6 +28,9 @@
                     <button>Log in</button>
                 </form>
             </div>
+        </div>
+        <div class="spacing-top-small text-center">
+            <a href="/register">New to Budget?</a>
         </div>
     </div>
 @endsection

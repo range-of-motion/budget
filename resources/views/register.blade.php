@@ -2,17 +2,8 @@
 
 @section('body')
     <div class="wrapper narrow spacing-top-large spacing-bottom-large">
+        <h2 class="text-center spacing-bottom-large">Register</h2>
         <div class="box">
-            <div class="section">
-                <div class="row">
-                    <div class="column ">
-                        <span class="color-dark">Register</span>
-                    </div>
-                    <div class="column align-middle text-align-right">
-                        <a href="/login">Log in</a>
-                    </div>
-                </div>
-            </div>
             <div class="section">
                 <form method="POST">
                     {{ csrf_field() }}
@@ -48,6 +39,9 @@
                     <button>Register</button>
                 </form>
             </div>
+        </div>
+        <div class="spacing-top-small text-center">
+            <a href="/login">Already on Budget?</a>
         </div>
     </div>
 @endsection
