@@ -8,7 +8,7 @@ use Auth;
 use DB;
 
 class DashboardController extends Controller {
-    public function index() {
+    public function __invoke() {
         $user = Auth::user();
 
         $spendingsToday = $user
@@ -52,18 +52,6 @@ class DashboardController extends Controller {
             LIMIT 1;
         ', [$user->id]);
 
-        $recentEarnings = $user
-            ->earnings()
-            ->orderBy('happened_on', 'DESC')
-            ->limit(3)
-            ->get();
-
-        $recentSpendings = $user
-            ->spendings()
-            ->orderBy('happened_on', 'DESC')
-            ->limit(3)
-            ->get();
-
         return view('dashboard', [
             'currency' => $user->currency,
 
@@ -72,8 +60,8 @@ class DashboardController extends Controller {
             'mostExpensiveTag' => $mostExpensiveTag,
             'mostExpensiveWeekday' => $mostExpensiveWeekday,
 
-            'recentEarnings' => $recentEarnings,
-            'recentSpendings' => $recentSpendings
+            'earningsCount' => $user->earnings->count(),
+            'spendingsCount' => $user->spendings->count()
         ]);
     }
 }
