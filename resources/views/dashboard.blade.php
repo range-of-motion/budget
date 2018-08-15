@@ -21,6 +21,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row__column">
+                <div class="box">
+                    <div class="box__section">
+                        <h2>{{ $mostExpensiveTag->amount ? $mostExpensiveTag->name : '-' }}</h2>
+                        <div class="mt-1">Most expensive tag</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row gutter spacing-bottom-large">
             <div class="column">
