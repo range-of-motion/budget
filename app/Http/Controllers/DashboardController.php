@@ -38,6 +38,20 @@ class DashboardController extends Controller {
             LIMIT 1;
         ', [$user->id])[0];
 
+        $mostExpensiveWeekday = DB::select('
+            SELECT
+                WEEKDAY(spendings.happened_on) AS weekday
+            FROM
+                spendings
+            WHERE
+                spendings.user_id = ?
+            GROUP BY
+                WEEKDAY(spendings.happened_on)
+            ORDER BY
+                SUM(spendings.amount) DESC
+            LIMIT 1;
+        ', [$user->id]);
+
         $recentEarnings = $user
             ->earnings()
             ->orderBy('happened_on', 'DESC')
@@ -56,6 +70,7 @@ class DashboardController extends Controller {
             'spendingsToday' => $spendingsToday,
             'spendingsMonth' => $spendingsMonth,
             'mostExpensiveTag' => $mostExpensiveTag,
+            'mostExpensiveWeekday' => $mostExpensiveWeekday,
 
             'recentEarnings' => $recentEarnings,
             'recentSpendings' => $recentSpendings

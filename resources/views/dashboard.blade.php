@@ -29,6 +29,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row__column">
+                <div class="box">
+                    <div class="box__section">
+                        <h2>{{ count($mostExpensiveWeekday) ? __('weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
+                        <div class="mt-1">Most expensive weekday</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row gutter spacing-bottom-large">
             <div class="column">
