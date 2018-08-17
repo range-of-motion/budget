@@ -10,7 +10,7 @@ class AppServiceProvider extends ServiceProvider {
     public function boot() {
         view()->composer('*', function($view) {
             $view->with([
-                'userName' => Auth::user()->name
+                'userName' => Auth::check() ? Auth::user()->name : null
             ]);
         });
     }
