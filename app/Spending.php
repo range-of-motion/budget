@@ -12,6 +12,12 @@ class Spending extends Model {
         return number_format($this->amount / 100, 2);
     }
 
+    public function getFormattedHappenedOnAttribute() {
+        $secondsDifference = strtotime(date('Y-m-d')) - strtotime($this->happened_on);
+
+        return ($secondsDifference / 60 / 60 / 24) . ' days ago';
+    }
+
     // Relations
     public function tag() {
         return $this->belongsTo('App\Tag');
