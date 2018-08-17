@@ -34,7 +34,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown__toggle">
-                                    <i class="fa fa-user"></i> <i class="fa fa-caret-down"></i>
+                                    {{ $userName }} <i class="fa fa-caret-down"></i>
                                 </a>
                                 <ul class="dropdown__list">
                                     <li>
