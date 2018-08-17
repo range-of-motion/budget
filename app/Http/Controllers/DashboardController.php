@@ -23,8 +23,7 @@ class DashboardController extends Controller {
 
         $mostExpensiveTag = DB::select('
             SELECT
-                tags.name AS name,
-                SUM(spendings.amount) AS amount
+                tags.name AS name
             FROM
                 tags
             LEFT OUTER JOIN
@@ -33,10 +32,12 @@ class DashboardController extends Controller {
                 tags.user_id = ?
             GROUP BY
                 tags.id
+            HAVING
+                SUM(spendings.amount) > 0
             ORDER BY
                 SUM(spendings.amount) DESC
             LIMIT 1;
-        ', [$user->id])[0];
+        ', [$user->id]);
 
         $mostExpensiveWeekday = DB::select('
             SELECT

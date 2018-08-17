@@ -24,7 +24,7 @@
             <div class="row__column">
                 <div class="box">
                     <div class="box__section">
-                        <h2>{{ $mostExpensiveTag->amount ? $mostExpensiveTag->name : '-' }}</h2>
+                        <h2>{{ count($mostExpensiveTag) ? $mostExpensiveTag[0]->name : '-' }}</h2>
                         <div class="mt-1">Most expensive tag</div>
                     </div>
                 </div>
