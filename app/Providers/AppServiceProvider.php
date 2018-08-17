@@ -6,15 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Auth;
 
-class AppServiceProvider extends ServiceProvider
-{
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
+class AppServiceProvider extends ServiceProvider {
+    public function boot() {
         view()->composer('*', function($view) {
             $view->with([
                 'userName' => Auth::user()->name
@@ -22,13 +15,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
+    public function register() {
         //
     }
 }
