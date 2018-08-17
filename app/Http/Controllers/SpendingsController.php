@@ -13,38 +13,13 @@ class SpendingsController extends Controller {
     public function index(Request $request) {
         $user = Auth::user();
 
-        $limit = 5;
+        $spendings = $user
+            ->spendings()
+            ->orderBy('happened_on', 'DESC')
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
-        $currentPage = 1;
-
-        if ($request->has('page')) {
-            $currentPage = $request->get('page');
-        }
-
-        $sort = null;
-
-        $sortColumn = 'date';
-        $sortDirection = 'DESC';
-
-        if ($request->has('sort')) {
-            $sort = $request->get('sort');
-
-            $parts = explode('-', $sort);
-
-            $sortColumn = $parts[0];
-            $sortDirection = $parts[1];
-
-            if ($sortColumn == 'price') {
-                $sortColumn = 'amount';
-            }
-        }
-
-        return view('spendings.index', [
-            'spendings' => $user->spendings()->orderBy($sortColumn, $sortDirection)->offset($currentPage * $limit - $limit)->limit($limit)->get(),
-            'currentPage' => $currentPage,
-            'totalPages' => ceil($user->spendings->count() / $limit),
-            'sort' => $sort
-        ]);
+        return view('spendings.index', compact('spendings'));
     }
 
     public function create() {

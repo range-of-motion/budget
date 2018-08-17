@@ -5,23 +5,33 @@
         <h1>Spendings</h1>
     </div>
     <div class="wrapper spacing-top-large spacing-bottom-large">
-        <div class="spacing-bottom-large text-align-center">
-            {!! ($sort == 'date-asc') ? '<span>' : '<a href="/spendings?sort=date-asc">' !!}Sort by Date <i class="fa fa-arrow-up"></i>{!! ($sort == 'date-asc') ? '</span>' : '</a>' !!} &middot;
-            {!! ($sort == 'date-desc' || !$sort) ? '<span>' : '<a href="/spendings?sort=date-desc">' !!}Sort by Date <i class="fa fa-arrow-down"></i>{!! ($sort == 'date-desc' || !$sort) ? '</span>' : '</a>' !!} &middot;
-            {!! ($sort == 'price-asc') ? '<span>' : '<a href="/spendings?sort=price-asc">' !!}Sort by Price <i class="fa fa-arrow-up"></i>{!! ($sort == 'price-asc') ? '</span>' : '</a>' !!} &middot;
-            {!! ($sort == 'price-desc') ? '<span>' : '<a href="/spendings?sort=price-desc">' !!}Sort by Price <i class="fa fa-arrow-down"></i>{!! ($sort == 'price-desc') ? '</span>' : '</a>' !!}
-        </div>
         <div class="box">
-            @foreach ($spendings as $spending)
-                <div class="section row">
-                    <div class="column">{{ $spending->description }}</div>
-                    <div class="column">{{ ($spending->tag) ? $spending->tag->name : 'N/A' }}</div>
-                    <div class="column">&euro; {{ $spending->amount }}</div>
-                </div>
-            @endforeach
-        </div>
-        <div class="spacing-top-large text-align-center">
-            {!! ($currentPage > 1) ? '<a href="/spendings?page=' . ($currentPage - 1) . ($sort ? '&sort=' . $sort : '') . '">Previous</a> &middot;' : '' !!} Page {{ $currentPage }} of {{ $totalPages }} {!! ($currentPage < $totalPages) ? '&middot; <a href="/spendings?page=' . ($currentPage + 1) . ($sort ? '&sort=' . $sort : '') . '">Next</a>' : '' !!}
+            @if (count($spendings))
+                @foreach ($spendings as $spending)
+                    <div class="section row">
+                        <div class="row__column">
+                            @if ($spending->tag)
+                                <div style="
+                                    margin-bottom: 10px;
+                                    display: inline-block;
+                                    padding: 5px 10px;
+                                    text-transform: uppercase;
+                                    font-size: 12px;
+                                    font-weight: bolder;
+                                    bolder; color: #FFF;
+                                    background: #333;
+                                    border-radius: 5px;
+                                ">{{ $spending->tag->name }}</div>
+                            @endif
+                            <div>{{ $spending->description }}</div>
+                            <div style="margin-top: 10px; font-size: 14px;">{{ $spending->formatted_happened_on }}</div>
+                        </div>
+                        <div class="row__column text-right" style="color: red;">&euro; {{ $spending->formatted_amount }}</div>
+                    </div>
+                @endforeach
+            @else
+                <div class="section text-center">You don't have any spendings</div>
+            @endif
         </div>
     </div>
 @endsection
