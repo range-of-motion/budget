@@ -53,6 +53,22 @@ class DashboardController extends Controller {
             LIMIT 1;
         ', [$user->id]);
 
+        $tagsBreakdown = DB::select('
+            SELECT
+                tags.name AS name,
+                SUM(spendings.amount) AS amount
+            FROM
+                tags
+            LEFT OUTER JOIN
+                spendings ON tags.id = spendings.tag_id
+            WHERE
+                tags.user_id = ?
+            GROUP BY
+                tags.id
+            HAVING
+                SUM(spendings.amount) > 0;
+        ', [$user->id]);
+
         return view('dashboard', [
             'currency' => $user->currency,
 
@@ -60,6 +76,8 @@ class DashboardController extends Controller {
             'spendingsMonth' => $spendingsMonth,
             'mostExpensiveTag' => $mostExpensiveTag,
             'mostExpensiveWeekday' => $mostExpensiveWeekday,
+
+            'tagsBreakdown' => $tagsBreakdown,
 
             'earningsCount' => $user->earnings->count(),
             'spendingsCount' => $user->spendings->count()

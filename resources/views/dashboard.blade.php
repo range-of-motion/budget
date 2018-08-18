@@ -38,6 +38,13 @@
                 </div>
             </div>
         </div>
+        @if (count($tagsBreakdown))
+            <div class="box spacing-bottom-large">
+                <div class="box__section">
+                    <div class="ct-chart ct-major-eleventh"></div>
+                </div>
+            </div>
+        @endif
         <div class="row gutter spacing-bottom-large">
             <div class="column">
                 <div class="box">
@@ -55,4 +62,22 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        var labels = [{!! implode(',', array_map(function ($entry) { return '\'' . $entry->name . '\''; }, $tagsBreakdown)) !!}];
+
+        var data = {
+            series: [{!! implode(',', array_map(function ($entry) { return $entry->amount; }, $tagsBreakdown)) !!}]
+        };
+
+        var sum = function(a, b) { return a + b };
+
+        new Chartist.Pie('.ct-chart', data, {
+            labelInterpolationFnc: function (value, x) {
+                return labels[x] + ' (' + Math.round(value / data.series.reduce(sum) * 100) + '%)';
+            }
+        });
+    </script>
 @endsection
