@@ -6,19 +6,21 @@ use App\Tag;
 
 class TagsTableSeeder extends Seeder {
     public function run() {
-        Tag::insert([
-            [
+        $names = [
+            'Groceries',
+            'Bills',
+            'Transport'
+        ];
+
+        foreach ($names as $name) {
+            $currentTimestamp = date('Y-m-d H:i:s');
+
+            Tag::insert([
                 'user_id' => 1,
-                'name' => 'Groceries'
-            ],
-            [
-                'user_id' => 1,
-                'name' => 'Bills'
-            ],
-            [
-                'user_id' => 1,
-                'name' => 'Gas & Fuel'
-            ]
-        ]);
+                'name' => $name,
+                'created_at' => $currentTimestamp,
+                'updated_at' => $currentTimestamp
+            ]);
+        }
     }
 }
