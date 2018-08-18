@@ -9,6 +9,18 @@ use App\Earning;
 use Auth;
 
 class EarningsController extends Controller {
+    public function index() {
+        $user = Auth::user();
+
+        $earnings = $user
+            ->earnings()
+            ->orderBy('happened_on', 'DESC')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('earnings.index', compact('earnings'));
+    }
+
     public function create() {
         return view('earnings.create');
     }
