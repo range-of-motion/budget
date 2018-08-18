@@ -9,6 +9,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
         <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+        <style>
+            .ct-series-a .ct-slice-donut-solid {
+                fill: #3474EE;
+            }
+
+            .ct-series-b .ct-slice-donut-solid {
+                fill: #E73428;
+            }
+
+            .ct-series-c .ct-slice-donut-solid {
+                fill: #F5AE29;
+            }
+
+            .ct-series-d .ct-slice-donut-solid {
+                fill: #299944;
+            }
+        </style>
     </head>
     <body>
         <div id="app">

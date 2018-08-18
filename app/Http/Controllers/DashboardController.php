@@ -11,12 +11,7 @@ class DashboardController extends Controller {
     public function __invoke() {
         $user = Auth::user();
 
-        $spendingsToday = $user
-            ->spendings()
-            ->whereRaw('DATE(happened_on) = ?', [date('Y-m-d')])
-            ->sum('amount');
-
-        $spendingsMonth = $user
+        $totalSpendings = $user
             ->spendings()
             ->whereRaw('MONTH(happened_on) = ?', [date('m')])
             ->sum('amount');
@@ -30,6 +25,7 @@ class DashboardController extends Controller {
                 spendings ON tags.id = spendings.tag_id
             WHERE
                 tags.user_id = ?
+                AND MONTH(happened_on) = ?
             GROUP BY
                 tags.id
             HAVING
@@ -37,7 +33,7 @@ class DashboardController extends Controller {
             ORDER BY
                 SUM(spendings.amount) DESC
             LIMIT 1;
-        ', [$user->id]);
+        ', [$user->id, date('m')]);
 
         $mostExpensiveWeekday = DB::select('
             SELECT
@@ -46,12 +42,13 @@ class DashboardController extends Controller {
                 spendings
             WHERE
                 spendings.user_id = ?
+                AND MONTH(happened_on) = ?
             GROUP BY
                 WEEKDAY(spendings.happened_on)
             ORDER BY
                 SUM(spendings.amount) DESC
             LIMIT 1;
-        ', [$user->id]);
+        ', [$user->id, date('m')]);
 
         $tagsBreakdown = DB::select('
             SELECT
@@ -63,20 +60,20 @@ class DashboardController extends Controller {
                 spendings ON tags.id = spendings.tag_id
             WHERE
                 tags.user_id = ?
+                AND MONTH(happened_on) = ?
             GROUP BY
                 tags.id
             HAVING
                 SUM(spendings.amount) > 0;
-        ', [$user->id]);
+        ', [$user->id, date('m')]);
 
         return view('dashboard', [
             'currency' => $user->currency,
 
-            'spendingsToday' => $spendingsToday,
-            'spendingsMonth' => $spendingsMonth,
+            'month' => date('n'),
+            'totalSpendings' => $totalSpendings,
             'mostExpensiveTag' => $mostExpensiveTag,
             'mostExpensiveWeekday' => $mostExpensiveWeekday,
-
             'tagsBreakdown' => $tagsBreakdown,
 
             'earningsCount' => $user->earnings->count(),
