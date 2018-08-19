@@ -29,6 +29,13 @@ class SpendingsController extends Controller {
     }
 
     public function store(Request $request) {
+        $request->validate([
+            'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
+            'date' => 'required|date|date_format:Y-m-d',
+            'description' => 'required|max:255',
+            'amount' => 'required|regex:/^\d*(\.\d{1,2})?$/'
+        ]);
+
         $spending = new Spending;
 
         $spending->user_id = Auth::user()->id;
