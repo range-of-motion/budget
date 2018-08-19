@@ -29,18 +29,13 @@ class SpendingsController extends Controller {
     }
 
     public function store(Request $request) {
-        $tag_id = $request->input('tag_id');
-        $date = $request->input('date');
-        $description = $request->input('description');
-        $amount = $request->input('amount');
-
         $spending = new Spending;
 
         $spending->user_id = Auth::user()->id;
-        $spending->tag_id = $tag_id;
-        $spending->date = $date;
-        $spending->description = $description;
-        $spending->amount = $amount;
+        $spending->tag_id = $request->input('tag_id');
+        $spending->happened_on = $request->input('date');
+        $spending->description = $request->input('description');
+        $spending->amount = $request->input('amount');
 
         $spending->save();
 

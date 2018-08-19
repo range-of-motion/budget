@@ -26,16 +26,12 @@ class EarningsController extends Controller {
     }
 
     public function store(Request $request) {
-        $date = $request->input('date');
-        $description = $request->input('description');
-        $amount = $request->input('amount');
-
         $earning = new Earning;
 
         $earning->user_id = Auth::user()->id;
-        $earning->date = $date;
-        $earning->description = $description;
-        $earning->amount = $amount;
+        $earning->happened_on = $request->input('date');
+        $earning->description = $request->input('description');
+        $earning->amount = $request->input('amount');
 
         $earning->save();
 
