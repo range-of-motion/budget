@@ -20,9 +20,11 @@
                     <h2>{{ count($mostExpensiveWeekday) ? __('weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
                 </div>
             </div>
-            <div class="box__section">
-                <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
-            </div>
+            @if (count($tagsBreakdown))
+                <div class="box__section">
+                    <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
+                </div>
+            @endif
         </div>
         <div class="row gutter spacing-bottom-large">
             <div class="column">
