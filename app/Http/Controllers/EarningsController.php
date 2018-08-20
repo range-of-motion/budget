@@ -44,14 +44,6 @@ class EarningsController extends Controller {
         return redirect()->route('dashboard');
     }
 
-    public function show(Earning $earning) {
-        $user = Auth::user();
-
-        $currency = $user->currency;
-
-        return view('earnings.show', compact('currency', 'earning'));
-    }
-
     public function destroy(Earning $earning) {
         $year = date('Y', strtotime($earning->date));
         $month = date('n', strtotime($earning->date));

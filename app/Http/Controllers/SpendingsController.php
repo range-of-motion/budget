@@ -49,14 +49,6 @@ class SpendingsController extends Controller {
         return redirect()->route('dashboard');
     }
 
-    public function show(Spending $spending) {
-        $user = Auth::user();
-
-        $currency = $user->currency;
-
-        return view('spendings.show', compact('currency', 'spending'));
-    }
-
     public function destroy(Spending $spending) {
         $year = date('Y', strtotime($spending->date));
         $month = date('n', strtotime($spending->date));
