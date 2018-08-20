@@ -26,6 +26,12 @@ class EarningsController extends Controller {
     }
 
     public function store(Request $request) {
+        $request->validate([
+            'date' => 'required|date|date_format:Y-m-d',
+            'description' => 'required|max:255',
+            'amount' => 'required|regex:/^\d*(\.\d{1,2})?$/'
+        ]);
+
         $earning = new Earning;
 
         $earning->user_id = Auth::user()->id;
