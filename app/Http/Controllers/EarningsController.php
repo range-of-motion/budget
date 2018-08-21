@@ -29,7 +29,7 @@ class EarningsController extends Controller {
         $request->validate([
             'date' => 'required|date|date_format:Y-m-d',
             'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{1,2})?$/'
+            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
         ]);
 
         $earning = new Earning;

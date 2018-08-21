@@ -33,7 +33,7 @@ class SpendingsController extends Controller {
             'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
             'date' => 'required|date|date_format:Y-m-d',
             'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{1,2})?$/'
+            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
         ]);
 
         $spending = new Spending;
