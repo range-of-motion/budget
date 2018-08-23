@@ -3,7 +3,7 @@
     <head>
         @if (View::hasSection('title')) <title>@yield('title') - {{ config('app.name') }}</title> @else <title>{{ config('app.name') }}</title> @endif
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <script src="/storage/fontawesome/all.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i" />
         <link rel="stylesheet" href="/css/app.css" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
@@ -33,13 +33,13 @@
                     <div class="wrapper">
                         <ul class="navigation__menu">
                             <li>
-                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fa fa-home"></i> @lang('general.dashboard')</a>
+                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fas fa-home"></i> @lang('general.dashboard')</a>
                             </li>
                         </ul>
                         <ul class="navigation__menu">
                             <li class="dropdown">
                                 <a href="#" class="dropdown__toggle">
-                                    <i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i>
+                                    <i class="fas fa-plus"></i> <i class="fas fa-caret-down"></i>
                                 </a>
                                 <ul class="dropdown__list">
                                     <li>
@@ -52,7 +52,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown__toggle">
-                                    {{ $userName }} <i class="fa fa-caret-down"></i>
+                                    {{ $userName }} <i class="fas fa-caret-down"></i>
                                 </a>
                                 <ul class="dropdown__list">
                                     <li>

@@ -38,7 +38,7 @@
                             <div class="row__column">{{ $tag->name }}</div>
                             <div class="row__column row__column--compact">
                                 <a href="/tags/{{ $tag->id }}/edit">
-                                    <i class="fa fa-pencil"></i>
+                                    <i class="fas fa-pencil"></i>
                                 </a>
                             </div>
                             <div class="row__column row__column--compact ml-2">
@@ -46,7 +46,7 @@
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                     <button class="link">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
                             </div>

@@ -30,14 +30,14 @@
             <div class="column">
                 <div class="box">
                     <div class="box__section text-center" style="padding: 15px;">
-                        <a href="/earnings">Earnings ({{ $earningsCount }}) <i class="fa fa-arrow-right"></i></a>
+                        <a href="/earnings">Earnings ({{ $earningsCount }}) <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="box">
                     <div class="box__section text-center" style="padding: 15px;">
-                        <a href="/spendings">Spendings ({{ $spendingsCount }}) <i class="fa fa-arrow-right"></i></a>
+                        <a href="/spendings">Spendings ({{ $spendingsCount }}) <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
