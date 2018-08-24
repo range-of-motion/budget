@@ -9,12 +9,12 @@
                     {{ csrf_field() }}
                     <div class="input">
                         <label>Name</label>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" value="{{ old('name') }}" />
                         @include('partials.validation_error', ['payload' => 'name'])
                     </div>
                     <div class="input">
                         <label>E-mail</label>
-                        <input type="email" name="email" />
+                        <input type="email" name="email" value="{{ old('email') }}" />
                         @include('partials.validation_error', ['payload' => 'email'])
                     </div>
                     <div class="input">
@@ -31,7 +31,7 @@
                         <label>Currency</label>
                         <select name="currency">
                             @foreach ($currencies as $currency)
-                                <option value="{{ $currency->id }}">{{ $currency->symbol }} &middot; {{ $currency->name }}</option>
+                                <option value="{{ $currency->id }}" {{ old('currency') == $currency->id ? 'selected' : '' }}>{{ $currency->symbol }} &middot; {{ $currency->name }}</option>
                             @endforeach
                         </select>
                         @include('partials.validation_error', ['payload' => 'currency'])
