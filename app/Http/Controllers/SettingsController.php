@@ -19,7 +19,10 @@ class SettingsController extends Controller {
     }
 
     public function store(Request $request) {
-        // TODO VALIDATE
+        $request->validate([
+            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif'
+            // TODO VALIDATE OTHER FIELDS
+        ]);
 
         $user = Auth::user();
 

@@ -17,6 +17,7 @@
                             <div>You don't have an avatar</div>
                         @endif
                         <input type="file" name="avatar" />
+                        @include('partials.validation_error', ['payload' => 'avatar'])
                     </div>
                     <div class="input input--small">
                         <label>Name</label>
