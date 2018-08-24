@@ -19,7 +19,15 @@ class SettingsController extends Controller {
     }
 
     public function store(Request $request) {
+        // TODO VALIDATE
+
         $user = Auth::user();
+
+        if ($request->hasFile('avatar')) {
+            $request->file('avatar')->store('public/avatars');
+
+            $user->avatar = $request->file('avatar')->hashName();
+        }
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');

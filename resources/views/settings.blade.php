@@ -7,8 +7,17 @@
         <div class="spacing-bottom-large color-dark">Account</div>
         <div class="box">
             <div class="section">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    <div class="input input--small">
+                        <label>Avatar</label>
+                        @if (Auth::user()->avatar)
+                            <img src="/storage/avatars/{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; border-radius: 5px; object-fit: cover;" />
+                        @else
+                            <div>You don't have an avatar</div>
+                        @endif
+                        <input type="file" name="avatar" />
+                    </div>
                     <div class="input input--small">
                         <label>Name</label>
                         <input type="text" name="name" value="{{ Auth::user()->name }}" />
