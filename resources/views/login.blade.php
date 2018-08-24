@@ -19,7 +19,7 @@
                     {{ csrf_field() }}
                     <div class="input">
                         <label>E-mail</label>
-                        <input type="email" name="email" />
+                        <input type="email" name="email" value="{{ old('email') }}" />
                     </div>
                     <div class="input">
                         <label>Password</label>

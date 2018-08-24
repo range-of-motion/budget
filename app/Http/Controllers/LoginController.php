@@ -17,6 +17,8 @@ class LoginController extends Controller {
         ])) {
             return redirect()->route('dashboard');
         } else {
+            $request->flash();
+
             return redirect()
                 ->route('login')
                 ->with([
