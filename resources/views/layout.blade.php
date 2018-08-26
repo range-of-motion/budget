@@ -33,13 +33,13 @@
                     <div class="wrapper">
                         <ul class="navigation__menu">
                             <li>
-                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fas fa-home"></i> @lang('general.dashboard')</a>
+                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fas fa-home fa-sm mr-05"></i> @lang('general.dashboard')</a>
                             </li>
                         </ul>
                         <ul class="navigation__menu">
                             <li class="dropdown">
                                 <a href="#" class="dropdown__toggle">
-                                    <i class="fas fa-plus"></i> <i class="fas fa-caret-down"></i>
+                                    <i class="far fa-plus mr-05"></i> <i class="fas fa-caret-down fa-sm"></i>
                                 </a>
                                 <ul class="dropdown__list">
                                     <li>
@@ -52,7 +52,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown__toggle">
-                                    {{ $userName }} <i class="fas fa-caret-down"></i>
+                                    <img src="/storage/avatars/{{ Auth::user()->avatar }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
                                 </a>
                                 <ul class="dropdown__list">
                                     <li>

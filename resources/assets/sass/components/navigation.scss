@@ -1,6 +1,9 @@
 @import '../variables/colors';
 
 .navigation {
+    display: flex;
+    align-items: center;
+    height: 70px;
     background: $colors-navigation;
 
     .wrapper {
@@ -9,24 +12,32 @@
     }
 
     .navigation__menu {
-        margin: 0 -16px;
-        list-style: none;
+        margin-left: -10px;
+        margin-right: -10px;
         display: flex;
+        align-items: center;
+        list-style: none;
 
         > li {
-            padding: 28px 16px;
+            padding-left: 10px;
+            padding-right: 10px;
 
             > a {
+                display: flex;
+                align-items: center;
                 color: $colors-text;
 
                 &:hover, &.active {
                     color: #FFF;
                 }
-
-                i {
-                    margin-right: 4px;
-                }
             }
         }
     }
+}
+
+.avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    object-fit: cover;
 }
