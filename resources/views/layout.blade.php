@@ -52,7 +52,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown__toggle">
-                                    <img src="/storage/avatars/{{ Auth::user()->avatar }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
+                                    <img src="{{ Auth::user()->avatar ? '/storage/avatars/' . Auth::user()->avatar : 'http://placehold.it/50x50' }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
                                 </a>
                                 <ul class="dropdown__list">
                                     <li>
