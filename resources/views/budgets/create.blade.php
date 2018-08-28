@@ -26,7 +26,7 @@
                             <select name="month">
                                 <option>-</option>
                                 @for ($month = 1; $month <= 12; $month ++)
-                                    <option value="{{ $month }}">@lang('months.' . $month)</option>
+                                    <option value="{{ $month }}">@lang('calendar.months.' . $month)</option>
                                 @endfor
                             </select>
                         </div>

@@ -4,7 +4,7 @@
 
 @section('body')
     <div class="wrapper spacing-top-large spacing-bottom-large">
-        <div style="color: black; margin-bottom: 20px;">{{ __('months.' . $month) }}</div>
+        <div style="color: black; margin-bottom: 20px;">{{ __('calendar.months.' . $month) }}</div>
         <div class="box mb-4">
             <div class="box__section row">
                 <div class="row__column text-center">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="row__column text-center">
                     <div class="mb-1" style="margin-bottom: 10px; color: #A7AEBB;">Most Expensive Day</div>
-                    <h2>{{ count($mostExpensiveWeekday) ? __('weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
+                    <h2>{{ count($mostExpensiveWeekday) ? __('calendar.weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
                 </div>
             </div>
             @if (count($tagsBreakdown))
