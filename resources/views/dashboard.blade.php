@@ -10,7 +10,7 @@
                 <div class="box">
                     <div class="box__section row">
                         <div class="row__column">
-                            <div class="mb-1" style="color: #A7AEBB;">Total Spent</div>
+                            <div class="mb-1" style="color: #A7AEBB;">{{ __('general.total_spent') }}</div>
                             <h2 style="font-size: 20px;">{{ $currency->symbol }} {{ number_format($totalSpendings / 100, 2) }}</h2>
                         </div>
                         <div class="row__column row__column--compact ml-2">
@@ -23,7 +23,7 @@
                 <div class="box">
                     <div class="box__section row">
                         <div class="row__column">
-                            <div class="mb-1" style="color: #A7AEBB;">Most Expensive Tag</div>
+                            <div class="mb-1" style="color: #A7AEBB;">{{ __('general.most_expensive_tag') }}</div>
                             <h2 style="font-size: 20px;">{{ count($mostExpensiveTag) ? $mostExpensiveTag[0]->name : '-' }}</h2>
                         </div>
                         <div class="row__column row__column--compact ml-2">
@@ -36,7 +36,7 @@
                 <div class="box">
                     <div class="box__section row">
                         <div class="row__column">
-                            <div class="mb-1" style="color: #A7AEBB;">Most Expensive Day</div>
+                            <div class="mb-1" style="color: #A7AEBB;">{{ __('general.most_expensive_day') }}</div>
                             <h2 style="font-size: 20px;">{{ count($mostExpensiveWeekday) ? __('calendar.weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
                         </div>
                         <div class="row__column row__column--compact ml-2">
@@ -49,7 +49,7 @@
         <div class="box mb-4">
             @if (count($tagsBreakdown))
                 <div class="box__section">
-                    <div class="mb-2">Breakdown</div>
+                    <div class="mb-2">{{ __('general.analysis') }}</div>
                     <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
                 </div>
             @endif
@@ -58,14 +58,14 @@
             <div class="column">
                 <div class="box">
                     <div class="box__section text-center" style="padding: 15px;">
-                        <a href="/earnings">Earnings ({{ $earningsCount }}) <i class="fas fa-arrow-right"></i></a>
+                        <a href="/earnings">{{ __('general.earnings') }} ({{ $earningsCount }}) <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="box">
                     <div class="box__section text-center" style="padding: 15px;">
-                        <a href="/spendings">Spendings ({{ $spendingsCount }}) <i class="fas fa-arrow-right"></i></a>
+                        <a href="/spendings">{{ __('general.spendings') }} ({{ $spendingsCount }}) <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
