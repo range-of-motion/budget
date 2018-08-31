@@ -4,11 +4,12 @@
 
 # Budget
 
+https://budget.pixely.me
+
 Budget is an open-source web application that helps you keep track of your finances.
 
 ## Features
 
-* Track earnings/spendings
-* Organize spendings with tags
-* Generate monthly reports
-* Multiple languages
+* Ability to organize spendings using tags
+* Dashboard displaying monthly statistics about your spendings
+* Available in multiple languages (English and Dutch, others are coming)
