@@ -46,14 +46,14 @@
                 </div>
             </div>
         </div>
-        <div class="box mb-4">
-            @if (count($tagsBreakdown))
+        @if (count($tagsBreakdown))
+            <div class="box mb-4">
                 <div class="box__section">
                     <div class="mb-2">{{ __('general.analysis') }}</div>
                     <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
         <div class="row gutter spacing-bottom-large">
             <div class="column">
                 <div class="box">
