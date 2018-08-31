@@ -45,7 +45,10 @@
                 <ul class="box__section">
                     @foreach ($tags as $tag)
                         <li class="row">
-                            <div class="row__column">{{ $tag->name }}</div>
+                            <div class="row__column">
+                                <div>{{ $tag->name }}</div>
+                                <div class="mt-1"><i class="fal fa-piggy-bank"></i> {{ $tag->spendings->count() }} {{ __('general.spendings') }}</div>
+                            </div>
                             <div class="row__column row__column--compact">
                                 <a href="/tags/{{ $tag->id }}/edit">
                                     <i class="fas fa-pencil"></i>
