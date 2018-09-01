@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
+use App\Mail\ConfirmRegistration;
 use App\Currency;
 use App\User;
 use Hash;
+use Mail;
 
 class RegisterController extends Controller {
     public function index() {
@@ -33,6 +35,8 @@ class RegisterController extends Controller {
         $user->language = 'en';
 
         $user->save();
+
+        Mail::to($user->email)->send(new ConfirmRegistration($user));
 
         return redirect('/register');
     }
