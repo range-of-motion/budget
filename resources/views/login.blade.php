@@ -4,14 +4,7 @@
     <div class="wrapper narrow spacing-top-large spacing-bottom-large">
         <h2 class="text-center spacing-bottom-large">Log in</h2>
         @if (session('status'))
-            <div style="
-                padding: 10px;
-                margin-bottom: 20px;
-                text-align: center;
-                color: #FFF;
-                background: #FE7C4D;
-                border-radius: 5px;
-            ">{{ session('status') }}</div>
+            @include('partials.status_bar', ['payload' => ['classes' => 'mb-2', 'status' => session('status')]])
         @endif
         <div class="box">
             <div class="section">

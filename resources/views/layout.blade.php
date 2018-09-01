@@ -4,7 +4,7 @@
         @if (View::hasSection('title')) <title>@yield('title') - {{ config('app.name') }}</title> @else <title>{{ config('app.name') }}</title> @endif
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="/storage/fontawesome/all.min.js"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i" />
         <link rel="stylesheet" href="/css/app.css" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
         <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
