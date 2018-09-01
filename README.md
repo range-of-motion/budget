@@ -12,7 +12,7 @@ Budget is an open-source web application that helps you keep track of your finan
 
 * Ability to organize spendings using tags
 * Dashboard displaying monthly statistics about your spendings
-* Available in multiple languages (English and Dutch, others are coming)
+* Available in multiple languages (English, Dutch and Danish, others are coming)
 
 ## Installation
 

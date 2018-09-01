@@ -13,7 +13,7 @@ class SettingsController extends Controller {
         $user = Auth::user();
 
         //
-        $languages = ['en', 'nl'];
+        $languages = ['en', 'nl', 'dk'];
 
         $tags = $user->tags;
 
