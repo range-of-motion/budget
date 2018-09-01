@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use Image;
+use Storage;
 
 class SettingsController extends Controller {
     public function index() {
@@ -27,9 +29,16 @@ class SettingsController extends Controller {
         $user = Auth::user();
 
         if ($request->hasFile('avatar')) {
-            $request->file('avatar')->store('public/avatars');
+            $file = $request->file('avatar');
 
-            $user->avatar = $request->file('avatar')->hashName();
+            $fileName = $file->hashName();
+
+            $image = Image::make($file)
+                ->fit(500);
+
+            Storage::put('public/avatars/' . $fileName, (string) $image->encode());
+
+            $user->avatar = $fileName;
         }
 
         $user->name = $request->input('name');
