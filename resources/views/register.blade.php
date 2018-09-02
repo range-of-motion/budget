@@ -31,7 +31,7 @@
                         <label>Currency</label>
                         <select name="currency">
                             @foreach ($currencies as $currency)
-                                <option value="{{ $currency->id }}" {{ old('currency') == $currency->id ? 'selected' : '' }}>{{ $currency->symbol }} &middot; {{ $currency->name }}</option>
+                                <option value="{{ $currency->id }}" {{ old('currency') == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
                             @endforeach
                         </select>
                         @include('partials.validation_error', ['payload' => 'currency'])

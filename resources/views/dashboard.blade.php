@@ -11,7 +11,7 @@
                     <div class="box__section row">
                         <div class="row__column">
                             <div class="mb-1" style="color: #A7AEBB;">{{ __('general.total_spent') }}</div>
-                            <h2 style="font-size: 20px;">{{ $currency->symbol }} {{ number_format($totalSpendings / 100, 2) }}</h2>
+                            <h2 style="font-size: 20px;">{!! $currency->symbol !!} {{ number_format($totalSpendings / 100, 2) }}</h2>
                         </div>
                         <div class="row__column row__column--compact ml-2">
                             <i class="fal fa-wallet" style="color: #A7AEBB; font-size: 20px;"></i>
