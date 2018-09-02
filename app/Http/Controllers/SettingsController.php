@@ -20,8 +20,9 @@ class SettingsController extends Controller {
 
     public function store(Request $request) {
         $request->validate([
-            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif'
+            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif',
             // TODO VALIDATE OTHER FIELDS
+            'language' => 'required|in:' . implode(',', array_keys(config('app.locales')))
         ]);
 
         $user = Auth::user();
