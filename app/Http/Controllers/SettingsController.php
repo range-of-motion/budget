@@ -12,12 +12,10 @@ class SettingsController extends Controller {
     public function index() {
         $user = Auth::user();
 
-        //
-        $languages = ['en', 'nl', 'dk'];
-
-        $tags = $user->tags;
-
-        return view('settings', compact('languages', 'tags'));
+        return view('settings', [
+            'languages' => config('app.locales'),
+            'tags' => $user->tags
+        ]);
     }
 
     public function store(Request $request) {

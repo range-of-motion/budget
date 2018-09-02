@@ -79,6 +79,12 @@ return [
 
     'locale' => 'en',
 
+    'locales' => [
+        'en' => 'English',
+        'nl' => 'Dutch',
+        'dk' => 'Danish'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

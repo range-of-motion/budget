@@ -30,10 +30,11 @@
                     <div class="input input--small">
                         <label>Language</label>
                         <select name="language">
-                            @foreach ($languages as $language)
-                                <option value="{{ $language }}" @if (Auth::user()->language === $language) selected @endif>{{ $language }}</option>
+                            @foreach ($languages as $key => $value)
+                                <option value="{{ $key }}" @if (Auth::user()->language === $key) selected @endif>{{ $value }}</option>
                             @endforeach
                         </select>
+                        @include('partials.validation_error', ['payload' => 'language'])
                     </div>
                     <button>Update</button>
                 </form>
