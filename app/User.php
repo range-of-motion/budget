@@ -14,8 +14,6 @@ use App\Currency;
 class User extends Authenticatable {
     use Notifiable;
 
-    public $timestamps = false;
-
     protected $fillable = [
         'name', 'email', 'password',
     ];
