@@ -15,8 +15,9 @@ class SpendingTest extends TestCase {
         $spending->user_id = 1;
         // $spending->tag_id = null;
         $spending->happened_on = date('Y-m-d');
-        $spending->description = 'SpendingTest testExample';
+        $spending->description = 'SpendingTest testFormattedAmount';
         $spending->amount = 92;
+
         $spending->save();
 
         $this->assertEquals('92.00', $spending->formatted_amount);
