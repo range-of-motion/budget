@@ -1,10 +1,8 @@
 @extends('layout')
 
 @section('body')
-    <div class="banner">
-        <h1>Spendings</h1>
-    </div>
     <div class="wrapper spacing-top-large spacing-bottom-large">
+        <div style="color: black; margin-bottom: 20px;">Spendings</div>
         <div class="box">
             @if (count($spendings))
                 @foreach ($spendings as $spending)
