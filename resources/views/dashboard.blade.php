@@ -52,9 +52,12 @@
                 <div class="box">
                     @if (count($recentSpendings))
                         @foreach ($recentSpendings as $spending)
-                            <div class="box__section row row--seperate">
-                                <div class="row__column">{{ $spending->description }}</div>
-                                <div class="row__column row__column--compact">{!! $currency->symbol !!} {{ $spending->formatted_amount }}</div>
+                            <div class="box__section row row--seperate" style="padding: 20px;">
+                                <div class="row__column">
+                                    <div style="color: #000;">{{ $spending->description }}</div>
+                                    <div style="margin-top: 10px; font-size: 14px;">{{ $spending->formatted_happened_on }}</div>
+                                </div>
+                                <div class="row__column row__column--compact" style="color: #000; align-self: center;">{!! $currency->symbol !!} {{ $spending->formatted_amount }}</div>
                             </div>
                         @endforeach
                     @else
