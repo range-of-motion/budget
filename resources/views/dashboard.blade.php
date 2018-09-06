@@ -46,14 +46,35 @@
                 </div>
             </div>
         </div>
-        @if (count($tagsBreakdown))
-            <div class="box mb-4">
-                <div class="box__section">
-                    <div class="mb-2">{{ __('general.analysis') }}</div>
-                    <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
+        <div class="row row--gutter mb-4">
+            <div class="row__column">
+                <div style="color: black; margin-bottom: 20px;">{{ __('general.recent') }} {{ __('general.spendings') }}</div>
+                <div class="box">
+                    @if (count($recentSpendings))
+                        @foreach ($recentSpendings as $spending)
+                            <div class="box__section row row--seperate">
+                                <div class="row__column">{{ $spending->description }}</div>
+                                <div class="row__column row__column--compact">{!! $currency->symbol !!} {{ $spending->formatted_amount }}</div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="box__section">You don't have any spendings</div>
+                    @endif
                 </div>
             </div>
-        @endif
+            <div class="row__column">
+                <div class="box">
+                    <div class="box__section">
+                        <div class="mb-2">{{ __('general.analysis') }}</div>
+                        @if (count($tagsBreakdown))
+                            <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
+                        @else
+                            Not enough data
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row gutter spacing-bottom-large">
             <div class="column">
                 <div class="box">

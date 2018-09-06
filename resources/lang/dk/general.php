@@ -10,5 +10,7 @@ return [
     'analysis' => 'Analyse',
 
     'earnings' => 'Indkomster',
-    'spendings' => 'Udgifter'
+    'spendings' => 'Udgifter',
+
+    'recent' => 'Seneste'
 ];

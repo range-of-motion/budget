@@ -50,6 +50,12 @@ class DashboardController extends Controller {
             LIMIT 1;
         ', [$user->id, date('m')]);
 
+        $recentSpendings = $user
+            ->spendings()
+            ->orderBy('created_at', 'DESC')
+            ->limit(3)
+            ->get();
+
         $tagsBreakdown = DB::select('
             SELECT
                 tags.name AS name,
@@ -71,9 +77,12 @@ class DashboardController extends Controller {
             'currency' => $user->currency,
 
             'month' => date('n'),
+
             'totalSpendings' => $totalSpendings,
             'mostExpensiveTag' => $mostExpensiveTag,
             'mostExpensiveWeekday' => $mostExpensiveWeekday,
+
+            'recentSpendings' => $recentSpendings,
             'tagsBreakdown' => $tagsBreakdown,
 
             'earningsCount' => $user->earnings->count(),
