@@ -5,7 +5,7 @@
 @section('body')
     <div class="wrapper spacing-top-large spacing-bottom-large">
         <div style="color: black; margin-bottom: 20px;">{{ __('calendar.months.' . $month) }}</div>
-        <div class="row row--gutter mb-4">
+        <div class="row row--gutter row--responsive mb-4">
             <div class="row__column">
                 <div class="box">
                     <div class="box__section row">
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="row row--gutter mb-4">
+        <div class="row row--gutter row--responsive mb-4">
             <div class="row__column">
                 <div style="color: black; margin-bottom: 20px;">{{ __('general.recent') }} {{ __('general.spendings') }}</div>
                 <div class="box">
@@ -78,15 +78,15 @@
                 </div>
             </div>
         </div>
-        <div class="row gutter spacing-bottom-large">
-            <div class="column">
+        <div class="row row--gutter row--responsive spacing-bottom-large">
+            <div class="row__column">
                 <div class="box">
                     <div class="box__section text-center" style="padding: 15px;">
                         <a href="/earnings">{{ __('general.earnings') }} ({{ $earningsCount }}) <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="column">
+            <div class="row__column">
                 <div class="box">
                     <div class="box__section text-center" style="padding: 15px;">
                         <a href="/spendings">{{ __('general.spendings') }} ({{ $spendingsCount }}) <i class="fas fa-arrow-right"></i></a>

@@ -44,3 +44,17 @@
         }
     }
 }
+
+@media screen and (max-width: 900px) {
+    .row.row--responsive {
+        flex-direction: column;
+
+        > .row__column {
+            margin-top: 20px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}
