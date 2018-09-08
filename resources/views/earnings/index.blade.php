@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="wrapper spacing-top-large spacing-bottom-large">
-        <div style="color: black; margin-bottom: 20px;">Earnings</div>
+        <div style="color: black; margin-bottom: 20px;">{{ __('general.earnings') }}</div>
         <div class="box">
             @if (count($earnings))
                 @foreach ($earnings as $earning)

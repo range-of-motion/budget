@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="wrapper spacing-top-large spacing-bottom-large">
-        <div style="color: black; margin-bottom: 20px;">Spendings</div>
+        <div style="color: black; margin-bottom: 20px;">{{ __('general.spendings') }}</div>
         <div class="box">
             @if (count($spendings))
                 @foreach ($spendings as $spending)
