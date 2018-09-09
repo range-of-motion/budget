@@ -28,6 +28,16 @@
                         <input type="text" name="email" value="{{ Auth::user()->email }}" />
                     </div>
                     <div class="input input--small">
+                        <label>Password</label>
+                        <input type="password" name="password" />
+                        @include('partials.validation_error', ['payload' => 'password'])
+                    </div>
+                    <div class="input input--small">
+                        <label>Verify Password</label>
+                        <input type="password" name="password_confirmation" />
+                        @include('partials.validation_error', ['payload' => 'password_confirmation'])
+                    </div>
+                    <div class="input input--small">
                         <label>Language</label>
                         <select name="language">
                             @foreach ($languages as $key => $value)

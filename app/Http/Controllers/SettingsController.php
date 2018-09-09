@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Image;
 use Storage;
+use Hash;
 
 class SettingsController extends Controller {
     public function index() {
@@ -21,7 +22,7 @@ class SettingsController extends Controller {
     public function store(Request $request) {
         $request->validate([
             'avatar' => 'nullable|mimes:jpeg,jpg,png,gif',
-            // TODO VALIDATE OTHER FIELDS
+            'password' => 'nullable|confirmed',
             'language' => 'required|in:' . implode(',', array_keys(config('app.locales')))
         ]);
 
@@ -42,6 +43,11 @@ class SettingsController extends Controller {
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+
+        if ($password = $request->input('password')) {
+            $user->password = Hash::make($password);
+        }
+
         $user->language = $request->input('language');
 
         $user->save();
