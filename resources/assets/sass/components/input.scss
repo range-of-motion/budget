@@ -11,12 +11,12 @@
     }
 }
 
-input, button {
+input, select, button {
     font: inherit;
     border-radius: $dimensions-box-border-radius;
 }
 
-input {
+input, select {
     padding: $dimensions-input-padding;
     width: 100%;
     border: 1px solid $colors-border;
@@ -27,6 +27,11 @@ input {
         border-color: $colors-primary;
         box-shadow: 0 0 0 3px rgba($colors-primary, .25);
     }
+}
+
+select {
+    background: #FFF;
+    -webkit-appearance: none;
 }
 
 button {
