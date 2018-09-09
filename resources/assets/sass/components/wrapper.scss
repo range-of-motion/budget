@@ -1,0 +1,9 @@
+.wrapper {
+    margin: 0 auto;
+    width: 90%;
+    max-width: $dimensions-wrapper-width;
+
+    &.wrapper--narrow {
+        max-width: $dimensions-wrapper-narrow-width;
+    }
+}

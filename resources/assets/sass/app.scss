@@ -1,13 +1,3 @@
-.wrapper {
-    margin: 0 auto;
-    width: 90%;
-    max-width: 1280px;
-
-    &.wrapper--narrow {
-        max-width: 560px;
-    }
-}
-
 @import 'variables/colors';
 @import 'variables/dimensions';
 
@@ -15,6 +5,7 @@
 @import 'components/typography';
 @import 'components/row';
 @import 'components/navigation';
+@import 'components/wrapper';
 @import 'components/box';
 @import 'components/input';
 @import 'components/helpers';
