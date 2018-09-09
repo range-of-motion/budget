@@ -8,6 +8,8 @@
     }
 }
 
+@import 'variables/colors';
+
 @import 'components/reset';
 @import 'components/typography';
 @import 'components/row';
@@ -15,9 +17,6 @@
 @import 'components/box';
 @import 'components/input';
 @import 'components/helpers';
-
-//
-@import 'variables/colors';
 
 body {
     background: $colors-body;
