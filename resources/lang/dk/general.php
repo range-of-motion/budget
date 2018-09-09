@@ -12,5 +12,12 @@ return [
     'earnings' => 'Indkomster',
     'spendings' => 'Udgifter',
 
-    'recent' => 'Seneste'
+    'recent' => 'Seneste',
+
+    'avatar' => 'Avatar',
+    'name' => 'Navn',
+    'email' => 'E-mail',
+    'verify' => 'Bekræfte',
+    'password' => 'Adgangskode',
+    'language' => 'Sprog'
 ];

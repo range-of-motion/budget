@@ -12,5 +12,12 @@ return [
     'earnings' => 'Inkomsten',
     'spendings' => 'Uitgaven',
 
-    'recent' => 'Recente'
+    'recent' => 'Recente',
+
+    'avatar' => 'Avatar',
+    'name' => 'Naam',
+    'email' => 'E-mail',
+    'verify' => 'Controleer',
+    'password' => 'Wachtwoord',
+    'language' => 'Taal'
 ];

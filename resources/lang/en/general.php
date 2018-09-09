@@ -12,5 +12,12 @@ return [
     'earnings' => 'Earnings',
     'spendings' => 'Spendings',
 
-    'recent' => 'Recent'
+    'recent' => 'Recent',
+
+    'avatar' => 'Avatar',
+    'name' => 'Name',
+    'email' => 'E-mail',
+    'verify' => 'Verify',
+    'password' => 'Password',
+    'language' => 'Language'
 ];
