@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('body')
-    <div class="wrapper spacing-top-large spacing-bottom-large">
+    <div class="wrapper my-4">
         <div style="color: black; margin-bottom: 20px;">{{ __('calendar.months.' . $month) }}</div>
         <div class="row row--gutter row--responsive mb-4">
             <div class="row__column">

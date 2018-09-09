@@ -3,10 +3,10 @@
 @section('title', 'Settings')
 
 @section('body')
-    <div class="wrapper spacing-top-large spacing-bottom-large">
-        <div class="spacing-bottom-large color-dark">Account</div>
+    <div class="wrapper my-4">
+        <div class="mb-4 color-dark">Account</div>
         <div class="box">
-            <div class="section">
+            <div class="box__section">
                 <form method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="input input--small">
@@ -40,7 +40,7 @@
                 </form>
             </div>
         </div>
-        <div class="spacing-top-large spacing-bottom-large color-dark">Tags</div>
+        <div class="my-4 color-dark">Tags</div>
         <div class="box">
             @if (count($tags))
                 <ul class="box__section">

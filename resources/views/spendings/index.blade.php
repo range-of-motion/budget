@@ -1,12 +1,12 @@
 @extends('layout')
 
 @section('body')
-    <div class="wrapper spacing-top-large spacing-bottom-large">
+    <div class="wrapper my-4">
         <div style="color: black; margin-bottom: 20px;">{{ __('general.spendings') }}</div>
         <div class="box">
             @if (count($spendings))
                 @foreach ($spendings as $spending)
-                    <div class="section row">
+                    <div class="box__section row">
                         <div class="row__column">
                             @if ($spending->tag)
                                 <div style="
@@ -28,7 +28,7 @@
                     </div>
                 @endforeach
             @else
-                <div class="section text-center">You don't have any spendings</div>
+                <div class="box__section text-center">You don't have any spendings</div>
             @endif
         </div>
     </div>

@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('body')
-    <div class="wrapper spacing-top-large spacing-bottom-large">
+    <div class="wrapper my-4">
         <div class="box">
-            <div class="section">
+            <div class="box__section">
                 <form method="POST" action="/spendings">
                     {{ csrf_field() }}
                     <div class="input input--small">

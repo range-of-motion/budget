@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('body')
-    <div class="wrapper narrow spacing-top-large spacing-bottom-large">
-        <h2 class="text-center spacing-bottom-large">Log in</h2>
+    <div class="wrapper wrapper--narrow my-4">
+        <h2 class="text-center mb-4">Log in</h2>
         @if (session('status'))
             @include('partials.status_bar', ['payload' => ['classes' => 'mb-2', 'status' => session('status')]])
         @endif
         <div class="box">
-            <div class="section">
+            <div class="box__section">
                 <form method="POST">
                     {{ csrf_field() }}
                     <div class="input">
@@ -22,7 +22,7 @@
                 </form>
             </div>
         </div>
-        <div class="spacing-top-small text-center">
+        <div class="mt-2 text-center">
             <a href="/register">New to Budget?</a>
         </div>
     </div>
