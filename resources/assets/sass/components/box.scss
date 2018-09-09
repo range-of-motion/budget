@@ -1,15 +1,11 @@
 .box {
     background: #FFF;
     border: 1px solid $colors-border;
-    border-radius: 8px;
+    border-radius: $dimensions-box-border-radius;
 
     .box__section {
-        padding: 25px;
+        padding: $dimensions-box-padding;
         border-bottom: 1px solid $colors-border;
-
-        &.box__section--small {
-            padding: 20px;
-        }
 
         &:last-child {
             border-bottom: none;
@@ -21,25 +17,11 @@
         list-style: none;
 
         li {
-            padding: 25px;
+            padding: $dimensions-box-padding;
             border-bottom: 1px solid $colors-border;
 
             &:last-child {
                 border-bottom: none;
-            }
-        }
-    }
-
-    ul.t {
-        li {
-            padding: 12px 0;
-
-            &:first-child {
-                padding-top: 0;
-            }
-
-            &:last-child {
-                padding-bottom: 0;
             }
         }
     }

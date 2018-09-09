@@ -1,7 +1,7 @@
 .navigation {
     display: flex;
     align-items: center;
-    height: 70px;
+    height: $dimensions-navigation-height;
     background: $colors-navigation;
 
     .wrapper {
