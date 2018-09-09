@@ -11,15 +11,6 @@
         }
     }
 
-    &.gutter {
-        margin-left: -24px;
-        margin-right: -24px;
-
-        > .column {
-            padding: 0 24px;
-        }
-    }
-
     .row__column {
         flex: 1;
 
@@ -28,18 +19,6 @@
         }
 
         &.row__column--middle {
-            align-self: center;
-        }
-    }
-
-    .column {
-        flex: 1;
-
-        &.tight {
-            flex: none;
-        }
-
-        &.align-middle {
             align-self: center;
         }
     }
