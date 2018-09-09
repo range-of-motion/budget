@@ -13,11 +13,11 @@
 
 input, button {
     font: inherit;
-    border-radius: 5px;
+    border-radius: $dimensions-box-border-radius;
 }
 
 input {
-    padding: 10px;
+    padding: $dimensions-input-padding;
     width: 100%;
     border: 1px solid $colors-border;
     -webkit-appearance: none;
