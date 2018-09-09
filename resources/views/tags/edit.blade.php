@@ -12,7 +12,7 @@
                     {{ csrf_field() }}
                     <label>Name</label>
                     <input type="text" name="name" value="{{ $tag->name }}" />
-                    <button>Update</button>
+                    <button class="button">Update</button>
                 </form>
             </div>
         </div>

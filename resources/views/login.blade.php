@@ -18,7 +18,7 @@
                         <label>Password</label>
                         <input type="password" name="password" />
                     </div>
-                    <button>Log in</button>
+                    <button class="button">Log in</button>
                 </form>
             </div>
         </div>

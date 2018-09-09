@@ -21,7 +21,7 @@
                         <input type="text" name="amount" />
                         @include('partials.validation_error', ['payload' => 'amount'])
                     </div>
-                    <button>@lang('actions.create')</button>
+                    <button class="button">@lang('actions.create')</button>
                 </form>
             </div>
         </div>

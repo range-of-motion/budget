@@ -46,7 +46,7 @@
                         </select>
                         @include('partials.validation_error', ['payload' => 'language'])
                     </div>
-                    <button>Update</button>
+                    <button class="button">Update</button>
                 </form>
             </div>
         </div>

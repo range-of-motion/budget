@@ -11,7 +11,7 @@
     }
 }
 
-input, select, button {
+input, select, button.button {
     font: inherit;
     border-radius: $dimensions-box-border-radius;
 }
@@ -31,10 +31,9 @@ input, select {
 
 select {
     background: #FFF;
-    -webkit-appearance: none;
 }
 
-button {
+button.button {
     padding: 10px 20px;
     font-size: 14px;
     color: #FFF;

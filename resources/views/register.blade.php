@@ -36,7 +36,7 @@
                         </select>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
-                    <button>Register</button>
+                    <button class="button">Register</button>
                 </form>
             </div>
         </div>
