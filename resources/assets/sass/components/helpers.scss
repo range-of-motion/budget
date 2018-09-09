@@ -1,23 +1,90 @@
 // Alignment
-.text-center {
-    text-align: center;
-}
+.text {
+    &-center {
+        text-align: center;
+    }
 
-.text-right {
-    text-align: right;
+    &-right {
+        text-align: right;
+    }
 }
 
 // Spacing
-.mt-1 {
-    margin-top: 10px;
-}
-
-.mb-4 {
+.my-4 {
+    margin-top: 40px;
     margin-bottom: 40px;
 }
 
-.ml-2 {
-    margin-left: 20px;
+.mt {
+    &-4 {
+        margin-top: 40px;
+    }
+
+    &-2 {
+        margin-top: 20px;
+    }
+
+    &-1 {
+        margin-top: 10px;
+    }
+
+    &-05 {
+        margin-top: 5px;
+    }
+}
+
+.mb {
+    &-4 {
+        margin-bottom: 40px;
+    }
+
+    &-2 {
+        margin-bottom: 20px;
+    }
+
+    &-1 {
+        margin-bottom: 10px;
+    }
+
+    &-05 {
+        margin-bottom: 5px;
+    }
+}
+
+.ml {
+    &-4 {
+        margin-left: 40px;
+    }
+
+    &-2 {
+        margin-left: 20px;
+    }
+
+    &-1 {
+        margin-left: 10px;
+    }
+
+    &-05 {
+        margin-left: 5px;
+    }
+}
+
+.mr {
+    &-4 {
+        margin-right: 40px;
+    }
+
+    &-2 {
+        margin-right: 20px;
+    }
+
+    &-1 {
+        margin-right: 10px;
+    }
+
+    &-05 {
+        margin-right: 5px;
+    }
 }
 
 // Colors
