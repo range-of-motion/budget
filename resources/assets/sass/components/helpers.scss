@@ -1,3 +1,4 @@
+// Alignment
 .text-center {
     text-align: center;
 }
@@ -6,6 +7,7 @@
     text-align: right;
 }
 
+// Spacing
 .mt-1 {
     margin-top: 10px;
 }
@@ -16,4 +18,19 @@
 
 .ml-2 {
     margin-left: 20px;
+}
+
+// Colors
+.color {
+    &-dark {
+        color: #000;
+    }
+
+    &-green {
+        color: green;
+    }
+
+    &-red {
+        color: #FA5764;
+    }
 }
