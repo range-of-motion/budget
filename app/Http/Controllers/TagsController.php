@@ -36,8 +36,7 @@ class TagsController extends Controller {
     }
 
     public function destroy(Tag $tag) {
-
-        if ($tag->somethign) {
+        if (!$tag->spendings->count()) {
             $tag->delete();
         }
 
