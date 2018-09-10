@@ -11,6 +11,7 @@ class CreateTagsTable extends Migration {
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
