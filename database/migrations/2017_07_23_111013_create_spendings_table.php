@@ -14,6 +14,7 @@ class CreateSpendingsTable extends Migration {
             $table->string('description');
             $table->integer('amount');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

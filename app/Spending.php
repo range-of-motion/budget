@@ -3,8 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Spending extends Model {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
     // Accessors
     public function getFormattedAmountAttribute() {
         return number_format($this->amount / 100, 2);
