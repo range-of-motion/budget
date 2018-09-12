@@ -36,7 +36,7 @@ class RegisterController extends Controller {
 
         $user->save();
 
-        Mail::to($user->email)->send(new ConfirmRegistration($user));
+        Mail::to($user->email)->queue(new ConfirmRegistration($user));
 
         return redirect('/register');
     }
