@@ -4,14 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpendingsTable extends Migration {
+class CreateRecurringsTable extends Migration {
     public function up() {
-        Schema::create('spendings', function (Blueprint $table) {
+        Schema::create('recurrings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('recurring_id')->unsigned()->nullable();
+            $table->string('type');
+            $table->string('day');
+            $table->date('starts_on');
+            $table->date('ends_on');
+            $table->date('last_used_on');
             $table->integer('tag_id')->unsigned()->nullable();
-            $table->date('happened_on');
             $table->string('description');
             $table->integer('amount');
             $table->timestamps();
@@ -20,6 +23,6 @@ class CreateSpendingsTable extends Migration {
     }
 
     public function down() {
-        Schema::dropIfExists('spendings');
+        Schema::dropIfExists('recurrings');
     }
 }

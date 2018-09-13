@@ -22,6 +22,10 @@ class Spending extends Model {
     }
 
     // Relations
+    public function recurring() {
+        return $this->belongsTo(Recurring::class);
+    }
+
     public function tag() {
         return $this->belongsTo('App\Tag');
     }
