@@ -11,12 +11,12 @@
     }
 }
 
-input, select, button.button {
+input[type=text], input[type=email], input[type=password], select, button.button {
     font: inherit;
     border-radius: $dimensions-box-border-radius;
 }
 
-input, select {
+input[type=text], input[type=email], input[type=password], select {
     padding: $dimensions-input-padding;
     width: 100%;
     border: 1px solid $colors-border;
