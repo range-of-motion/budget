@@ -3,8 +3,8 @@
 @section('body')
     <div class="wrapper wrapper--narrow my-4">
         <h2 class="text-center mb-4">Log in</h2>
-        @if (session('status'))
-            @include('partials.status_bar', ['payload' => ['classes' => 'mb-2', 'status' => session('status')]])
+        @if (session('alert_type') && session('alert_message'))
+            @include('partials.alerts.' . session('alert_type'), ['payload' => ['classes' => 'mb-2', 'message' => session('alert_message')]])
         @endif
         <div class="box">
             <div class="box__section">

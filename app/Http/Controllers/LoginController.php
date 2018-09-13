@@ -22,7 +22,8 @@ class LoginController extends Controller {
             return redirect()
                 ->route('login')
                 ->with([
-                    'status' => 'Failed to login'
+                    'alert_type' => 'danger',
+                    'alert_message' => 'Failed to login'
                 ]);
         }
     }

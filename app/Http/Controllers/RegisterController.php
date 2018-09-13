@@ -38,6 +38,11 @@ class RegisterController extends Controller {
 
         Mail::to($user->email)->queue(new ConfirmRegistration($user));
 
-        return redirect('/register');
+        return redirect()
+            ->route('login')
+            ->with([
+                'alert_type' => 'success',
+                'alert_message' => 'You\'ve succesfully registered'
+            ]);
     }
 }
