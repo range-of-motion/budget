@@ -42,7 +42,7 @@ class SpendingsController extends Controller {
         $spending->tag_id = $request->input('tag_id');
         $spending->happened_on = $request->input('date');
         $spending->description = $request->input('description');
-        $spending->amount = $request->input('amount');
+        $spending->amount = (int) ($request->input('amount') * 100);
 
         $spending->save();
 

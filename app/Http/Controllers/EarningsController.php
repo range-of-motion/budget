@@ -37,7 +37,7 @@ class EarningsController extends Controller {
         $earning->user_id = Auth::user()->id;
         $earning->happened_on = $request->input('date');
         $earning->description = $request->input('description');
-        $earning->amount = $request->input('amount');
+        $earning->amount = (int) ($request->input('amount') * 100);
 
         $earning->save();
 

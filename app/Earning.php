@@ -21,17 +21,6 @@ class Earning extends Model {
         return ($secondsDifference / 60 / 60 / 24) . ' days ago';
     }
 
-    // Mutators
-    public function setAmountAttribute($value) {
-        if (strpos($value, '.')) {
-            $mutated = str_replace('.', '', $value);
-        } else {
-            $mutated = $value * 100;
-        }
-
-        $this->attributes['amount'] = $mutated;
-    }
-
     // Relations
     //
 }
