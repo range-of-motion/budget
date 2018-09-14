@@ -19,5 +19,7 @@ return [
     'email' => 'E-mail',
     'verify' => 'Verify',
     'password' => 'Password',
-    'language' => 'Language'
+    'language' => 'Language',
+
+    'recurrings' => 'Recurrings'
 ];

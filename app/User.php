@@ -30,6 +30,10 @@ class User extends Authenticatable {
         return $this->hasMany(Spending::class);
     }
 
+    public function recurrings() {
+        return $this->hasMany(Recurring::class);
+    }
+
     public function tags() {
         return $this->hasMany(Tag::class);
     }

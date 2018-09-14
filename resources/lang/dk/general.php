@@ -19,5 +19,7 @@ return [
     'email' => 'E-mail',
     'verify' => 'Bekræfte',
     'password' => 'Adgangskode',
-    'language' => 'Sprog'
+    'language' => 'Sprog',
+
+    'recurrings' => 'Tilbagevendenden'
 ];

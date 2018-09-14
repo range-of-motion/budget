@@ -35,6 +35,9 @@
                             <li>
                                 <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fas fa-home fa-sm mr-05"></i> @lang('general.dashboard')</a>
                             </li>
+                            <li>
+                                <a href="/recurrings" {!! (Request::path() == 'recurrings') ? 'class="active"' : '' !!}><i class="fas fa-recycle fa-sm mr-05"></i> {{ __('general.recurrings') }}</a>
+                            </li>
                         </ul>
                         <ul class="navigation__menu">
                             <li class="dropdown">
