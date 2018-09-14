@@ -12,8 +12,8 @@ class CreateRecurringsTable extends Migration {
             $table->string('type');
             $table->string('day');
             $table->date('starts_on');
-            $table->date('ends_on');
-            $table->date('last_used_on');
+            $table->date('ends_on')->nullable();
+            $table->date('last_used_on')->nullable();
             $table->integer('tag_id')->unsigned()->nullable();
             $table->string('description');
             $table->integer('amount');
