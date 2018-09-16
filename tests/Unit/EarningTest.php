@@ -10,14 +10,9 @@ use App\Earning;
 
 class EarningTest extends TestCase {
     public function testFormattedAmount() {
-        $earning = new Earning;
-
-        $earning->user_id = 1;
-        $earning->happened_on = date('Y-m-d');
-        $earning->description = 'EarningTest testFormattedAmount';
-        $earning->amount = 39;
-
-        $earning->save();
+        $earning = factory(Earning::class)->make([
+            'amount' => (int) ('39' * 100)
+        ]);
 
         $this->assertEquals('39.00', $earning->formatted_amount);
     }
