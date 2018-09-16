@@ -7,7 +7,9 @@
             @foreach ($recurrings as $recurring)
                 <div class="box__section row">
                     <div class="row__column">
-                        <div class="color-dark">{{ $recurring->description }}</div>
+                        <div class="color-dark">
+                            <a href="/recurrings/{{ $recurring->id }}">{{ $recurring->description }}</a>
+                        </div>
                         <div class="row mt-1">
                             <div class="row__column row__column--compact" style="font-size: 14px; font-weight: 600;">{!! $currency->symbol !!} {{ number_format($recurring->amount / 100, 2) }}</div>
                             @if ($recurring->due_days)
