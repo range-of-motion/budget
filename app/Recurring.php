@@ -12,7 +12,7 @@ class Recurring extends Model {
 
     // Accessors
     public function getDueDaysAttribute() {
-        if ($this->starts_on <= date('Y-m-d') && $this->ends_on >= date('Y-m-d')) {
+        if ($this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on)) {
             if (date('j') > $this->day) {
                 return date('t') - date('j') + $this->day;
             }
