@@ -11,11 +11,8 @@ use Hash;
 
 class SettingsController extends Controller {
     public function index() {
-        $user = Auth::user();
-
         return view('settings', [
-            'languages' => config('app.locales'),
-            'tags' => $user->tags
+            'languages' => config('app.locales')
         ]);
     }
 
