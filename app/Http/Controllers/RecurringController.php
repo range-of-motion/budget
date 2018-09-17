@@ -24,6 +24,8 @@ class RecurringController extends Controller {
             // REEE
         }
 
+        $this->authorize('view', $recurring);
+
         return view('recurrings.show', [
             'recurring' => $recurring
         ]);
