@@ -23,12 +23,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/recurrings', 'RecurringController')->only(['index', 'show']);
 
-    Route::get('/tags', 'TagsController@index')->name('tags');
-    Route::get('/tags/create', 'TagsController@create')->name('tags.create');
-    Route::post('/tags', 'TagsController@store');
-    Route::get('/tags/{tag}/edit', 'TagsController@edit')->name('tags.edit')->middleware('can:update,tag');
-    Route::patch('/tags/{tag}', 'TagsController@update')->middleware('can:update,tag');
-    Route::delete('/tags/{tag}', 'TagsController@destroy')->middleware('can:delete,tag');
+    Route::get('/tags', 'TagController@index')->name('tags');
+    Route::get('/tags/create', 'TagController@create')->name('tags.create');
+    Route::post('/tags', 'TagController@store');
+    Route::get('/tags/{tag}/edit', 'TagController@edit')->name('tags.edit')->middleware('can:update,tag');
+    Route::patch('/tags/{tag}', 'TagController@update')->middleware('can:update,tag');
+    Route::delete('/tags/{tag}', 'TagController@destroy')->middleware('can:delete,tag');
 
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');

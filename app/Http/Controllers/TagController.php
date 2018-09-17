@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Tag;
 
-class TagsController extends Controller {
+class TagController extends Controller {
     public function create() {
         return view('tags.create');
     }
