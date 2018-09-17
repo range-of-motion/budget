@@ -11,6 +11,7 @@ return [
 
     'earnings' => 'Earnings',
     'spendings' => 'Spendings',
+    'tags' => 'Tags',
 
     'recent' => 'Recent',
 

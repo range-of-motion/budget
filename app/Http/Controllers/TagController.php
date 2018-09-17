@@ -8,6 +8,12 @@ use Auth;
 use App\Tag;
 
 class TagController extends Controller {
+    public function index() {
+        return view('tags.index', [
+            'tags' => Auth::user()->tags()->orderBy('created_at', 'DESC')->get()
+        ]);
+    }
+
     public function create() {
         return view('tags.create');
     }

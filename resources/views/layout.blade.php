@@ -38,6 +38,9 @@
                             <li>
                                 <a href="/recurrings" {!! (Request::path() == 'recurrings') ? 'class="active"' : '' !!}><i class="fas fa-recycle fa-sm mr-05"></i> {{ __('general.recurrings') }}</a>
                             </li>
+                            <li>
+                                <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="fas fa-tag fa-sm mr-05"></i> {{ __('general.tags') }}</a>
+                            </li>
                         </ul>
                         <ul class="navigation__menu">
                             <li class="dropdown">

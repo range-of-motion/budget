@@ -11,6 +11,7 @@ return [
 
     'earnings' => 'Inkomsten',
     'spendings' => 'Uitgaven',
+    'tags' => 'Etiketten',
 
     'recent' => 'Recente',
 

@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/recurrings', 'RecurringController')->only(['index', 'show']);
 
     Route::resource('/tags', 'TagController')->only([
+        'index',
         'create',
         'store',
         'edit',
