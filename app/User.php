@@ -5,12 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\Earning;
-use App\Spending;
-use App\Tag;
-use App\Budget;
-use App\Currency;
-
 class User extends Authenticatable {
     use Notifiable;
 

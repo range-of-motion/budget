@@ -27,6 +27,6 @@ class Spending extends Model {
     }
 
     public function tag() {
-        return $this->belongsTo('App\Tag');
+        return $this->belongsTo(Tag::class);
     }
 }
