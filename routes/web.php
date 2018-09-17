@@ -16,10 +16,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/earnings', 'EarningController@store');
     Route::delete('/earnings/{earning}', 'EarningController@destroy')->middleware('can:delete,earning');
 
-    Route::get('/spendings', 'SpendingsController@index')->name('spendings.index');
-    Route::get('/spendings/create', 'SpendingsController@create')->name('spendings.create');
-    Route::post('/spendings', 'SpendingsController@store');
-    Route::delete('/spendings/{spending}', 'SpendingsController@destroy')->middleware('can:delete,spending');
+    Route::get('/spendings', 'SpendingController@index')->name('spendings.index');
+    Route::get('/spendings/create', 'SpendingController@create')->name('spendings.create');
+    Route::post('/spendings', 'SpendingController@store');
+    Route::delete('/spendings/{spending}', 'SpendingController@destroy')->middleware('can:delete,spending');
 
     Route::resource('/recurrings', 'RecurringController')->only(['index', 'show']);
 

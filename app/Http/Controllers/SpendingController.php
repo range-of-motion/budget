@@ -9,7 +9,7 @@ use App\Tag;
 
 use Auth;
 
-class SpendingsController extends Controller {
+class SpendingController extends Controller {
     public function index(Request $request) {
         $user = Auth::user();
 
