@@ -1,6 +1,10 @@
 .row {
     display: flex;
 
+    &.row--right {
+        justify-content: flex-end;
+    }
+
     &.row--gutter {
         margin-left: -20px;
         margin-right: -20px;
