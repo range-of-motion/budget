@@ -8,7 +8,7 @@ use App\Earning;
 
 use Auth;
 
-class EarningsController extends Controller {
+class EarningController extends Controller {
     public function index() {
         $user = Auth::user();
 
