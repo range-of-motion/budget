@@ -34,11 +34,14 @@ class TagController extends Controller {
     }
 
     public function update(Request $request, Tag $tag) {
-        $tag->name = $request->input('name');
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
 
+        $tag->name = $request->input('name');
         $tag->save();
 
-        return redirect()->route('tags');
+        return redirect()->route('tags.index');
     }
 
     public function destroy(Tag $tag) {
