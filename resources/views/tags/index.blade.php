@@ -9,10 +9,21 @@
             @foreach ($tags as $tag)
                 <div class="box__section row">
                     <div class="row__column">{{ $tag->name }}</div>
-                    <div class="row__column row__column--compact row__column--middle">
-                        <a href="/tags/{{ $tag->id }}/edit">
-                            <i class="far fa-pencil"></i>
-                        </a>
+                    <div class="row__column row__column--compact row__column--middle row">
+                        <div class="row__column row__column--compact">
+                            <a href="/tags/{{ $tag->id }}/edit">
+                                <i class="far fa-pencil"></i>
+                            </a>
+                        </div>
+                        <div class="row__column row__column--compact ml-2">
+                            <form method="POST" action="/tags/{{ $tag->id }}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button class="button link">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             @endforeach
