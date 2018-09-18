@@ -38,6 +38,8 @@ class TagController extends Controller {
             'name' => 'required|max:255'
         ]);
 
+        $this->authorize('update', $tag);
+
         $tag->name = $request->input('name');
         $tag->save();
 
@@ -45,6 +47,8 @@ class TagController extends Controller {
     }
 
     public function destroy(Tag $tag) {
+        $this->authorize('delete', $tag);
+
         if (!$tag->spendings->count()) {
             $tag->delete();
         }
