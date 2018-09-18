@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('actions.edit') . ' ' . __('general.tag'))
+
 @section('body')
     <div class="wrapper my-4">
         <div class="box">

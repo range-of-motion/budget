@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'delete' => 'Slet',
-    'create' => 'Opret'
+    'create' => 'Opret',
+    'edit' => 'Redigere',
+    'delete' => 'Slet'
 ];

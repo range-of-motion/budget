@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'delete' => 'Delete',
-    'create' => 'Create'
+    'create' => 'Create',
+    'edit' => 'Edit',
+    'delete' => 'Delete'
 ];

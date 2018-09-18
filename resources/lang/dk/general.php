@@ -11,7 +11,9 @@ return [
 
     'earnings' => 'Indkomster',
     'spendings' => 'Udgifter',
+
     'tags' => 'Etiketter',
+    'tag' => 'Etiket',
 
     'recent' => 'Seneste',
 

@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('general.tags'))
+
 @section('body')
     <div class="wrapper my-4">
         <div class="color-dark mb-2">{{ __('general.tags') }}</div>
