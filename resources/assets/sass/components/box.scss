@@ -7,6 +7,12 @@
         padding: $dimensions-box-padding;
         border-bottom: 1px solid $colors-border;
 
+        &.box__section--header {
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
         &:last-child {
             border-bottom: none;
         }

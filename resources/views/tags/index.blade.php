@@ -6,6 +6,9 @@
     <div class="wrapper my-4">
         <div class="color-dark mb-2">{{ __('general.tags') }}</div>
         <div class="box">
+            <div class="box__section box__section--header">
+                <div class="row__column">Name</div>
+            </div>
             @foreach ($tags as $tag)
                 <div class="box__section row">
                     <div class="row__column">{{ $tag->name }}</div>
