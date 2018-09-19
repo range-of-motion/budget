@@ -11,7 +11,7 @@
     }
 }
 
-input[type=text], input[type=email], input[type=password], select, button.button {
+input[type=text], input[type=email], input[type=password], select, .button {
     font: inherit;
     border-radius: $dimensions-box-border-radius;
 }
@@ -34,10 +34,6 @@ select {
 }
 
 button.button {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: #FFF;
-    background: $colors-primary;
     border: none;
 
     &:hover {
@@ -50,4 +46,13 @@ button.button {
         color: $colors-primary;
         background: none;
     }
+}
+
+.button {
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFF;
+    background: $colors-primary;
 }

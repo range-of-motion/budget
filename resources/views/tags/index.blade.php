@@ -4,7 +4,12 @@
 
 @section('body')
     <div class="wrapper my-4">
-        <div class="color-dark mb-2">{{ __('general.tags') }}</div>
+        <div class="row mb-4">
+            <div class="row__column row__column--middle color-dark">{{ __('general.tags') }}</div>
+            <div class="row__column row__column--compact row__column--middle">
+                <a href="/tags/create" class="button">Create Tag</a>
+            </div>
+        </div>
         <div class="box">
             <div class="box__section box__section--header row">
                 <div class="row__column">Name</div>
