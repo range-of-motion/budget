@@ -11,6 +11,7 @@
                     <div class="input input--small">
                         <label>Name</label>
                         <input type="text" name="name" />
+                        @include('partials.validation_error', ['payload' => 'name'])
                     </div>
                 </div>
                 <div class="box__section row row--right">

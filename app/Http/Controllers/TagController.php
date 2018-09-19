@@ -19,11 +19,13 @@ class TagController extends Controller {
     }
 
     public function store(Request $request) {
-        $tag = new Tag;
+        $this->validate([
+            'name' => 'required|max:255'
+        ]);
 
+        $tag = new Tag;
         $tag->user_id = Auth::user()->id;
         $tag->name = $request->name;
-
         $tag->save();
 
         return redirect('/settings');
