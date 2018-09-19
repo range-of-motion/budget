@@ -21,9 +21,9 @@
                     <button class="button">Log in</button>
                 </form>
             </div>
-        </div>
-        <div class="mt-2 text-center">
-            <a href="/register">New to Budget?</a>
+            <div class="box__section box__section--highlight text-center">
+                <a href="/register">New to Budget?</a>
+            </div>
         </div>
     </div>
 @endsection

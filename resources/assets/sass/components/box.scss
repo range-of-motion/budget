@@ -7,14 +7,25 @@
         padding: $dimensions-box-padding;
         border-bottom: 1px solid $colors-border;
 
+        &:first-child {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom: none;
+        }
+
         &.box__section--header {
             padding: 15px 20px;
             font-size: 14px;
             font-weight: 600;
         }
 
-        &:last-child {
-            border-bottom: none;
+        &.box__section--highlight {
+            background: $colors-background;
         }
     }
 
