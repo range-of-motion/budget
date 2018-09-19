@@ -6,13 +6,15 @@
     <div class="wrapper my-4">
         <div class="color-dark mb-2">{{ __('general.tags') }}</div>
         <div class="box">
-            <div class="box__section box__section--header">
+            <div class="box__section box__section--header row">
                 <div class="row__column">Name</div>
+                <div class="row__column row__column--double" style="flex: 2;">Spendings</div>
             </div>
             @foreach ($tags as $tag)
                 <div class="box__section row">
                     <div class="row__column">{{ $tag->name }}</div>
-                    <div class="row__column row__column--compact row__column--middle row">
+                    <div class="row__column">{{ $tag->spendings->count() }}</div>
+                    <div class="row__column row__column--middle row row--right">
                         <div class="row__column row__column--compact">
                             <a href="/tags/{{ $tag->id }}/edit">
                                 <i class="far fa-pencil"></i>
