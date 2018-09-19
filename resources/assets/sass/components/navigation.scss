@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     height: $dimensions-navigation-height;
-    background: $colors-navigation;
+    background: #FFF;
+    border-bottom: 1px solid $colors-border;
 
     .wrapper {
         display: flex;
@@ -26,7 +27,7 @@
                 color: $colors-text;
 
                 &:hover, &.active {
-                    color: #FFF;
+                    color: #000;
                 }
             }
         }
