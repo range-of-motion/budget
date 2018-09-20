@@ -28,11 +28,11 @@
         </div>
         <div class="row row--gutter row--responsive mb-4">
             <div class="row__column">
-                <div style="color: black; margin-bottom: 20px;">{{ __('general.recent') }} {{ __('general.spendings') }}</div>
                 <div class="box">
                     @if (count($recentSpendings))
+                        <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('general.spendings') }}</div>
                         @foreach ($recentSpendings as $spending)
-                            <div class="box__section row row--seperate" style="padding: 20px;">
+                            <div class="box__section row row--seperate">
                                 <div class="row__column">
                                     <div style="color: #000;">{{ $spending->description }}</div>
                                     <div style="margin-top: 10px; font-size: 14px;">{{ $spending->formatted_happened_on }}</div>
@@ -47,8 +47,8 @@
             </div>
             <div class="row__column">
                 <div class="box">
+                    <div class="box__section box__section--header">{{ __('general.analysis') }}</div>
                     <div class="box__section">
-                        <div class="mb-2">{{ __('general.analysis') }}</div>
                         @if (count($tagsBreakdown))
                             <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
                         @else
