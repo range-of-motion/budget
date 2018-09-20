@@ -10,7 +10,10 @@ return [
     'analysis' => 'Analyse',
 
     'earnings' => 'Inkomsten',
+    'earning' => 'Inkomst',
+
     'spendings' => 'Uitgaven',
+    'spending' => 'Uitgave',
 
     'tags' => 'Etiketten',
     'tag' => 'Etiket',
