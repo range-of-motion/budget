@@ -33,13 +33,13 @@
                     <div class="wrapper">
                         <ul class="navigation__menu">
                             <li>
-                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fas fa-home fa-sm mr-05"></i> @lang('general.dashboard')</a>
+                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="far fa-home fa-sm color-blue mr-05"></i> @lang('general.dashboard')</a>
                             </li>
                             <li>
-                                <a href="/recurrings" {!! (Request::path() == 'recurrings') ? 'class="active"' : '' !!}><i class="fas fa-recycle fa-sm mr-05"></i> {{ __('general.recurrings') }}</a>
+                                <a href="/recurrings" {!! (Request::path() == 'recurrings') ? 'class="active"' : '' !!}><i class="far fa-recycle fa-sm color-green mr-05"></i> {{ __('general.recurrings') }}</a>
                             </li>
                             <li>
-                                <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="fas fa-tag fa-sm mr-05"></i> {{ __('general.tags') }}</a>
+                                <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red mr-05"></i> {{ __('general.tags') }}</a>
                             </li>
                         </ul>
                         <ul class="navigation__menu">
