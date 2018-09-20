@@ -109,11 +109,15 @@
         color: #000;
     }
 
+    &-blue {
+        color: $colors-blue;
+    }
+
     &-green {
-        color: green;
+        color: $colors-green;
     }
 
     &-red {
-        color: #FA5764;
+        color: $colors-red;
     }
 }
