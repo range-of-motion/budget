@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('body')
-    <div class="wrapper my-4">
-        <div style="color: black; margin-bottom: 20px;">{{ __('general.earnings') }}</div>
-        <div class="box">
+    <div class="wrapper my-3">
+        <h2>{{ __('general.earnings') }}</h2>
+        <div class="box mt-3">
             @if (count($earnings))
                 @foreach ($earnings as $earning)
                     <div class="box__section row">

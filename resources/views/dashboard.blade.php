@@ -3,9 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('body')
-    <div class="wrapper my-4">
-        <div style="color: black; margin-bottom: 20px;">{{ __('calendar.months.' . $month) }}</div>
-        <div class="row row--gutter row--responsive mb-4">
+    <div class="wrapper my-3">
+        <h2>{{ __('calendar.months.' . $month) }}</h2>
+        <div class="row row--gutter row--responsive mt-3 mb-4">
             <div class="row__column">
                 <div class="card card--blue">
                     <h2 style="font-size: 20px;">{!! $currency->symbol !!} {{ number_format($totalSpendings / 100, 2) }}</h2>

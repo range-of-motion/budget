@@ -1,8 +1,9 @@
 @extends('layout')
 
 @section('body')
-    <div class="wrapper my-4">
-        <div class="box">
+    <div class="wrapper my-3">
+        <h2>{{ __('actions.create') }} {{ __('general.spending') }}</h2>
+        <div class="box mt-3">
             <form method="POST" action="/spendings">
                 {{ csrf_field() }}
                 <div class="box__section">

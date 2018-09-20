@@ -3,8 +3,9 @@
 @section('title', __('actions.create') . ' ' . __('general.tag'))
 
 @section('body')
-    <div class="wrapper my-4">
-        <div class="box">
+    <div class="wrapper my-3">
+        <h2>{{ __('actions.create') }} {{ __('general.tag') }}</h2>
+        <div class="box mt-3">
             <form method="POST" action="/tags">
                 {{ csrf_field() }}
                 <div class="box__section">

@@ -3,9 +3,9 @@
 @section('title', 'Settings')
 
 @section('body')
-    <div class="wrapper my-4">
-        <div class="mb-4 color-dark">Account</div>
-        <div class="box">
+    <div class="wrapper my-3">
+        <h2>Settings</h2>
+        <div class="box mt-3">
             <form method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box__section">

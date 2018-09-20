@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('body')
-    <div class="wrapper wrapper--narrow my-4">
-        <h2 class="text-center mb-4">Register</h2>
+    <div class="wrapper wrapper--narrow my-3">
+        <h2 class="text-center mb-3">Register</h2>
         <div class="box">
             <div class="box__section">
                 <form method="POST">

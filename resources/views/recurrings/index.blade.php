@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('body')
-    <div class="wrapper my-4">
-        <div class="color-dark mb-2">{{ __('general.recurrings') }}</div>
-        <div class="box">
+    <div class="wrapper my-3">
+        <h2>{{ __('general.recurrings') }}</h2>
+        <div class="box mt-3">
             @foreach ($recurrings as $recurring)
                 <div class="box__section row">
                     <div class="row__column">

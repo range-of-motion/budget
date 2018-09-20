@@ -3,9 +3,11 @@
 @section('title', __('general.tags'))
 
 @section('body')
-    <div class="wrapper my-4">
-        <div class="row mb-4">
-            <div class="row__column row__column--middle color-dark">{{ __('general.tags') }}</div>
+    <div class="wrapper my-3">
+        <div class="row mb-3">
+            <div class="row__column row__column--middle">
+                <h2>{{ __('general.tags') }}</h2>
+            </div>
             <div class="row__column row__column--compact row__column--middle">
                 <a href="/tags/create" class="button">Create Tag</a>
             </div>
