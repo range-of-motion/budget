@@ -9,7 +9,7 @@
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
                 <div class="box__section">
-                    <div class="input input--small">
+                    <div class="input input--small mb-0">
                         <label>Name</label>
                         <input type="text" name="name" value="{{ $tag->name }}" />
                         @include('partials.validation_error', ['payload' => 'name'])

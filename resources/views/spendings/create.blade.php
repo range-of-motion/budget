@@ -26,7 +26,7 @@
                         <input type="text" name="description" />
                         @include('partials.validation_error', ['payload' => 'description'])
                     </div>
-                    <div class="input input--small">
+                    <div class="input input--small mb-0">
                         <label>Amount</label>
                         <input type="text" name="amount" />
                         @include('partials.validation_error', ['payload' => 'amount'])

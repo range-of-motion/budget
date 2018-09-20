@@ -37,7 +37,7 @@
                         <input type="password" name="password_confirmation" />
                         @include('partials.validation_error', ['payload' => 'password_confirmation'])
                     </div>
-                    <div class="input input--small">
+                    <div class="input input--small mb-0">
                         <label>{{ __('general.language') }}</label>
                         <select name="language">
                             @foreach ($languages as $key => $value)
