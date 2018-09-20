@@ -4,7 +4,8 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('calendar.months.' . $month) }}</h2>
+        <h2>{{ __('general.dashboard') }}</h2>
+        <p class="mt-1">{{ __('calendar.months.' . $month) }} {{ date('Y') }}</p>
         <div class="row row--gutter row--responsive mt-3 mb-4">
             <div class="row__column">
                 <div class="card card--blue">
