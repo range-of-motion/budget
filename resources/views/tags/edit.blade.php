@@ -15,7 +15,7 @@
                         @include('partials.validation_error', ['payload' => 'name'])
                     </div>
                 </div>
-                <div class="box__section row row--right">
+                <div class="box__section box__section--highlight row row--right">
                     <div class="row__column row__column--compact row__column--middle">
                         <a href="/tags">Cancel</a>
                     </div>

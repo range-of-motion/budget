@@ -6,9 +6,9 @@
     <div class="wrapper my-4">
         <div class="mb-4 color-dark">Account</div>
         <div class="box">
-            <div class="box__section">
-                <form method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+            <form method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="box__section">
                     <div class="input input--small">
                         <label>{{ __('general.avatar') }}</label>
                         @if (Auth::user()->avatar)
@@ -46,9 +46,11 @@
                         </select>
                         @include('partials.validation_error', ['payload' => 'language'])
                     </div>
+                </div>
+                <div class="box__section box__section--highlight text-right">
                     <button class="button">Update</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

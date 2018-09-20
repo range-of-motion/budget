@@ -3,9 +3,9 @@
 @section('body')
     <div class="wrapper my-4">
         <div class="box">
-            <div class="box__section">
-                <form method="POST" action="/earnings">
-                    {{ csrf_field() }}
+            <form method="POST" action="/earnings">
+                {{ csrf_field() }}
+                <div class="box__section">
                     <div class="input input--small">
                         <label>Date</label>
                         <DatePicker></DatePicker>
@@ -21,9 +21,11 @@
                         <input type="text" name="amount" />
                         @include('partials.validation_error', ['payload' => 'amount'])
                     </div>
+                </div>
+                <div class="box__section box__section--highlight text-right">
                     <button class="button">@lang('actions.create')</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
