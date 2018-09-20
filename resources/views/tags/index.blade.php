@@ -28,13 +28,17 @@
                             </a>
                         </div>
                         <div class="row__column row__column--compact ml-2">
-                            <form method="POST" action="/tags/{{ $tag->id }}">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button class="button link">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </form>
+                            @if ($tag->spendings->count())
+                                <i class="far fa-trash-alt"></i>
+                            @else
+                                <form method="POST" action="/tags/{{ $tag->id }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="button link">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>
