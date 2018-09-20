@@ -7,42 +7,21 @@
         <div style="color: black; margin-bottom: 20px;">{{ __('calendar.months.' . $month) }}</div>
         <div class="row row--gutter row--responsive mb-4">
             <div class="row__column">
-                <div class="box">
-                    <div class="box__section row">
-                        <div class="row__column">
-                            <div class="mb-1" style="color: #A7AEBB;">{{ __('general.total_spent') }}</div>
-                            <h2 style="font-size: 20px;">{!! $currency->symbol !!} {{ number_format($totalSpendings / 100, 2) }}</h2>
-                        </div>
-                        <div class="row__column row__column--compact ml-2">
-                            <i class="fal fa-wallet" style="color: #A7AEBB; font-size: 20px;"></i>
-                        </div>
-                    </div>
+                <div class="card card--blue">
+                    <h2 style="font-size: 20px;">{!! $currency->symbol !!} {{ number_format($totalSpendings / 100, 2) }}</h2>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.total_spent') }}</div>
                 </div>
             </div>
             <div class="row__column">
-                <div class="box">
-                    <div class="box__section row">
-                        <div class="row__column">
-                            <div class="mb-1" style="color: #A7AEBB;">{{ __('general.most_expensive_tag') }}</div>
-                            <h2 style="font-size: 20px;">{{ count($mostExpensiveTag) ? $mostExpensiveTag[0]->name : '-' }}</h2>
-                        </div>
-                        <div class="row__column row__column--compact ml-2">
-                            <i class="fal fa-tag" style="color: #A7AEBB; font-size: 20px;"></i>
-                        </div>
-                    </div>
+                <div class="card card--green">
+                    <h2 style="font-size: 20px;">{{ count($mostExpensiveTag) ? $mostExpensiveTag[0]->name : '-' }}</h2>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.most_expensive_tag') }}</div>
                 </div>
             </div>
             <div class="row__column">
-                <div class="box">
-                    <div class="box__section row">
-                        <div class="row__column">
-                            <div class="mb-1" style="color: #A7AEBB;">{{ __('general.most_expensive_day') }}</div>
-                            <h2 style="font-size: 20px;">{{ count($mostExpensiveWeekday) ? __('calendar.weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
-                        </div>
-                        <div class="row__column row__column--compact ml-2">
-                            <i class="fal fa-calendar" style="color: #A7AEBB; font-size: 20px;"></i>
-                        </div>
-                    </div>
+                <div class="card card--red">
+                    <h2 style="font-size: 20px;">{{ count($mostExpensiveWeekday) ? __('calendar.weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.most_expensive_day') }}</div>
                 </div>
             </div>
         </div>

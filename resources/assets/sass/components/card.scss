@@ -1,0 +1,18 @@
+.card {
+    padding: 20px;
+    background: #FFF;
+    border: 1px solid $colors-border;
+    border-radius: 5px;
+
+    &.card--blue {
+        border-top: 2px solid $colors-blue;
+    }
+
+    &.card--green {
+        border-top: 2px solid $colors-green;
+    }
+
+    &.card--red {
+        border-top: 2px solid $colors-red;
+    }
+}
