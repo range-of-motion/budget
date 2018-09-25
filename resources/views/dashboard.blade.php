@@ -14,16 +14,10 @@
                 </div>
             </div>
             <div class="row__column">
-                <div class="card card--green">
-                    <h2 style="font-size: 20px;">{{ count($mostExpensiveTag) ? $mostExpensiveTag[0]->name : '-' }}</h2>
-                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.most_expensive_tag') }}</div>
-                </div>
+                <!-- EMPTY -->
             </div>
             <div class="row__column">
-                <div class="card card--red">
-                    <h2 style="font-size: 20px;">{{ count($mostExpensiveWeekday) ? __('calendar.weekdays.' . $mostExpensiveWeekday[0]->weekday) : '-' }}</h2>
-                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.most_expensive_day') }}</div>
-                </div>
+                <!-- EMPTY -->
             </div>
         </div>
         <div class="row row--gutter row--responsive mb-4">
