@@ -41,14 +41,20 @@
             </div>
             <div class="row__column">
                 <div class="box">
-                    <div class="box__section box__section--header">{{ __('general.analysis') }}</div>
-                    <div class="box__section">
-                        @if (count($tagsBreakdown))
-                            <div class="ct-chart ct-perfect-fifth" style="max-width: 500px; margin-left: auto; margin-right: auto;"></div>
-                        @else
-                            Not enough data
-                        @endif
-                    </div>
+                    <div class="box__section box__section--header">Most Expensive {{ __('general.tags') }}</div>
+                    @if (count($mostExpensiveTags))
+                        @foreach ($mostExpensiveTags as $index => $tag)
+                            <div class="box__section row row--seperate">
+                                <div class="row__column row__column--compact mr-2" style="width: 50px;">
+                                    <div class="ct-chart-{{ $index }} ct-square"></div>
+                                </div>
+                                <div class="row__column row__column--middle">
+                                    <div class="color-dark">{{ $tag->name }}</div>
+                                    <div class="mt-1" style="font-size: 14px; font-weight: 600;">{!! $currency->symbol !!} {{ number_format($tag->amount / 100, 2) }}</div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -73,24 +79,17 @@
 
 @section('scripts')
     <script>
-        var labels = [{!! implode(',', array_map(function ($entry) { return '\'' . $entry->name . '\''; }, $tagsBreakdown)) !!}];
+        @foreach ($mostExpensiveTags as $index => $tag)
+            var data = {
+                series: [{{ $tag->amount }}, {{ $totalSpendings - $tag->amount }}]
+            };
 
-        var data = {
-            series: [{!! implode(',', array_map(function ($entry) { return $entry->amount; }, $tagsBreakdown)) !!}]
-        };
-
-        var sum = function(a, b) { return a + b };
-
-        new Chartist.Pie('.ct-chart', data, {
-            donut: true,
-            donutWidth: 10,
-            donutSolid: true,
-            startAngle: 270,
-            showLabel: true,
-
-            labelInterpolationFnc: function (value, x) {
-                return labels[x] + ' (' + Math.round(value / data.series.reduce(sum) * 100) + '%)';
-            }
-        });
+            new Chartist.Pie('.ct-chart-{{ $index }}', data, {
+                donut: true,
+                donutWidth: 2,
+                donutSolid: true,
+                showLabel: false
+            });
+        @endforeach
     </script>
 @endsection

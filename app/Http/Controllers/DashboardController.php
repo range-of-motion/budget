@@ -22,7 +22,7 @@ class DashboardController extends Controller {
             ->limit(3)
             ->get();
 
-        $tagsBreakdown = DB::select('
+        $mostExpensiveTags = DB::select('
             SELECT
                 tags.name AS name,
                 SUM(spendings.amount) AS amount
@@ -36,7 +36,10 @@ class DashboardController extends Controller {
             GROUP BY
                 tags.id
             HAVING
-                SUM(spendings.amount) > 0;
+                SUM(spendings.amount) > 0
+            ORDER BY
+                SUM(spendings.amount) DESC
+            LIMIT 3;
         ', [$user->id, date('m')]);
 
         return view('dashboard', [
@@ -47,7 +50,7 @@ class DashboardController extends Controller {
             'totalSpendings' => $totalSpendings,
 
             'recentSpendings' => $recentSpendings,
-            'tagsBreakdown' => $tagsBreakdown,
+            'mostExpensiveTags' => $mostExpensiveTags,
 
             'earningsCount' => $user->earnings->count(),
             'spendingsCount' => $user->spendings->count()

@@ -10,19 +10,11 @@
         <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
         <style>
             .ct-series-a .ct-slice-donut-solid {
-                fill: #3474EE;
+                fill: #179BD1;
             }
 
             .ct-series-b .ct-slice-donut-solid {
-                fill: #E73428;
-            }
-
-            .ct-series-c .ct-slice-donut-solid {
-                fill: #F5AE29;
-            }
-
-            .ct-series-d .ct-slice-donut-solid {
-                fill: #299944;
+                fill: #E4E8EB;
             }
         </style>
     </head>
