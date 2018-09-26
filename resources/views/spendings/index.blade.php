@@ -8,9 +8,12 @@
                 @foreach ($spendings as $spending)
                     <div class="box__section row">
                         <div class="row__column">
+                            <div class="color-dark">{{ $spending->description }}</div>
+                            <div class="mt-1" style="font-size: 14px; font-weight: 600;">{{ $spending->formatted_happened_on }}</div>
+                        </div>
+                        <div class="row__column row__column--middle">
                             @if ($spending->tag)
                                 <div style="
-                                    margin-bottom: 10px;
                                     display: inline-block;
                                     padding: 5px 10px;
                                     text-transform: uppercase;
@@ -21,10 +24,8 @@
                                     border-radius: 5px;
                                 ">{{ $spending->tag->name }}</div>
                             @endif
-                            <div>{{ $spending->description }}</div>
-                            <div style="margin-top: 10px; font-size: 14px;">{{ $spending->formatted_happened_on }}</div>
                         </div>
-                        <div class="row__column text-right" style="color: red;">&euro; {{ $spending->formatted_amount }}</div>
+                        <div class="row__column row__column--middle text-right" style="color: red;">&euro; {{ $spending->formatted_amount }}</div>
                     </div>
                 @endforeach
             @else
