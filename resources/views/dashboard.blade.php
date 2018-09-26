@@ -23,8 +23,8 @@
         <div class="row row--gutter row--responsive mb-4">
             <div class="row__column">
                 <div class="box">
+                    <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('general.spendings') }}</div>
                     @if (count($recentSpendings))
-                        <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('general.spendings') }}</div>
                         @foreach ($recentSpendings as $spending)
                             <div class="box__section row row--seperate">
                                 <div class="row__column">
@@ -54,6 +54,8 @@
                                 </div>
                             </div>
                         @endforeach
+                    @else
+                        <div class="box__section">Not enough data</div>
                     @endif
                 </div>
             </div>
