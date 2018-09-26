@@ -15,16 +15,7 @@
                         </div>
                         <div class="row__column row__column--middle">
                             @if ($spending->tag)
-                                <div style="
-                                    display: inline-block;
-                                    padding: 5px 10px;
-                                    text-transform: uppercase;
-                                    font-size: 12px;
-                                    font-weight: bolder;
-                                    bolder; color: #FFF;
-                                    background: #333;
-                                    border-radius: 5px;
-                                ">{{ $spending->tag->name }}</div>
+                                @include('partials.tag', ['payload' => $spending->tag])
                             @endif
                         </div>
                         <div class="row__column row__column--middle text-right" style="color: red;">&euro; {{ $spending->formatted_amount }}</div>
