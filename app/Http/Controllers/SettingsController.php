@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use App\Mail\PasswordChanged;
 use Auth;
 use Image;
 use Storage;
 use Hash;
+use Mail;
 
 class SettingsController extends Controller {
     public function index() {
@@ -48,6 +50,11 @@ class SettingsController extends Controller {
         $user->language = $request->input('language');
 
         $user->save();
+
+        // If password changed
+        if ($request->input('password')) {
+            Mail::to($user->email)->queue(new PasswordChanged($user->updated_at));
+        }
 
         return redirect()->route('settings');
     }
