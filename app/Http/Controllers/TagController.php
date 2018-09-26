@@ -28,7 +28,7 @@ class TagController extends Controller {
         $tag->name = $request->name;
         $tag->save();
 
-        return redirect('/settings');
+        return redirect()->route('tags.index');
     }
 
     public function edit(Tag $tag) {
