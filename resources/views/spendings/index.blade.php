@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('general.spendings'))
+
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('general.spendings') }}</h2>
