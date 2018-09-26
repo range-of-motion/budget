@@ -10,8 +10,10 @@ class CurrenciesTableSeeder extends Seeder {
             [
                 'name' => 'Euro',
                 'symbol' => '&euro;'
-            ],
-            [
+            ], [
+                'name' => 'US Dollar',
+                'symbol' => '&dollar;'
+            ], [
                 'name' => 'Pound',
                 'symbol' => '&pound;'
             ]
