@@ -17,17 +17,9 @@ class RecurringController extends Controller {
         ]);
     }
 
-    public function show($id) {
-        $recurring = Recurring::find($id);
-
-        if (!$recurring) {
-            // REEE
-        }
-
+    public function show(Recurring $recurring) {
         $this->authorize('view', $recurring);
 
-        return view('recurrings.show', [
-            'recurring' => $recurring
-        ]);
+        return view('recurrings.show', compact('recurring'));
     }
 }
