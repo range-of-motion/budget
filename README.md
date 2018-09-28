@@ -47,3 +47,7 @@ php artisan key:generate
 6. Serve
 
 `php artisan serve`
+
+7. Run queues
+
+`php artisan queue:work`
