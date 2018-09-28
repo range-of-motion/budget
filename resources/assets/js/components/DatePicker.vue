@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" name="date" v-model="form" />
+        <input type="text" :name="name" v-model="form" />
         <div class="date-picker">
             <div class="date-picker__top">
                 <button @click="previous">
@@ -24,6 +24,12 @@
 
 <script>
     export default {
+        props: {
+            name: {
+                default: 'date'
+            }
+        },
+
         data() {
             return {
                 displayYear: new Date().getFullYear(),
