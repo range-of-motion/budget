@@ -10,10 +10,10 @@
                 @foreach ($earnings as $earning)
                     <div class="box__section row">
                         <div class="row__column">
-                            <div>{{ $earning->description }}</div>
-                            <div style="margin-top: 10px; font-size: 14px;">{{ $earning->formatted_happened_on }}</div>
+                            <div class="color-dark">{{ $earning->description }}</div>
+                            <div class="mt-1" style="font-size: 14px; font-weight: 600;">{{ $earning->formatted_happened_on }}</div>
                         </div>
-                        <div class="row__column text-right" style="color: green;">&euro; {{ $earning->formatted_amount }}</div>
+                        <div class="row__column row__column--middle text-right" style="color: green;">&euro; {{ $earning->formatted_amount }}</div>
                     </div>
                 @endforeach
             @else
