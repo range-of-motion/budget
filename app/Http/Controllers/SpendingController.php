@@ -50,11 +50,8 @@ class SpendingController extends Controller {
     }
 
     public function destroy(Spending $spending) {
-        $year = date('Y', strtotime($spending->date));
-        $month = date('n', strtotime($spending->date));
-
         $spending->delete();
 
-        return redirect()->route('dashboard', compact('year', 'month'));
+        return redirect()->route('spendings.index');
     }
 }
