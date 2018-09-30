@@ -18,7 +18,16 @@
                                 @include('partials.tag', ['payload' => $spending->tag])
                             @endif
                         </div>
-                        <div class="row__column row__column--middle text-right" style="color: red;">&euro; {{ $spending->formatted_amount }}</div>
+                        <div class="row__column row__column--middle" style="color: red;">&euro; {{ $spending->formatted_amount }}</div>
+                        <div class="row__column row__column--middle row__column--compact">
+                            <form method="POST" action="/spendings/{{ $spending->id }}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button class="button link">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 @endforeach
             @else
