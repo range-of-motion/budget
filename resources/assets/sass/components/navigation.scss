@@ -34,6 +34,12 @@
     }
 }
 
+@media screen and (max-width: 800px) {
+    .navigation .hidden {
+        display: none;
+    }
+}
+
 .avatar {
     width: 25px;
     height: 25px;
