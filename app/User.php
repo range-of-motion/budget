@@ -16,6 +16,10 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
 
+    public function spaces() {
+        return $this->belongsToMany(Space::class, 'user_space');
+    }
+
     public function earnings() {
         return $this->hasMany(Earning::class);
     }

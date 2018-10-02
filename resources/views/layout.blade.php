@@ -50,6 +50,18 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown__toggle">
+                                    {{ str_limit(session('space')->name, 3) }} <i class="fas fa-caret-down fa-sm"></i>
+                                </a>
+                                <ul class="dropdown__list">
+                                    @foreach (Auth::user()->spaces as $space)
+                                        <li>
+                                            <a href="/spaces/{{ $space->id }}">{{ $space->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown__toggle">
                                     <img src="{{ Auth::user()->avatar ? '/storage/avatars/' . Auth::user()->avatar : 'http://placehold.it/50x50' }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
                                 </a>
                                 <ul class="dropdown__list">

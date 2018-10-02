@@ -41,6 +41,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');
+
+    Route::get('/spaces/{id}', function ($id) {
+        // TODO CHECK IF SPACE IS ACCESSIBLE BY USER
+
+        $space = App\Space::find($id);
+
+        session(['space' => $space]);
+
+        return redirect()->route('dashboard');
+    });
 });
 
 Route::get('/logout', 'LogoutController@index')->name('logout');

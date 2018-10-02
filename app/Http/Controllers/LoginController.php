@@ -15,6 +15,10 @@ class LoginController extends Controller {
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ])) {
+            $user = Auth::user();
+
+            session(['space' => $user->spaces[0]]);
+
             return redirect()->route('dashboard');
         } else {
             $request->flash();
