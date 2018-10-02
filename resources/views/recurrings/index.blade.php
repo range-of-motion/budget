@@ -4,7 +4,14 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('general.recurrings') }}</h2>
+        <div class="row mb-3">
+            <div class="row__column row__column--middle">
+                <h2>{{ __('general.recurrings') }}</h2>
+            </div>
+            <div class="row__column row__column--compact row__column--middle">
+                <a href="/recurrings/create" class="button">Create Recurring</a>
+            </div>
+        </div>
         <div class="box mt-3">
             @foreach ($recurrings as $recurring)
                 <div class="box__section row">
