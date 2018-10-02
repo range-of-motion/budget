@@ -6,7 +6,7 @@
     <div class="wrapper my-3">
         <h2>{{ __('actions.create') }} {{ __('general.recurring') }}</h2>
         <div class="box mt-3">
-            <form method="POST" action="/recurrings">
+            <form method="POST" action="/recurrings" autocomplete="off">
                 {{ csrf_field() }}
                 <div class="box__section row">
                     <div class="row__column">
