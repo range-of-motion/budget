@@ -22,4 +22,33 @@ class RecurringController extends Controller {
 
         return view('recurrings.show', compact('recurring'));
     }
+
+    public function create() {
+        $user = Auth::user();
+
+        return view('recurrings.create', [
+            'tags' => $user->tags
+        ]);
+    }
+
+    public function store(Request $request) {
+        // TODO VALIDATE
+
+        $user = Auth::user();
+
+        $recurring = new Recurring;
+
+        $recurring->user_id = $user->id;
+        $recurring->type = 'monthly';
+        $recurring->day = $request->input('day');
+        $recurring->starts_on = date('Y-m-d');
+        $recurring->ends_on = $request->input('end');
+        $recurring->tag_id = $request->input('tag');
+        $recurring->description = $request->input('description');
+        $recurring->amount = (int) ($request->input('amount') * 100);
+
+        $recurring->save();
+
+        return redirect()->route('recurrings.show', ['id' => $recurring->id]);
+    }
 }

@@ -23,7 +23,12 @@ Route::group(['middleware' => ['auth']], function () {
         'destroy'
     ]);
 
-    Route::resource('/recurrings', 'RecurringController')->only(['index', 'show']);
+    Route::resource('/recurrings', 'RecurringController')->only([
+        'index',
+        'create',
+        'store',
+        'show'
+    ]);
 
     Route::resource('/tags', 'TagController')->only([
         'index',
