@@ -6,7 +6,7 @@
     <div class="wrapper my-3">
         <h2>{{ __('actions.create') }} {{ __('general.tag') }}</h2>
         <div class="box mt-3">
-            <form method="POST" action="/tags">
+            <form method="POST" action="/tags" autocomplete="off">
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small mb-0">
