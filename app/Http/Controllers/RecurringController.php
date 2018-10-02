@@ -34,7 +34,7 @@ class RecurringController extends Controller {
     public function store(Request $request) {
         $request->validate([
             'day' => 'required|integer|between:1,28',
-            'end' => 'required|date|date_format:Y-m-d',
+            'end' => 'nullable|date|date_format:Y-m-d',
             'tag' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
             'description' => 'required|max:255',
             'amount' => 'required|regex:/^\d*(\.\d{2})?$/'

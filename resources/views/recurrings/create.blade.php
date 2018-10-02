@@ -20,6 +20,8 @@
                             <label>End</label>
                             <DatePicker name="end"></DatePicker>
                             @include('partials.validation_error', ['payload' => 'end'])
+                            <input type="checkbox" name="end" value="" id="endForever" />
+                            <label for="endForever">Forever</label>
                         </div>
                     </div>
                     <div class="row__column">
