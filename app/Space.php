@@ -14,4 +14,8 @@ class Space extends Model {
     public function tags() {
         return $this->hasMany(Tag::class);
     }
+
+    public function spendings() {
+        return $this->hasMany(Spending::class);
+    }
 }

@@ -24,10 +24,6 @@ class User extends Authenticatable {
         return $this->hasMany(Earning::class);
     }
 
-    public function spendings() {
-        return $this->hasMany(Spending::class);
-    }
-
     public function recurrings() {
         return $this->hasMany(Recurring::class);
     }
