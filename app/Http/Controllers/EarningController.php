@@ -12,7 +12,7 @@ class EarningController extends Controller {
     public function index() {
         $user = Auth::user();
 
-        $earnings = $user
+        $earnings = session('space')
             ->earnings()
             ->orderBy('happened_on', 'DESC')
             ->orderBy('created_at', 'DESC')
@@ -34,7 +34,7 @@ class EarningController extends Controller {
 
         $earning = new Earning;
 
-        $earning->user_id = Auth::user()->id;
+        $earning->space_id = session('space')->id;
         $earning->happened_on = $request->input('date');
         $earning->description = $request->input('description');
         $earning->amount = (int) ($request->input('amount') * 100);

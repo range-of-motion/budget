@@ -54,7 +54,7 @@ class DashboardController extends Controller {
             'recentSpendings' => $recentSpendings,
             'mostExpensiveTags' => $mostExpensiveTags,
 
-            'earningsCount' => $user->earnings->count(),
+            'earningsCount' => session('space')->earnings->count(),
             'spendingsCount' => session('space')->spendings->count()
         ]);
     }
