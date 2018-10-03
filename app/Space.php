@@ -9,4 +9,9 @@ class Space extends Model {
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    // Relations
+    public function tags() {
+        return $this->hasMany(Tag::class);
+    }
 }

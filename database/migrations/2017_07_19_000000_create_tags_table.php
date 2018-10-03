@@ -8,7 +8,7 @@ class CreateTagsTable extends Migration {
     public function up() {
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('space_id');
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();

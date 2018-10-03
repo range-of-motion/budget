@@ -32,10 +32,6 @@ class User extends Authenticatable {
         return $this->hasMany(Recurring::class);
     }
 
-    public function tags() {
-        return $this->hasMany(Tag::class);
-    }
-
     public function budgets() {
         return $this->hasMany(Budget::class);
     }
