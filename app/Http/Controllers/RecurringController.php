@@ -13,7 +13,7 @@ class RecurringController extends Controller {
 
         return view('recurrings.index', [
             'currency' => $user->currency,
-            'recurrings' => $user->recurrings()->orderBy('created_at', 'DESC')->get()
+            'recurrings' => session('space')->recurrings()->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
@@ -24,10 +24,8 @@ class RecurringController extends Controller {
     }
 
     public function create() {
-        $user = Auth::user();
-
         return view('recurrings.create', [
-            'tags' => $user->tags
+            'tags' => session('space')->tags
         ]);
     }
 
@@ -44,7 +42,7 @@ class RecurringController extends Controller {
 
         $recurring = new Recurring;
 
-        $recurring->user_id = $user->id;
+        $recurring->space_id = session('space')->id;
         $recurring->type = 'monthly';
         $recurring->day = $request->input('day');
         $recurring->starts_on = date('Y-m-d');

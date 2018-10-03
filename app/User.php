@@ -20,10 +20,6 @@ class User extends Authenticatable {
         return $this->belongsToMany(Space::class, 'user_space');
     }
 
-    public function recurrings() {
-        return $this->hasMany(Recurring::class);
-    }
-
     public function currency() {
         return $this->belongsTo(Currency::class);
     }

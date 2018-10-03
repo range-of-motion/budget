@@ -31,7 +31,7 @@ class ProcessRecurrings implements ShouldQueue {
 
         foreach ($recurrings as $recurring) {
             $spending = new Spending;
-            $spending->user_id = $recurring->user_id;
+            $spending->space_id = $recurring->space_id;
             $spending->recurring_id = $recurring->id;
             $spending->tag_id = $recurring->tag_id;
             $spending->happened_on = date('Y-m-d');

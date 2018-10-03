@@ -22,4 +22,8 @@ class Space extends Model {
     public function spendings() {
         return $this->hasMany(Spending::class);
     }
+
+    public function recurrings() {
+        return $this->hasMany(Recurring::class);
+    }
 }
