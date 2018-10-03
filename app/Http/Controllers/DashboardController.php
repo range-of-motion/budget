@@ -11,6 +11,8 @@ class DashboardController extends Controller {
     public function __invoke() {
         $user = Auth::user();
 
+        $space_id = session('space')->id;
+
         $totalSpendings = $user
             ->spendings()
             ->whereRaw('MONTH(happened_on) = ?', [date('m')])
@@ -31,7 +33,7 @@ class DashboardController extends Controller {
             LEFT OUTER JOIN
                 spendings ON tags.id = spendings.tag_id
             WHERE
-                tags.user_id = ?
+                tags.space_id = ?
                 AND MONTH(happened_on) = ?
             GROUP BY
                 tags.id
@@ -40,7 +42,7 @@ class DashboardController extends Controller {
             ORDER BY
                 SUM(spendings.amount) DESC
             LIMIT 3;
-        ', [$user->id, date('m')]);
+        ', [$space_id, date('m')]);
 
         return view('dashboard', [
             'currency' => $user->currency,
