@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\ConfirmRegistration;
 use App\Currency;
 use App\User;
+use App\Space;
 use Hash;
 use Mail;
 
@@ -26,6 +27,7 @@ class RegisterController extends Controller {
             'currency' => 'required|exists:currencies,id'
         ]);
 
+        // User
         $user = new User;
 
         $user->name = $request->name;
@@ -35,6 +37,15 @@ class RegisterController extends Controller {
         $user->language = 'en';
 
         $user->save();
+
+        // Space
+        $space = new Space;
+
+        $space->name = $user->name . '\'s Space';
+
+        $space->save();
+
+        $user->spaces()->attach($space->id);
 
         Mail::to($user->email)->queue(new ConfirmRegistration($user));
 
