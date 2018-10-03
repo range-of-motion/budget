@@ -10,7 +10,7 @@ use App\Tag;
 class TagController extends Controller {
     public function index() {
         return view('tags.index', [
-            'tags' => Auth::user()->tags()->orderBy('created_at', 'DESC')->get()
+            'tags' => session('space')->tags()->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
@@ -24,8 +24,10 @@ class TagController extends Controller {
         ]);
 
         $tag = new Tag;
-        $tag->user_id = Auth::user()->id;
+
+        $tag->space_id = session('space')->id;
         $tag->name = $request->name;
+
         $tag->save();
 
         return redirect()->route('tags.index');
@@ -43,6 +45,7 @@ class TagController extends Controller {
         $this->authorize('update', $tag);
 
         $tag->name = $request->input('name');
+
         $tag->save();
 
         return redirect()->route('tags.index');
