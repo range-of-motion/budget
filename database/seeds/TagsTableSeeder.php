@@ -16,7 +16,7 @@ class TagsTableSeeder extends Seeder {
             $currentTimestamp = date('Y-m-d H:i:s');
 
             Tag::insert([
-                'user_id' => 1,
+                'space_id' => 1,
                 'name' => $name,
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp
