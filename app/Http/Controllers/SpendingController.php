@@ -13,7 +13,7 @@ class SpendingController extends Controller {
     public function index(Request $request) {
         $user = Auth::user();
 
-        $spendings = $user
+        $spendings = session('space')
             ->spendings()
             ->orderBy('happened_on', 'DESC')
             ->orderBy('created_at', 'DESC')
@@ -23,7 +23,7 @@ class SpendingController extends Controller {
     }
 
     public function create() {
-        $tags = Tag::where('user_id', Auth::user()->id)->get();
+        $tags = session('space')->tags()->orderBy('created_at', 'DESC')->get();
 
         return view('spendings.create', compact('tags'));
     }
@@ -38,7 +38,7 @@ class SpendingController extends Controller {
 
         $spending = new Spending;
 
-        $spending->user_id = Auth::user()->id;
+        $spending->space_id = session('space')->id;
         $spending->tag_id = $request->input('tag_id');
         $spending->happened_on = $request->input('date');
         $spending->description = $request->input('description');

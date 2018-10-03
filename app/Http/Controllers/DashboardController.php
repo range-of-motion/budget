@@ -13,12 +13,12 @@ class DashboardController extends Controller {
 
         $space_id = session('space')->id;
 
-        $totalSpendings = $user
+        $totalSpendings = session('space')
             ->spendings()
             ->whereRaw('MONTH(happened_on) = ?', [date('m')])
             ->sum('amount');
 
-        $recentSpendings = $user
+        $recentSpendings = session('space')
             ->spendings()
             ->orderBy('created_at', 'DESC')
             ->limit(3)
@@ -55,7 +55,7 @@ class DashboardController extends Controller {
             'mostExpensiveTags' => $mostExpensiveTags,
 
             'earningsCount' => $user->earnings->count(),
-            'spendingsCount' => $user->spendings->count()
+            'spendingsCount' => session('space')->spendings->count()
         ]);
     }
 }
