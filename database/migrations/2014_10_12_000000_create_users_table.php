@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration {
             $table->string('password');
             $table->rememberToken();
             $table->string('language');
+            $table->string('theme')->default('light');
             $table->timestamps();
         });
     }
