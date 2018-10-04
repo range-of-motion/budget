@@ -51,7 +51,7 @@
                 <div class="box__section row">
                     <div class="row__column">Preferences</div>
                     <div class="row__column" style="flex: 2;">
-                        <div class="input input--small mb-0">
+                        <div class="input input--small">
                             <label>{{ __('general.language') }}</label>
                             <select name="language">
                                 @foreach ($languages as $key => $value)
@@ -59,6 +59,14 @@
                                 @endforeach
                             </select>
                             @include('partials.validation_error', ['payload' => 'language'])
+                        </div>
+                        <div class="input input--small mb-0">
+                            <label>{{ __('general.theme') }}</label>
+                            <select name="theme">
+                                <option value="light" {{ Auth::user()->theme == 'light' ? 'selected' : '' }}>Light</option>
+                                <option value="dark" {{ Auth::user()->theme == 'dark' ? 'selected' : '' }}>Dark (Experimental)</option>
+                            </select>
+                            @include('partials.validation_error', ['payload' => 'theme'])
                         </div>
                     </div>
                 </div>

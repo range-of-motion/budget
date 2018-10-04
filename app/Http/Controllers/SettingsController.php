@@ -22,7 +22,8 @@ class SettingsController extends Controller {
         $request->validate([
             'avatar' => 'nullable|mimes:jpeg,jpg,png,gif',
             'password' => 'nullable|confirmed',
-            'language' => 'required|in:' . implode(',', array_keys(config('app.locales')))
+            'language' => 'required|in:' . implode(',', array_keys(config('app.locales'))),
+            'theme' => 'required|in:light,dark'
         ]);
 
         $user = Auth::user();
@@ -48,6 +49,7 @@ class SettingsController extends Controller {
         }
 
         $user->language = $request->input('language');
+        $user->theme = $request->input('theme');
 
         $user->save();
 
