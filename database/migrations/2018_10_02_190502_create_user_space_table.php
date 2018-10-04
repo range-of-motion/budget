@@ -10,6 +10,7 @@ class CreateUserSpaceTable extends Migration {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('space_id');
+            $table->string('role')->default('regular');
         });
     }
 
