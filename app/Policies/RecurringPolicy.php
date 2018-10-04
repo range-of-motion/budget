@@ -7,6 +7,6 @@ use App\Recurring;
 
 class RecurringPolicy {
     public function view(User $user, Recurring $recurring) {
-        return $user->id === $recurring->user_id;
+        return $user->spaces->contains($recurring->space_id);
     }
 }

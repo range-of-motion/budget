@@ -7,10 +7,10 @@ use App\Spending;
 
 class SpendingPolicy {
     public function view(User $user, Spending $spending) {
-        return $user->id === $spending->user_id;
+        return $user->spaces->contains($spending->space_id);
     }
 
     public function delete(User $user, Spending $spending) {
-        return $user->id === $spending->user_id;
+        return $user->spaces->contains($spending->space_id);
     }
 }

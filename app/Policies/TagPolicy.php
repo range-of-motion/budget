@@ -7,10 +7,10 @@ use App\Tag;
 
 class TagPolicy {
     public function update(User $user, Tag $tag) {
-        return $user->id === $tag->user_id;
+        return $user->spaces->contains($tag->space_id);
     }
 
     public function delete(User $user, Tag $tag) {
-        return $user->id === $tag->user_id;
+        return $user->spaces->contains($tag->space_id);
     }
 }
