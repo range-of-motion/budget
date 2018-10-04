@@ -45,7 +45,7 @@ class RegisterController extends Controller {
 
         $space->save();
 
-        $user->spaces()->attach($space->id);
+        $user->spaces()->attach($space->id, ['role' => 'admin']);
 
         Mail::to($user->email)->queue(new ConfirmRegistration($user));
 
