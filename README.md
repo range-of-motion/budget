@@ -21,7 +21,7 @@ Budget is an open-source web application that helps you keep track of your finan
 1. Install Composer/Node.js dependencies
 
 ```
-composer install
+composer install --no-dev
 yarn install
 ```
 
