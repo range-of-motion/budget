@@ -26,6 +26,7 @@ return [
     'verify' => 'Verify',
     'password' => 'Password',
     'language' => 'Language',
+    'theme' => 'Theme',
 
     'recurrings' => 'Recurrings'
 ];

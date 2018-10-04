@@ -26,6 +26,7 @@ return [
     'verify' => 'Bekræfte',
     'password' => 'Adgangskode',
     'language' => 'Sprog',
+    'theme' => 'Tema',
 
     'recurrings' => 'Tilbagevendenden'
 ];

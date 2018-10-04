@@ -26,6 +26,7 @@ return [
     'verify' => 'Controleer',
     'password' => 'Wachtwoord',
     'language' => 'Taal',
+    'theme' => 'Thema',
 
     'recurrings' => 'Terugkerenden'
 ];
