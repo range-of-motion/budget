@@ -1,9 +1,17 @@
+.theme-light .navigation {
+    background: $colors-light-background;
+    border-bottom: 1px solid $colors-light-border;
+}
+
+.theme-dark .navigation {
+    background: $colors-dark-background;
+    border-bottom: 1px solid $colors-dark-border;
+}
+
 .navigation {
     display: flex;
     align-items: center;
     height: $dimensions-navigation-height;
-    background: #FFF;
-    border-bottom: 1px solid $colors-border;
 
     .wrapper {
         display: flex;

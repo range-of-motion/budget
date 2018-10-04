@@ -13,11 +13,11 @@
 
 body {
     &.theme-light {
-        background: $colors-light-background;
+        background: $colors-light-body;
     }
 
     &.theme-dark {
-        background: $colors-dark-background;
+        background: $colors-dark-body;
     }
 }
 

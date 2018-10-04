@@ -1,7 +1,15 @@
+.theme-light .card {
+    background: $colors-light-background;
+    border: 1px solid $colors-light-border;
+}
+
+.theme-dark .card {
+    background: $colors-dark-background;
+    border: 1px solid $colors-dark-border;
+}
+
 .card {
     padding: 20px;
-    background: #FFF;
-    border: 1px solid $colors-border;
     border-radius: 5px;
 
     &.card--blue {

@@ -1,11 +1,26 @@
+.theme-light .box {
+    background: $colors-light-background;
+    border: 1px solid $colors-light-border;
+
+    .box__section {
+        border-bottom: 1px solid $colors-light-border;
+    }
+}
+
+.theme-dark .box {
+    background: $colors-dark-background;
+    border: 1px solid $colors-dark-border;
+
+    .box__section {
+        border-bottom: 1px solid $colors-dark-border;
+    }
+}
+
 .box {
-    background: #FFF;
-    border: 1px solid $colors-border;
     border-radius: $dimensions-box-border-radius;
 
     .box__section {
         padding: $dimensions-box-padding;
-        border-bottom: 1px solid $colors-border;
 
         &:first-child {
             border-top-left-radius: 5px;
