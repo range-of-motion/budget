@@ -12,7 +12,13 @@
 @import 'components/helpers';
 
 body {
-    background: $colors-background;
+    &.theme-light {
+        background: $colors-background;
+    }
+
+    &.theme-dark {
+        background: #202225;
+    }
 }
 
 canvas {

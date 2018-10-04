@@ -18,7 +18,7 @@
             }
         </style>
     </head>
-    <body>
+    <body class="theme-{{ Auth::check() ? Auth::user()->theme : '' }}">
         <div id="app">
             @if (Auth::check())
                 <div class="navigation">
