@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Register')
+
 @section('body')
     <div class="wrapper wrapper--narrow my-3">
         <h2 class="text-center mb-3">Register</h2>
