@@ -137,11 +137,15 @@
 }
 
 // Colors
-.color {
-    &-dark {
-        color: #000;
-    }
+.theme-light .color-dark {
+    color: #000;
+}
 
+.theme-dark .color-dark {
+    color: #FFF;
+}
+
+.color {
     &-blue {
         color: $colors-blue;
     }

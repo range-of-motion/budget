@@ -2,15 +2,29 @@
     -webkit-font-smoothing: antialiased;
 }
 
+body.theme-light {
+    color: $colors-text;
+
+    h1, h2 {
+        color: #000;
+    }
+}
+
+body.theme-dark {
+    color: $colors-text;
+
+    h1, h2 {
+        color: #FFF;
+    }
+}
+
 body {
     font-family: Muli;
     font-weight: 400;
-    color: $colors-text;
 }
 
 h1, h2 {
     font-weight: 600;
-    color: #000;
 }
 
 h1 {

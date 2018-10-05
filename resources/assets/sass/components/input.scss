@@ -20,6 +20,7 @@
 
 .theme-dark {
     input[type=text], input[type=email], input[type=password], select {
+        color: #FFF;
         background: $colors-dark-body;
         border: 1px solid $colors-dark-border;
     }

@@ -1,11 +1,23 @@
 .theme-light .navigation {
     background: $colors-light-background;
     border-bottom: 1px solid $colors-light-border;
+
+    a {
+        &:hover, &.active {
+            color: #000;
+        }
+    }
 }
 
 .theme-dark .navigation {
     background: $colors-dark-background;
     border-bottom: 1px solid $colors-dark-border;
+
+    a {
+        &:hover, &.active {
+            color: #FFF;
+        }
+    }
 }
 
 .navigation {
@@ -33,10 +45,6 @@
                 display: flex;
                 align-items: center;
                 color: $colors-text;
-
-                &:hover, &.active {
-                    color: #000;
-                }
             }
         }
     }
