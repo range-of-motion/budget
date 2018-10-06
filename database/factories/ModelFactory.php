@@ -3,6 +3,7 @@
 use Faker\Generator;
 use App\User;
 use App\Space;
+use App\Tag;
 use App\Earning;
 use App\Spending;
 
@@ -19,6 +20,12 @@ $factory->define(User::class, function (Generator $faker) {
 $factory->define(Space::class, function (Generator $faker) {
     return [
         'name' => $faker->firstName . '\'s Space'
+    ];
+});
+
+$factory->define(Tag::class, function (Generator $faker) {
+    return [
+        'name' => ucfirst($faker->word)
     ];
 });
 
