@@ -45,7 +45,7 @@ class EarningController extends Controller {
     }
 
     public function destroy(Earning $earning) {
-        // TODO CHECK IF USER IS AUTHORIZED
+        $this->authorize('delete', $earning);
 
         $earning->delete();
 
