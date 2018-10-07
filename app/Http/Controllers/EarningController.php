@@ -45,11 +45,10 @@ class EarningController extends Controller {
     }
 
     public function destroy(Earning $earning) {
-        $year = date('Y', strtotime($earning->date));
-        $month = date('n', strtotime($earning->date));
+        // TODO CHECK IF USER IS AUTHORIZED
 
         $earning->delete();
 
-        return redirect()->route('dashboard', compact('year', 'month'));
+        return redirect()->route('earnings.index');
     }
 }
