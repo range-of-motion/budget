@@ -23,7 +23,8 @@ class SettingsController extends Controller {
             'avatar' => 'nullable|mimes:jpeg,jpg,png,gif',
             'password' => 'nullable|confirmed',
             'language' => 'required|in:' . implode(',', array_keys(config('app.locales'))),
-            'theme' => 'required|in:light,dark'
+            'theme' => 'required|in:light,dark',
+            'weekly_report' => 'required|in:true,false'
         ]);
 
         $user = Auth::user();
@@ -50,6 +51,7 @@ class SettingsController extends Controller {
 
         $user->language = $request->input('language');
         $user->theme = $request->input('theme');
+        $user->weekly_report = $request->input('weekly_report') == 'true' ? true : false;
 
         $user->save();
 

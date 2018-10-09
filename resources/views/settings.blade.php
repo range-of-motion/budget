@@ -60,13 +60,23 @@
                             </select>
                             @include('partials.validation_error', ['payload' => 'language'])
                         </div>
-                        <div class="input input--small mb-0">
+                        <div class="input input--small">
                             <label>{{ __('general.theme') }}</label>
                             <select name="theme">
                                 <option value="light" {{ Auth::user()->theme == 'light' ? 'selected' : '' }}>Light</option>
                                 <option value="dark" {{ Auth::user()->theme == 'dark' ? 'selected' : '' }}>Dark (Experimental)</option>
                             </select>
                             @include('partials.validation_error', ['payload' => 'theme'])
+                        </div>
+                        <div class="input input--small mb-0">
+                            <label>Weekly Report</label>
+                            <div>
+                                <input type="radio" name="weekly_report" value="true" {{ Auth::user()->weekly_report ? 'checked' : '' }} /> Yes
+                            </div>
+                            <div>
+                                <input type="radio" name="weekly_report" value="false" {{ Auth::user()->weekly_report ? '' : 'checked' }} /> No
+                            </div>
+                            @include('partials.validation_error', ['payload' => 'weekly_report'])
                         </div>
                     </div>
                 </div>
