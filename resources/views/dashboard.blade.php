@@ -9,7 +9,7 @@
         <div class="row row--gutter row--responsive mt-3 mb-4">
             <div class="row__column">
                 <div class="card card--blue">
-                    <h2 style="font-size: 20px;">{!! $currency->symbol !!} {{ number_format($totalSpendings / 100, 2) }}</h2>
+                    <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($totalSpendings / 100, 2) }}</h2>
                     <div class="mt-1" style="color: #A7AEBB;">{{ __('general.total_spent') }}</div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                                     <div class="color-dark">{{ $spending->description }}</div>
                                     <div class="mt-1" style="font-size: 14px;">{{ $spending->formatted_happened_on }}</div>
                                 </div>
-                                <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency->symbol !!} {{ $spending->formatted_amount }}</div>
+                                <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency !!} {{ $spending->formatted_amount }}</div>
                             </div>
                         @endforeach
                     @else
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="row__column row__column--middle">
                                     <div class="color-dark">{{ $tag->name }}</div>
-                                    <div class="mt-1" style="font-size: 14px; font-weight: 600;">{!! $currency->symbol !!} {{ number_format($tag->amount / 100, 2) }}</div>
+                                    <div class="mt-1" style="font-size: 14px; font-weight: 600;">{!! $currency !!} {{ number_format($tag->amount / 100, 2) }}</div>
                                 </div>
                             </div>
                         @endforeach
