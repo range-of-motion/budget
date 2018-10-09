@@ -13,6 +13,11 @@ class DashboardController extends Controller {
 
         $space_id = session('space')->id;
 
+        $totalEarnings = session('space')
+            ->earnings()
+            ->whereRaw('MONTH(happened_on) = ?', [date('m')])
+            ->sum('amount');
+
         $totalSpendings = session('space')
             ->spendings()
             ->whereRaw('MONTH(happened_on) = ?', [date('m')])
@@ -49,6 +54,7 @@ class DashboardController extends Controller {
 
             'month' => date('n'),
 
+            'totalEarnings' => $totalEarnings,
             'totalSpendings' => $totalSpendings,
 
             'recentSpendings' => $recentSpendings,

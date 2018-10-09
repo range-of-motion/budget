@@ -3,6 +3,7 @@
 return [
     'dashboard' => 'Overzicht',
 
+    'total_earned' => 'Totaal Verdiend',
     'total_spent' => 'Totaal Uitgegeven',
     'most_expensive_tag' => 'Duurste Etiket',
     'most_expensive_day' => 'Duurste Dag',
@@ -28,6 +29,6 @@ return [
     'language' => 'Taal',
     'theme' => 'Thema',
 
-    'recurrings' => 'Terugkerenden'm
+    'recurrings' => 'Terugkerenden',
     'recurring' => 'Terugkerend'
 ];

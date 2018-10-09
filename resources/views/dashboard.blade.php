@@ -8,16 +8,19 @@
         <p class="mt-1">{{ __('calendar.months.' . $month) }} {{ date('Y') }}</p>
         <div class="row row--gutter row--responsive mt-3 mb-4">
             <div class="row__column">
-                <div class="card card--blue">
+                <div class="card card--green">
+                    <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($totalEarnings / 100, 2) }}</h2>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.total_earned') }}</div>
+                </div>
+            </div>
+            <div class="row__column">
+                <div class="card card--red">
                     <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($totalSpendings / 100, 2) }}</h2>
                     <div class="mt-1" style="color: #A7AEBB;">{{ __('general.total_spent') }}</div>
                 </div>
             </div>
             <div class="row__column">
-                <!-- EMPTY -->
-            </div>
-            <div class="row__column">
-                <!-- EMPTY -->
+                <!-- OFFSET -->
             </div>
         </div>
         <div class="row row--gutter row--responsive mb-4">
