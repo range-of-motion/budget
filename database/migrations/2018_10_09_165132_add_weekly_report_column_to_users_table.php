@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class AddWeeklyReportColumnToUsersTable extends Migration {
     public function up() {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('weekly_report')->default(false)->after('theme');
+            $table->boolean('weekly_report')->default(true)->after('theme');
         });
     }
 
