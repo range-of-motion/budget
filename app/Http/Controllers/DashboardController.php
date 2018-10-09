@@ -58,18 +58,13 @@ class DashboardController extends Controller {
         return view('dashboard', [
             'currency' => $user->currency,
 
-            'month' => date('n'),
-
-            'totalEarnings' => $totalEarnings,
-            'totalSpendings' => $totalSpendings,
-
             'recentEarnings' => $recentEarnings,
             'recentSpendings' => $recentSpendings,
 
+            'month' => date('n'),
+            'totalEarnings' => $totalEarnings,
+            'totalSpendings' => $totalSpendings,
             'mostExpensiveTags' => $mostExpensiveTags,
-
-            'earningsCount' => session('space')->earnings->count(),
-            'spendingsCount' => session('space')->spendings->count()
         ]);
     }
 }

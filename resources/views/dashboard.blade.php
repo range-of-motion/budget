@@ -19,6 +19,9 @@
                                 <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency !!} {{ $earning->formatted_amount }}</div>
                             </div>
                         @endforeach
+                        <div class="box__section box__section--header text-right">
+                            <a href="/earnings">More <i class="far fa-arrow-right fa-xs"></i></a>
+                        </div>
                     @else
                         <div class="box__section">You don't have any earnings</div>
                     @endif
@@ -37,6 +40,9 @@
                                 <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency !!} {{ $spending->formatted_amount }}</div>
                             </div>
                         @endforeach
+                        <div class="box__section box__section--header text-right">
+                            <a href="/spendings">More <i class="far fa-arrow-right fa-xs"></i></a>
+                        </div>
                     @else
                         <div class="box__section">You don't have any spendings</div>
                     @endif
@@ -78,22 +84,6 @@
             @else
                 <div class="box__section">Not enough data</div>
             @endif
-        </div>
-        <div class="row row--gutter row--responsive">
-            <div class="row__column">
-                <div class="box">
-                    <div class="box__section text-center" style="padding: 15px;">
-                        <a href="/earnings">{{ __('general.earnings') }} ({{ $earningsCount }}) <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row__column">
-                <div class="box">
-                    <div class="box__section text-center" style="padding: 15px;">
-                        <a href="/spendings">{{ __('general.spendings') }} ({{ $spendingsCount }}) <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endsection
