@@ -9,8 +9,6 @@ use DB;
 
 class DashboardController extends Controller {
     public function __invoke() {
-        $user = Auth::user();
-
         $space_id = session('space')->id;
 
         $totalEarnings = session('space')
@@ -56,8 +54,6 @@ class DashboardController extends Controller {
         ', [$space_id, date('m')]);
 
         return view('dashboard', [
-            'currency' => $user->currency,
-
             'recentEarnings' => $recentEarnings,
             'recentSpendings' => $recentSpendings,
 

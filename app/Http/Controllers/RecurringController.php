@@ -9,10 +9,7 @@ use Auth;
 
 class RecurringController extends Controller {
     public function index() {
-        $user = Auth::user();
-
         return view('recurrings.index', [
-            'currency' => $user->currency,
             'recurrings' => session('space')->recurrings()->orderBy('created_at', 'DESC')->get()
         ]);
     }
