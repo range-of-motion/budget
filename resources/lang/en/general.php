@@ -28,5 +28,6 @@ return [
     'language' => 'Language',
     'theme' => 'Theme',
 
-    'recurrings' => 'Recurrings'
+    'recurrings' => 'Recurrings',
+    'recurring' => 'Recurring'
 ];

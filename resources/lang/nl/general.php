@@ -28,5 +28,6 @@ return [
     'language' => 'Taal',
     'theme' => 'Thema',
 
-    'recurrings' => 'Terugkerenden'
+    'recurrings' => 'Terugkerenden'm
+    'recurring' => 'Terugkerend'
 ];

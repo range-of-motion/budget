@@ -28,5 +28,6 @@ return [
     'language' => 'Sprog',
     'theme' => 'Tema',
 
-    'recurrings' => 'Tilbagevendenden'
+    'recurrings' => 'Tilbagevendenden',
+    'recurring' => 'Tilbagevendende'
 ];
