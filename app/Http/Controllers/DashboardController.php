@@ -23,6 +23,12 @@ class DashboardController extends Controller {
             ->whereRaw('MONTH(happened_on) = ?', [date('m')])
             ->sum('amount');
 
+        $recentEarnings = session('space')
+            ->earnings()
+            ->orderBy('created_at', 'DESC')
+            ->limit(3)
+            ->get();
+
         $recentSpendings = session('space')
             ->spendings()
             ->orderBy('created_at', 'DESC')
@@ -57,7 +63,9 @@ class DashboardController extends Controller {
             'totalEarnings' => $totalEarnings,
             'totalSpendings' => $totalSpendings,
 
+            'recentEarnings' => $recentEarnings,
             'recentSpendings' => $recentSpendings,
+
             'mostExpensiveTags' => $mostExpensiveTags,
 
             'earningsCount' => session('space')->earnings->count(),
