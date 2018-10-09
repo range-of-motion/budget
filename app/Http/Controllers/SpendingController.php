@@ -11,15 +11,18 @@ use Auth;
 
 class SpendingController extends Controller {
     public function index(Request $request) {
-        $user = Auth::user();
+        $spendingsByMonth = [];
 
-        $spendings = session('space')
-            ->spendings()
-            ->orderBy('happened_on', 'DESC')
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        for ($month = 12; $month >= 1; $month --) {
+            $spendingsByMonth[$month] = session('space')
+                ->spendings()
+                ->whereYear('happened_on', date('Y'))
+                ->whereMonth('happened_on', $month)
+                ->orderBy('happened_on', 'DESC')
+                ->get();
+        }
 
-        return view('spendings.index', compact('spendings'));
+        return view('spendings.index', compact('spendingsByMonth'));
     }
 
     public function create() {
