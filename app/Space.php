@@ -11,6 +11,10 @@ class Space extends Model {
     protected $dates = ['deleted_at'];
 
     // Relations
+    public function users() {
+        return $this->belongsToMany(User::class, 'user_space');
+    }
+
     public function tags() {
         return $this->hasMany(Tag::class);
     }
