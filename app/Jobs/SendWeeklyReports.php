@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class SendWeeklyReports implements ShouldQueue {
@@ -21,14 +22,20 @@ class SendWeeklyReports implements ShouldQueue {
     public function handle() {
         $spaces = Space::all();
         $week = date('W');
+        $lastWeekDate = date('Y-m-d', strtotime('-7 days'));
+        $currentDate = date('Y-m-d');
 
         foreach ($spaces as $space) {
-            // TODO CALCULATE STATISTICS
+            $totalSpent = DB::select('SELECT SUM(amount) AS foo FROM spendings WHERE space_id = ? AND happened_on >= ? AND happened_on <= ?', [$space->id, $lastWeekDate, $currentDate])[0]->foo;
 
             foreach ($space->users as $user) {
                 // Only send if user wants to receive report
                 if ($user->weekly_report) {
-                    Mail::to($user->email)->queue(new WeeklyReport($space, $week));
+                    Mail::to($user->email)->queue(new WeeklyReport(
+                        $space,
+                        $week,
+                        $totalSpent
+                    ));
                 }
             }
         }

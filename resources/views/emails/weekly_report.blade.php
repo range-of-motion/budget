@@ -2,7 +2,7 @@ Here's your weekly report for {{ $space->name }}.
 
 This week (#{{ $week }}) you've
 <ul>
-    <li>Spent CURRENCY SPENT_TOTAL_AMOUNT</li>
+    <li>Spent CURRENCY {{ number_format($totalSpent / 100, 2) }}</li>
     <li>Most of which you've spent on SPENT_MOST_TAG_NAME (CURRENCY SPENT_MOST_TAG_AMOUNT)</li>
 </ul>
 
