@@ -4,7 +4,14 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('general.spendings') }}</h2>
+        <div class="row">
+            <div class="row__column row__column--middle">
+                <h2>{{ __('general.spendings') }}</h2>
+            </div>
+            <div class="row__column row__column--compact row__column--middle">
+                <a href="/spendings/create" class="button">Create Spending</a>
+            </div>
+        </div>
         @foreach ($spendingsByMonth as $index => $spendings)
             @if (count($spendings))
                 <h3 class="mt-3 mb-2">{{ __('calendar.months.' . $index) }}</h3>
