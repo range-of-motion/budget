@@ -10,6 +10,8 @@ class Earning extends Model {
 
     protected $dates = ['deleted_at'];
 
+    protected $fillable = ['description', 'amount'];
+
     // Accessors
     public function getFormattedAmountAttribute() {
         return number_format($this->amount / 100, 2);

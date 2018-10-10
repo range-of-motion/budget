@@ -21,14 +21,21 @@
                             <div class="mt-1" style="font-size: 14px; font-weight: 600;">{{ $earning->formatted_happened_on }}</div>
                         </div>
                         <div class="row__column row__column--middle color-dark">{!! $currency !!} {{ $earning->formatted_amount }}</div>
-                        <div class="row__column row__column--middle row__column--compact">
-                            <form method="POST" action="/earnings/{{ $earning->id }}">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button class="button link">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </form>
+                        <div class="row__column row__column--middle row row--right">
+                            <div class="row__column row__column--compact">
+                                <a href="/earnings/{{ $earning->id }}/edit">
+                                    <i class="far fa-pencil"></i>
+                                </a>
+                            </div>
+                            <div class="row__column row__column--compact ml-2">
+                                <form method="POST" action="/earnings/{{ $earning->id }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="button link">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 @endforeach

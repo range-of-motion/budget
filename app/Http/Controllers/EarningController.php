@@ -44,6 +44,25 @@ class EarningController extends Controller {
         return redirect()->route('dashboard');
     }
 
+    public function edit(Earning $earning) {
+        // TODO AUTHORIZE
+
+        return view('earnings.edit', compact('earning'));
+    }
+
+    public function update(Request $request, Earning $earning) {
+        // TODO AUTHORIZE
+
+        // TODO VALIDATE
+
+        $earning->fill([
+            'description' => $request->input('description'),
+            'amount' => $request->input('amount')
+        ])->save();
+
+        return redirect()->route('earnings.index');
+    }
+
     public function destroy(Earning $earning) {
         $this->authorize('delete', $earning);
 
