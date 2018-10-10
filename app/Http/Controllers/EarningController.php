@@ -45,13 +45,13 @@ class EarningController extends Controller {
     }
 
     public function edit(Earning $earning) {
-        // TODO AUTHORIZE
+        $this->authorize('edit', $earning);
 
         return view('earnings.edit', compact('earning'));
     }
 
     public function update(Request $request, Earning $earning) {
-        // TODO AUTHORIZE
+        $this->authorize('update', $earning);
 
         // TODO VALIDATE
 
