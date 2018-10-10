@@ -12,15 +12,18 @@ class WeeklyReport extends Mailable {
     use Queueable, SerializesModels;
 
     protected $space;
+    protected $week;
 
-    public function __construct(Space $space) {
+    public function __construct(Space $space, $week) {
         $this->space = $space;
+        $this->week = $week;
     }
 
     public function build() {
         return $this->view('emails.weekly_report')
             ->with([
-                'space' => $this->space
+                'space' => $this->space,
+                'week' => $this->week
             ]);
     }
 }

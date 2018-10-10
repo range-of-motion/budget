@@ -20,6 +20,7 @@ class SendWeeklyReports implements ShouldQueue {
 
     public function handle() {
         $spaces = Space::all();
+        $week = date('W');
 
         foreach ($spaces as $space) {
             // TODO CALCULATE STATISTICS
@@ -27,7 +28,7 @@ class SendWeeklyReports implements ShouldQueue {
             foreach ($space->users as $user) {
                 // Only send if user wants to receive report
                 if ($user->weekly_report) {
-                    Mail::to($user->email)->queue(new WeeklyReport($space));
+                    Mail::to($user->email)->queue(new WeeklyReport($space, $week));
                 }
             }
         }

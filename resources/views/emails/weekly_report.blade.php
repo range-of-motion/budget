@@ -1,6 +1,6 @@
 Here's your weekly report for {{ $space->name }}.
 
-This week (WEEK_START - WEEK_END) you've
+This week (#{{ $week }}) you've
 * Spent CURRENCY SPENT_TOTAL_AMOUNT
 * Most of which you've spent on SPENT_MOST_TAG_NAME (CURRENCY SPENT_MOST_TAG_AMOUNT)
 
