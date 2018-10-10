@@ -4,7 +4,7 @@
     <div class="wrapper my-3">
         <h2>{{ __('actions.create') }} {{ __('general.earning') }}</h2>
         <div class="box mt-3">
-            <form method="POST" action="/earnings">
+            <form method="POST" action="/earnings" autocomplete="off">
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">
