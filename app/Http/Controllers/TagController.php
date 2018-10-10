@@ -34,15 +34,17 @@ class TagController extends Controller {
     }
 
     public function edit(Tag $tag) {
+        $this->authorize('edit', $tag);
+
         return view('tags.edit', compact('tag'));
     }
 
     public function update(Request $request, Tag $tag) {
+        $this->authorize('update', $tag);
+
         $request->validate([
             'name' => 'required|max:255'
         ]);
-
-        $this->authorize('update', $tag);
 
         $tag->name = $request->input('name');
 
