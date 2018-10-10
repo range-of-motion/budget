@@ -11,10 +11,12 @@ Route::post('/register', 'RegisterController@store');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
-    Route::get('/earnings', 'EarningController@index')->name('earnings.index');
-    Route::get('/earnings/create', 'EarningController@create')->name('earnings.create');
-    Route::post('/earnings', 'EarningController@store');
-    Route::delete('/earnings/{earning}', 'EarningController@destroy')->middleware('can:delete,earning');
+    Route::resource('/earnings', 'EarningController')->only([
+        'index',
+        'create',
+        'store',
+        'destroy'
+    ]);
 
     Route::resource('/spendings', 'SpendingController')->only([
         'index',
