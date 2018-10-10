@@ -4,7 +4,14 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('general.earnings') }}</h2>
+        <div class="row">
+            <div class="row__column row__column--middle">
+                <h2>{{ __('general.earnings') }}</h2>
+            </div>
+            <div class="row__column row__column--compact row__column--middle">
+                <a href="/earnings/create" class="button">Create Earning</a>
+            </div>
+        </div>
         <div class="box mt-3">
             @if (count($earnings))
                 @foreach ($earnings as $earning)
