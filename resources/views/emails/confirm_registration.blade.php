@@ -1,7 +1,11 @@
-Welcome aboard, {{ $name }}
+@extends('emails.template')
 
-We're going to help you get insight into your personal finances.
+@section('content')
+    Welcome aboard, {{ $name }}
 
-No more dealing with pesky, half-assed spreadsheets.
+    We're going to help you get insight into your personal finances.
 
-<a href="{{ config('app.url') . '/dashboard' }}">Go get started</a>
+    No more dealing with pesky, half-assed spreadsheets.
+
+    <a href="{{ config('app.url') . '/dashboard' }}">Go get started</a>
+@endsection
