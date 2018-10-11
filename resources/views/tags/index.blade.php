@@ -13,11 +13,13 @@
             </div>
         </div>
         <div class="box">
-            <div class="box__section box__section--header row">
-                <div class="row__column">Name</div>
-                <div class="row__column row__column--double" style="flex: 2;">Spendings</div>
-            </div>
-            @foreach ($tags as $tag)
+            @forelse ($tags as $tag)
+                @if ($loop->first)
+                    <div class="box__section box__section--header row">
+                        <div class="row__column">Name</div>
+                        <div class="row__column row__column--double" style="flex: 2;">Spendings</div>
+                    </div>
+                @endif
                 <div class="box__section row">
                     <div class="row__column">{{ $tag->name }}</div>
                     <div class="row__column">{{ $tag->spendings->count() }}</div>
@@ -42,7 +44,11 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="box__section">
+                    {{ __('general.no_items', ['entity' => strtolower(__('general.tags'))])}}
+                </div>
+            @endforelse
         </div>
     </div>
 @endsection

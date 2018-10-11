@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="box mt-3">
-            @foreach ($recurrings as $recurring)
+            @forelse ($recurrings as $recurring)
                 <div class="box__section row">
                     <div class="row__column">
                         <div class="color-dark">
@@ -39,7 +39,11 @@
                         @endif
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="box__section">
+                    {{ __('general.no_items', ['entity' => strtolower(__('general.recurrings'))])}}
+                </div>
+            @endforelse
         </div>
     </div>
 @endsection
