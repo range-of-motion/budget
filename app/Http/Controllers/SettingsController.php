@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
+use App\Currency;
 use Auth;
 use Image;
 use Storage;
@@ -14,7 +15,8 @@ use Mail;
 class SettingsController extends Controller {
     public function index() {
         return view('settings', [
-            'languages' => config('app.locales')
+            'languages' => config('app.locales'),
+            'currencies' => Currency::all(),
         ]);
     }
 
@@ -24,7 +26,8 @@ class SettingsController extends Controller {
             'password' => 'nullable|confirmed',
             'language' => 'required|in:' . implode(',', array_keys(config('app.locales'))),
             'theme' => 'required|in:light,dark',
-            'weekly_report' => 'required|in:true,false'
+            'weekly_report' => 'required|in:true,false',
+            'currency' => 'required|exists:currencies,id'
         ]);
 
         $user = Auth::user();
@@ -44,6 +47,7 @@ class SettingsController extends Controller {
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->currency_id = $request->input('currency');
 
         if ($password = $request->input('password')) {
             $user->password = Hash::make($password);

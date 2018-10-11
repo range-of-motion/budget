@@ -68,6 +68,15 @@
                             </select>
                             @include('partials.validation_error', ['payload' => 'theme'])
                         </div>
+                        <div class="input input--small">
+                            <label>{{ __('general.currency') }}</label>
+                            <select name="currency">
+                                @foreach ($currencies as $currency)
+                                    <option value="{{ $currency->id }}" {{ Auth::user()->currency_id == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
+                                @endforeach
+                            </select>
+                            @include('partials.validation_error', ['payload' => 'currency'])
+                        </div>
                         <div class="input input--small mb-0">
                             <label>Weekly Report</label>
                             <div>
