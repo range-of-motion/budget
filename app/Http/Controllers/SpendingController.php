@@ -14,12 +14,16 @@ class SpendingController extends Controller {
         $spendingsByMonth = [];
 
         for ($month = 12; $month >= 1; $month --) {
-            $spendingsByMonth[$month] = session('space')
+            $spendingsThisMonth = session('space')
                 ->spendings()
                 ->whereYear('happened_on', date('Y'))
                 ->whereMonth('happened_on', $month)
                 ->orderBy('happened_on', 'DESC')
                 ->get();
+
+            if (count($spendingsThisMonth)) {
+                $spendingsByMonth[$month] = $spendingsThisMonth;
+            }
         }
 
         return view('spendings.index', compact('spendingsByMonth'));

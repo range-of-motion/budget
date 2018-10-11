@@ -23,7 +23,7 @@
                             <a href="/earnings">More <i class="far fa-arrow-right fa-xs"></i></a>
                         </div>
                     @else
-                        <div class="box__section">You don't have any earnings</div>
+                        @include('partials.empty_state', ['payload' => 'earnings'])
                     @endif
                 </div>
             </div>
@@ -44,7 +44,7 @@
                             <a href="/spendings">More <i class="far fa-arrow-right fa-xs"></i></a>
                         </div>
                     @else
-                        <div class="box__section">You don't have any spendings</div>
+                        @include('partials.empty_state', ['payload' => 'spendings'])
                     @endif
                 </div>
             </div>

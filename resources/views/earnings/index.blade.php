@@ -40,7 +40,7 @@
                     </div>
                 @endforeach
             @else
-                <div class="box__section text-center">You don't have any earnings</div>
+                @include('partials.empty_state', ['payload' => 'earnings'])
             @endif
         </div>
     </div>
