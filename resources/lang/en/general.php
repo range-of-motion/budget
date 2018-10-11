@@ -30,5 +30,7 @@ return [
     'theme' => 'Theme',
 
     'recurrings' => 'Recurrings',
-    'recurring' => 'Recurring'
+    'recurring' => 'Recurring',
+
+    'no_items' => 'You don\'t have any :entity'
 ];

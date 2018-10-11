@@ -30,5 +30,7 @@ return [
     'theme' => 'Tema',
 
     'recurrings' => 'Tilbagevendenden',
-    'recurring' => 'Tilbagevendende'
+    'recurring' => 'Tilbagevendende',
+
+    'no_items' => 'Du har ingen :Entity'
 ];
