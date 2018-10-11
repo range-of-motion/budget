@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'currency' => 'Valuta',
+
     'dashboard' => 'Overzicht',
 
     'total_earned' => 'Totaal Verdiend',

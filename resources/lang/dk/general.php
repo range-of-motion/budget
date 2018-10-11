@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'currency' => 'Valuta',
+
     'dashboard' => 'Dashboard',
 
     'total_earned' => 'Samlet SOMETHING',
