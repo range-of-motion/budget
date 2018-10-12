@@ -2,7 +2,7 @@
 
 return [
     'cancel' => 'Annuleer',
-    'create' => 'Creeëer',
+    'create' => 'Creëer',
     'edit' => 'Bewerk',
     'save' => 'Opslaan',
     'delete' => 'Verwijderen',
