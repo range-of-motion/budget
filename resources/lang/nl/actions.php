@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create' => 'Cre&euml;er',
+    'create' => 'Creeëer',
     'edit' => 'Bewerk',
     'save' => 'Opslaan',
     'delete' => 'Verwijderen',
