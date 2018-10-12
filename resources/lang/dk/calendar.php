@@ -16,12 +16,12 @@ return [
         12 => 'December'
     ],
     'weekdays' => [
-        0 => 'Mandag',
-        1 => 'Tirsdag',
-        2 => 'Onsdag',
-        3 => 'Torsdag',
-        4 => 'Fredag',
-        5 => 'Lørdag',
-        6 => 'Søndag'
+        1 => 'Mandag',
+        2 => 'Tirsdag',
+        3 => 'Onsdag',
+        4 => 'Torsdag',
+        5 => 'Fredag',
+        6 => 'Lørdag',
+        7 => 'Søndag'
     ]
 ];
