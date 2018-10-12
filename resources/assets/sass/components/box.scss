@@ -4,6 +4,10 @@
 
     .box__section {
         border-bottom: 1px solid $colors-light-border;
+
+        &.box__section--highlight {
+            background: $colors-light-background;
+        }
     }
 }
 
@@ -37,10 +41,6 @@
             padding: 15px 20px;
             font-size: 14px;
             font-weight: 600;
-        }
-
-        &.box__section--highlight {
-            background: $colors-light-background;
         }
     }
 
