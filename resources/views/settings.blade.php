@@ -1,18 +1,18 @@
 @extends('layout')
 
-@section('title', 'Settings')
+@section('title', __('pages.settings'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>Settings</h2>
+        <h2>{{ __('pages.settings') }}</h2>
         <div class="box mt-3">
             <form method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="box__section row">
-                    <div class="row__column">Profile</div>
+                    <div class="row__column">{{ __('general.profile') }}</div>
                     <div class="row__column" style="flex: 2;">
                         <div class="input input--small">
-                            <label>{{ __('general.avatar') }}</label>
+                            <label>{{ __('user.avatar') }}</label>
                             @if (Auth::user()->avatar)
                                 <img src="/storage/avatars/{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; border-radius: 5px; object-fit: cover;" />
                             @else
@@ -22,26 +22,26 @@
                             @include('partials.validation_error', ['payload' => 'avatar'])
                         </div>
                         <div class="input input--small">
-                            <label>{{ __('general.name') }}</label>
+                            <label>@lang('user.name')</label>
                             <input type="text" name="name" value="{{ Auth::user()->name }}" />
                         </div>
                     </div>
                 </div>
                 <div class="box__section row">
-                    <div class="row__column">Account</div>
+                    <div class="row__column">{{ __('general.account') }}</div>
                     <div class="row__column" style="flex: 2;">
                         <div class="input input--small">
-                            <label>{{ __('general.email') }}</label>
+                            <label>{{ __('user.email') }}</label>
                             <input type="text" name="email" value="{{ Auth::user()->email }}" />
                         </div>
                         <div class="row">
                             <div class="row__column input">
-                                <label>{{ __('general.password') }}</label>
+                                <label>{{ __('user.password') }}</label>
                                 <input type="password" name="password" />
                                 @include('partials.validation_error', ['payload' => 'password'])
                             </div>
                             <div class="row__column input ml-2">
-                                <label>{{ __('general.verify') }} {{ __('general.password') }}</label>
+                                <label>{{ __('actions.verify') }} {{ __('user.password') }}</label>
                                 <input type="password" name="password_confirmation" />
                                 @include('partials.validation_error', ['payload' => 'password_confirmation'])
                             </div>
@@ -49,10 +49,10 @@
                     </div>
                 </div>
                 <div class="box__section row">
-                    <div class="row__column">Preferences</div>
+                    <div class="row__column">{{ __('general.preferences') }}</div>
                     <div class="row__column" style="flex: 2;">
                         <div class="input input--small">
-                            <label>{{ __('general.language') }}</label>
+                            <label>{{ __('user.language') }}</label>
                             <select name="language">
                                 @foreach ($languages as $key => $value)
                                     <option value="{{ $key }}" @if (Auth::user()->language === $key) selected @endif>{{ $value }}</option>
@@ -61,7 +61,7 @@
                             @include('partials.validation_error', ['payload' => 'language'])
                         </div>
                         <div class="input input--small">
-                            <label>{{ __('general.theme') }}</label>
+                            <label>{{ __('user.theme') }}</label>
                             <select name="theme">
                                 <option value="light" {{ Auth::user()->theme == 'light' ? 'selected' : '' }}>Light</option>
                                 <option value="dark" {{ Auth::user()->theme == 'dark' ? 'selected' : '' }}>Dark (Experimental)</option>
@@ -69,7 +69,7 @@
                             @include('partials.validation_error', ['payload' => 'theme'])
                         </div>
                         <div class="input input--small">
-                            <label>{{ __('general.currency') }}</label>
+                            <label>{{ __('user.currency') }}</label>
                             <select name="currency">
                                 @foreach ($currencies as $currency)
                                     <option value="{{ $currency->id }}" {{ Auth::user()->currency_id == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
@@ -78,19 +78,19 @@
                             @include('partials.validation_error', ['payload' => 'currency'])
                         </div>
                         <div class="input input--small mb-0">
-                            <label>Weekly Report</label>
+                            <label>{{ __('user.weekly_report') }}</label>
                             <div>
-                                <input type="radio" name="weekly_report" value="true" {{ Auth::user()->weekly_report ? 'checked' : '' }} /> Yes
+                                <input type="radio" name="weekly_report" value="true" {{ Auth::user()->weekly_report ? 'checked' : '' }} /> {{ __('actions.yes') }}
                             </div>
                             <div>
-                                <input type="radio" name="weekly_report" value="false" {{ Auth::user()->weekly_report ? '' : 'checked' }} /> No
+                                <input type="radio" name="weekly_report" value="false" {{ Auth::user()->weekly_report ? '' : 'checked' }} /> {{ __('actions.no') }}
                             </div>
                             @include('partials.validation_error', ['payload' => 'weekly_report'])
                         </div>
                     </div>
                 </div>
                 <div class="box__section box__section--highlight text-right">
-                    <button class="button">Update</button>
+                    <button class="button">{{ __('actions.save') }}</button>
                 </div>
             </form>
         </div>

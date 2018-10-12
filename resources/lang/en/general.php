@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'currency' => 'Currency',
-
     'dashboard' => 'Dashboard',
 
     'total_earned' => 'Total Earned',
@@ -23,14 +21,10 @@ return [
 
     'recent' => 'Recent',
 
-    'avatar' => 'Avatar',
-    'name' => 'Name',
-    'email' => 'E-mail',
-    'verify' => 'Verify',
-    'password' => 'Password',
-    'language' => 'Language',
-    'theme' => 'Theme',
-
     'recurrings' => 'Recurrings',
-    'recurring' => 'Recurring'
+    'recurring' => 'Recurring',
+
+    'profile' => 'Profile',
+    'account' => 'Account',
+    'preferences' => 'Preferences'
 ];

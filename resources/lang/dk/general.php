@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'currency' => 'Valuta',
-
     'dashboard' => 'Dashboard',
 
     'total_earned' => 'Samlet SOMETHING',
@@ -23,14 +21,10 @@ return [
 
     'recent' => 'Seneste',
 
-    'avatar' => 'Avatar',
-    'name' => 'Navn',
-    'email' => 'E-mail',
-    'verify' => 'Bekræfte',
-    'password' => 'Adgangskode',
-    'language' => 'Sprog',
-    'theme' => 'Tema',
-
     'recurrings' => 'Tilbagevendenden',
-    'recurring' => 'Tilbagevendende'
+    'recurring' => 'Tilbagevendende',
+
+    'profile' => 'Profil',
+    'account' => 'Account',
+    'preferences' => 'Præferencer'
 ];
