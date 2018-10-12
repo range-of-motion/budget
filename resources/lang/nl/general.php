@@ -26,5 +26,7 @@ return [
 
     'profile' => 'Profiel',
     'account' => 'Account',
-    'preferences' => 'Voorkeuren'
+    'preferences' => 'Voorkeuren',
+
+    'empty_state' => 'Er zijn nog geen :resource'
 ];

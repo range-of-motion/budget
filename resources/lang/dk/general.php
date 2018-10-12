@@ -26,5 +26,7 @@ return [
 
     'profile' => 'Profil',
     'account' => 'Account',
-    'preferences' => 'Præferencer'
+    'preferences' => 'Præferencer',
+
+    'empty_state' => 'Der er endnu ingen :resource'
 ];

@@ -26,5 +26,7 @@ return [
 
     'profile' => 'Profile',
     'account' => 'Account',
-    'preferences' => 'Preferences'
+    'preferences' => 'Preferences',
+
+    'empty_state' => 'There aren\'t any :resource yet'
 ];
