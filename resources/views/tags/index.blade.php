@@ -9,14 +9,14 @@
                 <h2>{{ __('general.tags') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/tags/create" class="button">Create Tag</a>
+                <a href="/tags/create" class="button">{{ __('actions.create') }} {{ __('general.tag') }}</a>
             </div>
         </div>
         <div class="box">
             @if (count($tags))
                 <div class="box__section box__section--header row">
-                    <div class="row__column">Name</div>
-                    <div class="row__column row__column--double" style="flex: 2;">Spendings</div>
+                    <div class="row__column">{{ __('fields.name') }}</div>
+                    <div class="row__column row__column--double" style="flex: 2;">{{ __('general.spendings') }}</div>
                 </div>
                 @foreach ($tags as $tag)
                     <div class="box__section row">
