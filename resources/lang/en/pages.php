@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'settings' => 'Settings'
+    'settings' => 'Settings',
+    'log_out' => 'Log Out'
 ];

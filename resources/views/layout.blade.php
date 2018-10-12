@@ -42,10 +42,10 @@
                                     </span>
                                     <ul slot="menu">
                                         <li>
-                                            <a href="/earnings/create">New earning</a>
+                                            <a href="/earnings/create">{{ __('actions.create') }} {{ __('general.earning') }}</a>
                                         </li>
                                         <li>
-                                            <a href="/spendings/create">New spending</a>
+                                            <a href="/spendings/create">{{ __('actions.create') }} {{ __('general.spending') }}</a>
                                         </li>
                                     </ul>
                                 </dropdown>
@@ -73,10 +73,10 @@
                                     </span>
                                     <ul slot="menu">
                                         <li>
-                                            <a href="/settings">Settings</a>
+                                            <a href="/settings">{{ __('pages.settings') }}</a>
                                         </li>
                                         <li>
-                                            <a href="/logout">Log out</a>
+                                            <a href="/logout">{{ __('pages.log_out') }}</a>
                                         </li>
                                     </ul>
                                 </dropdown>
