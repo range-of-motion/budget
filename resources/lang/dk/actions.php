@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'cancel' => 'Annullere',
     'create' => 'Opret',
     'edit' => 'Redigere',
     'save' => 'Gemme',

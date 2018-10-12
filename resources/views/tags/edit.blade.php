@@ -11,17 +11,17 @@
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small mb-0">
-                        <label>Name</label>
+                        <label>{{ __('fields.name') }}</label>
                         <input type="text" name="name" value="{{ $tag->name }}" />
                         @include('partials.validation_error', ['payload' => 'name'])
                     </div>
                 </div>
                 <div class="box__section box__section--highlight row row--right">
                     <div class="row__column row__column--compact row__column--middle">
-                        <a href="/tags">Cancel</a>
+                        <a href="/tags">{{ __('actions.cancel') }}</a>
                     </div>
                     <div class="row__column row__column--compact ml-2">
-                        <button class="button">Update</button>
+                        <button class="button">{{ __('actions.save') }}</button>
                     </div>
                 </div>
             </form>
