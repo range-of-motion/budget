@@ -14,7 +14,7 @@
                             <div class="box__section row row--seperate">
                                 <div class="row__column">
                                     <div class="color-dark">{{ $earning->description }}</div>
-                                    <div class="mt-1" style="font-size: 14px;">{{ $earning->formatted_happened_on }}</div>
+                                    <div class="mt-1" style="font-size: 14px;" title="{{ $earning->happened_on->format('Y-m-d') }}">{{ $earning->formatted_happened_on }}</div>
                                 </div>
                                 <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency !!} {{ $earning->formatted_amount }}</div>
                             </div>
@@ -35,7 +35,7 @@
                             <div class="box__section row row--seperate">
                                 <div class="row__column">
                                     <div class="color-dark">{{ $spending->description }}</div>
-                                    <div class="mt-1" style="font-size: 14px;">{{ $spending->formatted_happened_on }}</div>
+                                    <div class="mt-1" style="font-size: 14px;" title="{{ $spending->happened_on->format('Y-m-d') }}">{{ $spending->formatted_happened_on }}</div>
                                 </div>
                                 <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency !!} {{ $spending->formatted_amount }}</div>
                             </div>

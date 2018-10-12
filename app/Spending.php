@@ -9,7 +9,7 @@ use App\Helpers\Format;
 class Spending extends Model {
     use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'happened_on'];
 
     // Accessors
     public function getFormattedAmountAttribute() {
