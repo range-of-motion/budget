@@ -10,6 +10,7 @@
 @import 'components/box';
 @import 'components/input';
 @import 'components/date-picker';
+@import 'components/dropdown';
 @import 'components/helpers';
 
 body {
@@ -24,33 +25,4 @@ body {
 
 canvas {
     width: 100%;
-}
-
-.dropdown {
-    position: relative;
-}
-
-ul.dropdown__list {
-    position: absolute;
-    top: 60px;
-    right: 16px;
-    padding: 10px 0;
-    display: none;
-    flex-direction: column;
-    min-width: 140px;
-    list-style: none;
-    background: #FFF;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    border-radius: 5px;
-
-    li a {
-        padding: 5px 10px;
-        display: block;
-        white-space: nowrap;
-
-        &:hover {
-            color: #FFF;
-            background: $colors-primary;
-        }
-    }
 }
