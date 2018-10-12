@@ -1,7 +1,7 @@
 <template>
     <div>
         <input type="text" :name="name" v-model="form" />
-        <div class="date-picker">
+        <div class="date-picker mt-1">
             <div class="date-picker__top">
                 <button @click="previous">
                     <i class="fa fa-arrow-left"></i>

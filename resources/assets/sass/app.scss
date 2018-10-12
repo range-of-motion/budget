@@ -9,6 +9,7 @@
 @import 'components/card';
 @import 'components/box';
 @import 'components/input';
+@import 'components/date-picker';
 @import 'components/helpers';
 
 body {
@@ -23,56 +24,6 @@ body {
 
 canvas {
     width: 100%;
-}
-
-// Date Picker
-.date-picker {
-    width: 352px;
-    border: 1px solid $colors-border;
-    border-radius: 5px;
-
-    .date-picker__top {
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid $colors-border;
-
-        button {
-            border: none;
-        }
-    }
-
-    .date-picker__bottom {
-        display: flex;
-        flex-wrap: wrap;
-
-        button {
-            display: block;
-            width: 50px;
-            height: 50px;
-            border-top: 1px solid $colors-border;
-            border-left: none;
-            border-right: 1px solid $colors-border;
-            border-bottom: none;
-            border-radius: 0;
-
-            &:nth-child(-n + 7) {
-                border-top: none;
-            }
-
-            &:nth-child(7n) {
-                border-right: none;
-            }
-
-            &:hover {
-                cursor: pointer;
-            }
-
-            &.active {
-                color: $colors-primary;
-            }
-        }
-    }
 }
 
 .dropdown {

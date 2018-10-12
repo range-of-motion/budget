@@ -1,0 +1,86 @@
+.date-picker {
+    width: 372px;
+    border-radius: 5px;
+    border: 1px solid red;
+
+    button {
+        font: inherit;
+        background: none;
+        border: none;
+    }
+
+    .date-picker__top {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid red;
+    }
+
+    .date-picker__bottom {
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+
+        button {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 2px;
+
+            &:nth-child(-n + 7) {
+                border-top: none;
+            }
+
+            &:nth-child(7n) {
+                border-right: none;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.active {
+                background: $colors-primary;
+                color: #FFF;
+            }
+        }
+    }
+}
+
+.theme-light .date-picker {
+    background: $colors-light-body;
+    border-color: $colors-light-border;
+
+    .date-picker__top {
+        border-color: $colors-light-border;
+    }
+
+    button {
+        color: #000;
+    }
+
+    .date-picker__bottom button {
+        &:hover {
+            background: $colors-light-border;
+        }
+    }
+}
+
+.theme-dark .date-picker {
+    background: $colors-dark-body;
+    border-color: $colors-dark-border;
+
+    .date-picker__top {
+        border-color: $colors-dark-border;
+    }
+
+    button {
+        color: #FFF;
+    }
+
+    .date-picker__bottom button {
+        &:hover {
+            background: $colors-dark-border;
+        }
+    }
+}
