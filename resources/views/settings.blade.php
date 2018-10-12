@@ -12,7 +12,7 @@
                     <div class="row__column">{{ __('general.profile') }}</div>
                     <div class="row__column" style="flex: 2;">
                         <div class="input input--small">
-                            <label>{{ __('user.avatar') }}</label>
+                            <label>{{ __('fields.avatar') }}</label>
                             @if (Auth::user()->avatar)
                                 <img src="/storage/avatars/{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; border-radius: 5px; object-fit: cover;" />
                             @else
@@ -22,7 +22,7 @@
                             @include('partials.validation_error', ['payload' => 'avatar'])
                         </div>
                         <div class="input input--small">
-                            <label>@lang('user.name')</label>
+                            <label>@lang('fields.name')</label>
                             <input type="text" name="name" value="{{ Auth::user()->name }}" />
                         </div>
                     </div>
@@ -31,17 +31,17 @@
                     <div class="row__column">{{ __('general.account') }}</div>
                     <div class="row__column" style="flex: 2;">
                         <div class="input input--small">
-                            <label>{{ __('user.email') }}</label>
+                            <label>{{ __('fields.email') }}</label>
                             <input type="text" name="email" value="{{ Auth::user()->email }}" />
                         </div>
                         <div class="row">
                             <div class="row__column input">
-                                <label>{{ __('user.password') }}</label>
+                                <label>{{ __('fields.password') }}</label>
                                 <input type="password" name="password" />
                                 @include('partials.validation_error', ['payload' => 'password'])
                             </div>
                             <div class="row__column input ml-2">
-                                <label>{{ __('actions.verify') }} {{ __('user.password') }}</label>
+                                <label>{{ __('actions.verify') }} {{ __('fields.password') }}</label>
                                 <input type="password" name="password_confirmation" />
                                 @include('partials.validation_error', ['payload' => 'password_confirmation'])
                             </div>
@@ -52,7 +52,7 @@
                     <div class="row__column">{{ __('general.preferences') }}</div>
                     <div class="row__column" style="flex: 2;">
                         <div class="input input--small">
-                            <label>{{ __('user.language') }}</label>
+                            <label>{{ __('fields.language') }}</label>
                             <select name="language">
                                 @foreach ($languages as $key => $value)
                                     <option value="{{ $key }}" @if (Auth::user()->language === $key) selected @endif>{{ $value }}</option>
@@ -61,7 +61,7 @@
                             @include('partials.validation_error', ['payload' => 'language'])
                         </div>
                         <div class="input input--small">
-                            <label>{{ __('user.theme') }}</label>
+                            <label>{{ __('fields.theme') }}</label>
                             <select name="theme">
                                 <option value="light" {{ Auth::user()->theme == 'light' ? 'selected' : '' }}>Light</option>
                                 <option value="dark" {{ Auth::user()->theme == 'dark' ? 'selected' : '' }}>Dark (Experimental)</option>
@@ -69,7 +69,7 @@
                             @include('partials.validation_error', ['payload' => 'theme'])
                         </div>
                         <div class="input input--small">
-                            <label>{{ __('user.currency') }}</label>
+                            <label>{{ __('fields.currency') }}</label>
                             <select name="currency">
                                 @foreach ($currencies as $currency)
                                     <option value="{{ $currency->id }}" {{ Auth::user()->currency_id == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
@@ -78,7 +78,7 @@
                             @include('partials.validation_error', ['payload' => 'currency'])
                         </div>
                         <div class="input input--small mb-0">
-                            <label>{{ __('user.weekly_report') }}</label>
+                            <label>{{ __('fields.weekly_report') }}</label>
                             <div>
                                 <input type="radio" name="weekly_report" value="true" {{ Auth::user()->weekly_report ? 'checked' : '' }} /> {{ __('actions.yes') }}
                             </div>

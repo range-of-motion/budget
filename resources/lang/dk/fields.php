@@ -1,8 +1,9 @@
 <?php
 
 return [
-    'avatar' => 'Avatar',
     'name' => 'Navn',
+
+    'avatar' => 'Avatar',
     'email' => 'E-mail',
     'password' => 'Adgangskode',
     'language' => 'Sprog',
