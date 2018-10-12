@@ -24,8 +24,13 @@
                         @include('partials.validation_error', ['payload' => 'amount'])
                     </div>
                 </div>
-                <div class="box__section box__section--highlight text-right">
-                    <button class="button">@lang('actions.save')</button>
+                <div class="box__section box__section--highlight row row--right">
+                    <div class="row__column row__column--compact row__column--middle">
+                        <a href="/earnings">{{ __('actions.cancel') }}</a>
+                    </div>
+                    <div class="row__column row__column--compact ml-2">
+                        <button class="button">@lang('actions.save')</button>
+                    </div>
                 </div>
             </form>
         </div>
