@@ -9,7 +9,7 @@
                 <h2>{{ __('general.spendings') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/spendings/create" class="button">Create Spending</a>
+                <a href="/spendings/create" class="button">{{ __('actions.create') }} {{ __('general.spending') }}</a>
             </div>
         </div>
         @if (count($spendingsByMonth))

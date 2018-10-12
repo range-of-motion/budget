@@ -9,7 +9,7 @@
                 <h2>{{ __('general.earnings') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/earnings/create" class="button">Create Earning</a>
+                <a href="/earnings/create" class="button">{{ __('actions.create') }} {{ __('general.earning') }}</a>
             </div>
         </div>
         <div class="box mt-3">

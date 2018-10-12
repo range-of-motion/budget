@@ -9,7 +9,7 @@
                 <h2>{{ __('general.recurrings') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/recurrings/create" class="button">Create Recurring</a>
+                <a href="/recurrings/create" class="button">{{ __('actions.create') }} {{ __('general.recurring') }}</a>
             </div>
         </div>
         <div class="box mt-3">
