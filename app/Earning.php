@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Helpers\Format;
 
 class Earning extends Model {
     use SoftDeletes;
@@ -18,9 +19,7 @@ class Earning extends Model {
     }
 
     public function getFormattedHappenedOnAttribute() {
-        $secondsDifference = strtotime(date('Y-m-d')) - strtotime($this->happened_on);
-
-        return ($secondsDifference / 60 / 60 / 24) . ' days ago';
+        return Format::relativeTimeFormat($this->happened_on);
     }
 
     // Relations
