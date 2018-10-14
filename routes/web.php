@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function () {
         'destroy'
     ]);
 
+    Route::resource('/imports', 'ImportController')->only(['index']);
+
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');
 

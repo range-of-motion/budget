@@ -33,6 +33,9 @@
                             <li>
                                 <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('models.tags') }}</span></a>
                             </li>
+                            <li>
+                                <a href="/imports" {!! (Request::path() == 'imports') ? 'class="active"' : '' !!}><i class="far fa-upload fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('models.imports') }}</span></a>
+                            </li>
                         </ul>
                         <ul class="navigation__menu">
                             <li>

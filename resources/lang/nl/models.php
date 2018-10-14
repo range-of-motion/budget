@@ -12,4 +12,7 @@ return [
 
     'spendings' => 'Uitgaven',
     'spending' => 'Uitgave',
+
+    'imports' => 'Imports',
+    'import' => 'Import'
 ];

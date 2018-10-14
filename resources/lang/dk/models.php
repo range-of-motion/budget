@@ -12,4 +12,7 @@ return [
 
     'spendings' => 'Udgifter',
     'spending' => 'Udgift',
+
+    'imports' => 'Imports',
+    'import' => 'Import'
 ];
