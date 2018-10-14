@@ -30,4 +30,8 @@ class Space extends Model {
     public function recurrings() {
         return $this->hasMany(Recurring::class);
     }
+
+    public function imports() {
+        return $this->hasMany(Import::class);
+    }
 }
