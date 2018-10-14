@@ -14,6 +14,7 @@ class CreateImportsTable extends Migration {
             $table->string('file');
             $table->integer('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
 
             // FKs
             $table->foreign('space_id')->references('id')->on('spaces');
