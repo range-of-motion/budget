@@ -22,6 +22,10 @@ class Spending extends Model {
     }
 
     // Relations
+    public function import() {
+        return $this->belongsTo(Import::class);
+    }
+
     public function recurring() {
         return $this->belongsTo(Recurring::class);
     }
