@@ -33,9 +33,6 @@
                             <li>
                                 <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('models.tags') }}</span></a>
                             </li>
-                            <li>
-                                <a href="/imports" {!! (Request::path() == 'imports') ? 'class="active"' : '' !!}><i class="far fa-upload fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('models.imports') }}</span></a>
-                            </li>
                         </ul>
                         <ul class="navigation__menu">
                             <li>
@@ -75,6 +72,9 @@
                                         <img src="{{ Auth::user()->avatar ? '/storage/avatars/' . Auth::user()->avatar : 'http://placehold.it/50x50' }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
                                     </span>
                                     <ul slot="menu">
+                                        <li>
+                                            <a href="/imports">{{ __('models.imports') }}</a>
+                                        </li>
                                         <li>
                                             <a href="/settings">{{ __('pages.settings') }}</a>
                                         </li>
