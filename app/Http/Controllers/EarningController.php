@@ -56,6 +56,7 @@ class EarningController extends Controller {
         // TODO VALIDATE
 
         $earning->fill([
+            'happened_on' => $request->input('date'),
             'description' => $request->input('description'),
             'amount' => $request->input('amount')
         ])->save();

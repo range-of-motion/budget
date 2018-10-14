@@ -10,7 +10,7 @@
                 <div class="box__section">
                     <div class="input input--small">
                         <label>Date</label>
-                        <DatePicker></DatePicker>
+                        <DatePicker start-date="{{ $earning->happened_on }}"></DatePicker>
                         @include('partials.validation_error', ['payload' => 'date'])
                     </div>
                     <div class="input input--small">

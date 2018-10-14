@@ -10,7 +10,7 @@ class Earning extends Model {
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['description', 'amount'];
+    protected $fillable = ['happened_on', 'description', 'amount'];
 
     // Accessors
     public function getFormattedAmountAttribute() {
