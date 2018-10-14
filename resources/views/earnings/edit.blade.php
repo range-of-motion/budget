@@ -22,7 +22,7 @@
                     </div>
                     <div class="input input--small mb-0">
                         <label>Amount</label>
-                        <input type="text" name="amount" value="{{ $earning->amount }}" />
+                        <input type="text" name="amount" value="{{ $earning->formatted_amount }}" />
                         @include('partials.validation_error', ['payload' => 'amount'])
                     </div>
                 </div>
