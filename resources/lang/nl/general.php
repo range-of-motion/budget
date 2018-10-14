@@ -10,19 +10,7 @@ return [
 
     'analysis' => 'Analyse',
 
-    'earnings' => 'Inkomsten',
-    'earning' => 'Inkomst',
-
-    'spendings' => 'Uitgaven',
-    'spending' => 'Uitgave',
-
-    'tags' => 'Etiketten',
-    'tag' => 'Etiket',
-
     'recent' => 'Recente',
-
-    'recurrings' => 'Terugkerenden',
-    'recurring' => 'Terugkerend',
 
     'profile' => 'Profiel',
     'account' => 'Account',

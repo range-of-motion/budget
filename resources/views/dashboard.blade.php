@@ -8,7 +8,7 @@
         <div class="row row--gutter row--responsive my-3">
             <div class="row__column">
                 <div class="box">
-                    <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('general.earnings') }}</div>
+                    <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('models.earnings') }}</div>
                     @if (count($recentEarnings))
                         @foreach ($recentEarnings as $earning)
                             <div class="box__section row row--seperate">
@@ -29,7 +29,7 @@
             </div>
             <div class="row__column">
                 <div class="box">
-                    <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('general.spendings') }}</div>
+                    <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('models.spendings') }}</div>
                     @if (count($recentSpendings))
                         @foreach ($recentSpendings as $spending)
                             <div class="box__section row row--seperate">
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="box mb-3">
-            <div class="box__section box__section--header">Most Expensive {{ __('general.tags') }}</div>
+            <div class="box__section box__section--header">Most Expensive {{ __('models.tags') }}</div>
             @if (count($mostExpensiveTags))
                 @foreach ($mostExpensiveTags as $index => $tag)
                     <div class="box__section row row--seperate">

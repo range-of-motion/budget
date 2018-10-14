@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', __('actions.create') . ' ' . __('general.spending'))
+@section('title', __('actions.create') . ' ' . __('models.spending'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('actions.create') }} {{ __('general.spending') }}</h2>
+        <h2>{{ __('actions.create') }} {{ __('models.spending') }}</h2>
         <div class="box mt-3">
             <form method="POST" action="/spendings" autocomplete="off">
                 {{ csrf_field() }}

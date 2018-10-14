@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', __('actions.edit') . ' ' . __('general.earning'))
+@section('title', __('actions.edit') . ' ' . __('models.earning'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('actions.edit') }} {{ __('general.earning') }}</h2>
+        <h2>{{ __('actions.edit') }} {{ __('models.earning') }}</h2>
         <div class="box mt-3">
             <form method="POST" action="/earnings/{{ $earning->id }}" autocomplete="off">
                 {{ method_field('PATCH') }}

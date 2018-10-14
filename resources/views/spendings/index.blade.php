@@ -1,15 +1,15 @@
 @extends('layout')
 
-@section('title', __('general.spendings'))
+@section('title', __('models.spendings'))
 
 @section('body')
     <div class="wrapper my-3">
         <div class="row">
             <div class="row__column row__column--middle">
-                <h2>{{ __('general.spendings') }}</h2>
+                <h2>{{ __('models.spendings') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/spendings/create" class="button">{{ __('actions.create') }} {{ __('general.spending') }}</a>
+                <a href="/spendings/create" class="button">{{ __('actions.create') }} {{ __('models.spending') }}</a>
             </div>
         </div>
         @if (count($spendingsByMonth))

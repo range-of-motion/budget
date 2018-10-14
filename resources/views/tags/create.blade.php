@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', __('actions.create') . ' ' . __('general.tag'))
+@section('title', __('actions.create') . ' ' . __('models.tag'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('actions.create') }} {{ __('general.tag') }}</h2>
+        <h2>{{ __('actions.create') }} {{ __('models.tag') }}</h2>
         <div class="box mt-3">
             <form method="POST" action="/tags" autocomplete="off">
                 {{ csrf_field() }}

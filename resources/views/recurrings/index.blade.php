@@ -1,15 +1,15 @@
 @extends('layout')
 
-@section('title', __('general.recurrings'))
+@section('title', __('models.recurrings'))
 
 @section('body')
     <div class="wrapper my-3">
         <div class="row mb-3">
             <div class="row__column row__column--middle">
-                <h2>{{ __('general.recurrings') }}</h2>
+                <h2>{{ __('models.recurrings') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/recurrings/create" class="button">{{ __('actions.create') }} {{ __('general.recurring') }}</a>
+                <a href="/recurrings/create" class="button">{{ __('actions.create') }} {{ __('models.recurring') }}</a>
             </div>
         </div>
         <div class="box mt-3">

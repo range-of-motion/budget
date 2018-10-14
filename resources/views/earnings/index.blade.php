@@ -1,15 +1,15 @@
 @extends('layout')
 
-@section('title', __('general.earnings'))
+@section('title', __('models.earnings'))
 
 @section('body')
     <div class="wrapper my-3">
         <div class="row">
             <div class="row__column row__column--middle">
-                <h2>{{ __('general.earnings') }}</h2>
+                <h2>{{ __('models.earnings') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/earnings/create" class="button">{{ __('actions.create') }} {{ __('general.earning') }}</a>
+                <a href="/earnings/create" class="button">{{ __('actions.create') }} {{ __('models.earning') }}</a>
             </div>
         </div>
         <div class="box mt-3">
