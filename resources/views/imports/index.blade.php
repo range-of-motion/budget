@@ -9,13 +9,11 @@
             @if (count($imports))
                 <div class="box__section box__section--header row">
                     <div class="row__column">Name</div>
-                    <div class="row__column">Type</div>
                     <div class="row__column">Status</div>
                 </div>
                 @foreach ($imports as $import)
                     <div class="box__section row">
                         <div class="row__column">{{ $import->name }}</div>
-                        <div class="row__column">{{ $import->type }}</div>
                         <div class="row__column">{{ $import->status }}</div>
                     </div>
                 @endforeach
