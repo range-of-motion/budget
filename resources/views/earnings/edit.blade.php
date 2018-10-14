@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('actions.edit') . ' ' . __('general.earning'))
+
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('actions.edit') }} {{ __('general.earning') }}</h2>
