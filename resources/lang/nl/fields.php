@@ -9,5 +9,9 @@ return [
     'language' => 'Taal',
     'theme' => 'Thema',
     'currency' => 'Valuta',
-    'weekly_report' => 'Wekelijks Verslag'
+    'weekly_report' => 'Wekelijks Verslag',
+
+    'date' => 'Datum',
+    'description' => 'Omschrijving',
+    'amount' => 'Bedrag'
 ];

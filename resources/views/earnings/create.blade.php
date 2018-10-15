@@ -10,17 +10,17 @@
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">
-                        <label>Date</label>
+                        <label>{{ __('fields.date') }}</label>
                         <DatePicker></DatePicker>
                         @include('partials.validation_error', ['payload' => 'date'])
                     </div>
                     <div class="input input--small">
-                        <label>Description</label>
+                        <label>{{ __('fields.description') }}</label>
                         <input type="text" name="description" />
                         @include('partials.validation_error', ['payload' => 'description'])
                     </div>
                     <div class="input input--small mb-0">
-                        <label>Amount</label>
+                        <label>{{ __('fields.amount') }}</label>
                         <input type="text" name="amount" />
                         @include('partials.validation_error', ['payload' => 'amount'])
                     </div>

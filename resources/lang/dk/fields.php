@@ -9,5 +9,9 @@ return [
     'language' => 'Sprog',
     'theme' => 'Tema',
     'currency' => 'Valuta',
-    'weekly_report' => 'Ugentlig Rapport'
+    'weekly_report' => 'Ugentlig Rapport',
+
+    'date' => 'Dato',
+    'description' => 'Beskrivelse',
+    'amount' => 'Beløb'
 ];
