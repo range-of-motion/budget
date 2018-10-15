@@ -43,7 +43,11 @@ Route::group(['middleware' => ['auth']], function () {
         'destroy'
     ]);
 
-    Route::resource('/imports', 'ImportController')->only(['index']);
+    Route::name('imports.')->group(function () {
+        Route::get('/imports', 'ImportController@index')->name('index');
+        Route::get('/imports/create', 'ImportController@create')->name('create');
+        Route::post('/imports', 'ImportController@store')->name('store');
+    });
 
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');

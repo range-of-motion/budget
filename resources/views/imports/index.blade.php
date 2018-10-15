@@ -4,7 +4,14 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2 class="mb-3">{{ __('models.imports') }}</h2>
+        <div class="row mb-3">
+            <div class="row__column row__column--middle">
+                <h2>{{ __('models.imports') }}</h2>
+            </div>
+            <div class="row__column row__column--compact row__column--middle">
+                <a href="/imports/create" class="button">{{ __('actions.create') }} {{ __('models.import') }}</a>
+            </div>
+        </div>
         <div class="box">
             @if (count($imports))
                 <div class="box__section box__section--header row">
