@@ -10,6 +10,14 @@ class Spending extends Model {
 
     protected $dates = ['deleted_at'];
 
+    protected $fillable = [
+        'space_id',
+        'import_id',
+        'happened_on',
+        'description',
+        'amount'
+    ];
+
     // Accessors
     public function getFormattedAmountAttribute() {
         return number_format($this->amount / 100, 2);
