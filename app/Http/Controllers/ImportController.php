@@ -99,7 +99,12 @@ class ImportController extends Controller {
     public function postComplete(Request $request, Import $import) {
         $this->authorize('modify', $import);
 
-        // TODO VALIDATE
+        // TODO WRITE CUSTOM VALIDATION FOR REQUIRED_WITH ROWS.*.IMPORT
+        $request->validate([
+            'rows.*.happened_on' => 'required|date|date_format:Y-m-d',
+            'rows.*.description' => 'required|max:255',
+            'rows.*.amount' => 'required|regex:/^\d*(\.\d{2})?$/'
+        ]);
 
         foreach ($request->input('rows') as $row) {
             if (isset($row['import'])) {
