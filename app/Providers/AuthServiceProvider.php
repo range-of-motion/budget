@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Import;
+use App\Policies\ImportPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Policies\RecurringPolicy;
@@ -19,7 +21,8 @@ class AuthServiceProvider extends ServiceProvider
         'App\Earning' => 'App\Policies\EarningPolicy',
         'App\Spending' => 'App\Policies\SpendingPolicy',
         Recurring::class => RecurringPolicy::class,
-        'App\Tag' => 'App\Policies\TagPolicy'
+        'App\Tag' => 'App\Policies\TagPolicy',
+        Import::class => ImportPolicy::class
     ];
 
     /**

@@ -37,7 +37,7 @@ class ImportController extends Controller {
     }
 
     public function getPrepare(Import $import) {
-        // TODO AUTHORIZE
+        $this->authorize('modify', $import);
 
         $headers = [];
 
@@ -55,7 +55,7 @@ class ImportController extends Controller {
     }
 
     public function postPrepare(Request $request, Import $import) {
-        // TODO AUTHORIZE
+        $this->authorize('modify', $import);
 
         // TODO VALIDATE
 
@@ -70,7 +70,7 @@ class ImportController extends Controller {
     }
 
     public function getComplete(Import $import) {
-        // TODO AUTHORIZE
+        $this->authorize('modify', $import);
 
         $file = fopen(storage_path('app/imports/' . $import->file), 'r');
 
@@ -93,7 +93,7 @@ class ImportController extends Controller {
     }
 
     public function postComplete(Request $request, Import $import) {
-        // TODO AUTHORIZE
+        $this->authorize('modify', $import);
 
         // TODO VALIDATE
 
