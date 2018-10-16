@@ -5,6 +5,8 @@ Route::get('/', 'IndexController@index')->name('index');
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@store');
 
+Route::get('/verify/{token}', 'VerifyController')->name('verify');
+
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::post('/register', 'RegisterController@store');
 
