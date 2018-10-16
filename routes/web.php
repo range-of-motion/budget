@@ -55,9 +55,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/settings', 'SettingsController@store');
 
     Route::get('/spaces/{id}', function ($id) {
-        // TODO CHECK IF SPACE IS ACCESSIBLE BY USER
-
         $space = App\Space::find($id);
+
+        if ($space->users->contains(Auth::user()->id)) {
+            return redirect()->route('dashboard');
+        }
 
         session(['space' => $space]);
 
