@@ -25,12 +25,10 @@ class TagController extends Controller {
     public function store(Request $request) {
         $request->validate($this->validationRules);
 
-        $tag = new Tag;
-
-        $tag->space_id = session('space')->id;
-        $tag->name = $request->name;
-
-        $tag->save();
+        Tag::create([
+            'space_id' => session('space')->id,
+            'name' => $request->input('name')
+        ]);
 
         return redirect()->route('tags.index');
     }
@@ -46,9 +44,9 @@ class TagController extends Controller {
 
         $request->validate($this->validationRules);
 
-        $tag->name = $request->input('name');
-
-        $tag->save();
+        $tag->fill([
+            'name' => $request->input('name')
+        ])->save();
 
         return redirect()->route('tags.index');
     }
