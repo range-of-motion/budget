@@ -21,7 +21,7 @@
                 @foreach ($imports as $import)
                     <div class="box__section row">
                         <div class="row__column">{{ $import->name }}</div>
-                        <div class="row__column">{{ $import->status }}</div>
+                        <div class="row__column">{{ $import->status }} {!! $import->status == 0 ? '<a href="/imports/' . $import->id . '/prepare">Prepare</a>' : '' !!}</div>
                     </div>
                 @endforeach
             @else

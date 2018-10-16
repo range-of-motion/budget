@@ -34,4 +34,37 @@ class ImportController extends Controller {
 
         return redirect()->route('imports.index');
     }
+
+    public function getPrepare(Import $import) {
+        // TODO AUTHORIZE
+
+        $headers = [];
+
+        $file = fopen(storage_path('app/imports/' . $import->file), 'r');
+
+        while ($row = fgetcsv($file, 999, ',')) {
+            foreach ($row as $column) {
+                $headers[] = $column;
+            }
+
+            break;
+        }
+
+        return view('imports.prepare', compact('headers'));
+    }
+
+    public function postPrepare(Request $request, Import $import) {
+        // TODO AUTHORIZE
+
+        // TODO VALIDATE
+
+        $import->fill([
+            'column_happened_on' => $request->input('column_happened_on'),
+            'column_description' => $request->input('column_description'),
+            'column_amount' => $request->input('column_amount'),
+            'status' => 1
+        ])->save();
+
+        return redirect()->route('imports.index');
+    }
 }
