@@ -8,6 +8,10 @@ use Auth;
 use App\Tag;
 
 class TagController extends Controller {
+    private $validationRules = [
+        'name' => 'required|max:255'
+    ];
+
     public function index() {
         return view('tags.index', [
             'tags' => session('space')->tags()->orderBy('created_at', 'DESC')->get()
@@ -19,9 +23,7 @@ class TagController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'name' => 'required|max:255'
-        ]);
+        $request->validate($this->validationRules);
 
         $tag = new Tag;
 
@@ -42,9 +44,7 @@ class TagController extends Controller {
     public function update(Request $request, Tag $tag) {
         $this->authorize('update', $tag);
 
-        $request->validate([
-            'name' => 'required|max:255'
-        ]);
+        $request->validate($this->validationRules);
 
         $tag->name = $request->input('name');
 
