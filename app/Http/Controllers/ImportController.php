@@ -57,7 +57,11 @@ class ImportController extends Controller {
     public function postPrepare(Request $request, Import $import) {
         $this->authorize('modify', $import);
 
-        // TODO VALIDATE
+        $request->validate([
+            'column_happened_on' => 'required|integer',
+            'column_description' => 'required|integer',
+            'column_amount' => 'required|integer',
+        ]);
 
         $import->fill([
             'column_happened_on' => $request->input('column_happened_on'),
