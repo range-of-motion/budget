@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Import;
+use App\Spending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -63,6 +64,53 @@ class ImportController extends Controller {
             'column_description' => $request->input('column_description'),
             'column_amount' => $request->input('column_amount'),
             'status' => 1
+        ])->save();
+
+        return redirect()->route('imports.index');
+    }
+
+    public function getComplete(Import $import) {
+        // TODO AUTHORIZE
+
+        $file = fopen(storage_path('app/imports/' . $import->file), 'r');
+
+        $heading = true;
+        $rows = [];
+
+        while ($row = fgetcsv($file, 999, ',')) {
+            if (!$heading) {
+                $rows[] = [
+                    'happened_on' => $row[$import->column_happened_on],
+                    'description' => $row[$import->column_description],
+                    'amount' => $row[$import->column_amount]
+                ];
+            }
+
+            $heading = false;
+        }
+
+        return view('imports.complete', compact('rows'));
+    }
+
+    public function postComplete(Request $request, Import $import) {
+        // TODO AUTHORIZE
+
+        // TODO VALIDATE
+
+        foreach ($request->input('rows') as $row) {
+            if (isset($row['import'])) {
+                Spending::create([
+                    'space_id' => session('space')->id,
+                    'import_id' => $import->id,
+                    'happened_on' => $row['happened_on'],
+                    'description' => $row['description'],
+                    'amount' => (int) ($row['amount'] * 100)
+                ]);
+            }
+        }
+
+        $import->fill([
+            'status' => 2
         ])->save();
 
         return redirect()->route('imports.index');
