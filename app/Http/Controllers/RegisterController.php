@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
-use App\Mail\ConfirmRegistration;
+use App\Mail\VerifyRegistration;
 use App\Currency;
 use App\User;
 use App\Space;
@@ -47,7 +47,7 @@ class RegisterController extends Controller {
 
         $user->spaces()->attach($space->id, ['role' => 'admin']);
 
-        Mail::to($user->email)->queue(new ConfirmRegistration($user));
+        Mail::to($user->email)->queue(new VerifyRegistration($user));
 
         return redirect()
             ->route('login')

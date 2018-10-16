@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\User;
 
-class ConfirmRegistration extends Mailable {
+class VerifyRegistration extends Mailable {
     use Queueable, SerializesModels;
 
     protected $user;
@@ -19,7 +19,7 @@ class ConfirmRegistration extends Mailable {
     }
 
     public function build() {
-        return $this->view('emails.confirm_registration')
+        return $this->view('emails.verify_registration')
             ->with([
                 'name' => $this->user->name
             ]);
