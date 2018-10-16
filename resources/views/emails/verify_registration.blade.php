@@ -7,5 +7,5 @@
 
     No more dealing with pesky, half-assed spreadsheets.
 
-    <a href="{{ config('app.url') . '/dashboard' }}">Go get started</a>
+    <a href="{{ config('app.url') . '/verify/' . $verification_token }}">Verify</a>
 @endsection
