@@ -63,6 +63,8 @@ class ImportController extends Controller {
             'column_amount' => 'required|integer',
         ]);
 
+        // Storing which columns in the CSV are used for the date, description and amount of a transaction
+        // Setting status to 1 means the preparations (figuring out which columns should be used) are done
         $import->fill([
             'column_happened_on' => $request->input('column_happened_on'),
             'column_description' => $request->input('column_description'),
