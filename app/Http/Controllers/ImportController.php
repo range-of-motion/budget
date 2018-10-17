@@ -42,13 +42,10 @@ class ImportController extends Controller {
         $headers = [];
 
         $file = fopen(storage_path('app/imports/' . $import->file), 'r');
+        $firstRow = fgetcsv($file, 999, ',');
 
-        while ($row = fgetcsv($file, 999, ',')) {
-            foreach ($row as $column) {
-                $headers[] = $column;
-            }
-
-            break;
+        foreach ($firstRow as $column) {
+            $headers[] = $column;
         }
 
         return view('imports.prepare', compact('headers'));
@@ -90,9 +87,9 @@ class ImportController extends Controller {
                     'description' => $row[$import->column_description],
                     'amount' => $row[$import->column_amount]
                 ];
+            } else {
+                $heading = false;
             }
-
-            $heading = false;
         }
 
         return view('imports.complete', compact('rows'));
