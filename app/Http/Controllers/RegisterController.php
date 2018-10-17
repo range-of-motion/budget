@@ -53,7 +53,7 @@ class RegisterController extends Controller {
             ->route('login')
             ->with([
                 'alert_type' => 'success',
-                'alert_message' => 'You\'ve succesfully registered'
+                'alert_message' => 'You\'ve succesfully registered, check your e-mail to verify'
             ]);
     }
 }
