@@ -17,11 +17,17 @@
                 <div class="box__section box__section--header row">
                     <div class="row__column">Name</div>
                     <div class="row__column">Status</div>
+                    <div class="row__column row__column--compact" style="width: 100px;"></div>
                 </div>
                 @foreach ($imports as $import)
                     <div class="box__section row">
                         <div class="row__column">{{ $import->name }}</div>
-                        <div class="row__column">{{ $import->status }} {!! $import->status == 0 ? '<a href="/imports/' . $import->id . '/prepare">Prepare</a>' : '' !!} {!! $import->status == 1 ? '<a href="/imports/' . $import->id . '/complete">Complete</a>' : '' !!}</div>
+                        <div class="row__column">{{ $import->status < 2 ? $import->status + 1 . ' / 3' : 'Completed' }}</div>
+                        <div class="row__column row__column--compact text-right" style="width: 100px;">
+                            @if ($import->status < 2)
+                                <a href="/imports/{{ $import->id }}/{{ $import->status == 0 ? 'prepare' : 'complete' }}">Next</a>
+                            @endif
+                        </div>
                     </div>
                 @endforeach
             @else
