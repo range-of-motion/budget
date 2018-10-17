@@ -13,5 +13,7 @@ return [
 
     'date' => 'Datum',
     'description' => 'Omschrijving',
-    'amount' => 'Bedrag'
+    'amount' => 'Bedrag',
+
+    'file' => 'Bestand'
 ];
