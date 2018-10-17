@@ -51,3 +51,7 @@ php artisan key:generate
 7. Run queues
 
 `php artisan queue:work`
+
+## Contact
+
+* [Discord](https://discord.gg/QFQdvy3)
