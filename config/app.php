@@ -83,7 +83,8 @@ return [
         'en' => 'English',
         'nl' => 'Dutch',
         'dk' => 'Danish',
-        'de' => 'German'
+        'de' => 'German',
+        'fr' => 'French'
     ],
 
     /*
