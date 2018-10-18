@@ -23,13 +23,13 @@ class DashboardController extends Controller {
 
         $recentEarnings = session('space')
             ->earnings()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('happened_on', 'DESC')
             ->limit(3)
             ->get();
 
         $recentSpendings = session('space')
             ->spendings()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('happened_on', 'DESC')
             ->limit(3)
             ->get();
 
