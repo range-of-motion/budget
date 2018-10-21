@@ -13,12 +13,15 @@
             </div>
             <div>
                 <input type="text" name="rows[{{ $index }}][happened_on]" value="{{ $row['happened_on'] }}" />
+                {{ $errors->first('rows.' . $index . '.happened_on') }}
             </div>
             <div>
                 <input type="text" name="rows[{{ $index }}][description]" value="{{ $row['description'] }}" />
+                {{ $errors->first('rows.' . $index . '.description') }}
             </div>
             <div>
                 <input type="text" name="rows[{{ $index }}][amount]" value="{{ $row['amount'] }}" />
+                {{ $errors->first('rows.' . $index . '.amount') }}
             </div>
         </div>
     @endforeach

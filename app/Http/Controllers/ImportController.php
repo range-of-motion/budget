@@ -6,6 +6,8 @@ use App\Import;
 use App\Spending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
 
 class ImportController extends Controller {
     public function index() {
@@ -98,12 +100,27 @@ class ImportController extends Controller {
     public function postComplete(Request $request, Import $import) {
         $this->authorize('modify', $import);
 
-        // TODO WRITE CUSTOM VALIDATION FOR REQUIRED_WITH ROWS.*.IMPORT
-        $request->validate([
-            'rows.*.happened_on' => 'required|date|date_format:Y-m-d',
-            'rows.*.description' => 'required|max:255',
-            'rows.*.amount' => 'required|regex:/^\d*(\.\d{2})?$/'
-        ]);
+        $errors = [];
+
+        foreach ($request->input('rows') as $i => $row) {
+            if (isset($row['import']) && $row['import'] == 'on') {
+                $validator = Validator::make($row, [
+                    'happened_on' => 'date|date_format:Y-m-d',
+                    'description' => 'max:255',
+                    'amount' => 'regex:/^\d*(\.\d{2})?$/'
+                ]);
+
+                if ($validator->fails()) {
+                    foreach ($validator->getMessageBag()->toArray() as $index => $message) {
+                        $errors['rows.' . $i . '.' . $index] = $message;
+                    }
+                }
+            }
+        }
+
+        if ($errors) {
+            return redirect()->route('imports.complete', ['id' => $import->id])->withErrors($errors);
+        }
 
         foreach ($request->input('rows') as $row) {
             if (isset($row['import'])) {
