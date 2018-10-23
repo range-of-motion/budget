@@ -34,15 +34,15 @@
                             </div>
                             <div class="row__column">
                                 <input type="text" name="rows[{{ $index }}][happened_on]" value="{{ $row['happened_on'] }}" />
-                                {{ $errors->first('rows.' . $index . '.happened_on') }}
+                                @include('partials.validation_error', ['payload' => 'rows.' . $index . '.happened_on'])
                             </div>
                             <div class="row__column row__column--triple">
                                 <input type="text" name="rows[{{ $index }}][description]" value="{{ $row['description'] }}" />
-                                {{ $errors->first('rows.' . $index . '.description') }}
+                                @include('partials.validation_error', ['payload' => 'rows.' . $index . '.description'])
                             </div>
                             <div class="row__column">
                                 <input type="text" name="rows[{{ $index }}][amount]" value="{{ $row['amount'] }}" />
-                                {{ $errors->first('rows.' . $index . '.amount') }}
+                                @include('partials.validation_error', ['payload' => 'rows.' . $index . '.amount'])
                             </div>
                         </div>
                     </div>
