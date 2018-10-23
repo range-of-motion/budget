@@ -14,11 +14,13 @@ class WeeklyReport extends Mailable {
     protected $space;
     protected $week;
     protected $totalSpent;
+    protected $largestSpendingWithTag;
 
-    public function __construct(Space $space, $week, $totalSpent) {
+    public function __construct(Space $space, $week, $totalSpent, $largestSpendingWithTag) {
         $this->space = $space;
         $this->week = $week;
         $this->totalSpent = $totalSpent;
+        $this->largestSpendingWithTag = $largestSpendingWithTag;
     }
 
     public function build() {
@@ -26,7 +28,8 @@ class WeeklyReport extends Mailable {
             ->with([
                 'space' => $this->space,
                 'week' => $this->week,
-                'totalSpent' => $this->totalSpent
+                'totalSpent' => $this->totalSpent,
+                'largestSpendingWithTag' => $this->largestSpendingWithTag
             ]);
     }
 }

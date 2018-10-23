@@ -27,6 +27,7 @@ class SendWeeklyReports implements ShouldQueue {
 
         foreach ($spaces as $space) {
             $totalSpent = DB::select('SELECT SUM(amount) AS foo FROM spendings WHERE space_id = ? AND happened_on >= ? AND happened_on <= ?', [$space->id, $lastWeekDate, $currentDate])[0]->foo;
+            $largestSpendingWithTag = DB::select('SELECT spendings.amount AS amount, tags.name AS tag_name FROM spendings INNER JOIN tags ON spendings.tag_id = tags.id WHERE spendings.space_id = ? AND spendings.happened_on >= ? AND spendings.happened_on <= ? AND spendings.tag_id IS NOT NULL ORDER BY spendings.amount DESC LIMIT 1', [$space->id, $lastWeekDate, $currentDate]);
 
             foreach ($space->users as $user) {
                 // Only send if user wants to receive report
@@ -34,7 +35,8 @@ class SendWeeklyReports implements ShouldQueue {
                     Mail::to($user->email)->queue(new WeeklyReport(
                         $space,
                         $week,
-                        $totalSpent
+                        $totalSpent,
+                        $largestSpendingWithTag
                     ));
                 }
             }
