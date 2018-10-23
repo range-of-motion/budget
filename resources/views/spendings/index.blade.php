@@ -7,10 +7,15 @@
         <div class="row">
             <div class="row__column row__column--middle">
                 <h2>{{ __('models.spendings') }}</h2>
+                @if ($filter)
+                    <div class="mt-1">Only showing spendings for selected {{ strtolower(__('models.' . $filter)) }}</div>
+                @endif
             </div>
-            <div class="row__column row__column--compact row__column--middle">
-                <a href="/spendings/create" class="button">{{ __('actions.create') }} {{ __('models.spending') }}</a>
-            </div>
+            @if (!$filter)
+                <div class="row__column row__column--compact row__column--middle">
+                    <a href="/spendings/create" class="button">{{ __('actions.create') }} {{ __('models.spending') }}</a>
+                </div>
+            @endif
         </div>
         @if (count($spendingsByMonth))
             @foreach ($spendingsByMonth as $index => $spendings)
