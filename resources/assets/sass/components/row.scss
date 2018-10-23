@@ -22,6 +22,14 @@
             flex: none;
         }
 
+        &.row__column--double {
+            flex: 2;
+        }
+
+        &.row__column--triple {
+            flex: 3;
+        }
+
         &.row__column--middle {
             align-self: center;
         }

@@ -22,21 +22,21 @@
                     <div class="row row--gutter">
                         <div class="row__column row__column--compact" style="width: 100px;">Import</div>
                         <div class="row__column">{{ __('fields.date') }}</div>
-                        <div class="row__column">{{ __('fields.description') }}</div>
+                        <div class="row__column row__column--triple">{{ __('fields.description') }}</div>
                         <div class="row__column">{{ __('fields.amount') }}</div>
                     </div>
                 </div>
                 @foreach ($rows as $index => $row)
                     <div class="box__section">
                         <div class="row row--gutter">
-                            <div class="row__column row__column--compact" style="width: 100px;">
+                            <div class="row__column row__column--compact row__column--middle" style="width: 100px;">
                                 <input type="checkbox" name="rows[{{ $index }}][import]" />
                             </div>
                             <div class="row__column">
                                 <input type="text" name="rows[{{ $index }}][happened_on]" value="{{ $row['happened_on'] }}" />
                                 {{ $errors->first('rows.' . $index . '.happened_on') }}
                             </div>
-                            <div class="row__column">
+                            <div class="row__column row__column--triple">
                                 <input type="text" name="rows[{{ $index }}][description]" value="{{ $row['description'] }}" />
                                 {{ $errors->first('rows.' . $index . '.description') }}
                             </div>
