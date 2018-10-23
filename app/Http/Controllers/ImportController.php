@@ -140,4 +140,12 @@ class ImportController extends Controller {
 
         return redirect()->route('imports.index');
     }
+
+    public function destroy(Request $request, Import $import) {
+        if (!$import->spendings->count()) {
+            $import->delete();
+        }
+
+        return redirect()->route('imports.index');
+    }
 }

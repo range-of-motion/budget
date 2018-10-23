@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/imports/{import}/prepare', 'ImportController@postPrepare');
         Route::get('/imports/{import}/complete', 'ImportController@getComplete')->name('complete');
         Route::post('/imports/{import}/complete', 'ImportController@postComplete');
+        Route::delete('/imports/{import}', 'ImportController@destroy');
     });
 
     Route::get('/settings', 'SettingsController@index')->name('settings');

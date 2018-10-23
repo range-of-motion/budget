@@ -28,6 +28,19 @@
                                 <a href="/imports/{{ $import->id }}/{{ $import->status == 0 ? 'prepare' : 'complete' }}">Next</a>
                             @endif
                         </div>
+                        <div class="row__column row__column--compact ml-2 text-right">
+                            @if ($import->spendings->count())
+                                <i class="far fa-trash-alt"></i>
+                            @else
+                                <form method="POST" action="/imports/{{ $import->id }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="button link">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            @endif
+                        </div>
                     </div>
                 @endforeach
             @else

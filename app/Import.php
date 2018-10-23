@@ -17,4 +17,9 @@ class Import extends Model {
         'column_description',
         'column_amount'
     ];
+
+    // Relations
+    public function spendings() {
+        return $this->hasMany(Spending::class);
+    }
 }
