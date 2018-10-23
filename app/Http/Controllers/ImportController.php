@@ -100,14 +100,20 @@ class ImportController extends Controller {
     public function postComplete(Request $request, Import $import) {
         $this->authorize('modify', $import);
 
+        $request->validate([
+            'date_format' => 'required', // TODO ADD IN
+        ]);
+
+        $date_format = $request->input('date_format');
+
         $errors = [];
 
         foreach ($request->input('rows') as $i => $row) {
             if (isset($row['import']) && $row['import'] == 'on') {
                 $validator = Validator::make($row, [
-                    'happened_on' => 'date|date_format:Y-m-d',
+                    'happened_on' => 'date|date_format:' . $date_format,
                     'description' => 'max:255',
-                    'amount' => 'regex:/^\d*(\.\d{2})?$/'
+                    'amount' => 'regex:/^\d*([\,\.]\d{2})?$/'
                 ]);
 
                 if ($validator->fails()) {
@@ -124,12 +130,15 @@ class ImportController extends Controller {
 
         foreach ($request->input('rows') as $row) {
             if (isset($row['import'])) {
+                // TODO CHECK HOW THIS WORKS WITH 1k+ AMOUNTS
+                $amount = str_replace(',', '.', $row['amount']);
+
                 Spending::create([
                     'space_id' => session('space')->id,
                     'import_id' => $import->id,
                     'happened_on' => $row['happened_on'],
                     'description' => $row['description'],
-                    'amount' => (int) ($row['amount'] * 100)
+                    'amount' => (int) ($amount * 100)
                 ]);
             }
         }

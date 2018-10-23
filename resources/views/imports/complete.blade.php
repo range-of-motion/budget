@@ -8,6 +8,16 @@
         <div class="box">
             <form method="POST">
                 {{ csrf_field() }}
+                <div class="box__section">
+                    <div class="input input--small mb-0">
+                        <label>Date Format</label>
+                        <select name="date_format">
+                            <option value="Y-m-d">YYYY-MM-DD</option>
+                            <option value="Y/m/d">YYYY/MM/DD</option>
+                            <option value="Ymd">YYYYMMDD</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="box__section box__section--header">
                     <div class="row row--gutter">
                         <div class="row__column row__column--compact" style="width: 100px;">Import</div>
