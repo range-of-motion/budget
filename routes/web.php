@@ -59,17 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');
 
-    Route::get('/spaces/{id}', function ($id) {
-        $space = App\Space::find($id);
-
-        if ($space->users->contains(Auth::user()->id)) {
-            return redirect()->route('dashboard');
-        }
-
-        session(['space' => $space]);
-
-        return redirect()->route('dashboard');
-    });
+    Route::get('/spaces/{id}', 'SpaceController');
 });
 
 Route::get('/logout', 'LogoutController@index')->name('logout');
