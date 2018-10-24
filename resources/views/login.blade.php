@@ -18,7 +18,14 @@
                         <label>Password</label>
                         <input type="password" name="password" />
                     </div>
-                    <button class="button">Log in</button>
+                    <div class="row row--separate" style="justify-content: space-between;">
+                        <div class="row__column row__column--compact">
+                            <button class="button">Log in</button>
+                        </div>
+                        <div class="row__column row__column--compact row__column--middle">
+                            <a href="/reset_password">Forgot your password?</a>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="box__section box__section--highlight text-center">
