@@ -12,9 +12,9 @@
                     <div class="input input--small mb-0">
                         <label>Date Format</label>
                         <select name="date_format">
-                            <option value="Y-m-d">YYYY-MM-DD</option>
-                            <option value="Y/m/d">YYYY/MM/DD</option>
-                            <option value="Ymd">YYYYMMDD</option>
+                            <option value="Y-m-d" {{ old('date_format') == 'Y-m-d' ? 'selected' : '' }}>YYYY-MM-DD</option>
+                            <option value="Y/m/d" {{ old('date_format') == 'Y/m/d' ? 'selected' : '' }}>YYYY/MM/DD</option>
+                            <option value="Ymd" {{ old('date_format') == 'Ymd' ? 'selected' : '' }}>YYYYMMDD</option>
                         </select>
                     </div>
                 </div>
@@ -30,18 +30,17 @@
                     <div class="box__section">
                         <div class="row row--gutter">
                             <div class="row__column row__column--compact row__column--middle" style="width: 100px;">
-                                <input type="checkbox" name="rows[{{ $index }}][import]" />
-                            </div>
+                                <input type="checkbox" name="rows[{{ $index }}][import]" {{ old('rows.' . $index . '.import') == 'on' ? 'checked' : '' }} /></div>
                             <div class="row__column">
-                                <input type="text" name="rows[{{ $index }}][happened_on]" value="{{ $row['happened_on'] }}" />
+                                <input type="text" name="rows[{{ $index }}][happened_on]" value="{{ old('rows.' . $index . '.happened_on') ? old('rows.' . $index . '.happened_on') : $row['happened_on'] }}" />
                                 @include('partials.validation_error', ['payload' => 'rows.' . $index . '.happened_on'])
                             </div>
                             <div class="row__column row__column--triple">
-                                <input type="text" name="rows[{{ $index }}][description]" value="{{ $row['description'] }}" />
+                                <input type="text" name="rows[{{ $index }}][description]" value="{{ old('rows.' . $index . '.description') ? old('rows.' . $index . '.description') : $row['description'] }}" />
                                 @include('partials.validation_error', ['payload' => 'rows.' . $index . '.description'])
                             </div>
                             <div class="row__column">
-                                <input type="text" name="rows[{{ $index }}][amount]" value="{{ $row['amount'] }}" />
+                                <input type="text" name="rows[{{ $index }}][amount]" value="{{ old('rows.' . $index . '.amount') ? old('rows.' . $index . '.amount') : $row['amount'] }}" />
                                 @include('partials.validation_error', ['payload' => 'rows.' . $index . '.amount'])
                             </div>
                         </div>

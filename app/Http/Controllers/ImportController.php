@@ -125,6 +125,8 @@ class ImportController extends Controller {
         }
 
         if ($errors) {
+            $request->flash();
+
             return redirect()->route('imports.complete', ['id' => $import->id])->withErrors($errors);
         }
 
