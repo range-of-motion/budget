@@ -13,6 +13,7 @@ class Spending extends Model {
     protected $fillable = [
         'space_id',
         'import_id',
+        'tag_id',
         'happened_on',
         'description',
         'amount'

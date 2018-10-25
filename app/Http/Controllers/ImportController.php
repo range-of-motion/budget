@@ -77,6 +77,8 @@ class ImportController extends Controller {
     public function getComplete(Import $import) {
         $this->authorize('modify', $import);
 
+        $tags = session('space')->tags;
+
         $file = fopen(storage_path('app/imports/' . $import->file), 'r');
 
         $heading = true;
@@ -94,7 +96,7 @@ class ImportController extends Controller {
             }
         }
 
-        return view('imports.complete', compact('rows'));
+        return view('imports.complete', compact('tags', 'rows'));
     }
 
     public function postComplete(Request $request, Import $import) {
@@ -111,6 +113,7 @@ class ImportController extends Controller {
         foreach ($request->input('rows') as $i => $row) {
             if (isset($row['import']) && $row['import'] == 'on') {
                 $validator = Validator::make($row, [
+                    'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
                     'happened_on' => 'date|date_format:' . $date_format,
                     'description' => 'max:255',
                     'amount' => 'regex:/^\d*([\,\.]\d{2})?$/'
@@ -138,6 +141,7 @@ class ImportController extends Controller {
                 Spending::create([
                     'space_id' => session('space')->id,
                     'import_id' => $import->id,
+                    'tag_id' => $row['tag_id'],
                     'happened_on' => $row['happened_on'],
                     'description' => $row['description'],
                     'amount' => (int) ($amount * 100)

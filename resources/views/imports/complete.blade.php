@@ -21,6 +21,7 @@
                 <div class="box__section box__section--header">
                     <div class="row row--gutter">
                         <div class="row__column row__column--compact" style="width: 100px;">Import</div>
+                        <div class="row__column">{{ __('models.tag') }}</div>
                         <div class="row__column">{{ __('fields.date') }}</div>
                         <div class="row__column row__column--triple">{{ __('fields.description') }}</div>
                         <div class="row__column">{{ __('fields.amount') }}</div>
@@ -31,6 +32,15 @@
                         <div class="row row--gutter">
                             <div class="row__column row__column--compact row__column--middle" style="width: 100px;">
                                 <input type="checkbox" name="rows[{{ $index }}][import]" {{ old('rows.' . $index . '.import') == 'on' ? 'checked' : '' }} /></div>
+                            <div class="row__column">
+                                <select name="rows[{{ $index }}][tag_id]">
+                                    <option value="">-</option>
+                                    @foreach ($tags as $tag)
+                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                    @endforeach
+                                </select>
+                                @include('partials.validation_error', ['payload' => 'rows.' . $index . '.tag_id'])
+                            </div>
                             <div class="row__column">
                                 <input type="text" name="rows[{{ $index }}][happened_on]" value="{{ old('rows.' . $index . '.happened_on') ? old('rows.' . $index . '.happened_on') : $row['happened_on'] }}" />
                                 @include('partials.validation_error', ['payload' => 'rows.' . $index . '.happened_on'])
