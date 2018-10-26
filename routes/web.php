@@ -25,6 +25,10 @@ Route::group(['middleware' => ['auth']], function () {
         'destroy'
     ]);
 
+    Route::name('earnings.')->group(function () {
+        Route::post('/earnings/{id}/restore', 'EarningController@restore');
+    });
+
     Route::resource('/spendings', 'SpendingController')->only([
         'index',
         'create',

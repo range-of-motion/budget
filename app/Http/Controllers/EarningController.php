@@ -71,7 +71,27 @@ class EarningController extends Controller {
     public function destroy(Earning $earning) {
         $this->authorize('delete', $earning);
 
+        $restorableEarning = $earning->id;
+
         $earning->delete();
+
+        return redirect()
+            ->route('earnings.index')
+            ->with([
+                'restorableEarning' => $restorableEarning
+            ]);
+    }
+
+    public function restore($id) {
+        $earning = Earning::withTrashed()->find($id);
+
+        if (!$earning) {
+            // 404
+        }
+
+        $this->authorize('restore', $earning);
+
+        $earning->restore();
 
         return redirect()->route('earnings.index');
     }

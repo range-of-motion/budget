@@ -12,6 +12,13 @@
                 <a href="/earnings/create" class="button">{{ __('actions.create') }} {{ __('models.earning') }}</a>
             </div>
         </div>
+        @if (session('restorableEarning'))
+            <div class="mt-3">You've successfully deleted that earning</div>
+            <form method="POST" action="/earnings/{{ session('restorableEarning') }}/restore" class="mt-05">
+                {{ csrf_field() }}
+                <button class="button link">You can still recover it</button>
+            </form>
+        @endif
         <div class="box mt-3">
             @if (count($earnings))
                 @foreach ($earnings as $earning)

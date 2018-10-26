@@ -21,4 +21,8 @@ class EarningPolicy {
     public function delete(User $user, Earning $earning) {
         return $user->spaces->contains($earning->space_id);
     }
+
+    public function restore(User $user, Earning $earning) {
+        return $user->spaces->contains($earning->space_id);
+    }
 }
