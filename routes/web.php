@@ -16,16 +16,13 @@ Route::post('/register', 'RegisterController@store');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
-    Route::resource('/earnings', 'EarningController')->only([
-        'index',
-        'create',
-        'store',
-        'edit',
-        'update',
-        'destroy'
-    ]);
-
     Route::name('earnings.')->group(function () {
+        Route::get('/earnings', 'EarningController@index')->name('index');
+        Route::get('/earnings/create', 'EarningController@create')->name('create');
+        Route::post('/earnings', 'EarningController@store');
+        Route::get('/earnings/{earning}/edit', 'EarningController@edit')->name('edit');
+        Route::patch('/earnings/{earning}', 'EarningController@update');
+        Route::delete('/earnings/{earning}', 'EarningController@destroy');
         Route::post('/earnings/{id}/restore', 'EarningController@restore');
     });
 
