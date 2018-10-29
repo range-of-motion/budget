@@ -26,12 +26,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/earnings/{id}/restore', 'EarningController@restore');
     });
 
-    Route::resource('/spendings', 'SpendingController')->only([
-        'index',
-        'create',
-        'store',
-        'destroy'
-    ]);
+    Route::name('spendings.')->group(function () {
+        Route::get('/spendings', 'SpendingController@index')->name('index');
+        Route::get('/spendings/create', 'SpendingController@create')->name('create');
+        Route::post('/spendings', 'SpendingController@store');
+        Route::delete('/spendings/{spending}', 'SpendingController@destroy');
+    });
 
     Route::resource('/recurrings', 'RecurringController')->only([
         'index',
