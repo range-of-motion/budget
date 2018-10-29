@@ -17,7 +17,7 @@
                 <div class="box__section box__section--header row">
                     <div class="row__column">Name</div>
                     <div class="row__column">Status</div>
-                    <div class="row__column row__column--compact" style="width: 100px;"></div>
+                    <div class="row__column row__column--compact" style="width: 150px;"></div>
                 </div>
                 @foreach ($imports as $import)
                     <div class="box__section row">
@@ -28,7 +28,7 @@
                                 <a href="/imports/{{ $import->id }}/{{ $import->status == 0 ? 'prepare' : 'complete' }}">Next</a>
                             @endif
                         </div>
-                        <div class="row__column row__column--compact ml-2 text-right">
+                        <div class="row__column row__column--compact text-right" style="width: 50px;">
                             @if ($import->spendings->count())
                                 <i class="far fa-trash-alt"></i>
                             @else
