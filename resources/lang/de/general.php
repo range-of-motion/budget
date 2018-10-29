@@ -1,23 +1,21 @@
 <?php
+
 return [
     'dashboard' => 'Dashboard',
-    'total_spent' => 'Ausgaben Gesamt',
-    'most_expensive_tag' => 'Höchste Ausgaben Label',
-    'most_expensive_day' => 'Höchste Ausgaben Tag',
+
+    'total_earned' => 'Gesamt Eingenommen',
+    'total_spent' => 'Gesamt Ausgegeben',
+    'most_expensive_tag' => 'Teuerste Labels',
+    'most_expensive_day' => 'Teuerster Tag',
+
     'analysis' => 'Analyse',
-    'earnings' => 'Einnahmen',
-    'earning' => 'Einnahme',
-    'spendings' => 'Ausgaben',
-    'spending' => 'Ausgabe',
-    'tags' => 'Label',
-    'tag' => 'Label',
-    'recent' => 'Zuletzt',
-    'avatar' => 'Avatar',
-    'name' => 'Name',
-    'email' => 'E-mail',
-    'verify' => 'Bestätigen',
-    'password' => 'Passwort',
-    'language' => 'Sprache',
-    'theme' => 'Design',
-    'recurrings' => 'Zyklisch'
+
+    'recent' => 'Zuletzte',
+
+    'profile' => 'Profil',
+    'account' => 'Account',
+    'preferences' => 'Einstellungen',
+
+    'empty_state' => 'Es gibt noch keine :Resource',
+    'not_enough_data' => 'Noch keine Daten'
 ];

@@ -1,7 +1,14 @@
 
 <?php
 return [
-    'create' => 'Erstellen',
+    'create' => 'Erstelle',
     'edit' => 'Editieren',
-    'delete' => 'Löschen'
+    'delete' => 'Löschen',
+    'save' => 'Speichern',
+    'delete' => 'Löschen',
+
+    'verify' => 'Bestätigen',
+
+    'yes' => 'Ja',
+    'no' => 'Nein'
 ];
