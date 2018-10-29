@@ -1,7 +1,14 @@
 <?php
 
 return [
-    'create' => 'Cre&euml;er',
+    'cancel' => 'Annuleer',
+    'create' => 'Creëer',
     'edit' => 'Bewerk',
-    'delete' => 'Verwijderen'
+    'save' => 'Opslaan',
+    'delete' => 'Verwijderen',
+
+    'verify' => 'Controleer',
+
+    'yes' => 'Ja',
+    'no' => 'Nee'
 ];

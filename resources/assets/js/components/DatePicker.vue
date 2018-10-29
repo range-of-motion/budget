@@ -1,7 +1,7 @@
 <template>
     <div>
         <input type="text" :name="name" v-model="form" />
-        <div class="date-picker">
+        <div class="date-picker mt-1">
             <div class="date-picker__top">
                 <button @click="previous">
                     <i class="fa fa-arrow-left"></i>
@@ -27,6 +27,10 @@
         props: {
             name: {
                 default: 'date'
+            },
+
+            startDate: {
+                default: null
             }
         },
 
@@ -34,9 +38,9 @@
             return {
                 displayYear: new Date().getFullYear(),
                 displayMonth: new Date().getMonth() + 1,
-                year: new Date().getFullYear(),
-                month: new Date().getMonth() + 1,
-                date: new Date().getDate()
+                year: this.startDate ? this.startDate.substring(0, 4) : new Date().getFullYear(),
+                month: this.startDate ? this.startDate.substring(5, 7) : new Date().getMonth() + 1,
+                date: this.startDate ? this.startDate.substring(8, 10) : new Date().getDate()
             }
         },
 

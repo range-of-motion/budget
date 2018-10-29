@@ -1,7 +1,14 @@
 <?php
 
 return [
+    'cancel' => 'Cancel',
     'create' => 'Create',
     'edit' => 'Edit',
-    'delete' => 'Delete'
+    'save' => 'Save',
+    'delete' => 'Delete',
+
+    'verify' => 'Verify',
+
+    'yes' => 'Yes',
+    'no' => 'No'
 ];

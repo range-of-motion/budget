@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', __('actions.create') . ' ' . __('general.recurring'))
+@section('title', __('actions.create') . ' ' . __('models.recurring'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('actions.create') }} {{ __('general.recurring') }}</h2>
+        <h2>{{ __('actions.create') }} {{ __('models.recurring') }}</h2>
         <div class="box mt-3">
             <form method="POST" action="/recurrings" autocomplete="off">
                 {{ csrf_field() }}

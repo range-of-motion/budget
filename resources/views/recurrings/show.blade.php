@@ -17,7 +17,7 @@
                 </div>
             @endif
         </div>
-        <div class="color-dark mb-2">{{ __('general.spendings') }}</div>
+        <div class="color-dark mb-2">{{ __('models.spendings') }}</div>
         <div class="box">
             @if (count($recurring->spendings))
                 @foreach ($recurring->spendings as $spending)

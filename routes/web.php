@@ -5,16 +5,25 @@ Route::get('/', 'IndexController@index')->name('index');
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@store');
 
+Route::get('/verify/{token}', 'VerifyController')->name('verify');
+
+Route::get('/reset_password', 'ResetPasswordController@get')->name('reset_password');
+Route::post('/reset_password', 'ResetPasswordController@post');
+
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::post('/register', 'RegisterController@store');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
-    Route::get('/earnings', 'EarningController@index')->name('earnings.index');
-    Route::get('/earnings/create', 'EarningController@create')->name('earnings.create');
-    Route::post('/earnings', 'EarningController@store');
-    Route::delete('/earnings/{earning}', 'EarningController@destroy')->middleware('can:delete,earning');
+    Route::resource('/earnings', 'EarningController')->only([
+        'index',
+        'create',
+        'store',
+        'edit',
+        'update',
+        'destroy'
+    ]);
 
     Route::resource('/spendings', 'SpendingController')->only([
         'index',
@@ -39,18 +48,21 @@ Route::group(['middleware' => ['auth']], function () {
         'destroy'
     ]);
 
+    Route::name('imports.')->group(function () {
+        Route::get('/imports', 'ImportController@index')->name('index');
+        Route::get('/imports/create', 'ImportController@create')->name('create');
+        Route::post('/imports', 'ImportController@store')->name('store');
+        Route::get('/imports/{import}/prepare', 'ImportController@getPrepare')->name('prepare');
+        Route::post('/imports/{import}/prepare', 'ImportController@postPrepare');
+        Route::get('/imports/{import}/complete', 'ImportController@getComplete')->name('complete');
+        Route::post('/imports/{import}/complete', 'ImportController@postComplete');
+        Route::delete('/imports/{import}', 'ImportController@destroy');
+    });
+
     Route::get('/settings', 'SettingsController@index')->name('settings');
     Route::post('/settings', 'SettingsController@store');
 
-    Route::get('/spaces/{id}', function ($id) {
-        // TODO CHECK IF SPACE IS ACCESSIBLE BY USER
-
-        $space = App\Space::find($id);
-
-        session(['space' => $space]);
-
-        return redirect()->route('dashboard');
-    });
+    Route::get('/spaces/{id}', 'SpaceController');
 });
 
 Route::get('/logout', 'LogoutController@index')->name('logout');

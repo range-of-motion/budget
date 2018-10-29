@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\ProcessRecurrings;
+use App\Jobs\SendWeeklyReports;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -29,6 +30,8 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->job(new ProcessRecurrings)->everyMinute();
+
+        $schedule->job(new SendWeeklyReports)->weekly()->fridays()->at('21:00');
     }
 
     /**

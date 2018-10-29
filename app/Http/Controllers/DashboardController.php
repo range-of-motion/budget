@@ -9,18 +9,27 @@ use DB;
 
 class DashboardController extends Controller {
     public function __invoke() {
-        $user = Auth::user();
-
         $space_id = session('space')->id;
+
+        $totalEarnings = session('space')
+            ->earnings()
+            ->whereRaw('MONTH(happened_on) = ?', [date('m')])
+            ->sum('amount');
 
         $totalSpendings = session('space')
             ->spendings()
             ->whereRaw('MONTH(happened_on) = ?', [date('m')])
             ->sum('amount');
 
+        $recentEarnings = session('space')
+            ->earnings()
+            ->orderBy('happened_on', 'DESC')
+            ->limit(3)
+            ->get();
+
         $recentSpendings = session('space')
             ->spendings()
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('happened_on', 'DESC')
             ->limit(3)
             ->get();
 
@@ -45,17 +54,13 @@ class DashboardController extends Controller {
         ', [$space_id, date('m')]);
 
         return view('dashboard', [
-            'currency' => $user->currency,
+            'recentEarnings' => $recentEarnings,
+            'recentSpendings' => $recentSpendings,
 
             'month' => date('n'),
-
+            'totalEarnings' => $totalEarnings,
             'totalSpendings' => $totalSpendings,
-
-            'recentSpendings' => $recentSpendings,
             'mostExpensiveTags' => $mostExpensiveTags,
-
-            'earningsCount' => session('space')->earnings->count(),
-            'spendingsCount' => session('space')->spendings->count()
         ]);
     }
 }

@@ -28,52 +28,61 @@
                                 <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="far fa-home fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('general.dashboard') }}</span></a>
                             </li>
                             <li>
-                                <a href="/recurrings" {!! (Request::path() == 'recurrings') ? 'class="active"' : '' !!}><i class="far fa-recycle fa-sm color-green"></i> <span class="hidden ml-05">{{ __('general.recurrings') }}</span></a>
+                                <a href="/recurrings" {!! (Request::path() == 'recurrings') ? 'class="active"' : '' !!}><i class="far fa-recycle fa-sm color-green"></i> <span class="hidden ml-05">{{ __('models.recurrings') }}</span></a>
                             </li>
                             <li>
-                                <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('general.tags') }}</span></a>
+                                <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('models.tags') }}</span></a>
                             </li>
                         </ul>
                         <ul class="navigation__menu">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown__toggle">
-                                    <i class="far fa-plus mr-05"></i> <i class="fas fa-caret-down fa-sm"></i>
-                                </a>
-                                <ul class="dropdown__list">
-                                    <li>
-                                        <a href="/earnings/create">New earning</a>
-                                    </li>
-                                    <li>
-                                        <a href="/spendings/create">New spending</a>
-                                    </li>
-                                </ul>
+                            <li>
+                                <dropdown>
+                                    <span slot="button">
+                                        <i class="far fa-plus mr-05"></i> <i class="fas fa-caret-down fa-sm"></i>
+                                    </span>
+                                    <ul slot="menu">
+                                        <li>
+                                            <a href="/earnings/create">{{ __('actions.create') }} {{ __('models.earning') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/spendings/create">{{ __('actions.create') }} {{ __('models.spending') }}</a>
+                                        </li>
+                                    </ul>
+                                </dropdown>
                             </li>
                             @if (Auth::user()->spaces->count() > 1)
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown__toggle">
-                                        {{ str_limit(session('space')->name, 3) }} <i class="fas fa-caret-down fa-sm"></i>
-                                    </a>
-                                    <ul class="dropdown__list">
-                                        @foreach (Auth::user()->spaces as $space)
-                                            <li>
-                                                <a href="/spaces/{{ $space->id }}">{{ $space->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                <li>
+                                    <dropdown>
+                                        <span slot="button">
+                                            {{ str_limit(session('space')->name, 3) }} <i class="fas fa-caret-down fa-sm"></i>
+                                        </span>
+                                        <ul slot="menu">
+                                            @foreach (Auth::user()->spaces as $space)
+                                                <li>
+                                                    <a href="/spaces/{{ $space->id }}">{{ $space->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </dropdown>
                                 </li>
                             @endif
-                            <li class="dropdown">
-                                <a href="#" class="dropdown__toggle">
-                                    <img src="{{ Auth::user()->avatar ? '/storage/avatars/' . Auth::user()->avatar : 'http://placehold.it/50x50' }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
-                                </a>
-                                <ul class="dropdown__list">
-                                    <li>
-                                        <a href="/settings">Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="/logout">Log out</a>
-                                    </li>
-                                </ul>
+                            <li>
+                                <dropdown>
+                                    <span slot="button">
+                                        <img src="{{ Auth::user()->avatar ? '/storage/avatars/' . Auth::user()->avatar : 'http://placehold.it/50x50' }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
+                                    </span>
+                                    <ul slot="menu">
+                                        <li>
+                                            <a href="/imports">{{ __('models.imports') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/settings">{{ __('pages.settings') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/logout">{{ __('pages.log_out') }}</a>
+                                        </li>
+                                    </ul>
+                                </dropdown>
                             </li>
                         </ul>
                     </div>
@@ -83,44 +92,5 @@
         </div>
         <script src="/js/app.js"></script>
         @yield('scripts')
-        <script>
-            var dropdowns = document.querySelectorAll('.dropdown__toggle');
-
-            for (var i = 0; i < dropdowns.length; i ++) {
-                var a = dropdowns[i];
-
-                trigger(a);
-            }
-
-            function trigger(el) {
-                el.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    closeAll(el);
-
-                    var parent = e.target.parentNode;
-
-                    if (parent.nodeName != 'LI') {
-                        parent = parent.parentNode;
-                    }
-
-                    var x = parent.querySelector('.dropdown__list');
-
-                    if (x.style.display == 'flex') {
-                        x.style.display = 'none';
-                    } else {
-                        x.style.display = 'flex';
-                    }
-                });
-            }
-
-            function closeAll(skip) {
-                for (var i = 0; i < dropdowns.length; i ++) {
-                    if (dropdowns[i] != skip) {
-                        dropdowns[i].parentNode.querySelector('.dropdown__list').style.display = 'none';
-                    }
-                }
-            }
-        </script>
     </body>
 </html>

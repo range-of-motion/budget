@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
-use App\Mail\ConfirmRegistration;
+use App\Mail\VerifyRegistration;
 use App\Currency;
 use App\User;
 use App\Space;
@@ -33,6 +33,7 @@ class RegisterController extends Controller {
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->verification_token = str_random(100);
         $user->currency_id = $request->currency;
 
         $user->save();
@@ -46,13 +47,13 @@ class RegisterController extends Controller {
 
         $user->spaces()->attach($space->id, ['role' => 'admin']);
 
-        Mail::to($user->email)->queue(new ConfirmRegistration($user));
+        Mail::to($user->email)->queue(new VerifyRegistration($user));
 
         return redirect()
             ->route('login')
             ->with([
                 'alert_type' => 'success',
-                'alert_message' => 'You\'ve succesfully registered'
+                'alert_message' => 'You\'ve succesfully registered, check your e-mail to verify'
             ]);
     }
 }

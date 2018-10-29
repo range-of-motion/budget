@@ -82,7 +82,9 @@ return [
     'locales' => [
         'en' => 'English',
         'nl' => 'Dutch',
-        'dk' => 'Danish'
+        'dk' => 'Danish',
+        'de' => 'German',
+        'fr' => 'French'
     ],
 
     /*
