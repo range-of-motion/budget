@@ -13,4 +13,8 @@ class SpendingPolicy {
     public function delete(User $user, Spending $spending) {
         return $user->spaces->contains($spending->space_id);
     }
+
+    public function restore(User $user, Spending $spending) {
+        return $user->spaces->contains($spending->space_id);
+    }
 }

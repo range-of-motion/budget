@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/spendings/create', 'SpendingController@create')->name('create');
         Route::post('/spendings', 'SpendingController@store');
         Route::delete('/spendings/{spending}', 'SpendingController@destroy');
+        Route::post('/spendings/{id}/restore', 'SpendingController@restore');
     });
 
     Route::resource('/recurrings', 'RecurringController')->only([

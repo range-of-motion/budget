@@ -17,6 +17,13 @@
                 </div>
             @endif
         </div>
+        @if (session('restorableSpending'))
+            <div class="mt-3">You've successfully deleted that spending</div>
+            <form method="POST" action="/spendings/{{ session('restorableSpending') }}/restore" class="mt-05">
+                {{ csrf_field() }}
+                <button class="button link">You can still recover it</button>
+            </form>
+        @endif
         @if (count($spendingsByMonth))
             @foreach ($spendingsByMonth as $index => $spendings)
                 @if (count($spendings))

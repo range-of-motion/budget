@@ -69,7 +69,27 @@ class SpendingController extends Controller {
     public function destroy(Spending $spending) {
         $this->authorize('delete', $spending);
 
+        $restorableSpending = $spending->id;
+
         $spending->delete();
+
+        return redirect()
+            ->route('spendings.index')
+            ->with([
+                'restorableSpending' => $restorableSpending
+            ]);
+    }
+
+    public function restore($id) {
+        $spending = Spending::withTrashed()->find($id);
+
+        if (!$spending) {
+            // 404
+        }
+
+        $this->authorize('restore', $spending);
+
+        $spending->restore();
 
         return redirect()->route('spendings.index');
     }
