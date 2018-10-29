@@ -10,6 +10,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TagTest extends TestCase {
+    // Edit
     public function testAuthorizedUserCanEditTag() {
         $user = factory(User::class)->create();
 
@@ -42,5 +43,27 @@ class TagTest extends TestCase {
         $response = $this->get('/tags/' . $tag->id . '/edit');
 
         $response->assertStatus(403);
+    }
+
+    // Update
+    public function testUpdateTag() {
+        $user = factory(User::class)->create();
+
+        $space = factory(Space::class)->create();
+
+        $user->spaces()->sync([$space->id]);
+
+        $tag = factory(Tag::class)->create([
+            'space_id' => $space->id,
+            'name' => 'Before'
+        ]);
+
+        $this->actingAs($user);
+
+        $this->patch('/tags/' . $tag->id, [
+            'name' => 'After'
+        ]);
+
+        $this->assertEquals(Tag::find($tag->id)->name,'After');
     }
 }
