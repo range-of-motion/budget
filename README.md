@@ -18,39 +18,23 @@ Budget is an open-source web application that helps you keep track of your finan
 
 ## Installation
 
-1. Install Composer/Node.js dependencies
-
 ```
 composer install --no-dev
 yarn install
-```
 
-2. Set-up .env
-
-```
 cp .env.example .env
 php artisan key:generate
+
+php artisan storage:link
+
+php artisan migrate
+
+yarn run development
+
+php artisan serve
+
+php artisan queue:work
 ```
-
-3. Set-up storage directory
-
-`php artisan storage:link`
-
-4. Run migrations and seed database
-
-`php artisan migrate --seed`
-
-5. Compile front-end assets
-
-`yarn run development`
-
-6. Serve
-
-`php artisan serve`
-
-7. Run queues
-
-`php artisan queue:work`
 
 ## Contact
 
