@@ -21,6 +21,10 @@
                 stroke-width: 2px;
                 stroke: #179BD1;
             }
+
+            .theme-dark .ct-label {
+                color: #758193;
+            }
         </style>
     </head>
     <body class="theme-{{ Auth::check() ? Auth::user()->theme : 'light' }}">
