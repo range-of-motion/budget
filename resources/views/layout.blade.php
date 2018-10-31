@@ -81,7 +81,7 @@
                             <li>
                                 <dropdown>
                                     <span slot="button">
-                                        <img src="{{ Auth::user()->avatar ? '/storage/avatars/' . Auth::user()->avatar : 'http://placehold.it/50x50' }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
+                                        <img src="{{ Auth::user()->avatar }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
                                     </span>
                                     <ul slot="menu">
                                         <li>

@@ -13,11 +13,7 @@
                     <div class="row__column" style="flex: 2;">
                         <div class="input input--small">
                             <label>{{ __('fields.avatar') }}</label>
-                            @if (Auth::user()->avatar)
-                                <img src="/storage/avatars/{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; border-radius: 5px; object-fit: cover;" />
-                            @else
-                                <div>You don't have an avatar</div>
-                            @endif
+                            <img src="{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; border-radius: 5px; object-fit: cover;" />
                             <input type="file" name="avatar" />
                             @include('partials.validation_error', ['payload' => 'avatar'])
                         </div>

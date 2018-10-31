@@ -16,6 +16,12 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
 
+    // Accessors
+    public function getAvatarAttribute($avatar) {
+        return $avatar ? '/storage/avatars/' . $avatar : 'https://via.placeholder.com/250';
+    }
+
+    // Relations
     public function spaces() {
         return $this->belongsToMany(Space::class, 'user_space');
     }
