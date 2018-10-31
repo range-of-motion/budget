@@ -50,6 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
         'destroy'
     ]);
 
+    Route::get('/reports', 'ReportController@index')->name('reports.index');
+    Route::get('/reports/{slug}', 'ReportController@show');
+
     Route::name('imports.')->group(function () {
         Route::get('/imports', 'ImportController@index')->name('index');
         Route::get('/imports/create', 'ImportController@create')->name('create');

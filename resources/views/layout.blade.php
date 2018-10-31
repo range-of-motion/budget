@@ -16,6 +16,11 @@
             .ct-series-b .ct-slice-donut-solid {
                 fill: #E4E8EB;
             }
+
+            .ct-series-a .ct-line {
+                stroke-width: 2px;
+                stroke: #179BD1;
+            }
         </style>
     </head>
     <body class="theme-{{ Auth::check() ? Auth::user()->theme : 'light' }}">
@@ -32,6 +37,9 @@
                             </li>
                             <li>
                                 <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('models.tags') }}</span></a>
+                            </li>
+                            <li>
+                                <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><i class="far fa-chart-line fa-sm color-blue"></i> <span class="hidden ml-05">Reports</span></a>
                             </li>
                         </ul>
                         <ul class="navigation__menu">
