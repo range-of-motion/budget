@@ -56,16 +56,14 @@
                                     <span slot="button">
                                         <i class="far fa-plus mr-05"></i> <i class="fas fa-caret-down fa-sm"></i>
                                     </span>
-                                    <div v-cloak>
-                                        <ul slot="menu">
-                                            <li>
-                                                <a href="/earnings/create">{{ __('actions.create') }} {{ __('models.earning') }}</a>
-                                            </li>
-                                            <li>
-                                                <a href="/spendings/create">{{ __('actions.create') }} {{ __('models.spending') }}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <ul slot="menu" v-cloak>
+                                        <li>
+                                            <a href="/earnings/create">{{ __('actions.create') }} {{ __('models.earning') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/spendings/create">{{ __('actions.create') }} {{ __('models.spending') }}</a>
+                                        </li>
+                                    </ul>
                                 </dropdown>
                             </li>
                             @if (Auth::user()->spaces->count() > 1)
@@ -74,15 +72,13 @@
                                         <span slot="button">
                                             {{ str_limit(session('space')->name, 3) }} <i class="fas fa-caret-down fa-sm"></i>
                                         </span>
-                                        <div v-cloak>
-                                            <ul slot="menu">
-                                                @foreach (Auth::user()->spaces as $space)
-                                                    <li>
-                                                        <a href="/spaces/{{ $space->id }}">{{ $space->name }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
+                                        <ul slot="menu" v-cloak>
+                                            @foreach (Auth::user()->spaces as $space)
+                                                <li>
+                                                    <a href="/spaces/{{ $space->id }}">{{ $space->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </dropdown>
                                 </li>
                             @endif
@@ -91,19 +87,17 @@
                                     <span slot="button">
                                         <img src="{{ Auth::user()->avatar }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
                                     </span>
-                                    <div v-cloak>
-                                        <ul slot="menu">
-                                            <li>
-                                                <a href="/imports">{{ __('models.imports') }}</a>
-                                            </li>
-                                            <li>
-                                                <a href="/settings">{{ __('pages.settings') }}</a>
-                                            </li>
-                                            <li>
-                                                <a href="/logout">{{ __('pages.log_out') }}</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <ul slot="menu" v-cloak>
+                                        <li>
+                                            <a href="/imports">{{ __('models.imports') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/settings">{{ __('pages.settings') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/logout">{{ __('pages.log_out') }}</a>
+                                        </li>
+                                    </ul>
                                 </dropdown>
                             </li>
                         </ul>
