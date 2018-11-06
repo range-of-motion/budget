@@ -105,6 +105,11 @@
                 </div>
             @endif
             @yield('body')
+            @if (auth()->check())
+                <div class="text-center mb-3">
+                    <a href="/ideas/create" style="font-size: 14px;">Know how to make this app better?</a>
+                </div>
+            @endif
         </div>
         <script src="/js/app.js"></script>
         @yield('scripts')

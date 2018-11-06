@@ -12,26 +12,26 @@
 }
 
 .theme-light {
-    input[type=text], input[type=email], input[type=password], select {
+    input[type=text], input[type=email], input[type=password], select, textarea {
         background: $colors-light-body;
         border: 1px solid $colors-light-border;
     }
 }
 
 .theme-dark {
-    input[type=text], input[type=email], input[type=password], select {
+    input[type=text], input[type=email], input[type=password], select, textarea {
         color: #FFF;
         background: $colors-dark-body;
         border: 1px solid $colors-dark-border;
     }
 }
 
-input[type=text], input[type=email], input[type=password], select, .button {
+input[type=text], input[type=email], input[type=password], select, textarea, .button {
     font: inherit;
     border-radius: $dimensions-box-border-radius;
 }
 
-input[type=text], input[type=email], input[type=password], select {
+input[type=text], input[type=email], input[type=password], select, textarea {
     padding: $dimensions-input-padding;
     width: 100%;
     -webkit-appearance: none;
@@ -45,6 +45,10 @@ input[type=text], input[type=email], input[type=password], select {
 
 select {
     background: #FFF;
+}
+
+textarea {
+    resize: vertical;
 }
 
 button.button {
