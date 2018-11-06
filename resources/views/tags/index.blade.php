@@ -44,9 +44,9 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
-        @else
-            @include('partials.empty_state', ['payload' => 'tags'])
-        @endif
+            @else
+                @include('partials.empty_state', ['payload' => 'tags'])
+            @endif
+        </div>
     </div>
 @endsection
