@@ -11,10 +11,16 @@ class CreateIdeasTable extends Migration {
             $table->unsignedInteger('user_id');
             $table->text('body');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
     public function down() {
+        Schema::table('ideas', function ($table) {
+            $table->dropForeign('ideas_user_id_foreign');
+        });
+
         Schema::dropIfExists('ideas');
     }
 }
