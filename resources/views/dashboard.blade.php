@@ -5,51 +5,7 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('general.dashboard') }}</h2>
-        <div class="row row--gutter row--responsive my-3">
-            <div class="row__column">
-                <div class="box">
-                    <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('models.earnings') }}</div>
-                    @if (count($recentEarnings))
-                        @foreach ($recentEarnings as $earning)
-                            <div class="box__section row row--seperate">
-                                <div class="row__column">
-                                    <div class="color-dark">{{ $earning->description }}</div>
-                                    <div class="mt-1" style="font-size: 14px;">{{ $earning->formatted_happened_on }}</div>
-                                </div>
-                                <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency !!} {{ $earning->formatted_amount }}</div>
-                            </div>
-                        @endforeach
-                        <div class="box__section box__section--header text-right">
-                            <a href="/earnings">More <i class="far fa-arrow-right fa-xs"></i></a>
-                        </div>
-                    @else
-                        @include('partials.empty_state', ['payload' => 'earnings'])
-                    @endif
-                </div>
-            </div>
-            <div class="row__column">
-                <div class="box">
-                    <div class="box__section box__section--header">{{ __('general.recent') }} {{ __('models.spendings') }}</div>
-                    @if (count($recentSpendings))
-                        @foreach ($recentSpendings as $spending)
-                            <div class="box__section row row--seperate">
-                                <div class="row__column">
-                                    <div class="color-dark">{{ $spending->description }}</div>
-                                    <div class="mt-1" style="font-size: 14px;">{{ $spending->formatted_happened_on }}</div>
-                                </div>
-                                <div class="row__column row__column--compact row__column--middle color-dark">{!! $currency !!} {{ $spending->formatted_amount }}</div>
-                            </div>
-                        @endforeach
-                        <div class="box__section box__section--header text-right">
-                            <a href="/spendings">More <i class="far fa-arrow-right fa-xs"></i></a>
-                        </div>
-                    @else
-                        @include('partials.empty_state', ['payload' => 'spendings'])
-                    @endif
-                </div>
-            </div>
-        </div>
-        <p>{{ __('calendar.months.' . $month) }} {{ date('Y') }}</p>
+        <p class="mt-1">{{ __('calendar.months.' . $month) }} {{ date('Y') }}</p>
         <div class="row row--gutter row--responsive my-3">
             <div class="row__column">
                 <div class="card card--green">
