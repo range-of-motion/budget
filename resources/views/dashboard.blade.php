@@ -8,19 +8,22 @@
         <p class="mt-1">{{ __('calendar.months.' . $month) }} {{ date('Y') }}</p>
         <div class="row row--gutter row--responsive my-3">
             <div class="row__column">
-                <div class="card card--green">
-                    <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($totalEarnings / 100, 2) }}</h2>
-                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.total_earned') }}</div>
+                <div class="card card--blue">
+                    <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($balance / 100, 2) }}</h2>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.balance') }}</div>
                 </div>
             </div>
             <div class="row__column">
                 <div class="card card--red">
-                    <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($totalSpendings / 100, 2) }}</h2>
-                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.total_spent') }}</div>
+                    <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($recurrings / 100, 2) }}</h2>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.recurrings') }}</div>
                 </div>
             </div>
             <div class="row__column">
-                <!-- OFFSET -->
+                <div class="card card--green">
+                    <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($leftToSpend / 100, 2) }}</h2>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.left_to_spend') }}</div>
+                </div>
             </div>
         </div>
         <div class="box mb-3">

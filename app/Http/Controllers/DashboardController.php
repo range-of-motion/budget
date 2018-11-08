@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Earning;
+use App\Recurring;
+use App\Spending;
 use Auth;
 use DB;
 
@@ -11,27 +14,9 @@ class DashboardController extends Controller {
     public function __invoke() {
         $space_id = session('space')->id;
 
-        $totalEarnings = session('space')
-            ->earnings()
-            ->whereRaw('MONTH(happened_on) = ?', [date('m')])
-            ->sum('amount');
-
-        $totalSpendings = session('space')
-            ->spendings()
-            ->whereRaw('MONTH(happened_on) = ?', [date('m')])
-            ->sum('amount');
-
-        $recentEarnings = session('space')
-            ->earnings()
-            ->orderBy('happened_on', 'DESC')
-            ->limit(3)
-            ->get();
-
-        $recentSpendings = session('space')
-            ->spendings()
-            ->orderBy('happened_on', 'DESC')
-            ->limit(3)
-            ->get();
+        $balance = session('space')->monthlyBalance(2018, 11);
+        $recurrings = session('space')->monthlyRecurrings(2018, 11);
+        $leftToSpend = $balance - $recurrings;
 
         $mostExpensiveTags = DB::select('
             SELECT
@@ -54,13 +39,13 @@ class DashboardController extends Controller {
         ', [$space_id, date('m')]);
 
         return view('dashboard', [
-            'recentEarnings' => $recentEarnings,
-            'recentSpendings' => $recentSpendings,
-
             'month' => date('n'),
-            'totalEarnings' => $totalEarnings,
-            'totalSpendings' => $totalSpendings,
-            'mostExpensiveTags' => $mostExpensiveTags,
+
+            'balance' => $balance,
+            'recurrings' => $recurrings,
+            'leftToSpend' => $leftToSpend,
+
+            'mostExpensiveTags' => $mostExpensiveTags
         ]);
     }
 }
