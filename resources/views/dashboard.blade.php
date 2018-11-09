@@ -31,34 +31,15 @@
                 <div class="box__section box__section--header">Most Expensive {{ __('models.tags') }}</div>
                     @foreach ($mostExpensiveTags as $index => $tag)
                         <div class="box__section row row--seperate">
-                            <div class="row__column row__column--compact mr-2" style="width: 50px;">
-                                <div class="ct-chart-{{ $index }} ct-square"></div>
-                            </div>
+                            <div class="row__column row__column--middle color-dark">{{ $tag->name }}</div>
                             <div class="row__column row__column--middle">
-                                <div class="color-dark">{{ $tag->name }}</div>
-                                <div class="mt-1" style="font-size: 14px; font-weight: 600;">{!! $currency !!} {{ number_format($tag->amount / 100, 2) }}</div>
+                                <progress max="{{ $totalSpent }}" value="{{ $tag->amount }}"></progress>
                             </div>
+                            <div class="row__column row__column--middle text-right">{!! $currency !!} {{ number_format($tag->amount / 100, 2) }}</div>
                         </div>
                     @endforeach
                 </div>
             </div>
         @endif
     </div>
-@endsection
-
-@section('scripts')
-    <script>
-        @foreach ($mostExpensiveTags as $index => $tag)
-            var data = {
-                series: [{{ $tag->amount }}, {{ $totalSpent - $tag->amount }}]
-            };
-
-            new Chartist.Pie('.ct-chart-{{ $index }}', data, {
-                donut: true,
-                donutWidth: 2,
-                donutSolid: true,
-                showLabel: false
-            });
-        @endforeach
-    </script>
 @endsection
