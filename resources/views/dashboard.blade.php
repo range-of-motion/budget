@@ -50,7 +50,7 @@
     <script>
         @foreach ($mostExpensiveTags as $index => $tag)
             var data = {
-                series: [{{ $tag->amount }}, {{ $totalSpendings - $tag->amount }}]
+                series: [{{ $tag->amount }}, {{ $totalSpent - $tag->amount }}]
             };
 
             new Chartist.Pie('.ct-chart-{{ $index }}', data, {

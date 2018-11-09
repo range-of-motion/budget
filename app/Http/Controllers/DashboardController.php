@@ -13,11 +13,14 @@ use DB;
 class DashboardController extends Controller {
     public function __invoke() {
         $space_id = session('space')->id;
+        $currentYear = date('Y');
+        $currentMonth = date('m');
 
-        $balance = session('space')->monthlyBalance(2018, 11);
-        $recurrings = session('space')->monthlyRecurrings(2018, 11);
+        $balance = session('space')->monthlyBalance($currentYear, $currentMonth);
+        $recurrings = session('space')->monthlyRecurrings($currentYear, $currentMonth);
         $leftToSpend = $balance - $recurrings;
 
+        $totalSpent = session('space')->spendings()->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$currentYear, $currentMonth])->sum('amount');
         $mostExpensiveTags = DB::select('
             SELECT
                 tags.name AS name,
@@ -45,6 +48,7 @@ class DashboardController extends Controller {
             'recurrings' => $recurrings,
             'leftToSpend' => $leftToSpend,
 
+            'totalSpent' => $totalSpent,
             'mostExpensiveTags' => $mostExpensiveTags
         ]);
     }
