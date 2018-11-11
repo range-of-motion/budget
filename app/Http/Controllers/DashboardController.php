@@ -15,6 +15,7 @@ class DashboardController extends Controller {
         $space_id = session('space')->id;
         $currentYear = date('Y');
         $currentMonth = date('m');
+        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
 
         $balance = session('space')->monthlyBalance($currentYear, $currentMonth);
         $recurrings = session('space')->monthlyRecurrings($currentYear, $currentMonth);
@@ -41,6 +42,22 @@ class DashboardController extends Controller {
             LIMIT 3;
         ', [$space_id, date('m')]);
 
+        $balanceTick = 0;
+        $dailyBalance = [];
+        for ($i = 1; $i <= $daysInMonth; $i ++) {
+            $balanceTick -= session('space')
+                ->spendings()
+                ->where('happened_on', $currentYear . '-' . $currentMonth . '-' . $i)
+                ->sum('amount');
+
+            $balanceTick += session('space')
+                ->earnings()
+                ->where('happened_on', $currentYear . '-' . $currentMonth . '-' . $i)
+                ->sum('amount');
+
+            $dailyBalance[$i] = $balanceTick;
+        }
+
         return view('dashboard', [
             'month' => date('n'),
 
@@ -49,7 +66,10 @@ class DashboardController extends Controller {
             'leftToSpend' => $leftToSpend,
 
             'totalSpent' => $totalSpent,
-            'mostExpensiveTags' => $mostExpensiveTags
+            'mostExpensiveTags' => $mostExpensiveTags,
+
+            'daysInMonth' => $daysInMonth,
+            'dailyBalance' => $dailyBalance
         ]);
     }
 }
