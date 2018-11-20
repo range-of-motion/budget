@@ -91,6 +91,12 @@ class SettingsController extends Controller {
         return view('settings.account');
     }
 
+    public function getSpaces() {
+        return view('settings.spaces.index', [
+            'spaces' => Auth::user()->spaces
+        ]);
+    }
+
     public function getPreferences() {
         return view('settings.preferences', [
             'languages' => config('app.locales'),

@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/settings/profile', 'SettingsController@getProfile')->name('profile');
         Route::get('/settings/account', 'SettingsController@getAccount')->name('account');
         Route::get('/settings/preferences', 'SettingsController@getPreferences')->name('preferences');
+        Route::get('/settings/spaces', 'SettingsController@getSpaces')->name('spaces.index');
     });
 
     Route::get('/spaces/{id}', 'SpaceController');

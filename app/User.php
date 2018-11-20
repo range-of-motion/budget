@@ -23,7 +23,7 @@ class User extends Authenticatable {
 
     // Relations
     public function spaces() {
-        return $this->belongsToMany(Space::class, 'user_space');
+        return $this->belongsToMany(Space::class, 'user_space')->withPivot('role');
     }
 
     public function currency() {
