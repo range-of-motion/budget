@@ -2,10 +2,10 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2 class="mb-3">{{ __('pages.settings') }}</h2>
         <div class="row">
             <div class="row__column mr-3" style="max-width: 300px;">
                 <div class="box">
+                    <div class="box__section box__section--header">Settings</div>
                     <ul class="box__section">
                         <li><a href="/settings/profile"><i class="fas fa-user fa-sm"></i> {{ __('general.profile') }}</a></li>
                         <li><a href="/settings/account"><i class="fas fa-lock fa-sm"></i> {{ __('general.account') }}</a></li>
@@ -15,6 +15,7 @@
                 </div>
             </div>
             <div class="row__column">
+                @yield('settings_title')
                 <form method="POST" action="/settings" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     @yield('settings_body')
