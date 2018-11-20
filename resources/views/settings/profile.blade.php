@@ -1,7 +1,7 @@
 @extends('settings.layout')
 
 @section('settings_title')
-    <h2 class="mb-3">Profile</h2>
+    <h2 class="mb-3">{{ __('general.profile') }}</h2>
 @endsection
 
 @section('settings_body')

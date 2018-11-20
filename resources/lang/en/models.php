@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'spaces' => 'Spaces',
+    'space' => 'Space',
+
     'tags' => 'Tags',
     'tag' => 'Tag',
 
