@@ -13,25 +13,23 @@ use Hash;
 use Mail;
 
 class SettingsController extends Controller {
-    public function index() {
-        return view('settings', [
-            'languages' => config('app.locales'),
-            'currencies' => Currency::all(),
-        ]);
+    public function getIndex() {
+        return redirect()->route('settings.profile');
     }
 
-    public function store(Request $request) {
+    public function postIndex(Request $request) {
         $request->validate([
             'avatar' => 'nullable|mimes:jpeg,jpg,png,gif',
             'password' => 'nullable|confirmed',
-            'language' => 'required|in:' . implode(',', array_keys(config('app.locales'))),
-            'theme' => 'required|in:light,dark',
-            'weekly_report' => 'required|in:true,false',
-            'currency' => 'required|exists:currencies,id'
+            'language' => 'nullable|in:' . implode(',', array_keys(config('app.locales'))),
+            'theme' => 'nullable|in:light,dark',
+            'weekly_report' => 'nullable|in:true,false',
+            'currency' => 'nullable|exists:currencies,id'
         ]);
 
         $user = Auth::user();
 
+        // Profile
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
 
@@ -45,25 +43,58 @@ class SettingsController extends Controller {
             $user->avatar = $fileName;
         }
 
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->currency_id = $request->input('currency');
+        if ($request->has('name')) {
+            $user->name = $request->input('name');
+        }
+
+        // Account
+        if ($request->has('email')) {
+            $user->email = $request->input('email');
+        }
 
         if ($password = $request->input('password')) {
             $user->password = Hash::make($password);
         }
 
-        $user->language = $request->input('language');
-        $user->theme = $request->input('theme');
-        $user->weekly_report = $request->input('weekly_report') == 'true' ? true : false;
+        // Preferences
+        if ($request->has('language')) {
+            $user->language = $request->input('language');
+        }
+
+        if ($request->has('theme')) {
+            $user->theme = $request->input('theme');
+        }
+
+        if ($request->has('currency')) {
+            $user->currency_id = $request->input('currency');
+        }
+
+        if ($request->has('weekly_report')) {
+            $user->weekly_report = $request->input('weekly_report') == 'true' ? true : false;
+        }
 
         $user->save();
 
-        // If password changed
-        if ($request->input('password')) {
+        // Notify upon changing of password
+        if ($request->has('password')) {
             Mail::to($user->email)->queue(new PasswordChanged($user->updated_at));
         }
 
-        return redirect()->route('settings');
+        return back();
+    }
+
+    public function getProfile() {
+        return view('settings.profile');
+    }
+
+    public function getAccount() {
+        return view('settings.account');
+    }
+
+    public function getPreferences() {
+        return view('settings.preferences', [
+            'languages' => config('app.locales'),
+            'currencies' => Currency::all()
+        ]);
     }
 }

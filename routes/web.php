@@ -64,8 +64,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/imports/{import}', 'ImportController@destroy');
     });
 
-    Route::get('/settings', 'SettingsController@index')->name('settings');
-    Route::post('/settings', 'SettingsController@store');
+    Route::name('settings.')->group(function () {
+        Route::get('/settings', 'SettingsController@getIndex')->name('index');
+        Route::post('/settings', 'SettingsController@postIndex');
+        Route::get('/settings/profile', 'SettingsController@getProfile')->name('profile');
+        Route::get('/settings/account', 'SettingsController@getAccount')->name('account');
+        Route::get('/settings/preferences', 'SettingsController@getPreferences')->name('preferences');
+    });
 
     Route::get('/spaces/{id}', 'SpaceController');
 
