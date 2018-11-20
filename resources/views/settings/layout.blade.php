@@ -7,9 +7,9 @@
             <div class="row__column mr-3" style="max-width: 300px;">
                 <div class="box">
                     <ul class="box__section">
-                        <li><a href="/settings/profile">{{ __('general.profile') }}</a></li>
-                        <li><a href="/settings/account">{{ __('general.account') }}</a></li>
-                        <li><a href="/settings/preferences">{{ __('general.preferences') }}</a></li>
+                        <li><a href="/settings/profile"><i class="fas fa-user fa-sm"></i> {{ __('general.profile') }}</a></li>
+                        <li><a href="/settings/account"><i class="fas fa-lock fa-sm"></i> {{ __('general.account') }}</a></li>
+                        <li><a href="/settings/preferences"><i class="fas fa-sliders-h fa-sm"></i> {{ __('general.preferences') }}</a></li>
                     </ul>
                 </div>
             </div>
