@@ -16,6 +16,10 @@ class Space extends Model {
         return $this->belongsToMany(User::class, 'user_space');
     }
 
+    public function currency() {
+        return $this->belongsTo(Currency::class);
+    }
+
     public function tags() {
         return $this->hasMany(Tag::class);
     }

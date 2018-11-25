@@ -11,7 +11,7 @@ class AppServiceProvider extends ServiceProvider {
         view()->composer('*', function($view) {
             $view->with([
                 'userName' => Auth::check() ? Auth::user()->name : null,
-                'currency' => Auth::check() ? Auth::user()->currency->symbol : null
+                'currency' => Auth::check() ? session('space')->currency->symbol : null
             ]);
         });
     }
