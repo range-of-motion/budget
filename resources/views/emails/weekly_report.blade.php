@@ -5,9 +5,9 @@
 
     This week (#{{ $week }}) you've
     <ul>
-        <li>Spent CURRENCY {{ number_format($totalSpent / 100, 2) }}</li>
+        <li>Spent {!! $space->currency->symbol !!} {{ number_format($totalSpent / 100, 2) }}</li>
         @if (count($largestSpendingWithTag))
-            <li>Most of which you've spent on {{ $largestSpendingWithTag[0]->tag_name }} (CURRENCY {{ number_format($largestSpendingWithTag[0]->amount / 100, 2) }})</li>
+            <li>Most of which you've spent on {{ $largestSpendingWithTag[0]->tag_name }} ({!! $space->currency->symbol !!} {{ number_format($largestSpendingWithTag[0]->amount / 100, 2) }})</li>
         @endif
     </ul>
 
