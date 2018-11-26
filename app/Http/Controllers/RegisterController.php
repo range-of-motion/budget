@@ -34,13 +34,13 @@ class RegisterController extends Controller {
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->verification_token = str_random(100);
-        $user->currency_id = $request->currency;
 
         $user->save();
 
         // Space
         $space = new Space;
 
+        $space->currency_id = $request->currency;
         $space->name = $user->name . '\'s Space';
 
         $space->save();

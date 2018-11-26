@@ -25,15 +25,6 @@
                 @include('partials.validation_error', ['payload' => 'theme'])
             </div>
             <div class="input input--small">
-                <label>{{ __('fields.currency') }}</label>
-                <select name="currency">
-                    @foreach ($currencies as $currency)
-                        <option value="{{ $currency->id }}" {{ Auth::user()->currency_id == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
-                    @endforeach
-                </select>
-                @include('partials.validation_error', ['payload' => 'currency'])
-            </div>
-            <div class="input input--small">
                 <label>{{ __('fields.weekly_report') }}</label>
                 <div>
                     <input type="radio" name="weekly_report" value="true" {{ Auth::user()->weekly_report ? 'checked' : '' }} /> {{ __('actions.yes') }}

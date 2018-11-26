@@ -23,8 +23,7 @@ class SettingsController extends Controller {
             'password' => 'nullable|confirmed',
             'language' => 'nullable|in:' . implode(',', array_keys(config('app.locales'))),
             'theme' => 'nullable|in:light,dark',
-            'weekly_report' => 'nullable|in:true,false',
-            'currency' => 'nullable|exists:currencies,id'
+            'weekly_report' => 'nullable|in:true,false'
         ]);
 
         $user = Auth::user();
@@ -65,10 +64,6 @@ class SettingsController extends Controller {
             $user->theme = $request->input('theme');
         }
 
-        if ($request->has('currency')) {
-            $user->currency_id = $request->input('currency');
-        }
-
         if ($request->has('weekly_report')) {
             $user->weekly_report = $request->input('weekly_report') == 'true' ? true : false;
         }
@@ -99,8 +94,7 @@ class SettingsController extends Controller {
 
     public function getPreferences() {
         return view('settings.preferences', [
-            'languages' => config('app.locales'),
-            'currencies' => Currency::all()
+            'languages' => config('app.locales')
         ]);
     }
 }
