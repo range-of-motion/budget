@@ -52,19 +52,7 @@
                         </ul>
                         <ul class="navigation__menu">
                             <li>
-                                <dropdown>
-                                    <span slot="button">
-                                        <i class="far fa-plus mr-05"></i> <i class="fas fa-caret-down fa-sm"></i>
-                                    </span>
-                                    <ul slot="menu" v-cloak>
-                                        <li>
-                                            <a href="/earnings/create">{{ __('actions.create') }} {{ __('models.earning') }}</a>
-                                        </li>
-                                        <li>
-                                            <a href="/spendings/create">{{ __('actions.create') }} {{ __('models.spending') }}</a>
-                                        </li>
-                                    </ul>
-                                </dropdown>
+                                <a href="/transactions/create" class="button" style="font-size: 12px; color: #FFF; padding: 5px 10px;">Create Transaction</a>
                             </li>
                             @if (Auth::user()->spaces->count() > 1)
                                 <li>
