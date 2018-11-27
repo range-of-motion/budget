@@ -84,7 +84,8 @@ return [
         'nl' => 'Dutch',
         'dk' => 'Danish',
         'de' => 'German',
-        'fr' => 'French'
+        'fr' => 'French',
+        'pt' => 'Portuguese'
     ],
 
     /*
