@@ -6,10 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddOverdueForeignKeys extends Migration {
     public function up() {
-        Schema::table('users', function ($table) {
-            $table->foreign('currency_id')->references('id')->on('currencies');
-        });
-
         Schema::table('tags', function ($table) {
             $table->foreign('space_id')->references('id')->on('spaces');
         });
@@ -36,10 +32,6 @@ class AddOverdueForeignKeys extends Migration {
     }
 
     public function down() {
-        Schema::table('users', function ($table) {
-            $table->dropForeign('users_currency_id_foreign');
-        });
-
         Schema::table('tags', function ($table) {
             $table->dropForeign('tags_space_id_foreign');
         });
