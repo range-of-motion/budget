@@ -13,14 +13,17 @@
         <div class="input input--small">
             <label>Date</label>
             <input type="text" v-model="date" />
+            <validation-error v-if="errors.date" :message="errors.date"></validation-error>
         </div>
         <div class="input input--small">
             <label>Description</label>
             <input type="text" v-model="description" />
+            <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input input--small">
             <label>Amount</label>
             <input type="text" v-model="amount" />
+            <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
         <button
             class="button"
@@ -36,6 +39,7 @@
         data() {
             return {
                 type: 'earning',
+                errors: [],
                 date: '',
                 description: '',
                 amount: '',
@@ -52,12 +56,15 @@
                 if (!this.loading) {
                     this.loading = true
 
-                    axios.post('/' + this.type, {
-                        _token: '33lp59tlzHIMCJ1aojp2CT4qZUttdCIWfkgFu1yk',
+                    // Reset
+                    let errors = []
+
+                    axios.post('/' + this.type + 's', {
+                        _token: 'hyeEjdASx1ihMrKLW0AUKgJ8jEokfX3goLsi6Mp5',
                         date: this.date,
                         description: this.description,
                         amount: this.amount
-                    }).then(() => {
+                    }).then(response => {
                         this.date = ''
                         this.description = ''
                         this.amount = ''
@@ -65,10 +72,24 @@
                         this.loading = false
 
                         alert('Success')
-                    }).catch(() => {
+                    }).catch(error => {
                         this.loading = false
 
-                        alert('Something went wrong')
+                        const response = error.response
+
+                        if (response.data.errors) {
+                            for (let key in response.data.errors) {
+                                if (response.data.errors.hasOwnProperty(key)) {
+                                    errors[key] = response.data.errors[key][0]
+                                }
+                            }
+                        }
+
+                        this.errors = errors
+
+                        if (response.status != 422) {
+                            alert('Something went wrong')
+                        }
                     })
                 }
             }
