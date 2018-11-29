@@ -60,7 +60,7 @@
                     let errors = []
 
                     axios.post('/' + this.type + 's', {
-                        _token: 'hyeEjdASx1ihMrKLW0AUKgJ8jEokfX3goLsi6Mp5',
+                        _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                         date: this.date,
                         description: this.description,
                         amount: this.amount
