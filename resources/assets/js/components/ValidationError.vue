@@ -1,5 +1,5 @@
 <template>
-    <div class="validation_error mt-1">{{ message }}</div>
+    <div class="validation_error mt-05">{{ message }}</div>
 </template>
 
 <script>

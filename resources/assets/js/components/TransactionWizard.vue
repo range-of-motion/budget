@@ -13,6 +13,7 @@
         <div class="input">
             <label>Date</label>
             <input type="text" v-model="date" style="background: #FFF;" />
+            <div class="hint mt-05">YYYY-MM-DD</div>
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
         </div>
         <div class="input">
