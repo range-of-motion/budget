@@ -65,11 +65,13 @@
                         description: this.description,
                         amount: this.amount
                     }).then(response => {
+                        this.loading = false
+
+                        this.errors = []
+
                         this.date = ''
                         this.description = ''
                         this.amount = ''
-
-                        this.loading = false
 
                         alert('Success')
                     }).catch(error => {
