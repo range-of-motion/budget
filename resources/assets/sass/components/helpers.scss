@@ -136,6 +136,12 @@
     }
 }
 
+.mw {
+    &-400 {
+        max-width: 400px;
+    }
+}
+
 // Colors
 .theme-light .color-dark {
     color: #000;

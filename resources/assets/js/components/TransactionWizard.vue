@@ -10,19 +10,19 @@
                 :class="{ 'bg__button--active': type == 'spending' }"
                 @click="switchType('spending')">Spending</button>
         </div>
-        <div class="input input--small">
+        <div class="input">
             <label>Date</label>
-            <input type="text" v-model="date" />
+            <input type="text" v-model="date" style="background: #FFF;" />
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
         </div>
-        <div class="input input--small">
+        <div class="input">
             <label>Description</label>
-            <input type="text" v-model="description" />
+            <input type="text" v-model="description" style="background: #FFF;" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
-        <div class="input input--small">
+        <div class="input">
             <label>Amount</label>
-            <input type="text" v-model="amount" />
+            <input type="text" v-model="amount" style="background: #FFF;" />
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
         <button
