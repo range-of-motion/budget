@@ -18,7 +18,7 @@
         </div>
         <div class="input">
             <label>Description</label>
-            <input type="text" v-model="description" style="background: #FFF;" />
+            <input type="text" v-model="description" placeholder="Birthday Present Angela" style="background: #FFF;" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input">
@@ -41,7 +41,7 @@
             return {
                 type: 'earning',
                 errors: [],
-                date: '',
+                date: this.getTodaysDate(),
                 description: '',
                 amount: '',
                 loading: false
@@ -51,6 +51,10 @@
         methods: {
             switchType(type) {
                 this.type = type
+            },
+
+            getTodaysDate() {
+                return '2018-11-29'
             },
 
             createEarning() {
@@ -70,7 +74,7 @@
 
                         this.errors = []
 
-                        this.date = ''
+                        this.date = this.getTodaysDate()
                         this.description = ''
                         this.amount = ''
 
