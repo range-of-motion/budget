@@ -31,11 +31,7 @@
                     </div>
                     <div class="input">
                         <label>Currency</label>
-                        <select name="currency">
-                            @foreach ($currencies as $currency)
-                                <option value="{{ $currency->id }}" {{ old('currency') == $currency->id ? 'selected' : '' }}>{!! $currency->symbol !!} &middot; {{ $currency->name }}</option>
-                            @endforeach
-                        </select>
+                        <searchable name="currency" :items='@json($currencies)' initial="{{ old('currency') }}"></searchable>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
                     <button class="button">Register</button>

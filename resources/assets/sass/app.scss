@@ -71,3 +71,29 @@ canvas {
     font-size: 14px;
     font-style: italic;
 }
+
+.searchable {
+    &__input {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__list {
+        margin-top: 10px;
+        background: $colors-light-body;
+        max-height: 200px;
+        overflow-y: scroll;
+        border: 1px solid $colors-light-border;
+        border-radius: $dimensions-box-border-radius;
+
+        div {
+            padding: 10px;
+
+            &:hover {
+                background: #FFF;
+                cursor: pointer;
+            }
+        }
+    }
+}

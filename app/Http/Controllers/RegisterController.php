@@ -14,7 +14,11 @@ use Mail;
 
 class RegisterController extends Controller {
     public function index() {
-        $currencies = Currency::all();
+        $currencies = [];
+
+        foreach (Currency::all() as $currency) {
+            $currencies[] = ['key' => $currency->id, 'label' => $currency->symbol];
+        }
 
         return view('register', compact('currencies'));
     }
