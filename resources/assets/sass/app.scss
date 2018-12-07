@@ -82,17 +82,33 @@ canvas {
     &__list {
         margin-top: 10px;
         background: $colors-light-body;
-        max-height: 200px;
-        overflow-y: scroll;
         border: 1px solid $colors-light-border;
         border-radius: $dimensions-box-border-radius;
 
-        div {
+        input {
             padding: 10px;
+            width: 100%;
+            font: inherit;
+            background: none;
+            border: none;
+            border-bottom: 1px solid $colors-light-border;
 
-            &:hover {
-                background: #FFF;
-                cursor: pointer;
+            &:focus {
+                outline: 0;
+            }
+        }
+
+        ul {
+            overflow-y: scroll;
+            max-height: 200px;
+
+            li {
+                padding: 10px;
+
+                &:hover {
+                    background: #FFF;
+                    cursor: pointer;
+                }
             }
         }
     }

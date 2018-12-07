@@ -6,7 +6,10 @@
             <span v-else v-html="selected.label"></span>
         </div>
         <div class="searchable__list" v-if="shown">
-            <div v-for="item in items" @click="select(item)" v-html="item.label"></div>
+            <input type="search" v-model="query" placeholder="Search" ref="query" />
+            <ul>
+                <li v-for="item in queriedItems" @click="select(item)" v-html="item.label"></li>
+            </ul>
         </div>
     </div>
 </template>
@@ -18,7 +21,8 @@
         data() {
             return {
                 shown: false,
-                selected: this.initial ? this.getItemByKey(this.initial) : null
+                selected: this.initial ? this.getItemByKey(this.initial) : null,
+                query: ''
             }
         },
 
@@ -29,6 +33,14 @@
                 }
 
                 return ''
+            },
+
+            queriedItems() {
+                return this.items.filter(item => {
+                    if (this.query.length < 1 || item.label.toUpperCase().indexOf(this.query.toUpperCase()) > -1) {
+                        return item
+                    }
+                })
             }
         },
 
@@ -43,6 +55,12 @@
 
             toggleShown() {
                 this.shown = !this.shown
+
+                this.$nextTick(() => {
+                    if (this.$refs.query) {
+                        this.$refs.query.focus()
+                    }
+                })
             },
 
             show() {
