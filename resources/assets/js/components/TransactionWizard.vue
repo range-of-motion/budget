@@ -71,7 +71,7 @@
             },
 
             getTodaysDate() {
-                return '2018-11-29'
+                return new Date().toISOString().slice(0, 10)
             },
 
             createEarning() {
