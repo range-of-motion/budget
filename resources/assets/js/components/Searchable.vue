@@ -8,7 +8,21 @@
         <div class="searchable__list" v-if="shown">
             <input type="search" v-model="query" placeholder="Search" ref="query" />
             <ul>
-                <li v-for="item in queriedItems" @click="select(item)" v-html="item.label"></li>
+                <li
+                    class="row"
+                    v-for="item in queriedItems"
+                    @click="select(item)">
+                    <div
+                        class="row__column row__column--compact"
+                        style="width: 20px;">
+                        <i
+                            class="fas fa-check fa-xs"
+                            v-if="isSelected(item)"></i>
+                    </div>
+                    <div
+                        class="row__column"
+                        v-html="item.label"></div>
+                </li>
             </ul>
         </div>
     </div>
@@ -51,6 +65,10 @@
                         return this.items[i]
                     }
                 }
+            },
+
+            isSelected(item) {
+                return this.selected == item
             },
 
             toggleShown() {
