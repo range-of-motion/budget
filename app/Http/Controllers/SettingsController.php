@@ -93,8 +93,12 @@ class SettingsController extends Controller {
     }
 
     public function getPreferences() {
-        return view('settings.preferences', [
-            'languages' => config('app.locales')
-        ]);
+        $languages = [];
+
+        foreach (config('app.locales') as $key => $value) {
+            $languages[] = ['key' => $key, 'label' => $value];
+        }
+
+        return view('settings.preferences', compact('languages'));
     }
 }

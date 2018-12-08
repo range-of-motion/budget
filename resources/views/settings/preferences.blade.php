@@ -9,11 +9,10 @@
         <div class="box__section">
             <div class="input input--small">
                 <label>{{ __('fields.language') }}</label>
-                <select name="language">
-                    @foreach ($languages as $key => $value)
-                        <option value="{{ $key }}" @if (Auth::user()->language === $key) selected @endif>{{ $value }}</option>
-                    @endforeach
-                </select>
+                <searchable
+                    name="language"
+                    :items='@json($languages)'
+                    initial="{{ Auth::user()->language }}"></searchable>
                 @include('partials.validation_error', ['payload' => 'language'])
             </div>
             <div class="input input--small">
