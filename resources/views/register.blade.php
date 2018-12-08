@@ -31,7 +31,11 @@
                     </div>
                     <div class="input">
                         <label>Currency</label>
-                        <searchable name="currency" :items='@json($currencies)' initial="{{ old('currency') }}"></searchable>
+                        <searchable
+                            name="currency"
+                            size="2"
+                            :items='@json($currencies)'
+                            initial="{{ old('currency') }}"></searchable>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
                     <button class="button">Register</button>

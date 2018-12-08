@@ -5,32 +5,39 @@
             <span v-if="!selected">Select</span>
             <span v-else v-html="selected.label"></span>
         </div>
-        <div class="searchable__list" v-if="shown">
-            <input type="search" v-model="query" placeholder="Search" ref="query" />
-            <ul>
-                <li
-                    class="row"
-                    v-for="item in queriedItems"
-                    @click="select(item)">
-                    <div
-                        class="row__column row__column--compact"
-                        style="width: 20px;">
-                        <i
-                            class="fas fa-check fa-xs"
-                            v-if="isSelected(item)"></i>
-                    </div>
-                    <div
-                        class="row__column"
-                        v-html="item.label"></div>
-                </li>
-            </ul>
+        <div class="searchable__container">
+            <div class="searchable__list" v-if="shown">
+                <input type="search" v-model="query" placeholder="Search" ref="query" />
+                <ul :style="{ 'max-height': size * 50 + 'px' }">
+                    <li
+                        class="row"
+                        v-for="item in queriedItems"
+                        @click="select(item)">
+                        <div
+                            class="row__column row__column--compact"
+                            style="width: 20px;">
+                            <i
+                                class="fas fa-check fa-xs"
+                                v-if="isSelected(item)"></i>
+                        </div>
+                        <div
+                            class="row__column"
+                            v-html="item.label"></div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['name', 'items', 'initial'],
+        props: {
+            name: String,
+            size: { type: Number, default: 4 },
+            items: Array,
+            initial: String
+        },
 
         data() {
             return {

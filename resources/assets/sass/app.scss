@@ -79,8 +79,16 @@ canvas {
         }
     }
 
-    &__list {
+    &__container {
+        position: relative;
         margin-top: 10px;
+    }
+
+    &__list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
         background: $colors-light-body;
         border: 1px solid $colors-light-border;
         border-radius: $dimensions-box-border-radius;
@@ -100,7 +108,6 @@ canvas {
 
         ul {
             overflow-y: scroll;
-            max-height: 200px;
 
             li {
                 padding: 10px;
