@@ -100,6 +100,9 @@
                 this.selected = payload
 
                 this.hide()
+
+                // Update parent
+                this.$emit('SelectUpdated', this.selected)
             }
         }
     }

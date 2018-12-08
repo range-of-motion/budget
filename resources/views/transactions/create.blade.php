@@ -5,6 +5,6 @@
 @section('body')
     <div class="wrapper mw-400 my-3">
         <h2 class="mb-3">{{ __('actions.create') }} Transaction</h2>
-        <transaction-wizard></transaction-wizard>
+        <transaction-wizard :tags='@json($tags)'></transaction-wizard>
     </div>
 @endsection

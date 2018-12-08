@@ -10,6 +10,14 @@
                 :class="{ 'bg__button--active': type == 'spending' }"
                 @click="switchType('spending')">Spending</button>
         </div>
+        <div class="input" v-if="type == 'spending'">
+            <label>Tag</label>
+            <searchable
+                name="tag"
+                :items="tags"
+                @SelectUpdated="tagUpdated"></searchable>
+            <validation-error v-if="errors.tag_id" :message="errors.tag_id"></validation-error>
+        </div>
         <div class="input">
             <label>Date</label>
             <input type="text" v-model="date" style="background: #FFF;" />
@@ -37,13 +45,18 @@
 
 <script>
     export default {
+        props: ['tags'],
+
         data() {
             return {
                 type: 'earning',
                 errors: [],
+
+                tag: null,
                 date: this.getTodaysDate(),
                 description: '',
                 amount: '',
+
                 loading: false
             }
         },
@@ -51,6 +64,10 @@
         methods: {
             switchType(type) {
                 this.type = type
+            },
+
+            tagUpdated(payload) {
+                this.tag = payload.key
             },
 
             getTodaysDate() {
@@ -64,12 +81,19 @@
                     // Reset
                     let errors = []
 
-                    axios.post('/' + this.type + 's', {
+                    //
+                    let body = {
                         _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                         date: this.date,
                         description: this.description,
                         amount: this.amount
-                    }).then(response => {
+                    }
+
+                    if (this.type == 'spending' && this.tag) {
+                        body.tag_id = this.tag
+                    }
+
+                    axios.post('/' + this.type + 's', body).then(response => {
                         this.loading = false
 
                         this.errors = []
