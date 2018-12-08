@@ -81,6 +81,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ideas/create', 'IdeaController@create')->name('create');
         Route::post('/ideas', 'IdeaController@store');
     });
+
+    Route::get('/translations', function () {
+        $strings = [];
+
+        foreach (glob(resource_path('lang/' . Auth::user()->language . '/*.php')) as $file) {
+            $fileName = basename($file, '.php');
+
+            $strings[$fileName] = require $file;
+        }
+
+        return 'window.i18n = ' . json_encode($strings) . ';';
+    });
 });
 
 Route::get('/logout', 'LogoutController@index')->name('logout');
