@@ -12,17 +12,43 @@
 }
 
 .theme-light {
-    input[type=text], input[type=email], input[type=password], select, .searchable__input, textarea {
+    input[type=text], input[type=email], input[type=password],
+    select,
+    .searchable__input, .searchable__list,
+    textarea {
         background: $colors-light-body;
         border: 1px solid $colors-light-border;
+    }
+
+    .searchable__list {
+        input {
+            border-bottom: 1px solid $colors-light-border;
+        }
+
+        ul li:hover {
+            background: $colors-light-background;
+        }
     }
 }
 
 .theme-dark {
-    input[type=text], input[type=email], input[type=password], select, .searchable__input, textarea {
+    input[type=text], input[type=email], input[type=password],
+    select,
+    .searchable__input, .searchable__list,
+    textarea {
         color: #FFF;
         background: $colors-dark-body;
         border: 1px solid $colors-dark-border;
+    }
+
+    .searchable__list {
+        input {
+            border-bottom: 1px solid $colors-dark-border;
+        }
+
+        ul li:hover {
+            background: $colors-dark-background;
+        }
     }
 }
 
@@ -45,6 +71,51 @@ input[type=text], input[type=email], input[type=password], select, .searchable__
 
 select {
     background: #FFF;
+}
+
+.searchable {
+    &__input {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__container {
+        position: relative;
+        margin-top: 10px;
+    }
+
+    &__list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: $dimensions-box-border-radius;
+
+        input {
+            padding: 10px;
+            width: 100%;
+            font: inherit;
+            background: none;
+            border: none;
+
+            &:focus {
+                outline: 0;
+            }
+        }
+
+        ul {
+            overflow-y: scroll;
+
+            li {
+                padding: 10px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
 
 textarea {
