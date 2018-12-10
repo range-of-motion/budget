@@ -11,5 +11,5 @@
         @endif
     </ul>
 
-    If you don't want to receive a weekly report, head over to <a href="{{ config('app.url') . '/settings' }}">settings</a> and let us know.
+    Tired of these reports? <a href="{{ config('app.url') . '/settings/preferences' }}">Change your preferences</a>.
 @endsection
