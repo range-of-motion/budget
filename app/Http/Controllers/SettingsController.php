@@ -96,7 +96,7 @@ class SettingsController extends Controller {
         $languages = [];
 
         foreach (config('app.locales') as $key => $value) {
-            $languages[] = ['key' => $key, 'label' => $value];
+            $languages[] = ['key' => $key, 'label' => '<i class="twf twf-sm twf-' . $key . '"></i> ' . $value];
         }
 
         return view('settings.preferences', compact('languages'));
