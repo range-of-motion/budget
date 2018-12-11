@@ -41,10 +41,7 @@
                 @include('partials.validation_error', ['payload' => 'amount'])
             </div>
             <div class="row row--right">
-                <div class="row__column row__column--compact row__column--middle">
-                    <a href="/tags">Cancel</a>
-                </div>
-                <div class="row__column row__column--compact ml-2">
+                <div class="row__column row__column--compact">
                     <button class="button">{{ __('actions.create') }}</button>
                 </div>
             </div>
