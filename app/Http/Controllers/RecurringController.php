@@ -21,9 +21,13 @@ class RecurringController extends Controller {
     }
 
     public function create() {
-        return view('recurrings.create', [
-            'tags' => session('space')->tags
-        ]);
+        $tags = [];
+
+        foreach (session('space')->tags as $tag) {
+            $tags[] = ['key' => $tag->id, 'label' => $tag->name];
+        }
+
+        return view('recurrings.create', compact('tags'));
     }
 
     public function store(Request $request) {

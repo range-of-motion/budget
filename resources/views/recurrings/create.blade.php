@@ -22,12 +22,10 @@
             </div>
             <div class="input input--small">
                 <label>Tag</label>
-                <select name="tag">
-                    <option value="">-</option>
-                    @foreach ($tags as $tag)
-                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                    @endforeach
-                </select>
+                <searchable
+                    name="tag"
+                    :items='@json($tags)'
+                    initial="{{ old('tag') }}"></searchable>
                 @include('partials.validation_error', ['payload' => 'tag'])
             </div>
             <div class="input input--small">
