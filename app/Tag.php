@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Events\TagCreating;
+use App\Events\TagDeleting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +15,8 @@ class Tag extends Model {
     protected $fillable = ['space_id', 'name'];
 
     protected $dispatchesEvents = [
-        'creating' => TagCreating::class
+        'creating' => TagCreating::class,
+        'deleting' => TagDeleting::class
     ];
 
     public function spendings() {
