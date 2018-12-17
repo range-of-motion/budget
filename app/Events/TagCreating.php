@@ -18,6 +18,7 @@ class TagCreating {
     public function __construct(Tag $tag) {
         Notification::create([
             'space_id' => $tag->space_id,
+            'user_id' => \Auth::user()->id,
             'action' => 'tag.created'
         ]);
     }
