@@ -9,7 +9,7 @@
             @foreach ($notifications as $notification)
                 <div class="box__section row">
                     <div class="row__column">{{ __('notifications.' . $notification->action) }}</div>
-                    <div class="row__column">{{ $notification->created_at }}</div>
+                    <div class="row__column">{{ $notification->created_at->diffForHumans() }}</div>
                 </div>
             @endforeach
         </div>
