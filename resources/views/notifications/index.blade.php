@@ -14,7 +14,7 @@
                         @endif
                     </div>
                     <div class="row__column row__column--middle">{{ __('notifications.' . $notification->action) }}</div>
-                    <div class="row__column row__column--middle">{{ $notification->created_at->diffForHumans() }}</div>
+                    <div class="row__column row__column--middle row__column--compact">{{ $notification->created_at->diffForHumans() }}</div>
                 </div>
             @endforeach
         </div>
