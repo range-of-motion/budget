@@ -66,6 +66,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/imports/{import}', 'ImportController@destroy');
     });
 
+    Route::name('notifications.')->group(function () {
+        Route::get('/notifications', 'NotificationController@index')->name('index');
+    });
+
     Route::name('settings.')->group(function () {
         Route::get('/settings', 'SettingsController@getIndex')->name('index');
         Route::post('/settings', 'SettingsController@postIndex');

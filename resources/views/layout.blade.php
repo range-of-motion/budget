@@ -56,6 +56,11 @@
                             <li>
                                 <a href="/transactions/create" class="button" style="font-size: 12px; color: #FFF; padding: 5px 10px;">Create Transaction</a>
                             </li>
+                            <li>
+                                <a href="/notifications">
+                                    <i class="fas fa-bell"></i>
+                                </a>
+                            </li>
                             @if (Auth::user()->spaces->count() > 1)
                                 <li>
                                     <dropdown>
