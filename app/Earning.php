@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\TransactionCreating;
+use App\Events\TransactionDeleting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,6 +13,11 @@ class Earning extends Model {
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['happened_on', 'description', 'amount'];
+
+    protected $dispatchesEvents = [
+        'creating' => TransactionCreating::class,
+        'deleting' => TransactionDeleting::class
+    ];
 
     // Accessors
     public function getFormattedAmountAttribute() {

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\TransactionCreating;
+use App\Events\TransactionDeleting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -17,6 +19,11 @@ class Spending extends Model {
         'happened_on',
         'description',
         'amount'
+    ];
+
+    protected $dispatchesEvents = [
+        'creating' => TransactionCreating::class,
+        'deleting' => TransactionDeleting::class
     ];
 
     // Accessors
