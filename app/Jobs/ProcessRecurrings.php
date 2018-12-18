@@ -22,10 +22,13 @@ class ProcessRecurrings implements ShouldQueue {
             ::where('type', 'monthly')
             ->where('day', date('j'))
             ->where('starts_on', '<=', date('Y-m-d'))
-            ->where('ends_on', '>=', date('Y-m-d'))
             ->where(function ($query) {
                 $query
-                    ->where('last_used_on', date('j'))
+                    ->where('ends_on', '>=', date('Y-m-d'))
+                    ->orWhere('ends_on', null);
+            })->where(function ($query) {
+                $query
+                    ->where('last_used_on', '<', date('Y-m-d'))
                     ->orWhere('last_used_on', null);
             })->get();
 
