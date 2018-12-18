@@ -34,6 +34,39 @@
             <input type="text" v-model="amount" style="background: #FFF;" />
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
+        <div v-if="type == 'spending'">
+            <div class="input row">
+                <div class="row__column row__column--compact mr-1">
+                    <input type="checkbox" id="test" v-model="isRecurring" />
+                </div>
+                <div class="row__column">
+                    <label for="test">This is a recurring spending&mdash;create it for me in the future</label>
+                </div>
+            </div>
+            <div v-if="isRecurring">
+                <div class="input">
+                    <label>How long will this spending go on for?</label>
+                    <div class="row">
+                        <div class="row__column row__column--compact mr-1">
+                            <input type="radio" v-model="recurringEnd" value="forever" />
+                        </div>
+                        <div class="row__column">
+                            <label>Forever :(</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__column row__column--compact mr-1">
+                            <input type="radio" v-model="recurringEnd" value="fixed" />
+                        </div>
+                        <div class="row__column">
+                            <label>Until</label>
+                            <input type="text" style="background: #FFF;" />
+                            <div class="hint mt-05">YYYY-MM-DD</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button
             class="button"
             @click="createEarning">
@@ -56,6 +89,9 @@
                 date: this.getTodaysDate(),
                 description: '',
                 amount: '',
+                isRecurring: false,
+                recurringEnd: 'forever',
+                recurringEndDate: '',
 
                 loading: false
             }
@@ -81,47 +117,78 @@
                     // Reset
                     let errors = []
 
-                    //
-                    let body = {
-                        _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        date: this.date,
-                        description: this.description,
-                        amount: this.amount
-                    }
-
-                    if (this.type == 'spending' && this.tag) {
-                        body.tag_id = this.tag
-                    }
-
-                    axios.post('/' + this.type + 's', body).then(response => {
-                        this.loading = false
-
-                        this.errors = []
-
-                        this.date = this.getTodaysDate()
-                        this.description = ''
-                        this.amount = ''
-
-                        alert('Success')
-                    }).catch(error => {
-                        this.loading = false
-
-                        const response = error.response
-
-                        if (response.data.errors) {
-                            for (let key in response.data.errors) {
-                                if (response.data.errors.hasOwnProperty(key)) {
-                                    errors[key] = response.data.errors[key][0]
-                                }
-                            }
+                    if (this.type == 'spending' && this.isRecurring) { // It's a recurring
+                        let body = {
+                            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            day: this.date.slice(-2),
+                            description: this.description,
+                            amount: this.amount
                         }
 
-                        this.errors = errors
-
-                        if (response.status != 422) {
-                            alert('Something went wrong')
+                        if (this.recurringEnd == 'fixed') {
+                            body.end = this.recurringEndDate
                         }
-                    })
+
+                        if (this.tag) {
+                            body.tag_id = this.tag
+                        }
+
+                        axios.post('/recurrings', body).then(response => {
+                            this.handleSuccess()
+                        }).catch(error => {
+                            this.handleErrors(error.response)
+                        })
+                    } else { // It's an earning or a spending, not a recurring
+                        let body = {
+                            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            date: this.date,
+                            description: this.description,
+                            amount: this.amount
+                        }
+
+                        if (this.type == 'spending' && this.tag) {
+                            body.tag_id = this.tag
+                        }
+
+                        axios.post('/' + this.type + 's', body).then(response => {
+                            this.handleSuccess()
+                        }).catch(error => {
+                            this.handleErrors(error.response)
+                        })
+                    }
+                }
+            },
+
+            handleSuccess() {
+                this.loading = false
+
+                this.errors = []
+
+                this.date = this.getTodaysDate()
+                this.description = ''
+                this.amount = ''
+                // Leave isRecurring as is
+                this.recurringEnd = 'forever'
+                this.recurringEndDate = ''
+
+                alert('Success')
+            },
+
+            handleErrors(response) {
+                this.loading = false
+
+                if (response.data.errors) {
+                    for (let key in response.data.errors) {
+                        if (response.data.errors.hasOwnProperty(key)) {
+                            errors[key] = response.data.errors[key][0]
+                        }
+                    }
+                }
+
+                this.errors = errors
+
+                if (response.status != 422) {
+                    alert('Something went wrong')
                 }
             }
         }
