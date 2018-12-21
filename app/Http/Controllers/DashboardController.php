@@ -25,6 +25,7 @@ class DashboardController extends Controller {
         $mostExpensiveTags = DB::select('
             SELECT
                 tags.name AS name,
+                tags.color AS color,
                 SUM(spendings.amount) AS amount
             FROM
                 tags
