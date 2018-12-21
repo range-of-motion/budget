@@ -12,14 +12,16 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TagDeleting {
+class TagCreated {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public function __construct(Tag $tag) {
         Notification::create([
             'space_id' => $tag->space_id,
             'user_id' => \Auth::user()->id,
-            'action' => 'tag.deleted'
+            'entity_id' => $tag->id,
+            'entity_type' => 'tag',
+            'action' => 'tag.created'
         ]);
     }
 }

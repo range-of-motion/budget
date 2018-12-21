@@ -10,6 +10,8 @@ class CreateNotificationsTable extends Migration {
             $table->increments('id');
             $table->unsignedInteger('space_id');
             $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('entity_id');
+            $table->string('entity_type');
             $table->string('action');
             $table->timestamps();
 

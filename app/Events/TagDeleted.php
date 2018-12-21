@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Notification;
+use App\Tag;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -11,14 +12,15 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TransactionCreating {
+class TagDeleted {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct($transaction) {
+    public function __construct(Tag $tag) {
         Notification::create([
-            'space_id' => $transaction->space_id,
-            'user_id' => \Auth::user()->id,
-            'action' => 'transaction.created'
+            'space_id' => $tag->space_id,
+            'entity_id' => $tag->id,
+            'entity_type' => 'tag',
+            'action' => 'tag.deleted'
         ]);
     }
 }

@@ -13,7 +13,7 @@
                             <img class="avatar" src="{{ $notification->user->avatar }}" />
                         @endif
                     </div>
-                    <div class="row__column row__column--middle">{{ __('notifications.' . $notification->action) }}</div>
+                    <div class="row__column row__column--middle">{{ __('notifications.' . $notification->action) }} <a href="/{{ $notification->entity_type }}s/{{ $notification->entity_id }}">#{{ $notification->entity_id }}</a></div>
                     <div class="row__column row__column--middle row__column--compact">{{ $notification->created_at->diffForHumans() }}</div>
                 </div>
             @endforeach
