@@ -15,13 +15,17 @@
         <div class="box">
             @if (count($tags))
                 <div class="box__section box__section--header row">
+                    <div class="row__column row__column--compact mr-2" style="width: 20px;"></div>
                     <div class="row__column">{{ __('fields.name') }}</div>
                     <div class="row__column row__column--double" style="flex: 2;">{{ __('models.spendings') }}</div>
                 </div>
                 @foreach ($tags as $tag)
                     <div class="box__section row">
-                        <div class="row__column">{{ $tag->name }}</div>
-                        <div class="row__column">{{ $tag->spendings->count() }}</div>
+                        <div class="row__column row__column--compact row__column--middle mr-2">
+                            <div style="width: 15px; height: 15px; border-radius: 2px; background: #{{ $tag->color }};"></div>
+                        </div>
+                        <div class="row__column row__column--middle">{{ $tag->name }}</div>
+                        <div class="row__column row__column--middle">{{ $tag->spendings->count() }}</div>
                         <div class="row__column row__column--middle row row--right">
                             <div class="row__column row__column--compact">
                                 <a href="/tags/{{ $tag->id }}/edit">
