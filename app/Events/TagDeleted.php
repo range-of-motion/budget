@@ -18,6 +18,7 @@ class TagDeleted {
     public function __construct(Tag $tag) {
         Notification::create([
             'space_id' => $tag->space_id,
+            'user_id' => \Auth::user()->id,
             'entity_id' => $tag->id,
             'entity_type' => 'tag',
             'action' => 'tag.deleted'
