@@ -10,10 +10,15 @@
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
                 <div class="box__section">
-                    <div class="input input--small mb-0">
+                    <div class="input input--small">
                         <label>{{ __('fields.name') }}</label>
                         <input type="text" name="name" value="{{ $tag->name }}" />
                         @include('partials.validation_error', ['payload' => 'name'])
+                    </div>
+                    <div class="input input--small mb-0">
+                        <label>{{ __('fields.color') }}</label>
+                        <input type="text" name="color" value="{{ $tag->color }}" />
+                        @include('partials.validation_error', ['payload' => 'color'])
                     </div>
                 </div>
                 <div class="box__section box__section--highlight row row--right">

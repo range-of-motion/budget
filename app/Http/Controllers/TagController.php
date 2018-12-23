@@ -10,6 +10,7 @@ use App\Tag;
 class TagController extends Controller {
     private $validationRules = [
         'name' => 'required|max:255'
+        // TODO ADD COLOR
     ];
 
     public function index() {
@@ -46,7 +47,8 @@ class TagController extends Controller {
         $request->validate($this->validationRules);
 
         $tag->fill([
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'color' => $request->input('color')
         ])->save();
 
         return redirect()->route('tags.index');
