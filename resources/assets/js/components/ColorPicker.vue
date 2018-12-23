@@ -1,7 +1,7 @@
 <template>
     <div>
         <input type="hidden" name="color" :value="colorWithoutHashtag" />
-        <sketch-picker v-model="color" disable-alpha="true"></sketch-picker>
+        <chrome-picker v-model="color" disable-alpha="true" disable-fields="true"></chrome-picker>
     </div>
 </template>
 

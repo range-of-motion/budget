@@ -2,7 +2,7 @@ window.axios = require('axios')
 
 window.Vue = require('vue')
 
-Vue.component('sketch-picker', require('vue-color').Sketch)
+Vue.component('chrome-picker', require('vue-color').Chrome)
 
 Vue.component('datepicker', require('./components/DatePicker.vue'))
 Vue.component('barchart', require('./components/BarChart.vue'))
