@@ -17,7 +17,7 @@
                     </div>
                     <div class="input input--small mb-0">
                         <label>{{ __('fields.color') }}</label>
-                        <input type="text" name="color" value="{{ $tag->color }}" />
+                        <color-picker initial-color="{{ $tag->color }}"></color-picker>
                         @include('partials.validation_error', ['payload' => 'color'])
                     </div>
                 </div>
