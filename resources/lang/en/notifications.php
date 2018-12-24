@@ -11,5 +11,10 @@ return [
         'created' => 'Created Tag',
         'modified' => 'Modified Tag',
         'deleted' => 'Deleted Tag'
+    ],
+
+    'import' => [
+        'created' => 'Created Import',
+        'deleted' => 'Deleted Import'
     ]
 ];

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\ImportCreated;
+use App\Events\ImportDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,6 +18,11 @@ class Import extends Model {
         'column_happened_on',
         'column_description',
         'column_amount'
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => ImportCreated::class,
+        'deleted' => ImportDeleted::class
     ];
 
     // Relations
