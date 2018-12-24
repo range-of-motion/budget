@@ -23,6 +23,10 @@ class Recurring extends Model {
         return 0;
     }
 
+    public function getStatusAttribute() {
+        return $this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on);
+    }
+
     // Relations
     public function spendings() {
         return $this->hasMany(Spending::class);
