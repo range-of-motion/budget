@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\RecurringCreated;
+use App\Events\RecurringDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -9,6 +11,11 @@ class Recurring extends Model {
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    protected $dispatchesEvents = [
+        'created' => RecurringCreated::class,
+        'deleted' => RecurringDeleted::class
+    ];
 
     // Accessors
     public function getDueDaysAttribute() {

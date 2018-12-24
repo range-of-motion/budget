@@ -7,6 +7,11 @@ return [
         'deleted' => 'Deleted Transaction'
     ],
 
+    'recurring' => [
+        'created' => 'Created Recurring',
+        'deleted' => 'Deleted Recurring'
+    ],
+
     'tag' => [
         'created' => 'Created Tag',
         'modified' => 'Modified Tag',
