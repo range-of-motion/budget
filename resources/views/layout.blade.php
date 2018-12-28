@@ -54,7 +54,22 @@
                         </ul>
                         <ul class="navigation__menu">
                             <li>
-                                <a href="/transactions/create" class="button" style="font-size: 12px; color: #FFF; padding: 5px 10px;">Create Transaction</a>
+                                <dropdown>
+                                    <span slot="button">
+                                        <i class="far fa-plus"></i> <i class="fas fa-caret-down fa-sm"></i>
+                                    </span>
+                                    <ul slot="menu" v-cloak>
+                                        <li>
+                                            <a href="/transactions/create">Create Transaction</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tags/create">Create Tag</a>
+                                        </li>
+                                        <li>
+                                            <a href="/imports/create">Create Import</a>
+                                        </li>
+                                    </ul>
+                                </dropdown>
                             </li>
                             <li>
                                 <a href="/notifications">
