@@ -30,12 +30,8 @@
             li a {
                 padding: 5px 10px;
                 display: block;
+                font-size: 14px;
                 white-space: nowrap;
-
-                &:hover {
-                    color: #FFF;
-                    background: $colors-primary;
-                }
             }
         }
     }
@@ -44,9 +40,25 @@
 .theme-light .dropdown .dropdown__menu {
     background: $colors-light-background;
     border: 1px solid $colors-light-border;
+
+    li a {
+        color: #000;
+
+        &:hover {
+            background: $colors-light-border;
+        }
+    }
 }
 
 .theme-dark .dropdown .dropdown__menu {
     background: $colors-dark-background;
     border: 1px solid $colors-dark-border;
+
+    li a {
+        color: #FFF;
+
+        &:hover {
+            background: $colors-dark-border;
+        }
+    }
 }
