@@ -41,9 +41,9 @@
                     <button class="button">Register</button>
                 </form>
             </div>
-            <div class="box__section box__section--highlight text-center">
-                <a href="/login">Already on Budget?</a>
-            </div>
+        </div>
+        <div class="text-center mt-2">
+            <a class="fs-sm" href="/login">Already on Budget?</a>
         </div>
     </div>
 @endsection

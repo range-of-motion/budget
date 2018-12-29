@@ -142,6 +142,11 @@
     }
 }
 
+.fs-sm {
+    font-size: 14px;
+    font-weight: 600; // To prevent anti-aliasing from fucking it up
+}
+
 // Colors
 .theme-light .color-dark {
     color: #000;

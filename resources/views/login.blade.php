@@ -28,9 +28,9 @@
                     </div>
                 </form>
             </div>
-            <div class="box__section box__section--highlight text-center">
-                <a href="/register">New to Budget?</a>
-            </div>
+        </div>
+        <div class="text-center mt-2">
+            <a class="fs-sm" href="/register">New to Budget?</a>
         </div>
     </div>
 @endsection
