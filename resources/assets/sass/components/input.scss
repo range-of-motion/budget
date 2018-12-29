@@ -12,11 +12,15 @@
 }
 
 .theme-light {
+    label {
+        color: #000;
+    }
+
     input[type=text], input[type=email], input[type=password],
     select,
     .searchable__input, .searchable__list,
     textarea {
-        background: $colors-light-body;
+        background: $colors-light-background;
         border: 1px solid $colors-light-border;
     }
 
