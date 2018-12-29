@@ -20,18 +20,18 @@
         </div>
         <div class="input">
             <label>Date</label>
-            <input type="text" v-model="date" style="background: #FFF;" />
+            <input type="text" v-model="date" />
             <div class="hint mt-05">YYYY-MM-DD</div>
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
         </div>
         <div class="input">
             <label>Description</label>
-            <input type="text" v-model="description" placeholder="Birthday Present Angela" style="background: #FFF;" />
+            <input type="text" v-model="description" placeholder="Birthday Present Angela" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input">
             <label>Amount</label>
-            <input type="text" v-model="amount" style="background: #FFF;" />
+            <input type="text" v-model="amount" />
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
         <div v-if="type == 'spending'">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="row__column">
                             <label>Until</label>
-                            <input type="text" style="background: #FFF;" />
+                            <input type="text" />
                             <div class="hint mt-05">YYYY-MM-DD</div>
                         </div>
                     </div>

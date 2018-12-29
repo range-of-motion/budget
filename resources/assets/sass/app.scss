@@ -34,7 +34,7 @@ canvas {
         padding: 10px 20px;
         font: inherit;
         font-size: 14px;
-        border: 1px solid $colors-light-border;
+        border: 1px solid red;
         border-left: 0;
         border-right: 0;
 
@@ -45,13 +45,13 @@ canvas {
         &:first-child {
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
-            border-left: 1px solid $colors-light-border;
+            border-left: 1px solid red;
         }
 
         &:last-child {
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
-            border-right: 1px solid $colors-light-border;
+            border-right: 1px solid red;
         }
 
         &:hover, &.bg__button--active {
@@ -59,6 +59,23 @@ canvas {
             background: $colors-primary;
             color: #FFF;
         }
+    }
+}
+
+.theme-light .bg button.bg__button {
+    border-color: $colors-light-border;
+
+    &:not(.bg__button--active):not(:hover) {
+        background: $colors-light-background;
+    }
+}
+
+.theme-dark .bg button.bg__button {
+    color: #FFF;
+    border-color: $colors-dark-border;
+
+    &:not(.bg__button--active):not(:hover) {
+        background: $colors-dark-body;
     }
 }
 
