@@ -30,7 +30,7 @@ class DashboardController extends Controller {
             FROM
                 tags
             LEFT OUTER JOIN
-                spendings ON tags.id = spendings.tag_id
+                spendings ON tags.id = spendings.tag_id AND spendings.deleted_at IS NULL
             WHERE
                 tags.space_id = ?
                 AND MONTH(happened_on) = ?
