@@ -49,21 +49,21 @@
                     <label>How long will this spending go on for?</label>
                     <div class="row">
                         <div class="row__column row__column--compact mr-1">
-                            <input type="radio" v-model="recurringEnd" value="forever" />
+                            <input id="noEnd" type="radio" v-model="recurringEnd" value="forever" />
                         </div>
                         <div class="row__column">
-                            <label>Forever :(</label>
+                            <label for="noEnd">Forever :(</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="row__column row__column--compact mr-1">
-                            <input type="radio" v-model="recurringEnd" value="fixed" />
+                            <input id="fixedEnd" type="radio" v-model="recurringEnd" value="fixed" />
                         </div>
                         <div class="row__column">
-                            <label>Until</label>
-                            <input type="text" />
-                            <validation-error v-if="errors.end" :message="errors.end"></validation-error>
+                            <label for="fixedEnd">Until</label>
+                            <input type="text" v-model="recurringEndDate" />
                             <div class="hint mt-05">YYYY-MM-DD</div>
+                            <validation-error v-if="errors.end" :message="errors.end"></validation-error>
                         </div>
                     </div>
                 </div>
