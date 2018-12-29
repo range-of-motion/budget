@@ -23,6 +23,7 @@
             <input type="text" v-model="date" />
             <div class="hint mt-05">YYYY-MM-DD</div>
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
+            <validation-error v-if="errors.day" :message="errors.day"></validation-error>
         </div>
         <div class="input">
             <label>Description</label>
@@ -61,6 +62,7 @@
                         <div class="row__column">
                             <label>Until</label>
                             <input type="text" />
+                            <validation-error v-if="errors.end" :message="errors.end"></validation-error>
                             <div class="hint mt-05">YYYY-MM-DD</div>
                         </div>
                     </div>
@@ -113,9 +115,6 @@
             createEarning() {
                 if (!this.loading) {
                     this.loading = true
-
-                    // Reset
-                    let errors = []
 
                     if (this.type == 'spending' && this.isRecurring) { // It's a recurring
                         let body = {
@@ -176,6 +175,8 @@
 
             handleErrors(response) {
                 this.loading = false
+
+                let errors = []
 
                 if (response.data.errors) {
                     for (let key in response.data.errors) {
