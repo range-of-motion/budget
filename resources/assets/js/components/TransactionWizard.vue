@@ -27,7 +27,7 @@
         </div>
         <div class="input">
             <label>Description</label>
-            <input type="text" v-model="description" placeholder="Birthday Present Angela" />
+            <input type="text" v-model="description" :placeholder="type == 'earning' ? 'Paycheck February' : 'Birthday Present for Angela'" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input">
