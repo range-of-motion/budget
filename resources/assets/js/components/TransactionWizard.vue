@@ -90,7 +90,7 @@
                 tag: null,
                 date: this.getTodaysDate(),
                 description: '',
-                amount: '',
+                amount: '10.00',
                 isRecurring: false,
                 recurringEnd: 'forever',
                 recurringEndDate: '',
