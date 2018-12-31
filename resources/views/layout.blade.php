@@ -60,13 +60,13 @@
                                     </span>
                                     <ul slot="menu" v-cloak>
                                         <li>
-                                            <a href="/transactions/create">Create Transaction</a>
+                                            <a href="/transactions/create">{{ __('actions.create') }} {{ __('models.transaction') }}</a>
                                         </li>
                                         <li>
-                                            <a href="/tags/create">Create Tag</a>
+                                            <a href="/tags/create">{{ __('actions.create') }} {{ __('models.tag') }}</a>
                                         </li>
                                         <li>
-                                            <a href="/imports/create">Create Import</a>
+                                            <a href="/imports/create">{{ __('actions.create') }} {{ __('models.import') }}</a>
                                         </li>
                                     </ul>
                                 </dropdown>
