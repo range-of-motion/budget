@@ -18,6 +18,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
 
+    Route::name('transactions.')->group(function () {
+        Route::get('/transactions', 'TransactionController@index')->name('index');
+        Route::get('/transactions/create', 'TransactionController@create')->name('create');
+    });
+
     Route::name('earnings.')->group(function () {
         Route::get('/earnings', 'EarningController@index')->name('index');
         Route::get('/earnings/create', 'EarningController@create')->name('create');
