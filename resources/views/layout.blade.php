@@ -114,6 +114,13 @@
                     </div>
                 </div>
             @endif
+            @if (Auth::check() && Auth::user()->verification_token)
+                <div class="text-center" style="
+                    padding: 15px;
+                    color: #FFF;
+                    background: #F86380;
+                ">You still need to verify your account&mdash;please check your e-mail</div>
+            @endif
             @yield('body')
             @if (auth()->check())
                 <div class="text-center mb-3">

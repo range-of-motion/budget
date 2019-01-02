@@ -13,8 +13,7 @@ class LoginController extends Controller {
     public function store(Request $request) {
         if (Auth::attempt([
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
-            'verification_token' => null
+            'password' => $request->input('password')
         ])) {
             $user = Auth::user();
 

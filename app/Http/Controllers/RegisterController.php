@@ -10,6 +10,7 @@ use App\Currency;
 use App\User;
 use App\Space;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 use Mail;
 
 class RegisterController extends Controller {
@@ -53,11 +54,9 @@ class RegisterController extends Controller {
 
         Mail::to($user->email)->queue(new VerifyRegistration($user));
 
+        Auth::loginUsingId($user->id);
+
         return redirect()
-            ->route('login')
-            ->with([
-                'alert_type' => 'success',
-                'alert_message' => 'You\'ve succesfully registered, check your e-mail to verify'
-            ]);
+            ->route('dashboard');
     }
 }
