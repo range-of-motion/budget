@@ -6,29 +6,50 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller {
-    public function index() {
+    public function index(Request $request) {
+        $filterBy = $request->get('filterBy') ? explode('-', $request->get('filterBy')) : null;
+
         $yearMonths = [];
 
         // Populate yearMonths with earnings
         foreach (session('space')->earnings as $earning) {
-            $i = Carbon::parse($earning->happened_on)->format('Y-m');
+            $shouldAdd = false;
 
-            if (!isset($yearMonths[$i])) {
-                $yearMonths[$i] = [];
+            if (!$filterBy) {
+                $shouldAdd = true;
             }
 
-            $yearMonths[$i][] = $earning;
+            if ($shouldAdd) {
+                $i = Carbon::parse($earning->happened_on)->format('Y-m');
+
+                if (!isset($yearMonths[$i])) {
+                    $yearMonths[$i] = [];
+                }
+
+                $yearMonths[$i][] = $earning;
+            }
         }
 
         // Populate yearMonths with spendings
         foreach (session('space')->spendings as $spending) {
-            $i = Carbon::parse($spending->happened_on)->format('Y-m');
+            $shouldAdd = true;
 
-            if (!isset($yearMonths[$i])) {
-                $yearMonths[$i] = [];
+            // Filter
+            if ($filterBy[0] == 'tag') {
+                if (!$spending->tag || $spending->tag->id != $filterBy[1]) {
+                    $shouldAdd = false;
+                }
             }
 
-            $yearMonths[$i][] = $spending;
+            if ($shouldAdd) {
+                $i = Carbon::parse($spending->happened_on)->format('Y-m');
+
+                if (!isset($yearMonths[$i])) {
+                    $yearMonths[$i] = [];
+                }
+
+                $yearMonths[$i][] = $spending;
+            }
         }
 
         // Sort transactions
@@ -41,7 +62,9 @@ class TransactionController extends Controller {
         // Sort yearMonths
         krsort($yearMonths);
 
-        return view('transactions.index', compact('yearMonths'));
+        $tags = session('space')->tags;
+
+        return view('transactions.index', compact('yearMonths', 'tags'));
     }
 
     public function create() {

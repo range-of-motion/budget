@@ -5,6 +5,17 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('models.transactions') }}</h2>
+        <div class="row mt-1">
+            <div class="row__column row__column--compact row__column--compact">Filter by Tag: </div>
+            <div class="row__column row__column--compact ml-1">
+                <a href="/transactions">None</a>
+            </div>
+            @foreach ($tags as $tag)
+                <div class="row__column row__column--compact ml-1">
+                    <a href="/transactions?filterBy=tag-{{ $tag->id }}">{{ $tag->name }}</a>
+                </div>
+            @endforeach
+        </div>
         @foreach ($yearMonths as $key => $transactions)
             <h2 class="mt-3 mb-2">{{ $key }}</h2>
             <div class="box">
