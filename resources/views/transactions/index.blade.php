@@ -17,7 +17,7 @@
             @endforeach
         </div>
         @foreach ($yearMonths as $key => $transactions)
-            <h2 class="mt-3 mb-2">{{ $key }}</h2>
+            <h2 class="mt-3 mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
             <div class="box">
                 @foreach ($transactions as $transaction)
                     <div class="box__section row">
