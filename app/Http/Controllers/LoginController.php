@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\LoginAttempt;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +19,24 @@ class LoginController extends Controller {
         ])) {
             $user = Auth::user();
 
+            LoginAttempt::create([
+                'user_id' => $user->id,
+                'ip' => $request->ip(),
+                'failed' => false
+            ]);
+
             session(['space' => $user->spaces[0]]);
 
             return redirect()->route('dashboard');
         } else {
+            $user = User::where('email', $request->input('email'))->first();
+
+            LoginAttempt::create([
+                'user_id' => $user ? $user->id : null,
+                'ip' => $request->ip(),
+                'failed' => true
+            ]);
+
             $request->flash();
 
             return redirect()

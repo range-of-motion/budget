@@ -56,6 +56,12 @@ class RegisterController extends Controller {
 
         Auth::loginUsingId($user->id);
 
+        LoginAttempt::create([
+            'user_id' => $user->id,
+            'ip' => $request->ip(),
+            'failed' => false
+        ]);
+
         return redirect()
             ->route('dashboard');
     }
