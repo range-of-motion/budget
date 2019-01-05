@@ -10,26 +10,32 @@ class ReportController extends Controller {
         return view('reports.index');
     }
 
-    private function weeklyReport2018() {
+    private function weeklyReport($year) {
         $weeks = [];
         $balance = 0;
 
-        for ($i = 1; $i <= 52; $i ++) {
+        $weekMode = 3;
+
+        if (date('w', strtotime($year . '-01-01')) == 1) {
+            $weekMode = 7;
+        }
+
+        for ($i = 1; $i <= 53; $i ++) { // This used to be 52, IDK what happens after we moved it to 53
             $balance += session('space')
                 ->earnings()
-                ->whereRaw('YEARWEEK(happened_on) = ?', [2018 . sprintf('%02d', $i)])
+                ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
                 ->sum('amount');
 
             $balance -= session('space')
                 ->spendings()
-                ->whereRaw('YEARWEEK(happened_on) = ?', [2018 . sprintf('%02d', $i)])
+                ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
                 ->sum('amount');
 
             $weeks[$i] = number_format($balance / 100, 2, '.', '');
         }
 
         return view('reports.weekly_report', [
-            'year' => 2018,
+            'year' => $year,
             'weeks' => $weeks
         ]);
     }
@@ -59,10 +65,16 @@ class ReportController extends Controller {
         return view('reports.most_expensive_tags', compact('mostExpensiveTags', 'totalSpent'));
     }
 
-    public function show($slug) {
+    public function show(Request $request, $slug) {
         switch ($slug) {
-            case 'weekly-report-2018':
-                return $this->weeklyReport2018();
+            case 'weekly-report':
+                $year = date('Y');
+
+                if ($request->get('year')) {
+                    $year = $request->get('year');
+                }
+
+                return $this->weeklyReport($year);
 
             case 'most-expensive-tags':
                 return $this->mostExpensiveTags();

@@ -7,7 +7,7 @@
         <h2>Reports</h2>
         <div class="box mt-3">
             <div class="box__section">
-                <a href="/reports/weekly-report-2018">Weekly Balance 2018</a>
+                <a href="/reports/weekly-report">Weekly Balance</a>
             </div>
             <div class="box__section">
                 <a href="/reports/most-expensive-tags">Most Expensive Tags</a>
