@@ -17,9 +17,15 @@ class RecurringCreated {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public function __construct(Recurring $recurring) {
+        $userId = null;
+
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+        }
+
         Notification::create([
             'space_id' => $recurring->space_id,
-            'user_id' => Auth::user()->id,
+            'user_id' => $userId,
             'entity_id' => $recurring->id,
             'entity_type' => 'recurring',
             'action' => 'recurring.created'
