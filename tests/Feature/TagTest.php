@@ -64,6 +64,6 @@ class TagTest extends TestCase {
             'name' => 'After'
         ]);
 
-        $this->assertEquals(Tag::find($tag->id)->name,'After');
+        $this->assertEquals('After', Tag::find($tag->id)->name);
     }
 }
