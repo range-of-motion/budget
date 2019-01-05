@@ -3,6 +3,10 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>Weekly Report {{ $year }}</h2>
+        <div class="row mt-1">
+            <a class="mr-1" href="/reports/weekly-report?year={{ $year - 1 }}">Previous</a>
+            <a href="/reports/weekly-report?year={{ $year + 1 }}">Next</a>
+        </div>
         <div class="box mt-3">
             <div class="box__section">
                 <div class="ct-chart ct-major-twelfth"></div>
