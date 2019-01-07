@@ -22,7 +22,9 @@ class ResetPasswordController extends Controller {
             'password' => 'required_without:email|confirmed'
         ]);
 
-        if ($email = $request->input('email') && !$request->has('token')) {
+        if ($request->input('email') && !$request->has('token')) {
+            $email = $request->input('email');
+
             $existingUser = User::where('email', $email)->first();
 
             if ($existingUser) {
