@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,28 +42,12 @@ class ReportController extends Controller {
     }
 
     private function mostExpensiveTags() {
-        $mostExpensiveTags = DB::select('
-                SELECT
-                    tags.name AS name,
-                    tags.color AS color,
-                    SUM(spendings.amount) AS amount
-                FROM
-                    tags
-                LEFT OUTER JOIN
-                    spendings ON tags.id = spendings.tag_id AND spendings.deleted_at IS NULL
-                WHERE
-                    tags.space_id = ?
-                GROUP BY
-                    tags.id
-                # HAVING
-                    # SUM(spendings.amount) > 0
-                ORDER BY
-                    SUM(spendings.amount) DESC;
-            ', [session('space')->id]);
-
         $totalSpent = session('space')->spendings()->sum('amount');
 
-        return view('reports.most_expensive_tags', compact('mostExpensiveTags', 'totalSpent'));
+        $tagRepository = new TagRepository();
+        $mostExpensiveTags = $tagRepository->getMostExpensiveTags(session('space')->id);
+
+        return view('reports.most_expensive_tags', compact('totalSpent', 'mostExpensiveTags'));
     }
 
     public function show(Request $request, $slug) {

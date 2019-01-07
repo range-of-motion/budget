@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 
 use App\Earning;
@@ -22,26 +23,9 @@ class DashboardController extends Controller {
         $leftToSpend = $balance - $recurrings;
 
         $totalSpent = session('space')->spendings()->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$currentYear, $currentMonth])->sum('amount');
-        $mostExpensiveTags = DB::select('
-            SELECT
-                tags.name AS name,
-                tags.color AS color,
-                SUM(spendings.amount) AS amount
-            FROM
-                tags
-            LEFT OUTER JOIN
-                spendings ON tags.id = spendings.tag_id AND spendings.deleted_at IS NULL
-            WHERE
-                tags.space_id = ?
-                AND MONTH(happened_on) = ?
-            GROUP BY
-                tags.id
-            HAVING
-                SUM(spendings.amount) > 0
-            ORDER BY
-                SUM(spendings.amount) DESC
-            LIMIT 3;
-        ', [$space_id, date('m')]);
+
+        $tagRepository = new TagRepository();
+        $mostExpensiveTags = $tagRepository->getMostExpensiveTags($space_id, 3, $currentYear, $currentMonth);
 
         $balanceTick = 0;
         $dailyBalance = [];
