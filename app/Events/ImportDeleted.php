@@ -3,7 +3,7 @@
 namespace App\Events;
 
 use App\Import;
-use App\Notification;
+use App\Activity;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -17,7 +17,7 @@ class ImportDeleted {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public function __construct(Import $import) {
-        Notification::create([
+        Activity::create([
             'space_id' => $import->space_id,
             'user_id' => Auth::user()->id,
             'entity_id' => $import->id,

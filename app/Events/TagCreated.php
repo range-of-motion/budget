@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Notification;
+use App\Activity;
 use App\Tag;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -23,7 +23,7 @@ class TagCreated {
             $userId = Auth::user()->id;
         }
 
-        Notification::create([
+        Activity::create([
             'space_id' => $tag->space_id,
             'user_id' => $userId,
             'entity_id' => $tag->id,

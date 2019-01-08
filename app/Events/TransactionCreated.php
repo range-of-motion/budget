@@ -3,7 +3,7 @@
 namespace App\Events;
 
 use App\Earning;
-use App\Notification;
+use App\Activity;
 use App\Spending;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -32,7 +32,7 @@ class TransactionCreated {
             $entityType = 'spending';
         }
 
-        Notification::create([
+        Activity::create([
             'space_id' => $transaction->space_id,
             'user_id' => $userId,
             'entity_id' => $transaction->id,

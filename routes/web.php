@@ -71,8 +71,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/imports/{import}', 'ImportController@destroy');
     });
 
-    Route::name('notifications.')->group(function () {
-        Route::get('/notifications', 'NotificationController@index')->name('index');
+    Route::name('activities.')->group(function () {
+        Route::get('/activities', 'ActivityController@index')->name('index');
     });
 
     Route::name('settings.')->group(function () {

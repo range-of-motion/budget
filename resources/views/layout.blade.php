@@ -72,8 +72,8 @@
                                 </dropdown>
                             </li>
                             <li>
-                                <a href="/notifications">
-                                    <i class="fas fa-bell"></i>
+                                <a href="/activities">
+                                    <i class="far fa-clock"></i>
                                 </a>
                             </li>
                             @if (Auth::user()->spaces->count() > 1)

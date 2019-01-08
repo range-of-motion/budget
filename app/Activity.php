@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model {
+class Activity extends Model {
     protected $fillable = ['space_id', 'user_id', 'entity_id', 'entity_type', 'action'];
 
     public function space() {

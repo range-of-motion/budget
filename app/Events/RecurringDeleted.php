@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Notification;
+use App\Activity;
 use App\Recurring;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -23,7 +23,7 @@ class RecurringDeleted {
             $userId = Auth::user()->id;
         }
 
-        Notification::create([
+        Activity::create([
             'space_id' => $recurring->space_id,
             'user_id' => $userId,
             'entity_id' => $recurring->id,

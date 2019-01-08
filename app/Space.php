@@ -40,8 +40,8 @@ class Space extends Model {
         return $this->hasMany(Import::class);
     }
 
-    public function notifications() {
-        return $this->hasMany(Notification::class);
+    public function activities() {
+        return $this->hasMany(Activity::class);
     }
 
     //
