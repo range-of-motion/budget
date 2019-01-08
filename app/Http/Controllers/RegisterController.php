@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\LoginAttempt;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
