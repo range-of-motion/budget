@@ -12,11 +12,13 @@ class IdeaController extends Controller {
 
     public function store(Request $request) {
         $request->validate([
+            'type' => 'required|in:bug,feature_request',
             'body' => 'required'
         ]);
 
         Idea::create([
             'user_id' => auth()->user()->id,
+            'type' => $request->type,
             'body' => $request->body
         ]);
 
