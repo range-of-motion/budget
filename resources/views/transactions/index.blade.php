@@ -23,22 +23,28 @@
                 </div>
             @endforeach
         </div>
-        @foreach ($yearMonths as $key => $transactions)
-            <h2 class="mt-3 mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
-            <div class="box">
-                @foreach ($transactions as $transaction)
-                    <div class="box__section row">
-                        <div class="row__column">{{ $transaction->description }}</div>
-                        <div class="row__column">
-                            @if ($transaction->tag)
-                                @include('partials.tag', ['payload' => $transaction->tag])
-                            @endif
+        @if ($yearMonths)
+            @foreach ($yearMonths as $key => $transactions)
+                <h2 class="mt-3 mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
+                <div class="box">
+                    @foreach ($transactions as $transaction)
+                        <div class="box__section row">
+                            <div class="row__column">{{ $transaction->description }}</div>
+                            <div class="row__column">
+                                @if ($transaction->tag)
+                                    @include('partials.tag', ['payload' => $transaction->tag])
+                                @endif
+                            </div>
+                            <div class="row__column {{ get_class($transaction) == 'App\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
+                            <div class="row__column text-right">{{ $transaction->happened_on }}</div>
                         </div>
-                        <div class="row__column {{ get_class($transaction) == 'App\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
-                        <div class="row__column text-right">{{ $transaction->happened_on }}</div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+            @endforeach
+        @else
+            <div class="box mt-3">
+                @include('partials.empty_state', ['payload' => 'transactions'])
             </div>
-        @endforeach
+        @endif
     </div>
 @endsection
