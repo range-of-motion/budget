@@ -7,7 +7,14 @@
 
 <script>
     export default {
-        props: ['initialColor'],
+        props: {
+            initialColor: {
+                type: String,
+                default: function () {
+                    return (Math.random() * 0xFFFFFF<<0).toString(16)
+                }
+            }
+        },
 
         data() {
             return {

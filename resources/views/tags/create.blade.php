@@ -9,10 +9,15 @@
             <form method="POST" action="/tags" autocomplete="off">
                 {{ csrf_field() }}
                 <div class="box__section">
-                    <div class="input input--small mb-0">
+                    <div class="input input--small">
                         <label>{{ __('fields.name') }}</label>
                         <input type="text" name="name" />
                         @include('partials.validation_error', ['payload' => 'name'])
+                    </div>
+                    <div class="input input--small mb-0">
+                        <label>{{ __('fields.color') }}</label>
+                        <color-picker></color-picker>
+                        @include('partials.validation_error', ['payload' => 'color'])
                     </div>
                 </div>
                 <div class="box__section box__section--highlight row row--right">

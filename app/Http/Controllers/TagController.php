@@ -9,8 +9,8 @@ use App\Tag;
 
 class TagController extends Controller {
     private $validationRules = [
-        'name' => 'required|max:255'
-        // TODO ADD COLOR
+        'name' => 'required|max:255',
+        'color' => 'required|max:6'
     ];
 
     public function index() {
@@ -29,7 +29,7 @@ class TagController extends Controller {
         Tag::create([
             'space_id' => session('space')->id,
             'name' => $request->input('name'),
-            'color' => Tag::randomColor()
+            'color' => $request->input('color')
         ]);
 
         return redirect()->route('tags.index');
