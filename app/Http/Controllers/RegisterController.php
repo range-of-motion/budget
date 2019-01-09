@@ -63,6 +63,8 @@ class RegisterController extends Controller {
             'failed' => false
         ]);
 
+        session(['space' => $user->spaces[0]]);
+
         return redirect()
             ->route('dashboard');
     }
