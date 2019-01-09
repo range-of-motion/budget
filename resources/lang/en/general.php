@@ -19,5 +19,9 @@ return [
     'account' => 'Account',
     'preferences' => 'Preferences',
 
-    'empty_state' => 'There aren\'t any :resource yet'
+    'empty_state' => 'There aren\'t any :resource yet',
+
+    'verify_account' => 'You still need to verify your account&mdash;please check your e-mail',
+    'spaces_explanation' => 'Spaces can be used to separate your finances in Budget. For example—you can have a space for your personal finances and another space for your business\' finances.',
+    'know_how_to_make_this_app_better' => 'Know how to make this app better'
 ];

@@ -114,12 +114,12 @@
                     padding: 15px;
                     color: #FFF;
                     background: #F86380;
-                ">You still need to verify your account&mdash;please check your e-mail</div>
+                ">{!! __('general.verify_account') !!}</div>
             @endif
             @yield('body')
             @if (auth()->check())
                 <div class="text-center mb-3">
-                    <a class="fs-sm" href="/ideas/create">Know how to make this app better?</a>
+                    <a class="fs-sm" href="/ideas/create">{{ __('general.know_how_to_make_this_app_better') }}?</a>
                 </div>
             @endif
         </div>
