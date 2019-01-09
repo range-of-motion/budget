@@ -88,3 +88,45 @@ canvas {
     font-size: 14px;
     font-style: italic;
 }
+
+.button-dropdown {
+    border-radius: $dimensions-box-border-radius;
+
+    .button-dropdown__section {
+        &:first-child {
+            border-top-left-radius: $dimensions-box-border-radius;
+            border-bottom-left-radius: $dimensions-box-border-radius;
+        }
+
+        &:last-child {
+            border-top-right-radius: $dimensions-box-border-radius;
+            border-bottom-right-radius: $dimensions-box-border-radius;
+        }
+
+        &:hover {
+            background: rgba(0, 0, 0, .1);
+        }
+
+        a, button {
+            display: block;
+            padding: 5px 10px;
+            color: #FFF;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        button {
+            height: 100%;
+            background: none;
+            border: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+}

@@ -141,11 +141,14 @@ button.button {
     }
 }
 
+.button, .button-dropdown {
+    background: $colors-primary;
+}
+
 .button {
     padding: 10px 20px;
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
     color: #FFF;
-    background: $colors-primary;
 }

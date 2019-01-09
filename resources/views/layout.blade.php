@@ -54,14 +54,9 @@
                         </ul>
                         <ul class="navigation__menu">
                             <li>
-                                <dropdown>
-                                    <span slot="button">
-                                        <i class="far fa-plus"></i> <i class="fas fa-caret-down fa-sm"></i>
-                                    </span>
+                                <button-dropdown>
+                                    <a slot="button" href="/transactions/create">{{ __('actions.create') }} {{ __('models.transaction') }}</a>
                                     <ul slot="menu" v-cloak>
-                                        <li>
-                                            <a href="/transactions/create">{{ __('actions.create') }} {{ __('models.transaction') }}</a>
-                                        </li>
                                         <li>
                                             <a href="/tags/create">{{ __('actions.create') }} {{ __('models.tag') }}</a>
                                         </li>
@@ -69,7 +64,7 @@
                                             <a href="/imports/create">{{ __('actions.create') }} {{ __('models.import') }}</a>
                                         </li>
                                     </ul>
-                                </dropdown>
+                                </button-dropdown>
                             </li>
                             <li>
                                 <a href="/activities">

@@ -4,6 +4,7 @@ window.Vue = require('vue')
 
 Vue.component('chrome-picker', require('vue-color').Chrome)
 
+Vue.component('button-dropdown', require('./components/ButtonDropdown.vue'))
 Vue.component('datepicker', require('./components/DatePicker.vue'))
 Vue.component('barchart', require('./components/BarChart.vue'))
 Vue.component('dropdown', require('./components/Dropdown.vue'))
