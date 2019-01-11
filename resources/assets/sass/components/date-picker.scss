@@ -1,4 +1,11 @@
+.abx {
+    position: relative;
+}
+
 .date-picker {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 372px;
     border-radius: 5px;
     border: 1px solid red;

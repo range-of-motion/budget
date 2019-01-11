@@ -20,7 +20,7 @@
         </div>
         <div class="input">
             <label>Date</label>
-            <input type="text" v-model="date" />
+            <date-picker></date-picker>
             <div class="hint mt-05">YYYY-MM-DD</div>
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
             <validation-error v-if="errors.day" :message="errors.day"></validation-error>

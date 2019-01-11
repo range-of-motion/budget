@@ -5,7 +5,8 @@ window.Vue = require('vue')
 Vue.component('chrome-picker', require('vue-color').Chrome)
 
 Vue.component('button-dropdown', require('./components/ButtonDropdown.vue'))
-Vue.component('datepicker', require('./components/DatePicker.vue'))
+Vue.component('datepicker', require('./components/DatePicker.vue')) // TODO DEPRECATE
+Vue.component('date-picker', require('./components/DatePicker.vue'))
 Vue.component('barchart', require('./components/BarChart.vue'))
 Vue.component('dropdown', require('./components/Dropdown.vue'))
 Vue.component('transaction-wizard', require('./components/TransactionWizard.vue'))
