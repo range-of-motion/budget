@@ -58,7 +58,17 @@
             series: [[{!! implode(',', $dailyBalance) !!}]]
         }, {
             showPoint: false,
-            lineSmooth: false
+            lineSmooth: false,
+
+            axisX: {
+                showGrid: false
+            },
+
+            axisY: {
+                labelInterpolationFnc: function (value) {
+                    return value.toFixed(2);
+                }
+            }
         });
     </script>
 @endsection

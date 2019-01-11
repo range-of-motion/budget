@@ -40,7 +40,7 @@ class DashboardController extends Controller {
                 ->where('happened_on', $currentYear . '-' . $currentMonth . '-' . $i)
                 ->sum('amount');
 
-            $dailyBalance[$i] = $balanceTick;
+            $dailyBalance[$i] = number_format($balanceTick / 100, 2);
         }
 
         return view('dashboard', [
