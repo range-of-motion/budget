@@ -75,6 +75,11 @@
             <span v-if="loading">Loading</span>
             <span v-if="!loading">Create</span>
         </button>
+        <div
+            v-if="success"
+            class="mt-2"
+            style="color: green;"
+        >Successfully created transaction</div>
     </div>
 </template>
 
@@ -95,13 +100,16 @@
                 recurringEnd: 'forever',
                 recurringEndDate: '',
 
-                loading: false
+                loading: false,
+                success: false
             }
         },
 
         methods: {
             switchType(type) {
                 this.type = type
+
+                this.success = false
             },
 
             tagUpdated(payload) {
@@ -170,7 +178,7 @@
                 this.recurringEnd = 'forever'
                 this.recurringEndDate = ''
 
-                alert('Success')
+                this.success = true
             },
 
             handleErrors(response) {
@@ -191,6 +199,8 @@
                 if (response.status != 422) {
                     alert('Something went wrong')
                 }
+
+                this.success = false
             }
         }
     }
