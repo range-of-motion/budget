@@ -8,14 +8,14 @@
         <div class="row row--gutter row--responsive mt-3">
             <div class="row__column">
                 <div class="card">
-                    <a href="/reports/weekly-report">Weekly Balance</a>
-                    <p class="mt-1">Your balance over the course of 52 weeks&mdash;displayed in a graph.</p>
+                    <a href="/reports/weekly-report">{{ __('reports.weekly_balance.title') }}</a>
+                    <p class="mt-1">{!! __('reports.weekly_balance.description') !!}</p>
                 </div>
             </div>
             <div class="row__column">
                 <div class="card">
-                    <a href="/reports/most-expensive-tags">Most Expensive Tags</a>
-                    <p class="mt-1">Your all-time most expensive tags&mdash;find out what costs you the most.</p>
+                    <a href="/reports/most-expensive-tags">{{ __('reports.most_expensive_tags.title') }}</a>
+                    <p class="mt-1">{!! __('reports.most_expensive_tags.description') !!}</p>
                 </div>
             </div>
             <div class="row__column">
