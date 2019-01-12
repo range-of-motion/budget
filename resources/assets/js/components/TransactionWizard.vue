@@ -98,7 +98,7 @@
                 amount: '10.00',
                 isRecurring: false,
                 recurringEnd: 'forever',
-                recurringEndDate: '',
+                recurringEndDate: this.get100DaysFutureDate(),
 
                 loading: false,
                 success: false
@@ -118,6 +118,12 @@
 
             getTodaysDate() {
                 return new Date().toISOString().slice(0, 10)
+            },
+
+            get100DaysFutureDate() {
+                let now = new Date()
+
+                return (now.getFullYear() + 1) + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2)
             },
 
             createEarning() {
