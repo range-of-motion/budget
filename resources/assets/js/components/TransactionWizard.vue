@@ -20,7 +20,7 @@
         </div>
         <div class="input">
             <label>Date</label>
-            <date-picker></date-picker>
+            <date-picker @DateUpdated="onDateUpdate"></date-picker>
             <div class="hint mt-05">YYYY-MM-DD</div>
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
             <validation-error v-if="errors.day" :message="errors.day"></validation-error>
@@ -106,6 +106,12 @@
         },
 
         methods: {
+            // Children
+            onDateUpdate(date) {
+                this.date = date
+            },
+
+            //
             switchType(type) {
                 this.type = type
 

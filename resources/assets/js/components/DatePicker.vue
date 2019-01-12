@@ -116,6 +116,9 @@
                 this.month = this.displayMonth
                 this.date = index
 
+                // Update
+                this.$emit('DateUpdated', this.form)
+
                 this.close()
             },
 
