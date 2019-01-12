@@ -61,7 +61,7 @@
                         </div>
                         <div class="row__column">
                             <label for="fixedEnd">Until</label>
-                            <input type="text" v-model="recurringEndDate" />
+                            <date-picker name="end" :start-date="recurringEndDate" @DateUpdated="onEndUpdate"></date-picker>
                             <div class="hint mt-05">YYYY-MM-DD</div>
                             <validation-error v-if="errors.end" :message="errors.end"></validation-error>
                         </div>
@@ -109,6 +109,10 @@
             // Children
             onDateUpdate(date) {
                 this.date = date
+            },
+
+            onEndUpdate(date) {
+                this.recurringEndDate = date
             },
 
             //
