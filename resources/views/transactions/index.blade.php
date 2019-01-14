@@ -12,39 +12,47 @@
                 <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.transactions') }}</a>
             </div>
         </div>
-        <div class="row">
-            <div class="row__column row__column--compact row__column--compact">Filter by Tag: </div>
-            <div class="row__column row__column--compact ml-1">
-                <a href="/transactions">None</a>
-            </div>
-            @foreach ($tags as $tag)
-                <div class="row__column row__column--compact ml-1">
-                    <a href="/transactions?filterBy=tag-{{ $tag->id }}">{{ $tag->name }}</a>
-                </div>
-            @endforeach
-        </div>
-        @if ($yearMonths)
-            @foreach ($yearMonths as $key => $transactions)
-                <h2 class="mt-3 mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
+        <div class="row row--responsive">
+            <div class="row__column mr-3" style="max-width: 300px;">
                 <div class="box">
-                    @foreach ($transactions as $transaction)
-                        <div class="box__section row">
-                            <div class="row__column">{{ $transaction->description }}</div>
-                            <div class="row__column">
-                                @if ($transaction->tag)
-                                    @include('partials.tag', ['payload' => $transaction->tag])
-                                @endif
+                    <div class="box__section">
+                        <div class="mb-2">
+                            <a href="/transactions">Reset</a>
+                        </div>
+                        <span>Filter by Tag</span>
+                        @foreach ($tags as $tag)
+                            <div class="mt-1 ml-1">
+                                <a href="/transactions?filterBy=tag-{{ $tag->id }}">{{ $tag->name }}</a>
                             </div>
-                            <div class="row__column {{ get_class($transaction) == 'App\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
-                            <div class="row__column text-right">{{ $transaction->happened_on }}</div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="row__column">
+                @if ($yearMonths)
+                    @foreach ($yearMonths as $key => $transactions)
+                        <h2 class="{{ array_key_first($yearMonths) != $key ? 'mt-3' : '' }} mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
+                        <div class="box">
+                            @foreach ($transactions as $transaction)
+                                <div class="box__section row">
+                                    <div class="row__column">{{ $transaction->description }}</div>
+                                    <div class="row__column">
+                                        @if ($transaction->tag)
+                                            @include('partials.tag', ['payload' => $transaction->tag])
+                                        @endif
+                                    </div>
+                                    <div class="row__column {{ get_class($transaction) == 'App\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
+                                    <div class="row__column text-right">{{ $transaction->happened_on }}</div>
+                                </div>
+                            @endforeach
                         </div>
                     @endforeach
-                </div>
-            @endforeach
-        @else
-            <div class="box mt-3">
-                @include('partials.empty_state', ['payload' => 'transactions'])
+                @else
+                    <div class="box">
+                        @include('partials.empty_state', ['payload' => 'transactions'])
+                    </div>
+                @endif
             </div>
-        @endif
+        </div>
     </div>
 @endsection
