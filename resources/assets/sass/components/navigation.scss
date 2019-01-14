@@ -51,8 +51,24 @@
 }
 
 @media screen and (max-width: 800px) {
-    .navigation .hidden {
-        display: none;
+    .navigation {
+        height: $dimensions-navigation-height * 1.2;
+
+        .wrapper {
+            flex-direction: column;
+
+            .navigation__menu {
+                padding-top: 15px;
+
+                &:first-child {
+                    padding-top: 0;
+                }
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
     }
 }
 
