@@ -187,6 +187,9 @@
 
                 this.errors = []
 
+                //
+                window.location.href = '/transactions'
+
                 this.date = this.getTodaysDate()
                 this.description = ''
                 this.amount = ''
