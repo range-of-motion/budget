@@ -31,7 +31,7 @@
             <div class="row__column">
                 @if ($yearMonths)
                     @foreach ($yearMonths as $key => $transactions)
-                        <h2 class="{{ array_key_first($yearMonths) != $key ? 'mt-3' : '' }} mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
+                        <h2 class="{{ key($yearMonths) != $key ? 'mt-3' : '' }} mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
                         <div class="box">
                             @foreach ($transactions as $transaction)
                                 <div class="box__section row">
