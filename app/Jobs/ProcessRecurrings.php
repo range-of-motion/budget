@@ -18,9 +18,17 @@ class ProcessRecurrings implements ShouldQueue {
     }
 
     public function handle() {
+        $day = (int) date('j');
+
         $recurrings = Recurring
             ::where('type', 'monthly')
-            ->where('day', date('j'))
+            ->when((int) date('t')  == $day, 
+            function ($query) use ($day) {
+                return $query->where('day', '>=', $day);
+            }, 
+            function ($query) use ($day) {
+                return $query->where('day', $day);
+            })
             ->where('starts_on', '<=', date('Y-m-d'))
             ->where(function ($query) {
                 $query

@@ -37,6 +37,15 @@ php artisan serve
 php artisan queue:work
 ```
 
+In addition to this you will have to create a cronjob to trigger budgets scheduling.  
+(Without this, recurring transactions and weekly reports won't work)
+
+```
+* * * * * cd /path/to/budget/ && php artisan schedule:run >> 2>&1 
+``` 
+
+It's best to make sure this command is run with the user that runs budget (eg. www-data) 
+
 ## Contact
 
 * [Discord](https://discord.gg/QFQdvy3)
