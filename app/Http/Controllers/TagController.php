@@ -44,7 +44,7 @@ class TagController extends Controller {
     public function update(Request $request, Tag $tag) {
         $this->authorize('update', $tag);
 
-        $request->validate($this->validationRules);
+        $request->validate(array_slice($this->validationRules, 0, 1, true)); // Get rid of last entry in $validationRules as it's not required for updating
 
         $tag->fill([
             'name' => $request->input('name'),
