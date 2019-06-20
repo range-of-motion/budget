@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - 7.2
+
+before_script:
+  - mysql -e 'create database budget_testing;'
+  - cp .env.travis .env
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate --database=testing
+
+script:
+  - vendor/bin/phpunit
