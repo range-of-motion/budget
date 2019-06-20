@@ -3,6 +3,9 @@ language: php
 php:
   - 7.2
 
+services:
+  - mysql
+
 before_script:
   - mysql -e 'create database budget_testing;'
   - cp .env.travis .env
