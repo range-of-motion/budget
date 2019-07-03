@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Recurring;
 use Auth;
+use App\Jobs\ProcessRecurrings;
 
 class RecurringController extends Controller {
     public function index() {
@@ -32,7 +33,9 @@ class RecurringController extends Controller {
 
     public function store(Request $request) {
         $request->validate([
-            'day' => 'required|integer|between:1,28',
+            'day' => ['required',
+                      'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
+                    ],
             'end' => 'nullable|date|date_format:Y-m-d',
             'tag' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
             'description' => 'required|max:255',
@@ -45,7 +48,7 @@ class RecurringController extends Controller {
 
         $recurring->space_id = session('space')->id;
         $recurring->type = 'monthly';
-        $recurring->day = $request->input('day');
+        $recurring->day = ltrim($request->input('day'), '0');
         $recurring->starts_on = date('Y-m-d');
         $recurring->ends_on = $request->input('end');
         $recurring->tag_id = $request->input('tag');
@@ -53,6 +56,7 @@ class RecurringController extends Controller {
         $recurring->amount = (int) ($request->input('amount') * 100);
 
         $recurring->save();
+        ProcessRecurrings::dispatch();
 
         return redirect()->route('recurrings.show', ['id' => $recurring->id]);
     }

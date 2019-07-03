@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->job(new ProcessRecurrings)->everyMinute();
+        $schedule->job(new ProcessRecurrings)->daily();
 
         $schedule->job(new SendWeeklyReports)->weekly()->fridays()->at('21:00');
     }
