@@ -17,7 +17,7 @@
                 <div class="box">
                     <div class="box__section">
                         <div class="mb-2">
-                            <a href="/transactions">Reset</a>
+                            <a href="/transactions">{{ __('actions.reset') }}</a>
                         </div>
                         <span>Filter by Tag</span>
                         @foreach ($tags as $tag)
