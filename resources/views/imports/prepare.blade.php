@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', 'Prepare ' . __('models.import'))
+@section('title', __('actions.prepare') . ' ' . __('models.import'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2 class="mb-3">Prepare {{ __('models.import') }}</h2>
+        <h2 class="mb-3">{{ __('actions.prepare') }} {{ __('models.import') }}</h2>
         <div class="box">
             <form method="POST">
                 {{ csrf_field() }}
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="box__section box__section--highlight text-right">
-                    <button class="button">Submit</button>
+                    <button class="button">{{ __('actions.submit') }}</button>
                 </div>
             </form>
         </div>

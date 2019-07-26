@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('actions.create') . ' ' . __('models.idea'))
+
 @section('body')
     <div class="wrapper my-3">
         <div class="box">
@@ -19,7 +21,7 @@
                         <textarea name="body"></textarea>
                         @include('partials.validation_error', ['payload' => 'body'])
                     </div>
-                    <button class="button">Submit</button>
+                    <button class="button">{{ __('actions.submit') }}</button>
                 </div>
             </form>
         </div>
