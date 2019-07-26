@@ -29,5 +29,5 @@ return [
     'tag' => 'Tag',
 
     'transactions' => 'Transactions',
-    'transaction' => 'Transaction',
+    'transaction' => 'Transaction'
 ];

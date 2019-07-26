@@ -16,7 +16,7 @@
             <div class="row__column">
                 <div class="card card--red">
                     <h2 style="font-size: 20px;">{!! $currency !!} {{ number_format($recurrings / 100, 2) }}</h2>
-                    <div class="mt-1" style="color: #A7AEBB;">{{ __('general.recurrings') }}</div>
+                    <div class="mt-1" style="color: #A7AEBB;">{{ __('models.recurrings') }}</div>
                 </div>
             </div>
             <div class="row__column">
