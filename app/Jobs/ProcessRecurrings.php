@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Recurring;
 use App\Spending;
+use App\Earning;
 
 class ProcessRecurrings implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -41,14 +42,18 @@ class ProcessRecurrings implements ShouldQueue {
             })->get();
 
         foreach ($recurrings as $recurring) {
-            $spending = new Spending;
-            $spending->space_id = $recurring->space_id;
-            $spending->recurring_id = $recurring->id;
-            $spending->tag_id = $recurring->tag_id;
-            $spending->happened_on = date('Y-m-d');
-            $spending->description = $recurring->description;
-            $spending->amount = $recurring->amount;
-            $spending->save();
+            if ($recurring->earning) {
+                $transaction = new Earning;
+            } else {
+                $transaction = new Spending;
+            }
+            $transaction->space_id = $recurring->space_id;
+            $transaction->recurring_id = $recurring->id;
+            $transaction->tag_id = $recurring->tag_id;
+            $transaction->happened_on = date('Y-m-d');
+            $transaction->description = $recurring->description;
+            $transaction->amount = $recurring->amount;
+            $transaction->save();
 
             $recurring->last_used_on = date('Y-m-d');
             $recurring->save();
