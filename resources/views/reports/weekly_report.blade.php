@@ -31,12 +31,13 @@
             series: [[{!! '"' . implode('","', $weeks) . '"' !!}]]
         };
 
+        var currentYear = new Date().getFullYear();
         var currentMonth = 1;
         var offset = 0;
         var months = [];
 
         for (var i = 1; i <= 12; i ++) {
-            months[i] = getWeeksInMonth(2018, i);
+            months[i] = getWeeksInMonth(currentYear, i);
         }
 
         new Chartist.Line('.ct-chart', data, {
