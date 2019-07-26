@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('reports.most_expensive_tags.title'))
+
 @section('body')
     <div class="wrapper my-3">
         <h2>Most Expensive Tags</h2>

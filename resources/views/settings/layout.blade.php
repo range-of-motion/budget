@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('pages.settings'))
+
 @section('body')
     <div class="wrapper my-3">
         <div class="row">

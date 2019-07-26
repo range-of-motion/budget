@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('reports.weekly_balance.title'))
+
 @section('body')
     <div class="wrapper my-3">
         <h2>Weekly Report {{ $year }}</h2>
