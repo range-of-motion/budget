@@ -2,7 +2,7 @@
 
 @section('settings_title')
     <h2>{{ __('models.spaces') }}</h2>
-    <p class="mt-1 mb-3">{{ __('general.spaces_explanation') }}</p>
+    <p class="mt-1 mb-3">{!! __('general.spaces_explanation') !!}</p>
 @endsection
 
 @section('settings_body')

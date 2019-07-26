@@ -12,16 +12,16 @@
                     @if ($token)
                         <input type="hidden" name="token" value="{{ $token }}" />
                         <div class="input">
-                            <label>Password</label>
+                            <label>{{ __('fields.password') }}</label>
                             <input type="password" name="password" />
                         </div>
                         <div class="input">
-                            <label>Verify Password</label>
+                            <label>{{ __('auth.verify_password') }}</label>
                             <input type="password" name="password_confirmation" />
                         </div>
                     @else
                         <div class="input">
-                            <label>E-mail</label>
+                            <label>{{ __('fields.email') }}</label>
                             <input type="email" name="email" />
                         </div>
                     @endif
