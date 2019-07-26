@@ -9,15 +9,15 @@
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">
-                        <label>Type</label>
+                        <label>{{ __('fields.type') }}</label>
                         <select name="type">
-                            <option value="bug">Bug or Error</option>
-                            <option value="feature_request">Feature Request or Suggestion</option>
+                            <option value="bug">{{ __('fields.bug_or_error') }}</option>
+                            <option value="feature_request">{{ __('fields.feature_request_or_suggestion') }}</option>
                         </select>
                         @include('partials.validation_error', ['payload' => 'type'])
                     </div>
                     <div class="input input--small">
-                        <label>Body</label>
+                        <label>{{ __('fields.body') }}</label>
                         <textarea name="body"></textarea>
                         @include('partials.validation_error', ['payload' => 'body'])
                     </div>

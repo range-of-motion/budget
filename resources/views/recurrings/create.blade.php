@@ -8,20 +8,20 @@
         <form method="POST" action="/recurrings" autocomplete="off">
             {{ csrf_field() }}
             <div class="input input--small">
-                <label>Day</label>
+                <label>{{ __('fields.day') }}</label>
                 <input type="text" name="day" />
                 <div style="font-weight: 700; font-size: 14px; margin-top: 5px;">1 - 28</div>
                 @include('partials.validation_error', ['payload' => 'day'])
             </div>
             <div class="input input--small">
-                <label>End</label>
+                <label>{{ __('fields.end') }}</label>
                 <DatePicker name="end"></DatePicker>
                 @include('partials.validation_error', ['payload' => 'end'])
                 <input type="checkbox" name="end" value="" id="endForever" />
                 <label for="endForever">Forever</label>
             </div>
             <div class="input input--small">
-                <label>Tag</label>
+                <label>{{ __('models.tag') }}</label>
                 <searchable
                     name="tag"
                     :items='@json($tags)'
@@ -29,12 +29,12 @@
                 @include('partials.validation_error', ['payload' => 'tag'])
             </div>
             <div class="input input--small">
-                <label>Description</label>
+                <label>{{ __('fields.description') }}</label>
                 <input type="text" name="description" />
                 @include('partials.validation_error', ['payload' => 'description'])
             </div>
             <div class="input input--small">
-                <label>Amount</label>
+                <label>{{ __('fields.description') }}</label>
                 <input type="text" name="amount" />
                 @include('partials.validation_error', ['payload' => 'amount'])
             </div>
