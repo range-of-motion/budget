@@ -28,7 +28,7 @@
         </div>
         @if (count($mostExpensiveTags))
             <div class="box mt-3">
-                <div class="box__section box__section--header">Most Expensive {{ __('models.tags') }}</div>
+                <div class="box__section box__section--header">{{ __('reports.most_expensive_tags.title') }}</div>
                 @foreach ($mostExpensiveTags as $index => $tag)
                     <div class="box__section row row--seperate">
                         <div class="row__column row__column--middle color-dark">
@@ -43,7 +43,7 @@
             </div>
         @endif
         <div class="box mt-3">
-            <div class="box__section box__section--header">Daily Balance</div>
+            <div class="box__section box__section--header">{{ __('general.daily_balance') }}</div>
             <div class="box__section">
                 <div class="ct-chart ct-major-twelfth"></div>
             </div>
