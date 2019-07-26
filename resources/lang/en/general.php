@@ -4,6 +4,7 @@ return [
     'dashboard' => 'Dashboard',
 
     'balance' => 'Balance',
+    'daily_balance' => 'Daily Balance',
     'recurrings' => 'Recurrings',
     'left_to_spend' => 'Left to Spend',
     'total_earned' => 'Total Earned',
