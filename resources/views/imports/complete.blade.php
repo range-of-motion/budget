@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Complete ' . __('models.import'))
+@section('title', __('actions.complete') . ' ' . __('models.import'))
 
 @section('body')
     <div class="wrapper my-3">
@@ -57,7 +57,7 @@
                     </div>
                 @endforeach
                 <div class="box__section box__section--highlight text-right">
-                    <button class="button">Submit</button>
+                    <button class="button">{{ __('actions.submit') }}</button>
                 </div>
             </form>
         </div>

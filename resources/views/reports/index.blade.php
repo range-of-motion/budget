@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Reports')
+@section('title', __('pages.reports'))
 
 @section('body')
     <div class="wrapper my-3">
