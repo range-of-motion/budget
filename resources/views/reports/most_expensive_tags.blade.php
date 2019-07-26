@@ -4,7 +4,7 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>Most Expensive Tags</h2>
+        <h2>{{ __('reports.most_expensive_tags.title') }}</h2>
         @if (count($mostExpensiveTags))
             <div class="box mt-3">
                 @foreach ($mostExpensiveTags as $index => $tag)

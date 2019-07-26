@@ -25,7 +25,7 @@
                         @include('partials.validation_error', ['payload' => 'password'])
                     </div>
                     <div class="input">
-                        <label>{{ __('fields.verify_password') }}</label>
+                        <label>{{ __('auth.verify_password') }}</label>
                         <input type="password" name="password_confirmation" />
                         @include('partials.validation_error', ['payload' => 'password_confirmation'])
                     </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="text-center mt-2">
-            <a class="fs-sm" href="/login">{{ __('already_on_budget') }}</a>
+            <a class="fs-sm" href="/login">{{ __('auth.already_on_budget') }}</a>
         </div>
     </div>
 @endsection

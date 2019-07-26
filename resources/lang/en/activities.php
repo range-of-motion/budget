@@ -19,5 +19,7 @@ return [
     'import' => [
         'created' => 'Created Import',
         'deleted' => 'Deleted Import'
-    ]
+    ],
+
+    'job' => 'Job'
 ];

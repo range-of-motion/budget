@@ -4,12 +4,13 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>Weekly Report {{ $year }}</h2>
+        <h2>{{ __('reports.weekly_balance.title') }} {{ $year }}</h2>
         <div class="row mt-1">
-            <a class="mr-1" href="/reports/weekly-report?year={{ $year - 1 }}">Previous</a>
-            <a href="/reports/weekly-report?year={{ $year + 1 }}">Next</a>
+            <a class="mr-1" href="/reports/weekly-report?year={{ $year - 1 }}">{{ __('actions.previous') }}</a>
+            <a href="/reports/weekly-report?year={{ $year + 1 }}">{{ __('actions.next') }}</a>
         </div>
         <div class="box mt-3">
+            <div class="box__section box__section--header">{{ __('reports.weekly_balance.graph_title') }}</div>
             <div class="box__section">
                 <div class="ct-chart ct-major-twelfth"></div>
             </div>
