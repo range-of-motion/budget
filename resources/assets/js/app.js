@@ -1,18 +1,31 @@
-window.axios = require('axios')
+import axios from 'axios';
+import Vue from 'vue';
 
-window.Vue = require('vue')
+import { Chrome } from 'vue-color';
 
-Vue.component('chrome-picker', require('vue-color').Chrome)
+import ButtonDropdown from './components/ButtonDropdown.vue';
+import DatePicker from './components/DatePicker.vue';
+import BarChart from './components/BarChart.vue';
+import Dropdown from './components/Dropdown.vue';
+import TransactionWizard from './components/TransactionWizard.vue';
+import ValidationError from './components/ValidationError.vue';
+import Searchable from './components/Searchable.vue';
+import ColorPicker from './components/ColorPicker.vue';
 
-Vue.component('button-dropdown', require('./components/ButtonDropdown.vue'))
-Vue.component('datepicker', require('./components/DatePicker.vue')) // TODO DEPRECATE
-Vue.component('date-picker', require('./components/DatePicker.vue'))
-Vue.component('barchart', require('./components/BarChart.vue'))
-Vue.component('dropdown', require('./components/Dropdown.vue'))
-Vue.component('transaction-wizard', require('./components/TransactionWizard.vue'))
-Vue.component('validation-error', require('./components/ValidationError.vue'))
-Vue.component('searchable', require('./components/Searchable.vue'))
-Vue.component('color-picker', require('./components/ColorPicker.vue'))
+window.axios = axios;
+window.Vue = Vue;
+
+Vue.component('chrome-picker', Chrome);
+
+Vue.component('button-dropdown', ButtonDropdown);
+Vue.component('datepicker', DatePicker); // TODO DEPRECATE
+Vue.component('date-picker', DatePicker);
+Vue.component('barchart', BarChart);
+Vue.component('dropdown', Dropdown);
+Vue.component('transaction-wizard', TransactionWizard);
+Vue.component('validation-error', ValidationError);
+Vue.component('searchable', Searchable);
+Vue.component('color-picker', ColorPicker);
 
 Vue.directive('click-outside', {
     bind: function (e, binding, vnode) {
