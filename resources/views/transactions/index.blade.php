@@ -19,7 +19,7 @@
                         <div class="mb-2">
                             <a href="/transactions">{{ __('actions.reset') }}</a>
                         </div>
-                        <span>Filter by Tag</span>
+                        <span>{{ __('actions.filter_by') }} {{ __('models.tag') }}</span>
                         @foreach ($tags as $tag)
                             <div class="mt-1 ml-1">
                                 <a href="/transactions?filterBy=tag-{{ $tag->id }}">{{ $tag->name }}</a>

@@ -7,5 +7,5 @@
     <div class="row__column row__column--compact">
         <i class="fas fa-times"></i>
     </div>
-    <div class="row__column text-center" style="font-weight: 600;">{{ $payload['message'] }}</div>
+    <div class="row__column text-center" style="font-weight: 600;">{{ __('messages.' . $payload['message']) }}</div>
 </div>
