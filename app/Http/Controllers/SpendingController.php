@@ -84,7 +84,7 @@ class SpendingController extends Controller {
         $spending = Spending::withTrashed()->find($id);
 
         if (!$spending) {
-            // 404
+            return (view('errors.404'));
         }
 
         $this->authorize('restore', $spending);

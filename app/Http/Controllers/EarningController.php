@@ -86,7 +86,7 @@ class EarningController extends Controller {
         $earning = Earning::withTrashed()->find($id);
 
         if (!$earning) {
-            // 404
+            return (view('errors.404'));
         }
 
         $this->authorize('restore', $earning);
