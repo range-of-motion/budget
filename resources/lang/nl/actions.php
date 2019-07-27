@@ -9,12 +9,15 @@ return [
     'submit' => 'Verstuur',
     'reset' => 'Reset',
     'verify' => 'Controleer',
+    'select' => 'Selecteer',
+    'search' => 'Zoeken',
+    'filter_by' => 'Filteren op',
 
     'yes' => 'Ja',
     'no' => 'Nee',
 
-    'previous' => 'Vorige',
-    'next' => 'Volgende',
+    'previous' => '« Vorige',
+    'next' => 'Volgende »',
 
     'prepare' => 'Voorbereiden',
     'complete' => 'Voltooien'
