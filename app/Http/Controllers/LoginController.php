@@ -43,7 +43,7 @@ class LoginController extends Controller {
                 ->route('login')
                 ->with([
                     'alert_type' => 'danger',
-                    'alert_message' => 'Failed to login'
+                    'alert_message' => 'login_failed'
                 ]);
         }
     }

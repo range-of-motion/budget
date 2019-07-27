@@ -51,7 +51,7 @@ class ResetPasswordController extends Controller {
                 ->route('login')
                 ->with([
                     'alert_type' => 'success',
-                    'alert_message' => 'If you registered with that address, we\'ve sent you an e-mail'
+                    'alert_message' => 'email_sent'
                 ]);
         } else if ($request->has('token') && $request->has('password') && !$request->has('email')) {
             $token = $request->input('token');
@@ -72,7 +72,7 @@ class ResetPasswordController extends Controller {
                 ->route('login')
                 ->with([
                     'alert_type' => 'success',
-                    'alert_message' => 'You\'ve successfully changed your password'
+                    'alert_message' => 'password_changed'
                 ]);
         }
 
