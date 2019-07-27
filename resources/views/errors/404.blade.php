@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('errors.layout')
 
-@section('body')
-    <div class="wrapper wrapper--narrow my-3">
-        <h2 class="text-center">404</h2>
-    </div>
-@endsection
+@section('title', __('errors.page_not_found'))
+
+@section('code', '404')
+
+@section('message', __('errors.page_not_found_msg'))
