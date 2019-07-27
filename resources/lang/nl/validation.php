@@ -1,6 +1,18 @@
 <?php
 
 return [
+    /* FETCHED FROM https://github.com/caouecs/Laravel-lang/blob/master/src/nl/validation.php
+    |
+    |--------------------------------------------------------------------------
+    | Validation Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines contain the default error messages used by
+    | the validator class. Some of these rules have multiple versions such
+    | as the size rules. Feel free to tweak each of these messages.
+    |
+    */
+
     'accepted'             => ':attribute moet geaccepteerd zijn.',
     'active_url'           => ':attribute is geen geldige URL.',
     'after'                => ':attribute moet een datum na :date zijn.',
@@ -104,19 +116,43 @@ return [
     'url'                  => ':attribute moet een geldig URL zijn.',
     'uuid'                 => ':attribute moet een geldig UUID zijn.',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify custom validation messages for attributes using the
+    | convention "attribute.rule" to name the lines. This makes it quick to
+    | specify a specific custom language line for a given attribute rule.
+    |
+    */
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Attributes
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used to swap attribute place-holders
+    | with something more reader friendly such as E-Mail Address instead
+    | of "email". This simply helps us make messages a little cleaner.
+    |
+    */
+
     'attributes' => [
         'address'               => 'adres',
         'age'                   => 'leeftijd',
+        'amount'                => 'bedrag',
         'available'             => 'beschikbaar',
         'city'                  => 'stad',
         'content'               => 'inhoud',
         'country'               => 'land',
+        'currency'              => 'valuta',
         'date'                  => 'datum',
         'day'                   => 'dag',
         'description'           => 'omschrijving',
