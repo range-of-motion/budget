@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'job_server' => 'Job server',
+
     'transaction' => [
         'created' => 'Created Transaction',
         'deleted' => 'Deleted Transaction'

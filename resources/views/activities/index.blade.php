@@ -12,9 +12,9 @@
                         @if ($activity->user)
                             <img class="avatar" src="{{ $activity->user->avatar }}" />
                         @endif
+                        <div class="row__column row__column--middle">{{ $activity->user->name or __('activities.job_server') }} {{ mb_strtolower(__('activities.' . $activity->action)) }} {{ $activity->description() }}</div>
+                        <div class="row__column row__column--middle row__column--compact">{{ $activity->created_at->diffForHumans() }}</div>
                     </div>
-                    <div class="row__column row__column--middle">{{ __('activities.' . $activity->action) }} <a href="/{{ $activity->entity_type }}s/{{ $activity->entity_id }}">#{{ $activity->entity_id }}</a></div>
-                    <div class="row__column row__column--middle row__column--compact">{{ $activity->created_at->diffForHumans() }}</div>
                 </div>
             @endforeach
         </div>
