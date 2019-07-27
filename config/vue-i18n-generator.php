@@ -78,9 +78,5 @@ return [
     | after generating json files.
     |
     */
-<<<<<<< HEAD
-    'showOutputMessages' => false,
-=======
     'showOutputMessages' => true,
->>>>>>> Added support to use the Laravel lang-files
 ];
