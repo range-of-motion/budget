@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', __('actions.create') . __('models.transaction'))
+@section('title', __('actions.create') . ' ' . __('models.transaction'))
 
 @section('body')
     <div class="wrapper mw-400 my-3">
