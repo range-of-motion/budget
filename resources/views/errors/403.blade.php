@@ -4,6 +4,4 @@
 
 @section('code', '403')
 
-@section('message')
-    {{ (isset($e) ? __($e->getMessage()) : __('errors.' . $message)) }}
-@endsection
+@section('message', __('errors.forbidden_msg'))
