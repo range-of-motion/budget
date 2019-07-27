@@ -4,7 +4,7 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2 class="mb-3">{{ __('actioins.complete') }} {{ __('models.import') }}</h2>
+        <h2 class="mb-3">{{ __('actions.complete') }} {{ __('models.import') }}</h2>
         <div class="box">
             <form method="POST">
                 {{ csrf_field() }}
