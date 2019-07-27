@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6fec4b94dd452da30498b640875bcb7",
+    "content-hash": "f62165718bc6668288c653e489f77980",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1101,6 +1101,59 @@
                 "storage"
             ],
             "time": "2018-08-22T07:45:22+00:00"
+        },
+        {
+            "name": "martinlindhe/laravel-vue-i18n-generator",
+            "version": "0.1.39",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/martinlindhe/laravel-vue-i18n-generator.git",
+                "reference": "841d82bb2a738f5aa49f975c3ae61c2946df392d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/martinlindhe/laravel-vue-i18n-generator/zipball/841d82bb2a738f5aa49f975c3ae61c2946df392d",
+                "reference": "841d82bb2a738f5aa49f975c3ae61c2946df392d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.1.0|~5.2.0|~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/support": "~5.1.0|~5.2.0|~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MartinLindhe\\VueInternationalizationGenerator\\GeneratorProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MartinLindhe\\VueInternationalizationGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Lindhe",
+                    "email": "martin@ubique.se"
+                }
+            ],
+            "description": "Generates a vue-i18n compatible include file from your Laravel translations.",
+            "homepage": "http://github.com/martinlindhe/laravel-vue-i18n-generator",
+            "keywords": [
+                "laravel",
+                "vue-i18n"
+            ],
+            "time": "2019-05-23T04:46:51+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3520,8 +3573,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Library that provides collection, processing, and rendering functionality for PHP code coverage information.",
@@ -3790,8 +3843,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
