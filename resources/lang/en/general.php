@@ -10,6 +10,7 @@ return [
     'total_spent' => 'Total Spent',
     'most_expensive_tag' => 'Most Expensive Tag',
     'most_expensive_day' => 'Most Expensive Day',
+    'days_ago' => 'days ago',
 
     'analysis' => 'Analysis',
 
@@ -26,4 +27,9 @@ return [
     'know_how_to_make_this_app_better' => 'Know how to make this app better?',
     'successfully_deleted' => 'You\'ve successfully deleted that :resource',
     'still_able_to_recover' => 'You can still recover it',
+
+    'themes' => [
+        'light' => 'Light',
+        'dark' => 'Dark (Experimental)'
+    ]
 ];

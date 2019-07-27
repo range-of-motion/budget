@@ -10,6 +10,7 @@ return [
     'total_spent' => 'Totaal Uitgegeven',
     'most_expensive_tag' => 'Duurste Categroie',
     'most_expensive_day' => 'Duurste Dag',
+    'days_ago' => 'dagen geleden',
 
     'analysis' => 'Analyse',
 
@@ -26,4 +27,9 @@ return [
     'know_how_to_make_this_app_better' => 'Weet je wat er beter kan?',
     'successfully_deleted' => 'Je hebt succesvol die :resource verwijderd',
     'still_able_to_recover' => 'Je kan hem nog herstellen',
+
+    'themes' => [
+        'light' => 'Licht',
+        'dark' => 'Donker (Experimenteel)'
+    ]
 ];

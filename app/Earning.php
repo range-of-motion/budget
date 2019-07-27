@@ -27,7 +27,7 @@ class Earning extends Model {
     public function getFormattedHappenedOnAttribute() {
         $secondsDifference = strtotime(date('Y-m-d')) - strtotime($this->happened_on);
 
-        return ($secondsDifference / 60 / 60 / 24) . ' days ago';
+        return ($secondsDifference / 60 / 60 / 24) . ' ' . __('general.days_ago');
     }
 
     // Relations
