@@ -82,6 +82,8 @@ class RegisterController extends Controller {
         }
 
         $user->verification_token = str_random(100);
+        $user->save();
+
         Mail::to($user->email)->queue(new VerifyRegistration($user));
 
         return redirect()
