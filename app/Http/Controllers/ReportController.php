@@ -65,7 +65,7 @@ class ReportController extends Controller {
                 return $this->mostExpensiveTags();
 
             default:
-                return '404';
+                return view('errors.404');
         }
     }
 }
