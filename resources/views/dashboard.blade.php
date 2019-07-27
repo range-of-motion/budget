@@ -4,6 +4,9 @@
 
 @section('body')
     <div class="wrapper my-3">
+        @if (session('alert_type') && session('alert_message'))
+            @include('partials.alerts.' . session('alert_type'), ['payload' => ['classes' => 'mb-2', 'message' => session('alert_message')]])
+        @endif
         <h2>{{ __('general.dashboard') }}</h2>
         <p class="mt-1">{{ __('calendar.months.' . $month) }} {{ date('Y') }}</p>
         <div class="row row--gutter row--responsive my-3">

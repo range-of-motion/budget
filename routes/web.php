@@ -12,6 +12,7 @@ Route::post('/reset_password', 'ResetPasswordController@post');
 
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::post('/register', 'RegisterController@store');
+Route::get('/register/resend_verify_registration', 'RegisterController@resendVerifyRegistration')->name('resend_verify_registration');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');

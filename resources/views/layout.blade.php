@@ -114,7 +114,7 @@
                     padding: 15px;
                     color: #FFF;
                     background: #F86380;
-                ">{!! __('general.verify_account') !!}</div>
+                ">{!! __('general.verify_account') !!}. <a class="alert-a" href="{{ route('resend_verify_registration') }}"> {{ __('general.resend_verify_registration') }}</a></div>
             @endif
             @yield('body')
             @if (auth()->check())
