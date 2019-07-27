@@ -20,14 +20,6 @@ return [
     'account' => 'Account',
     'preferences' => 'Voorkeuren',
 
-    'empty_state' => 'Er zijn nog geen :resource',
-
-    'verify_account' => 'Je moet je account nog verifiëren — check je e-mail',
-    'spaces_explanation' => 'Spaces kunnen worden gebruikt om je financiën op sorteren in Budget. Bijvoorbeeld — je kan een space hebben voor jou persoonlijk en een andere voor je bedrijf.',
-    'know_how_to_make_this_app_better' => 'Weet je wat er beter kan?',
-    'successfully_deleted' => 'Je hebt succesvol die :resource verwijderd',
-    'still_able_to_recover' => 'Je kan hem nog herstellen',
-
     'themes' => [
         'light' => 'Licht',
         'dark' => 'Donker (Experimenteel)'

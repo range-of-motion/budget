@@ -13,10 +13,10 @@
             </div>
         </div>
         @if (session('restorableEarning'))
-            <div class="mt-3">{{ __('general.successfully_deleted', ['resource' => __('models.earning')]) }}</div>
+            <div class="mt-3">{{ __('messages.successfully_deleted', ['resource' => __('models.earning')]) }}</div>
             <form method="POST" action="/earnings/{{ session('restorableEarning') }}/restore" class="mt-05">
                 {{ csrf_field() }}
-                <button class="button link">{{ __('general.still_able_to_recover') }}</button>
+                <button class="button link">{{ __('messages.still_able_to_recover') }}</button>
             </form>
         @endif
         <div class="box mt-3">

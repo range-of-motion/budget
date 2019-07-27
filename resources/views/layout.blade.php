@@ -115,12 +115,12 @@
                     padding: 15px;
                     color: #FFF;
                     background: #F86380;
-                ">{!! __('general.verify_account') !!}</div>
+                ">{{ __('messages.verify_account') }}</div>
             @endif
             @yield('body')
             @if (auth()->check())
                 <div class="text-center mb-3">
-                    <a class="fs-sm" href="/ideas/create">{{ __('general.know_how_to_make_this_app_better') }}</a>
+                    <a class="fs-sm" href="/ideas/create">{{ __('messages.know_how_to_make_this_app_better') }}</a>
                 </div>
             @endif
         </div>
