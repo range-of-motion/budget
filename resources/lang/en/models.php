@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'activities' => 'Activities',
+    'activity' => 'Activity',
+
     'spaces' => 'Spaces',
     'space' => 'Space',
 
@@ -20,5 +23,8 @@ return [
     'transaction' => 'Transaction',
 
     'imports' => 'Imports',
-    'import' => 'Import'
+    'import' => 'Import',
+
+    'most_expensive_tags' => 'Most Expensive Tags',
+    'most_expensive_tag' => 'Most Expensive Tag'
 ];
