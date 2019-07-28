@@ -3,11 +3,18 @@
 return [
     'empty_state' => 'There aren\'t any :resource (yet)',
 
-    'verify_account' => 'You still need to verify your account — please check your e-mail',
     'email_sent' => 'If you registered with that address, we\'ve sent you an e-mail',
     'password_changed' => 'Your password has been changed',
-    'login_failed' => 'Failed to login',
+    'login_failed' => [
+        'simple' => 'Failed to login',
+        'verify_account' => 'You still need to verify your account<br/>Please check your e-mail or',
+    ],
+
+    'created_account' => 'You\'ve successfully created your account<br/>Please check your e-mail to verify your account',
+    'no_account_found' => 'We couldn\'t find a account for your email',
+    'resent_email' => 'We\'ve successfully sent a new email<br/>Please check your e-mail to verify your account',
     'verified_account' => 'You\'ve successfully verified your account',
+    'already_verified' => 'Your account is already verified',
 
     'spaces_explanation' => 'Spaces can be used to separate your finances in Budget. For example — you can have a space for your personal finances and another space for your business\' finances.',
     'know_how_to_make_this_app_better' => 'Know how to make this app better?',
