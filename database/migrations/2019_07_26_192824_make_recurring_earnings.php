@@ -9,8 +9,8 @@ class MakeRecurringEarnings extends Migration {
         Schema::table('earnings', function (Blueprint $table) {
             $table->integer('recurring_id')->unsigned()->nullable();
             $table->integer('tag_id')->unsigned()->nullable();
-            $table->foreign('recurring_id')->references('id')->on('recurrings');
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('recurring_id')->references('id')->on('recurrings')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
 
         Schema::table('recurrings', function (Blueprint $table) {
