@@ -13,10 +13,12 @@
                     <div class="input">
                         <label>E-mail</label>
                         <input type="email" name="email" value="{{ old('email') }}" />
+                        @include('partials.validation_error', ['payload' => 'email'])
                     </div>
                     <div class="input">
                         <label>Password</label>
                         <input type="password" name="password" />
+                        @include('partials.validation_error', ['payload' => 'password'])
                     </div>
                     <div class="row row--separate" style="justify-content: space-between;">
                         <div class="row__column row__column--compact">
