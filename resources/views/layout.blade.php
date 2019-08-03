@@ -31,6 +31,15 @@
             [v-cloak] {
                 display: none;
             }
+
+            .navigtion-a {
+                color: #758193;
+                text-decoration: none;
+            }
+
+            .navigation-a:hover {
+
+            }
         </style>
     </head>
     <body class="theme-{{ Auth::check() ? Auth::user()->theme : 'light' }}">
@@ -43,13 +52,35 @@
                                 <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="far fa-home fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('general.dashboard') }}</span></a>
                             </li>
                             <li>
-                                <a href="/transactions" {!! (Request::path() == 'transactions') ? 'class="active"' : '' !!}><i class="far fa-exchange-alt fa-sm color-green"></i> <span class="hidden ml-05">{{ __('models.transactions') }}</span></a>
+                                <dropdown>
+                                    <span slot="button">
+                                        <a href="#" {!! (Request::path() == 'transactions') ? 'class="active navigtion-a"' : 'class="navigtion-a"' !!}><i class="far fa-exchange-alt fa-sm color-green"></i> <span class="hidden ml-05">{{ __('models.transactions') }}</span></a>
+                                        <i class="fas fa-caret-down fa-sm"></i>
+                                    </span>
+                                    <ul slot="menu" v-cloak>
+                                        <li>
+                                            <a href="/transactions">{{ __('general.all') }} {{ mb_strtolower(__('models.transactions')) }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/earnings">{{ __('models.earnings') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/spendings">{{ __('models.spendings') }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/recurrings">{{ __('models.recurrings') }}</a>
+                                        </li>
+                                    </ul>
+                                </dropdown>
                             </li>
                             <li>
                                 <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('models.tags') }}</span></a>
                             </li>
                             <li>
-                                <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><i class="far fa-chart-line fa-sm color-blue"></i> <span class="hidden ml-05">Reports</span></a>
+                                <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><i class="far fa-chart-line fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('pages.reports') }}</span></a>
+                            </li>
+                            <li>
+                                <a href="/imports" {!! (Request::path() == 'imports') ? 'class="active"' : '' !!}><i class="far fa-file-import fa-sm color-green"></i> <span class="hidden ml-05">{{ __('models.imports') }}</span></a>
                             </li>
                         </ul>
                         <ul class="navigation__menu">
@@ -104,6 +135,16 @@
                                         </li>
                                     </ul>
                                 </dropdown>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            @else
+                <div class="navigation">
+                    <div class="wrapper">
+                        <ul class="navigation__menu">
+                            <li>
+                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="far fa-home fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('general.dashboard') }}</span></a>
                             </li>
                         </ul>
                     </div>
