@@ -13,7 +13,7 @@
             </div>
             @if (!$filter)
                 <div class="row__column row__column--compact row__column--middle">
-                    <a href="/spendings/create" class="button">{{ __('actions.create') }} {{ __('models.spending') }}</a>
+                    <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.spending') }}</a>
                 </div>
             @endif
         </div>
