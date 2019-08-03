@@ -2,5 +2,6 @@
 
 return [
     'settings' => 'Settings',
-    'log_out' => 'Log Out'
+    'log_out' => 'Log Out',
+    'reports' => 'Reports'
 ];
