@@ -9,7 +9,7 @@
                 <h2>{{ __('models.earnings') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/earnings/create" class="button">{{ __('actions.create') }} {{ __('models.earning') }}</a>
+                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.earning') }}</a>
             </div>
         </div>
         @if (session('restorableEarning'))

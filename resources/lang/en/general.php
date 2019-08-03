@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'all' => 'All',
     'dashboard' => 'Dashboard',
 
     'balance' => 'Balance',
