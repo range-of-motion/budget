@@ -302,3 +302,12 @@ table th, table td {
     margin-bottom: 32px;
     color: #FA5764;
 }
+
+.alert-a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+.alert-a:hover {
+    color: #E4E8EB;
+}

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
 
 class VerifyController extends Controller {
     public function __invoke($token) {
@@ -15,12 +14,12 @@ class VerifyController extends Controller {
 
         $user->verification_token = null;
         $user->save();
-        
+
         return redirect()
             ->route('login')
             ->with([
                 'alert_type' => 'success',
-                'alert_message' => 'You\'ve succesfully verified'
-            ]);;
+                'alert_message' => 'verified_account'
+            ]);
     }
 }

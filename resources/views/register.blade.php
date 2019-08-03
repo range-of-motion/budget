@@ -31,11 +31,11 @@
                     </div>
                     <div class="input">
                         <label>Currency</label>
-                        <searchable
-                            name="currency"
-                            size="2"
-                            :items='@json($currencies)'
-                            initial="{{ old('currency') }}"></searchable>
+                        <select name="currency">
+                            @foreach($currencies as $currency)
+                                <option value="{{$currency['key']}}">{!! $currency['label'] !!}</option>
+                            @endforeach
+                        </select>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
                     <button class="button">Register</button>

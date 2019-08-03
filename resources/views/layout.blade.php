@@ -150,13 +150,6 @@
                     </div>
                 </div>
             @endif
-            @if (Auth::check() && Auth::user()->verification_token)
-                <div class="text-center" style="
-                    padding: 15px;
-                    color: #FFF;
-                    background: #F86380;
-                ">{!! __('general.verify_account') !!}. <a class="alert-a" href="{{ route('resend_verify_registration') }}"> {{ __('general.resend_verify_registration') }}</a></div>
-            @endif
             @yield('body')
             @if (auth()->check())
                 <div class="text-center mb-3">

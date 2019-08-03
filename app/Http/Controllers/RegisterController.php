@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\LoginAttempt;
 use Illuminate\Http\Request;
-// use App\Http\Controllers\Controller;
 
 use App\Mail\VerifyRegistration;
 use App\Currency;
 use App\User;
 use App\Space;
-use Hash;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use Mail;
 
 class RegisterController extends Controller {
     public function index() {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
+
         $currencies = [];
 
         foreach (Currency::all() as $currency) {
@@ -55,18 +57,50 @@ class RegisterController extends Controller {
 
         Mail::to($user->email)->queue(new VerifyRegistration($user));
 
-        Auth::loginUsingId($user->id);
+        return redirect()
+            ->route('login')
+            ->with([
+                'alert_type' => 'success',
+                'alert_message' => 'created_account'
+            ]);
+    }
 
-        LoginAttempt::create([
-            'user_id' => $user->id,
-            'ip' => $request->ip(),
-            'failed' => false
-        ]);
+    public function resendVerifyRegistration() {
+        $user = Auth::user();
 
-        session(['space' => $user->spaces[0]]);
+        if($user === null) {
+            $user = User::where('email', session()->pull('email'))->first();
+        }
+
+        if($user === null) {
+            return redirect()
+                ->route('login')
+                ->with([
+                    'alert_type' => 'danger',
+                    'alert_message' => 'no_account_found'
+                ]);
+        }
+
+        if ($user->verification_token === null) {
+            return redirect()
+                ->route('dashboard')
+                ->with([
+                    'alert_type' => 'danger',
+                    'alert_message' => 'already_verified'
+                ]);
+        }
+
+        $user->verification_token = str_random(100);
+        $user->save();
+
+        Mail::to($user->email)->queue(new VerifyRegistration($user));
 
         return redirect()
-            ->route('dashboard');
+            ->route('login')
+            ->with([
+                'alert_type' => 'success',
+                'alert_message' => 'resent_email'
+            ]);
     }
 
     public function resendVerifyRegistration() {
