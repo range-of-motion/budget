@@ -102,29 +102,4 @@ class RegisterController extends Controller {
                 'alert_message' => 'resent_email'
             ]);
     }
-
-    public function resendVerifyRegistration() {
-        $user = Auth::user();
-
-        if ($user->verification_token === null) {
-            return redirect()
-                ->route('dashboard')
-                ->with([
-                    'alert_type' => 'danger',
-                    'alert_message' => 'You are already verified'
-                ]);
-        }
-
-        $user->verification_token = str_random(100);
-        $user->save();
-
-        Mail::to($user->email)->queue(new VerifyRegistration($user));
-
-        return redirect()
-            ->route('dashboard')
-            ->with([
-                'alert_type' => 'success',
-                'alert_message' => 'We\'ve succesfully sent a new mail'
-            ]);
-    }
 }
