@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('errors.layout')
 
-@section('body')
-    <div class="wrapper wrapper--narrow my-3">
-        <h2 class="text-center">403</h2>
-    </div>
-@endsection
+@section('title', __('errors.forbidden'))
+
+@section('code', '403')
+
+@section('message', __('errors.forbidden_msg'))
