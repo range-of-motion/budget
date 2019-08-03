@@ -51,9 +51,12 @@ class RecurringController extends Controller {
         $recurring->day = ltrim($request->input('day'), '0');
         $recurring->starts_on = date('Y-m-d');
         $recurring->ends_on = $request->input('end');
-        $recurring->tag_id = $request->input('tag');
+        $recurring->tag_id = $request->input('tag_id');
         $recurring->description = $request->input('description');
         $recurring->amount = (int) ($request->input('amount') * 100);
+        if($request->input('type') === 'earning') {
+            $recurring->earning = true;
+        }
 
         $recurring->save();
         ProcessRecurrings::dispatch();

@@ -12,7 +12,14 @@ class Earning extends Model {
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['happened_on', 'description', 'amount'];
+    protected $fillable = [
+        'space_id',
+        'import_id',
+        'tag_id',
+        'happened_on',
+        'description',
+        'amount'
+    ];
 
     protected $dispatchesEvents = [
         'created' => TransactionCreated::class,
@@ -32,4 +39,11 @@ class Earning extends Model {
 
     // Relations
     //
+    public function recurring() {
+        return $this->belongsTo(Recurring::class);
+    }
+
+    public function tag() {
+        return $this->belongsTo(Tag::class);
+    }
 }

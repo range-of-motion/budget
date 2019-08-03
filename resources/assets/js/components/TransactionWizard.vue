@@ -10,7 +10,7 @@
                 :class="{ 'bg__button--active': type == 'spending' }"
                 @click="switchType('spending')">{{ $t('models.spending') }}</button>
         </div>
-        <div class="input" v-if="type == 'spending'">
+        <div class="input"">
             <label>{{ $t('models.tag') }}</label>
             <searchable
                 name="tag"
@@ -35,7 +35,7 @@
             <input type="text" v-model="amount" />
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
-        <div v-if="type == 'spending'">
+        <div>
             <div class="input row">
                 <div class="row__column row__column--compact mr-1">
                     <input type="checkbox" id="test" v-model="isRecurring" />
@@ -115,9 +115,8 @@
                 this.recurringEndDate = date
             },
 
-            //
             switchType(type) {
-                this.type = type
+                this.type = type;
 
                 this.success = false
             },
@@ -131,24 +130,25 @@
             },
 
             get100DaysFutureDate() {
-                let now = new Date()
+                let now = new Date();
 
                 return (now.getFullYear() + 1) + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2)
             },
 
-            createEarning() {
+            createTransaction() {
                 if (!this.loading) {
-                    this.loading = true
+                    this.loading = true;
 
-                    if (this.type == 'spending' && this.isRecurring) { // It's a recurring
+                    if (this.isRecurring) { // It's a recurring
                         let body = {
                             _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                             day: this.date.slice(-2),
                             description: this.description,
-                            amount: this.amount
-                        }
+                            amount: this.amount,
+                            type: this.type
+                        };
 
-                        if (this.recurringEnd == 'fixed') {
+                        if (this.recurringEnd === 'fixed') {
                             body.end = this.recurringEndDate
                         }
 
@@ -167,9 +167,9 @@
                             date: this.date,
                             description: this.description,
                             amount: this.amount
-                        }
+                        };
 
-                        if (this.type == 'spending' && this.tag) {
+                        if (this.tag) {
                             body.tag_id = this.tag
                         }
 
@@ -183,27 +183,27 @@
             },
 
             handleSuccess() {
-                this.loading = false
+                this.loading = false;
 
-                this.errors = []
+                this.errors = [];
 
                 //
-                window.location.href = '/transactions'
+                window.location.href = '/transactions';
 
-                this.date = this.getTodaysDate()
-                this.description = ''
-                this.amount = ''
+                this.date = this.getTodaysDate();
+                this.description = '';
+                this.amount = '';
                 // Leave isRecurring as is
-                this.recurringEnd = 'forever'
-                this.recurringEndDate = ''
+                this.recurringEnd = 'forever';
+                this.recurringEndDate = '';
 
                 this.success = true
             },
 
             handleErrors(response) {
-                this.loading = false
+                this.loading = false;
 
-                let errors = []
+                let errors = [];
 
                 if (response.data.errors) {
                     for (let key in response.data.errors) {
@@ -213,9 +213,9 @@
                     }
                 }
 
-                this.errors = errors
+                this.errors = errors;
 
-                if (response.status != 422) {
+                if (response.status !== 422) {
                     alert('Something went wrong')
                 }
 

@@ -36,22 +36,30 @@
                             @foreach ($transactions as $transaction)
                                 <div class="box__section row">
                                     <div class="row__column row__column--middle">{{ $transaction->description }}</div>
-                                    <div class="row__column">
-                                        @if ($transaction->tag)
-                                            <div class="row">
-                                                <div class="row__column row__column--compact row__column--middle mr-05" style="font-size: 12px;">
-                                                    <i class="fas fa-tag" style="color: #{{ $transaction->tag->color }};"></i>
+                                    @if($transaction->tag)
+                                        <div class="row__column">
+                                                <div class="row">
+                                                    <div class="row__column row__column--compact row__column--middle mr-05" style="font-size: 12px;">
+                                                        <i class="fas fa-tag" style="color: #{{ $transaction->tag->color }};"></i>
+                                                    </div>
+                                                    <div class="row__column row__column--compact row__column--middle">{{ $transaction->tag->name }}</div>
                                                 </div>
-                                                <div class="row__column row__column--compact row__column--middle">{{ $transaction->tag->name }}</div>
-                                            </div>
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @endif
                                     <div class="row__column row__column--compact row__column--middle {{ get_class($transaction) == 'App\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
                                     <div class="row__column row__column--compact row__column--middle ml-1 {{ get_class($transaction) == 'App\Earning' ? 'color-green' : 'color-red' }}">
                                         @if (get_class($transaction) == 'App\Earning')
-                                            <i class="fas fa-arrow-alt-left fa-sm"></i>
+                                            @if(!empty($transaction->recurring_id))
+                                                <i class="fas fa-repeat-alt fa-sm"></i>
+                                            @else
+                                                <i class="fas fa-arrow-alt-left fa-sm"></i>
+                                            @endif
                                         @else
-                                            <i class="fas fa-arrow-alt-right fa-sm"></i>
+                                            @if(!empty($transaction->recurring_id))
+                                                <i class="fas fa-repeat-alt fa-sm"></i>
+                                            @else
+                                                <i class="fas fa-arrow-alt-right fa-sm"></i>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

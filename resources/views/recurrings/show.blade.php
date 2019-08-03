@@ -17,17 +17,30 @@
                 </div>
             @endif
         </div>
-        <div class="color-dark mb-2">{{ __('models.spendings') }}</div>
-        <div class="box">
-                @foreach ($recurring->spendings as $spending)
+        @if(count($recurring->earnings))
+            <div class="color-dark mb-2">{{ __('models.earnings') }}</div>
+            <div class="box">
+                @foreach ($recurring->earnings as $earning)
                     <div class="box__section">
                         <div>
-                            <div class="color-dark">{{ $spending->happened_on }}</div>
-                            <div class="mt-1" style="font-size: 14px; font-weight: 600;">{{ $spending->formatted_happened_on }}</div>
+                            <div class="color-dark">{{ $earning->happened_on }}</div>
+                            <div class="mt-1" style="font-size: 14px; font-weight: 600;">{{ $earning->formatted_happened_on }}</div>
                         </div>
                         <div></div>
                     </div>
                 @endforeach
+        @elseif(count($recurring->spendings))
+            <div class="color-dark mb-2">{{ __('models.spendings') }}</div>
+                <div class="box">
+                    @foreach ($recurring->spendings as $spending)
+                        <div class="box__section">
+                            <div>
+                                <div class="color-dark">{{ $spending->happened_on }}</div>
+                                <div class="mt-1" style="font-size: 14px; font-weight: 600;">{{ $spending->formatted_happened_on }}</div>
+                            </div>
+                            <div></div>
+                        </div>
+                    @endforeach
         @else
             @include('partials.empty_state', ['payload' => 'spendings'])
         @endif

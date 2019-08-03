@@ -39,6 +39,10 @@ class Recurring extends Model {
         return $this->hasMany(Spending::class);
     }
 
+    public function earnings() {
+        return $this->hasMany(Earning::class);
+    }
+
     public function tag() {
         return $this->belongsTo(Tag::class);
     }
