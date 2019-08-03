@@ -9,7 +9,7 @@
                 <h2>{{ __('models.transactions') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.transactions') }}</a>
+                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.transaction') }}</a>
             </div>
         </div>
         <div class="row row--responsive">
