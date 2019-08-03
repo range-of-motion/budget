@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller {
     public function index() {
-        if (Auth::check() && Auth::user()->verification_token === null) {
+        if (Auth::check()) {
             return redirect()->route('dashboard');
         }
 
