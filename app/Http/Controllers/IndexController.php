@@ -8,7 +8,7 @@ use Auth;
 
 class IndexController extends Controller {
     public function index() {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->verification_token === null) {
             return redirect()->route('dashboard');
         }
 

@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller {
     public function index() {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->verification_token === null) {
             return redirect()->route('dashboard');
         }
-        return view('login');
+        return redirect()->route('login');
     }
 
     public function store(Request $request) {
