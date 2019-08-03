@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', 'Reports')
+@section('title', __('pages.reports'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>Reports</h2>
+        <h2>{{ __('pages.reports') }}</h2>
         <div class="row row--gutter row--responsive mt-3">
             <div class="row__column">
                 <div class="card">

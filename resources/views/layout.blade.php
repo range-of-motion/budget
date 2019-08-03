@@ -4,6 +4,7 @@
         <title>{{ View::hasSection('title') ? View::getSection('title') . ' - ' . config('app.name') : config('app.name') }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <meta name="user-locale" content="{{ Auth::check() ? Auth::user()->language : config('app.locale')}}">
         <link rel="stylesheet" href="/storage/twemoji-flags.css" />
         <script src="/storage/fontawesome/all.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i" />
@@ -153,7 +154,7 @@
             @yield('body')
             @if (auth()->check())
                 <div class="text-center mb-3">
-                    <a class="fs-sm" href="/ideas/create">{{ __('general.know_how_to_make_this_app_better') }}?</a>
+                    <a class="fs-sm" href="/ideas/create">{{ __('messages.know_how_to_make_this_app_better') }}</a>
                 </div>
             @endif
         </div>

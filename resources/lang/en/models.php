@@ -7,8 +7,17 @@ return [
     'spaces' => 'Spaces',
     'space' => 'Space',
 
-    'tags' => 'Tags',
-    'tag' => 'Tag',
+    'currencies' => 'Currencies',
+    'currency' => 'Currency',
+
+    'earnings' => 'Earnings',
+    'earning' => 'Earning',
+
+    'ideas' => 'Ideas',
+    'idea' => 'Idea',
+
+    'imports' => 'Imports',
+    'import' => 'Import',
 
     'recurrings' => 'Recurrings',
     'recurring' => 'Recurring',
@@ -18,6 +27,9 @@ return [
 
     'spendings' => 'Spendings',
     'spending' => 'Spending',
+
+    'tags' => 'Tags',
+    'tag' => 'Tag',
 
     'transactions' => 'Transactions',
     'transaction' => 'Transaction',

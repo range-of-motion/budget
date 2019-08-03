@@ -1,5 +1,14 @@
 import axios from 'axios';
 import Vue from 'vue';
+import VueI18n from 'vue-i18n'
+import Locale from './vue-i18n-locales.generated';
+
+Vue.use(VueI18n);
+const i18n = new VueI18n({
+    locale: document.querySelector("meta[name='user-locale']").getAttribute('content'),
+    fallbackLocale: 'en',
+    messages: Locale
+});
 
 import { Chrome } from 'vue-color';
 
@@ -44,5 +53,6 @@ Vue.directive('click-outside', {
 })
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    i18n
 })

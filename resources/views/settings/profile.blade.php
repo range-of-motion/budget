@@ -14,7 +14,7 @@
                 @include('partials.validation_error', ['payload' => 'avatar'])
             </div>
             <div class="input input--small">
-                <label>@lang('fields.name')</label>
+                <label>{{ __('fields.name') }}</label>
                 <input type="text" name="name" value="{{ Auth::user()->name }}" />
             </div>
             <button class="button">{{ __('actions.save') }}</button>

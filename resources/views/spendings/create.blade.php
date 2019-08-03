@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="box__section box__section--highlight text-right">
-                    <button class="button">@lang('actions.create')</button>
+                    <button class="button">{{ __('actions.create') }}</button>
                 </div>
             </form>
         </div>
