@@ -13,9 +13,12 @@ Budget is an open-source web application that helps you keep track of your finan
 
 ## Features
 
-* Ability to organize spendings using tags
-* Dashboard displaying monthly statistics about your spendings
-* Available in multiple languages (English, Dutch, Danish, German)
+* Ability to organize transactions using tags
+* Dashboard displaying monthly statistics about your financial transactions
+* Available in multiple languages (English, Dutch, Danish, German, French, Portuguese)
+* Several reports
+* Ability to import transactions via a CSV-file
+* Ability to create recurring transactions
 
 ## Installation
 
@@ -44,7 +47,12 @@ In addition to this you will have to create a cronjob to trigger budgets schedul
 * * * * * cd /path/to/budget/ && php artisan schedule:run >> 2>&1 
 ``` 
 
-It's best to make sure this command is run with the user that runs budget (eg. www-data) 
+It's best to make sure this command is run with the user that runs budget (eg. www-data)
+
+## Dependencies
+
+* For `twemoji-flags.css` &rarr; download the latest over [here](https://github.com/range-of-motion/twemoji-flags)
+* For `fontawesome/all.min.js` &rarr; download v4 over [here](https://fontawesome.com/v4.7.0/get-started/?utm_source=fontawesome4.7#modal-download). Some icons are Pro-Only and are only included in Font Awesome v5.
 
 ## Contact
 
