@@ -93,12 +93,7 @@
                             </tr>
                             <tr>
                                 <td class="content-cell" align="center" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 5px;">
-                                    <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; line-height: 1.5em; margin-top: 0; color: #aeaeae; font-size: 12px; text-align: center;">
-                                        © {{ now()->year }}
-                                        <a href="{{ config('app.url') }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; line-height: 1.5em; margin-top: 0; color: #aeaeae; font-size: 12px; text-align: center; text-decoration: none;">
-                                            {{ config('app.name') }}
-                                        </a>
-                                        . All rights reserved.
+                                    <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; line-height: 1.5em; margin-top: 0; color: #aeaeae; font-size: 12px; text-align: center;">© {{ now()->year }} <a href="{{ config('app.url') }}" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; line-height: 1.5em; margin-top: 0; color: #aeaeae; font-size: 12px; text-align: center; text-decoration: none;">{{ config('app.name') }}</a>. All rights reserved.
                                     </p>
                                 </td>
                             </tr>
