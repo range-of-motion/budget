@@ -3,11 +3,11 @@
         <div class="bg mb-2">
             <button
                 class="bg__button"
-                :class="{ 'bg__button--active': type == 'earning' }"
+                :class="{ 'bg__button--active': transaction_type === 'earning' }"
                 @click="switchTransactionType('earning')">{{ $t('models.earning') }}</button>
             <button
                 class="bg__button"
-                :class="{ 'bg__button--active': type == 'spending' }"
+                :class="{ 'bg__button--active': transaction_type === 'spending' }"
                 @click="switchTransactionType('spending')">{{ $t('models.spending') }}</button>
         </div>
         <div class="input">
