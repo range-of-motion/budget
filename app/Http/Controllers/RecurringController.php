@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\TagBelongsToUser;
 use Illuminate\Http\Request;
 
 use App\Recurring;
@@ -37,9 +38,9 @@ class RecurringController extends Controller {
                       'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
                     ],
             'end' => 'nullable|date|date_format:Y-m-d',
-            'tag' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
             'description' => 'required|max:255',
             'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
+            'tag' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
         ]);
 
         $user = Auth::user();
@@ -47,7 +48,7 @@ class RecurringController extends Controller {
         $recurring = new Recurring;
 
         $recurring->space_id = session('space')->id;
-        $recurring->type = 'monthly';
+        $recurring->type = 'monthly'; // TODO ADD SUPPORT FOR DAILY/WEEKLY/YEARLY
         $recurring->day = ltrim($request->input('day'), '0');
         $recurring->starts_on = date('Y-m-d');
         $recurring->ends_on = $request->input('end');

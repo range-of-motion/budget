@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Import;
+use App\Rules\TagBelongsToUser;
 use App\Spending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class ImportController extends Controller {
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|max:255',
-            'file' => 'required|max:200' // TODO VALIDATE CSV
+            'file' => 'required', 'max:200', 'mimes:csv,txt'
         ]);
 
         $path = $request->file('file')->store('imports');
@@ -113,8 +114,8 @@ class ImportController extends Controller {
         foreach ($request->input('rows') as $i => $row) {
             if (isset($row['import']) && $row['import'] == 'on') {
                 $validator = Validator::make($row, [
-                    'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
                     'happened_on' => 'date|date_format:' . $date_format,
+                    'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
                     'description' => 'max:255',
                     'amount' => 'regex:/^\d*([\,\.]\d{2})?$/'
                 ]);
@@ -136,6 +137,7 @@ class ImportController extends Controller {
         foreach ($request->input('rows') as $row) {
             if (isset($row['import'])) {
                 // TODO CHECK HOW THIS WORKS WITH 1k+ AMOUNTS
+                // MAYBE CHECK THE LENGTH OF $row['amount']?
                 $amount = str_replace(',', '.', $row['amount']);
 
                 Spending::create([

@@ -27,7 +27,6 @@ window.Vue = Vue;
 Vue.component('chrome-picker', Chrome);
 
 Vue.component('button-dropdown', ButtonDropdown);
-Vue.component('datepicker', DatePicker); // TODO DEPRECATE
 Vue.component('date-picker', DatePicker);
 Vue.component('barchart', BarChart);
 Vue.component('dropdown', Dropdown);
