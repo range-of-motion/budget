@@ -29,7 +29,7 @@ return [
         'new_spending_description' => 'Birthday Present for Angela',
         'recurring_explanation' => 'This is a recurring transaction',
         'recurring_duration' => 'How long will this transaction go on for?',
-        'forever' => 'Forever :(',
+        'forever' => 'Forever',
         'until' => 'Until',
         'loading' => 'Loading',
         'successfully_created' => 'You\'ve successfully created that transaction'
