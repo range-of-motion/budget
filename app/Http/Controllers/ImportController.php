@@ -23,7 +23,7 @@ class ImportController extends Controller {
 
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required', 'max:255',
             'file' => 'required', 'max:200', 'mimes:csv,txt'
         ]);
 
@@ -58,9 +58,9 @@ class ImportController extends Controller {
         $this->authorize('modify', $import);
 
         $request->validate([
-            'column_happened_on' => 'required|integer',
-            'column_description' => 'required|integer',
-            'column_amount' => 'required|integer',
+            'column_happened_on' => 'required', 'integer',
+            'column_description' => 'required', 'integer',
+            'column_amount' => 'required', 'integer',
         ]);
 
         // Storing which columns in the CSV are used for the date, description and amount of a transaction
@@ -114,8 +114,8 @@ class ImportController extends Controller {
         foreach ($request->input('rows') as $i => $row) {
             if (isset($row['import']) && $row['import'] == 'on') {
                 $validator = Validator::make($row, [
-                    'happened_on' => 'date|date_format:' . $date_format,
                     'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
+                    'happened_on' => 'date', 'date_format:' . $date_format,
                     'description' => 'max:255',
                     'amount' => 'regex:/^\d*([\,\.]\d{2})?$/'
                 ]);

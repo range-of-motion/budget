@@ -8,8 +8,22 @@ use Illuminate\Http\Request;
 use App\Recurring;
 use Auth;
 use App\Jobs\ProcessRecurrings;
+use Illuminate\Support\Facades\Validator;
 
 class RecurringController extends Controller {
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'day' => ['required',
+                'regex:/\b(0?[1-9]', '[12][0-9]', '3[01])\b/',
+            ],
+            'end' => 'nullable', 'date', 'date_format:Y-m-d',
+            'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
+            'description' => 'required', 'max:255',
+            'amount' => 'required', 'regex:/^\d*(\.\d{2})?$/'
+        ]);
+    }
+
     public function index() {
         return view('recurrings.index', [
             'recurrings' => session('space')->recurrings()->orderBy('created_at', 'DESC')->get()
@@ -33,15 +47,7 @@ class RecurringController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'day' => ['required',
-                      'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
-                    ],
-            'end' => 'nullable|date|date_format:Y-m-d',
-            'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
-            'tag' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
-        ]);
+        $this->validator($request->all())->validate();
 
         $user = Auth::user();
 

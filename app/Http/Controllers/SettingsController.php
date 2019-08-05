@@ -7,24 +7,30 @@ use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
 use App\Currency;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 use Image;
 use Storage;
 use Hash;
 use Mail;
 
 class SettingsController extends Controller {
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'avatar' => 'nullable', 'mimes:jpeg,jpg,png,gif',
+            'password' => 'nullable', 'confirmed',
+            'language' => 'nullable', 'in:' . implode(',', array_keys(config('app.locales'))),
+            'theme' => 'nullable', 'in:light,dark',
+            'weekly_report' => 'nullable', 'in:true,false'
+        ]);
+    }
+
     public function getIndex() {
         return redirect()->route('settings.profile');
     }
 
     public function postIndex(Request $request) {
-        $request->validate([
-            'avatar' => 'nullable|mimes:jpeg,jpg,png,gif',
-            'password' => 'nullable|confirmed',
-            'language' => 'nullable|in:' . implode(',', array_keys(config('app.locales'))),
-            'theme' => 'nullable|in:light,dark',
-            'weekly_report' => 'nullable|in:true,false'
-        ]);
+        $this->validator($request->all())->validate();
 
         $user = Auth::user();
 
