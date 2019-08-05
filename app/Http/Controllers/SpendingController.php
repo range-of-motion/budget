@@ -2,14 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\TagBelongsToUser;
 use Illuminate\Http\Request;
 
 use App\Spending;
-use App\Tag;
 
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SpendingController extends Controller {
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
+            'date' => 'required', 'date', 'date_format:Y-m-d',
+            'description' => 'required', 'max:255',
+            'amount' => 'required', 'regex:/^\d*(\.\d{2})?$/'
+        ]);
+    }
+
     public function index(Request $request) {
         $filter = false;
 
@@ -46,12 +57,7 @@ class SpendingController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
-            'date' => 'required|date|date_format:Y-m-d',
-            'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
-        ]);
+        $this->validator($request->all())->validate();
 
         $spending = new Spending;
 

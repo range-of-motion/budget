@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\TagBelongsToUser;
 use Illuminate\Http\Request;
 
 use App\Earning;
 
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class EarningController extends Controller {
-    protected function validationRules() {
-        return [
-            'date' => 'required|date|date_format:Y-m-d',
-            'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
-        ];
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
+            'date' => 'required', 'date', 'date_format:Y-m-d',
+            'description' => 'required', 'max:255',
+            'amount' => 'required', 'regex:/^\d*(\.\d{2})?$/'
+        ]);
     }
 
     public function index() {
@@ -34,11 +38,12 @@ class EarningController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate($this->validationRules());
+        $this->validator($request->all())->validate();
 
         $earning = new Earning;
 
         $earning->space_id = session('space')->id;
+        $earning->tag_id = $request->input('tag_id');
         $earning->happened_on = $request->input('date');
         $earning->description = $request->input('description');
         $earning->amount = (int) ($request->input('amount') * 100);
@@ -57,7 +62,7 @@ class EarningController extends Controller {
     public function update(Request $request, Earning $earning) {
         $this->authorize('update', $earning);
 
-        $request->validate($this->validationRules());
+        $this->validator($request->all())->validate();
 
         $earning->fill([
             'happened_on' => $request->input('date'),
