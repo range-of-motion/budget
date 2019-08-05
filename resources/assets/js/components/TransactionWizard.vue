@@ -10,7 +10,7 @@
                 :class="{ 'bg__button--active': type == 'spending' }"
                 @click="switchType('spending')">{{ $t('models.spending') }}</button>
         </div>
-        <div class="input"">
+        <div class="input">
             <label>{{ $t('models.tag') }}</label>
             <searchable
                 name="tag"
@@ -71,7 +71,7 @@
         </div>
         <button
             class="button"
-            @click="createEarning">
+            @click="createTransaction">
             <span v-if="loading">{{ $t('messages.transaction_wizard.loading')}}</span>
             <span v-if="!loading">{{ $t('actions.create')}}</span>
         </button>
@@ -208,7 +208,7 @@
                 if (response.data.errors) {
                     for (let key in response.data.errors) {
                         if (response.data.errors.hasOwnProperty(key)) {
-                            errors[key] = response.data.errors[key][0]
+                            errors[key] = response.data.errors[key][0];
                         }
                     }
                 }
