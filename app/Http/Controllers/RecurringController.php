@@ -14,9 +14,7 @@ class RecurringController extends Controller {
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'day' => ['required',
-                'regex:/\b(0?[1-9]', '[12][0-9]', '3[01])\b/',
-            ],
+            'day' => 'required', 'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
             'end' => 'nullable', 'date', 'date_format:Y-m-d',
             'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
             'description' => 'required', 'max:255',
