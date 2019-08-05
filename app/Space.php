@@ -61,12 +61,12 @@ class Space extends Model {
         return $query->balance;
     }
 
-    public function monthlyRecurrings($earning, $year, $month) {
+    public function monthlyRecurrings($transaction_type, $year, $month) {
         $query = DB::selectOne('
             SELECT SUM(amount) as amount
             FROM recurrings
-            WHERE space_id = :space_id AND earning = :earning AND YEAR(starts_on) <= :start_year AND MONTH(starts_on) <= :start_month AND ((YEAR(ends_on) >= :end_year AND MONTH(ends_on) >= :end_month) OR ends_on IS NULL)
-        ', ['space_id' => $this->id, 'earning' => $earning,'start_year' => $year, 'start_month' => $month, 'end_year' => $year, 'end_month' => $month]);
+            WHERE space_id = :space_id AND transaction_type = :transaction_type AND YEAR(starts_on) <= :start_year AND MONTH(starts_on) <= :start_month AND ((YEAR(ends_on) >= :end_year AND MONTH(ends_on) >= :end_month) OR ends_on IS NULL)
+        ', ['space_id' => $this->id, 'transaction_type' => $transaction_type,'start_year' => $year, 'start_month' => $month, 'end_year' => $year, 'end_month' => $month]);
 
         return $query->amount;
     }
