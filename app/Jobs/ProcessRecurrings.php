@@ -23,10 +23,10 @@ class ProcessRecurrings implements ShouldQueue {
 
         $recurrings = Recurring
             ::where('type', 'monthly')
-            ->when((int) date('t')  == $day, 
+            ->when((int) date('t')  == $day,
             function ($query) use ($day) {
                 return $query->where('day', '>=', $day);
-            }, 
+            },
             function ($query) use ($day) {
                 return $query->where('day', $day);
             })
@@ -42,11 +42,15 @@ class ProcessRecurrings implements ShouldQueue {
             })->get();
 
         foreach ($recurrings as $recurring) {
-            if ($recurring->earning) {
-                $transaction = new Earning;
-            } else {
-                $transaction = new Spending;
+            switch ($recurring->transaction_type) {
+                case 'earning':
+                    $transaction = new Earning;
+                    break;
+                case 'spending':
+                    $transaction = new Spending;
+                    break;
             }
+
             $transaction->space_id = $recurring->space_id;
             $transaction->recurring_id = $recurring->id;
             $transaction->tag_id = $recurring->tag_id;

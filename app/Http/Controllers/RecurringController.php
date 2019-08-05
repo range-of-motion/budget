@@ -61,9 +61,7 @@ class RecurringController extends Controller {
         $recurring->tag_id = $request->input('tag_id');
         $recurring->description = $request->input('description');
         $recurring->amount = (int) ($request->input('amount') * 100);
-        if($request->input('type') === 'earning') {
-            $recurring->earning = true;
-        }
+        $recurring->transaction_type = $request->input('transaction_type');
 
         $recurring->save();
         ProcessRecurrings::dispatch();

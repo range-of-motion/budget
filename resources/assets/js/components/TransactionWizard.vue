@@ -4,11 +4,11 @@
             <button
                 class="bg__button"
                 :class="{ 'bg__button--active': type == 'earning' }"
-                @click="switchType('earning')">{{ $t('models.earning') }}</button>
+                @click="switchTransactionType('earning')">{{ $t('models.earning') }}</button>
             <button
                 class="bg__button"
                 :class="{ 'bg__button--active': type == 'spending' }"
-                @click="switchType('spending')">{{ $t('models.spending') }}</button>
+                @click="switchTransactionType('spending')">{{ $t('models.spending') }}</button>
         </div>
         <div class="input">
             <label>{{ $t('models.tag') }}</label>
@@ -27,7 +27,7 @@
         </div>
         <div class="input">
             <label>{{ $t('fields.description') }}</label>
-            <input type="text" v-model="description" :placeholder="type == 'earning' ? $t('messages.transaction_wizard.new_earning_description') : $t('messages.transaction_wizard.new_spending_description')" />
+            <input type="text" v-model="description" :placeholder="transaction_type === 'earning' ? $t('messages.transaction_wizard.new_earning_description') : $t('messages.transaction_wizard.new_spending_description')" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input">
@@ -89,7 +89,7 @@
 
         data() {
             return {
-                type: 'earning',
+                transaction_type: 'earning',
                 errors: [],
 
                 tag: null,
@@ -115,8 +115,8 @@
                 this.recurringEndDate = date
             },
 
-            switchType(type) {
-                this.type = type;
+            switchTransactionType(transaction_type) {
+                this.transaction_type = transaction_type;
 
                 this.success = false
             },
@@ -145,7 +145,7 @@
                             day: this.date.slice(-2),
                             description: this.description,
                             amount: this.amount,
-                            type: this.type
+                            transaction_type: this.transaction_type
                         };
 
                         if (this.recurringEnd === 'fixed') {
@@ -173,7 +173,7 @@
                             body.tag_id = this.tag
                         }
 
-                        axios.post('/' + this.type + 's', body).then(response => {
+                        axios.post('/' + this.transaction_type + 's', body).then(response => {
                             this.handleSuccess()
                         }).catch(error => {
                             this.handleErrors(error.response)
