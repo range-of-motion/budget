@@ -11,7 +11,9 @@
         "intervention/image": "^2.4",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
-        "nesbot/carbon": "1.25"
+        "martinlindhe/laravel-vue-i18n-generator": "^0.1.39",
+        "nesbot/carbon": "1.25",
+        "symfony/process": "^4.3"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
