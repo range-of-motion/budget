@@ -18,7 +18,7 @@
             @endif
         </div>
         @if (session('restorableSpending'))
-            <div class="mt-3"><div class="mt-3">{{ __('messages.successfully_deleted', ['resource' => __('models.spending)) }}</div></div>
+            <div class="mt-3">{{ __('messages.successfully_deleted', ['resource' => __('models.spending')]) }}</div>
             <form method="POST" action="/spendings/{{ session('restorableSpending') }}/restore" class="mt-05">
                 {{ csrf_field() }}
                 <button class="button link">{{ __('messages.still_able_to_recover') }}</button>
