@@ -31,5 +31,17 @@ return [
     'themes' => [
         'light' => 'Light',
         'dark' => 'Dark (Experimental)'
+    ],
+
+    'time' => [
+        'second' => 'seconds|seconds',
+        'minute' => 'minute|minutes',
+        'hour' => 'hour|hours',
+        'day' => 'day|days',
+        'month' => 'month|months',
+        'year' => 'year|years',
+        'today' => 'today',
+        'ahead' => 'ahead',
+        'ago' => 'ago'
     ]
 ];

@@ -31,10 +31,143 @@ export default {
             ]
         },
         "validation": {
-            "required": "Darf nicht leer sein",
-            "confirmed": "Stimmt nicht überein",
+            "accepted": "{attribute} muss akzeptiert werden.",
+            "active_url": "{attribute} ist keine gültige Internet-Adresse.",
+            "after": "{attribute} muss ein Datum nach dem {date} sein.",
+            "after_or_equal": "{attribute} muss ein Datum nach dem {date} oder gleich dem {date} sein.",
+            "alpha": "{attribute} darf nur aus Buchstaben bestehen.",
+            "alpha_dash": "{attribute} darf nur aus Buchstaben, Zahlen, Binde- und Unterstrichen bestehen.",
+            "alpha_num": "{attribute} darf nur aus Buchstaben und Zahlen bestehen.",
+            "array": "{attribute} muss ein Array sein.",
+            "before": "{attribute} muss ein Datum vor dem {date} sein.",
+            "before_or_equal": "{attribute} muss ein Datum vor dem {date} oder gleich dem {date} sein.",
+            "between": {
+                "numeric": "{attribute} muss zwischen {min} & {max} liegen.",
+                "file": "{attribute} muss zwischen {min} & {max} Kilobytes groß sein.",
+                "string": "{attribute} muss zwischen {min} & {max} Zeichen lang sein.",
+                "array": "{attribute} muss zwischen {min} & {max} Elemente haben."
+            },
+            "boolean": "{attribute} muss entweder 'true' oder 'false' sein.",
+            "confirmed": "{attribute} stimmt nicht mit der Bestätigung überein.",
+            "date": "{attribute} muss ein gültiges Datum sein.",
+            "date_equals": "The {attribute} must be a date equal to {date}.",
+            "date_format": "{attribute} entspricht nicht dem gültigen Format für {format}.",
+            "different": "{attribute} und {other} müssen sich unterscheiden.",
+            "digits": "{attribute} muss {digits} Stellen haben.",
+            "digits_between": "{attribute} muss zwischen {min} und {max} Stellen haben.",
+            "dimensions": "{attribute} hat ungültige Bildabmessungen.",
+            "distinct": "{attribute} beinhaltet einen bereits vorhandenen Wert.",
+            "email": "{attribute} muss eine gültige E-Mail-Adresse sein.",
+            "exists": "Der gewählte Wert für {attribute} ist ungültig.",
+            "file": "{attribute} muss eine Datei sein.",
+            "filled": "{attribute} muss ausgefüllt sein.",
+            "gt": {
+                "numeric": "{attribute} muss mindestens {value} sein.",
+                "file": "{attribute} muss mindestens {value} Kilobytes groß sein.",
+                "string": "{attribute} muss mindestens {value} Zeichen lang sein.",
+                "array": "{attribute} muss mindestens {value} Elemente haben."
+            },
+            "gte": {
+                "numeric": "{attribute} muss größer oder gleich {value} sein.",
+                "file": "{attribute} muss größer oder gleich {value} Kilobytes sein.",
+                "string": "{attribute} muss größer oder gleich {value} Zeichen lang sein.",
+                "array": "{attribute} muss größer oder gleich {value} Elemente haben."
+            },
+            "image": "{attribute} muss ein Bild sein.",
+            "in": "Der gewählte Wert für {attribute} ist ungültig.",
+            "in_array": "Der gewählte Wert für {attribute} kommt nicht in {other} vor.",
+            "integer": "{attribute} muss eine ganze Zahl sein.",
+            "ip": "{attribute} muss eine gültige IP-Adresse sein.",
+            "ipv4": "{attribute} muss eine gültige IPv4-Adresse sein.",
+            "ipv6": "{attribute} muss eine gültige IPv6-Adresse sein.",
+            "json": "{attribute} muss ein gültiger JSON-String sein.",
+            "lt": {
+                "numeric": "{attribute} muss kleiner {value} sein.",
+                "file": "{attribute} muss kleiner {value} Kilobytes groß sein.",
+                "string": "{attribute} muss kleiner {value} Zeichen lang sein.",
+                "array": "{attribute} muss kleiner {value} Elemente haben."
+            },
+            "lte": {
+                "numeric": "{attribute} muss kleiner oder gleich {value} sein.",
+                "file": "{attribute} muss kleiner oder gleich {value} Kilobytes sein.",
+                "string": "{attribute} muss kleiner oder gleich {value} Zeichen lang sein.",
+                "array": "{attribute} muss kleiner oder gleich {value} Elemente haben."
+            },
             "max": {
-                "string": "Darf nicht länger als {max} Zeichen sein"
+                "numeric": "{attribute} darf maximal {max} sein.",
+                "file": "{attribute} darf maximal {max} Kilobytes groß sein.",
+                "string": "{attribute} darf maximal {max} Zeichen haben.",
+                "array": "{attribute} darf nicht mehr als {max} Elemente haben."
+            },
+            "mimes": "{attribute} muss den Dateityp {values} haben.",
+            "mimetypes": "{attribute} muss den Dateityp {values} haben.",
+            "min": {
+                "numeric": "{attribute} muss mindestens {min} sein.",
+                "file": "{attribute} muss mindestens {min} Kilobytes groß sein.",
+                "string": "{attribute} muss mindestens {min} Zeichen lang sein.",
+                "array": "{attribute} muss mindestens {min} Elemente haben."
+            },
+            "not_in": "Der gewählte Wert für {attribute} ist ungültig.",
+            "not_regex": "{attribute} hat ein ungültiges Format.",
+            "numeric": "{attribute} muss eine Zahl sein.",
+            "present": "{attribute} muss vorhanden sein.",
+            "regex": "{attribute} Format ist ungültig.",
+            "required": "{attribute} muss ausgefüllt sein.",
+            "required_if": "{attribute} muss ausgefüllt sein, wenn {other} {value} ist.",
+            "required_unless": "{attribute} muss ausgefüllt sein, wenn {other} nicht {values} ist.",
+            "required_with": "{attribute} muss angegeben werden, wenn {values} ausgefüllt wurde.",
+            "required_with_all": "{attribute} muss angegeben werden, wenn {values} ausgefüllt wurde.",
+            "required_without": "{attribute} muss angegeben werden, wenn {values} nicht ausgefüllt wurde.",
+            "required_without_all": "{attribute} muss angegeben werden, wenn keines der Felder {values} ausgefüllt wurde.",
+            "same": "{attribute} und {other} müssen übereinstimmen.",
+            "size": {
+                "numeric": "{attribute} muss gleich {size} sein.",
+                "file": "{attribute} muss {size} Kilobyte groß sein.",
+                "string": "{attribute} muss {size} Zeichen lang sein.",
+                "array": "{attribute} muss genau {size} Elemente haben."
+            },
+            "starts_with": "The {attribute} must start with one of the following: {values}",
+            "string": "{attribute} muss ein String sein.",
+            "timezone": "{attribute} muss eine gültige Zeitzone sein.",
+            "unique": "{attribute} ist schon vergeben.",
+            "uploaded": "{attribute} konnte nicht hochgeladen werden.",
+            "url": "{attribute} muss eine URL sein.",
+            "uuid": "{attribute} muss ein UUID sein.",
+            "custom": {
+                "attribute-name": {
+                    "rule-name": "custom-message"
+                }
+            },
+            "attributes": {
+                "name": "Name",
+                "username": "Benutzername",
+                "email": "E-Mail-Adresse",
+                "first_name": "Vorname",
+                "last_name": "Nachname",
+                "password": "Passwort",
+                "password_confirmation": "Passwort-Bestätigung",
+                "city": "Stadt",
+                "country": "Land",
+                "address": "Adresse",
+                "phone": "Telefonnummer",
+                "mobile": "Handynummer",
+                "age": "Alter",
+                "sex": "Geschlecht",
+                "gender": "Geschlecht",
+                "day": "Tag",
+                "month": "Monat",
+                "year": "Jahr",
+                "hour": "Stunde",
+                "minute": "Minute",
+                "second": "Sekunde",
+                "title": "Titel",
+                "content": "Inhalt",
+                "description": "Beschreibung",
+                "excerpt": "Auszug",
+                "date": "Datum",
+                "time": "Uhrzeit",
+                "available": "verfügbar",
+                "size": "Größe"
             }
         },
         "general": {
@@ -123,11 +256,114 @@ export default {
             ]
         },
         "validation": {
-            "required": "Skal være udfyldt",
-            "confirmed": "Er ikke ens",
+            "accepted": "{attribute} skal accepteres.",
+            "active_url": "{attribute} er ikke en gyldig URL.",
+            "after": "{attribute} skal være en dato efter {date}.",
+            "after_or_equal": "{attribute} skal være en dato efter eller lig med {date}.",
+            "alpha": "{attribute} må kun bestå af bogstaver.",
+            "alpha_dash": "{attribute} må kun bestå af bogstaver, tal og bindestreger.",
+            "alpha_num": "{attribute} må kun bestå af bogstaver og tal.",
+            "array": "{attribute} skal være et array.",
+            "before": "{attribute} skal være en dato før {date}.",
+            "before_or_equal": "{attribute} skal være en dato før eller lig med {date}.",
+            "between": {
+                "numeric": "{attribute} skal være mellem {min} og {max}.",
+                "file": "{attribute} skal være mellem {min} og {max} kilobytes.",
+                "string": "{attribute} skal være mellem {min} og {max} tegn.",
+                "array": "{attribute} skal indeholde mellem {min} og {max} elementer."
+            },
+            "boolean": "{attribute} skal være sand eller falsk.",
+            "confirmed": "{attribute} er ikke det samme som bekræftelsesfeltet.",
+            "date": "{attribute} er ikke en gyldig dato.",
+            "date_equals": "{attribute} skal være en dato lig med {date}.",
+            "date_format": "{attribute} matcher ikke formatet {format}.",
+            "different": "{attribute} og {other} skal være forskellige.",
+            "digits": "{attribute} skal have {digits} cifre.",
+            "digits_between": "{attribute} skal have mellem {min} og {max} cifre.",
+            "dimensions": "{attribute} har forkerte billeddimensioner.",
+            "distinct": "{attribute} har en duplikatværdi.",
+            "email": "{attribute} skal være en gyldig e-mailadresse.",
+            "exists": "Valgte {attribute} er ugyldig.",
+            "file": "{attribute} skal være en fil.",
+            "filled": "{attribute} skal udfyldes.",
+            "gt": {
+                "numeric": "{attribute} skal være større end {value}.",
+                "file": "{attribute} skal være større end {value} kilobytes.",
+                "string": "{attribute} skal være mere end {value} tegn.",
+                "array": "{attribute} skal være mere end {value} elementer."
+            },
+            "gte": {
+                "numeric": "{attribute} skal være større end eller lig med {value}.",
+                "file": "{attribute} skal være større end eller lig med {value} kilobytes.",
+                "string": "{attribute} skal være mere end eller lig med {value} tegn.",
+                "array": "{attribute} skal have {value} elementer eller mere."
+            },
+            "image": "{attribute} skal være et billede.",
+            "in": "Valgte {attribute} er ugyldig.",
+            "in_array": "{attribute} eksisterer ikke i {other}.",
+            "integer": "{attribute} skal være et heltal.",
+            "ip": "{attribute} skal være en gyldig IP adresse.",
+            "ipv4": "{attribute} skal være en gyldig IPv4 adresse.",
+            "ipv6": "{attribute} skal være en gyldig IPv6 adresse.",
+            "json": "{attribute} skal være en gyldig JSON streng.",
+            "lt": {
+                "numeric": "{attribute} skal være mindre end {value}.",
+                "file": "{attribute} skal være mindre end {value} kilobytes.",
+                "string": "{attribute} skal være mindre end {value} tegn.",
+                "array": "{attribute} skal have mindre end {value} items."
+            },
+            "lte": {
+                "numeric": "{attribute} skal være mindre eller lig med {value}.",
+                "file": "{attribute} skal være mindre eller lig med {value} kilobytes.",
+                "string": "{attribute} skal være mindre eller lig med {value} tegn.",
+                "array": "{attribute} må ikke have mere end {value} elementer."
+            },
             "max": {
-                "string": "Kan ikke være længere end {max} tegn"
-            }
+                "numeric": "{attribute} må ikke være større end {max}.",
+                "file": "{attribute} må ikke være større end {max} kilobytes.",
+                "string": "{attribute} må ikke være mere end {max} tegn.",
+                "array": "{attribute} må ikke indeholde mere end {max} elementer."
+            },
+            "mimes": "{attribute} skal være en fil af typen: {values}.",
+            "mimetypes": "{attribute} skal være en fil af typen: {values}.",
+            "min": {
+                "numeric": "{attribute} skal være mindst {min}.",
+                "file": "{attribute} skal være mindst {min} kilobytes.",
+                "string": "{attribute} skal være mindst {min} tegn.",
+                "array": "{attribute} skal indeholde mindst {min} elementer."
+            },
+            "not_in": "Valgte {attribute} er ugyldig.",
+            "not_regex": "Formatet for {attribute} er ugyldigt.",
+            "numeric": "{attribute} skal være et tal.",
+            "present": "{attribute} skal være tilstede.",
+            "regex": "{attribute} formatet er ugyldigt.",
+            "required": "{attribute} skal udfyldes.",
+            "required_if": "{attribute} skal udfyldes når {other} er {value}.",
+            "required_unless": "{attribute} er påkrævet med mindre {other} findes i {values}.",
+            "required_with": "{attribute} skal udfyldes når {values} er udfyldt.",
+            "required_with_all": "{attribute} skal udfyldes når {values} er udfyldt.",
+            "required_without": "{attribute} skal udfyldes når {values} ikke er udfyldt.",
+            "required_without_all": "{attribute} skal udfyldes når ingen af {values} er udfyldt.",
+            "same": "{attribute} og {other} skal være ens.",
+            "size": {
+                "numeric": "{attribute} skal være {size}.",
+                "file": "{attribute} skal være {size} kilobytes.",
+                "string": "{attribute} skal være {size} tegn lang.",
+                "array": "{attribute} skal indeholde {size} elementer."
+            },
+            "starts_with": "{attribute} skal starte med én af følgende: {values}.",
+            "string": "{attribute} skal være en streng.",
+            "timezone": "{attribute} skal være en gyldig tidszone.",
+            "unique": "{attribute} er allerede taget.",
+            "uploaded": "{attribute} fejlede i upload.",
+            "url": "{attribute} formatet er ugyldigt.",
+            "uuid": "{attribute} skal være en gyldig UUID.",
+            "custom": {
+                "attribute-name": {
+                    "rule-name": "custom-message"
+                }
+            },
+            "attributes": []
         },
         "general": {
             "dashboard": "Dashboard",
@@ -148,6 +384,22 @@ export default {
         }
     },
     "en": {
+        "errors": {
+            "oh_no": "Oh no!",
+            "unauthorized": "Unauthorized",
+            "unauthorized_msg": "Sorry, you are not authorized to access this page",
+            "forbidden": "Forbidden",
+            "page_not_found": "Page Not Found",
+            "page_not_found_msg": "Sorry, the page you are looking for could not be found",
+            "page_expired": "Page Expired",
+            "page_expired_msg": "Sorry, the page has expired. Please refresh and try again",
+            "too_many_requests": "Too Many Requests",
+            "too_many_requests_msg": "Sorry, you are making too many requests to our servers",
+            "server_side_error": "Error",
+            "server_side_error_msg": "Whoops, something went wrong on our servers",
+            "service_unavailable": "Service Unavailable",
+            "service_unavailable_msg": "Sorry, we are doing some maintenance. Please check back soon"
+        },
         "models": {
             "activities": "Activities",
             "activity": "Activity",
@@ -168,7 +420,9 @@ export default {
             "tags": "Tags",
             "tag": "Tag",
             "transactions": "Transactions",
-            "transaction": "Transaction"
+            "transaction": "Transaction",
+            "most_expensive_tags": "Most Expensive Tags",
+            "most_expensive_tag": "Most Expensive Tag"
         },
         "auth": {
             "login": "Login",
@@ -236,6 +490,7 @@ export default {
             }
         },
         "activities": {
+            "job_server": "Job server",
             "transaction": {
                 "created": "Created Transaction",
                 "deleted": "Deleted Transaction"
@@ -390,7 +645,37 @@ export default {
             },
             "attributes": []
         },
+        "emails": {
+            "why_recieving_this_mail": "You're receiving this email because you have a Budget account.",
+            "account": "Account",
+            "contact_us": "Contact Us",
+            "default_title": "Hey There!",
+            "password_changed": {
+                "message": "Heads up! Your password has been changed",
+                "button": "Login"
+            },
+            "verify_registration": {
+                "welcome_message": "Welcome aboard",
+                "message": "We're going to help you get insight into your personal finances.<br/>No more dealing with pesky, half-assed spreadsheets.",
+                "button": "Verify Registration"
+            },
+            "reset_password": {
+                "message": "It looks like someone submitted a request to reset your Budget password. If it wasn’t you there's nothing to do nor worry about. You can keep on keeping on.<br/>If this was you, click the button below to reset your password and get back into your account.",
+                "button": "Change Password"
+            },
+            "weekly_report": {
+                "title": "Here's your weekly report for",
+                "message": "Here's your weekly report for",
+                "this_week": "This week",
+                "you_have": "you've",
+                "spent": "Spent",
+                "most_spent": "Most of which you've spent on",
+                "tired_of_reports": "Tired of these reports?",
+                "button": "Change Preferences"
+            }
+        },
         "general": {
+            "all": "All",
             "dashboard": "Dashboard",
             "balance": "Balance",
             "daily_balance": "Daily Balance",
@@ -405,18 +690,43 @@ export default {
             "profile": "Profile",
             "account": "Account",
             "preferences": "Preferences",
+            "empty_state": "There aren't any {resource} yet",
+            "verify_account": "You still need to verify your account&mdash;please check your e-mail",
+            "resend_verify_registration": "Resend the verification email",
+            "spaces_explanation": "Spaces can be used to separate your finances in Budget. For example—you can have a space for your personal finances and another space for your business' finances.",
+            "know_how_to_make_this_app_better": "Know how to make this app better",
             "themes": {
                 "light": "Light",
                 "dark": "Dark (Experimental)"
+            },
+            "time": {
+                "second": "seconds|seconds",
+                "minute": "minute|minutes",
+                "hour": "hour|hours",
+                "day": "day|days",
+                "month": "month|months",
+                "year": "year|years",
+                "today": "today",
+                "ahead": "ahead",
+                "ago": "ago"
             }
         },
         "messages": {
             "empty_state": "There aren't any {resource} (yet)",
-            "verify_account": "You still need to verify your account — please check your e-mail",
             "email_sent": "If you registered with that address, we've sent you an e-mail",
             "password_changed": "Your password has been changed",
-            "login_failed": "Failed to login",
+            "login_failed": {
+                "simple": "Failed to login",
+                "verify_account": "You still need to verify your account<br/>Please check your e-mail or",
+                "wrong_password": "The password you entered is incorrect"
+            },
+            "created_account": "You've successfully created your account<br/>Please check your e-mail to verify your account",
+            "no_account_found": "We couldn't find a account for your email",
+            "resent_email": "We've successfully sent a new email<br/>Please check your e-mail to verify your account",
             "verified_account": "You've successfully verified your account",
+            "already_verified": "Your account is already verified",
+            "resend_verify_registration": "resend the verification email",
+            "logged_out": "You've been successfully logged out",
             "spaces_explanation": "Spaces can be used to separate your finances in Budget. For example — you can have a space for your personal finances and another space for your business' finances.",
             "know_how_to_make_this_app_better": "Know how to make this app better?",
             "successfully_deleted": "You've successfully deleted that {resource}",
@@ -426,7 +736,7 @@ export default {
                 "new_spending_description": "Birthday Present for Angela",
                 "recurring_explanation": "This is a recurring transaction",
                 "recurring_duration": "How long will this transaction go on for?",
-                "forever": "Forever :(",
+                "forever": "Forever",
                 "until": "Until",
                 "loading": "Loading",
                 "successfully_created": "You've successfully created that transaction"
@@ -485,10 +795,144 @@ export default {
             ]
         },
         "validation": {
-            "required": "Ne peut pas être vide",
-            "confirmed": "Ne correspond pas",
+            "accepted": "Le champ {attribute} doit être accepté.",
+            "active_url": "Le champ {attribute} n'est pas une URL valide.",
+            "after": "Le champ {attribute} doit être une date postérieure au {date}.",
+            "after_or_equal": "Le champ {attribute} doit être une date postérieure ou égale au {date}.",
+            "alpha": "Le champ {attribute} doit contenir uniquement des lettres.",
+            "alpha_dash": "Le champ {attribute} doit contenir uniquement des lettres, des chiffres et des tirets.",
+            "alpha_num": "Le champ {attribute} doit contenir uniquement des chiffres et des lettres.",
+            "array": "Le champ {attribute} doit être un tableau.",
+            "before": "Le champ {attribute} doit être une date antérieure au {date}.",
+            "before_or_equal": "Le champ {attribute} doit être une date antérieure ou égale au {date}.",
+            "between": {
+                "numeric": "La valeur de {attribute} doit être comprise entre {min} et {max}.",
+                "file": "La taille du fichier de {attribute} doit être comprise entre {min} et {max} kilo-octets.",
+                "string": "Le texte {attribute} doit contenir entre {min} et {max} caractères.",
+                "array": "Le tableau {attribute} doit contenir entre {min} et {max} éléments."
+            },
+            "boolean": "Le champ {attribute} doit être vrai ou faux.",
+            "confirmed": "Le champ de confirmation {attribute} ne correspond pas.",
+            "date": "Le champ {attribute} n'est pas une date valide.",
+            "date_equals": "Le champ {attribute} doit être une date égale à {date}.",
+            "date_format": "Le champ {attribute} ne correspond pas au format {format}.",
+            "different": "Les champs {attribute} et {other} doivent être différents.",
+            "digits": "Le champ {attribute} doit contenir {digits} chiffres.",
+            "digits_between": "Le champ {attribute} doit contenir entre {min} et {max} chiffres.",
+            "dimensions": "La taille de l'image {attribute} n'est pas conforme.",
+            "distinct": "Le champ {attribute} a une valeur en double.",
+            "email": "Le champ {attribute} doit être une adresse email valide.",
+            "ends_with": "Le champ {attribute} doit se terminer par une des valeurs suivantes : {values}",
+            "exists": "Le champ {attribute} sélectionné est invalide.",
+            "file": "Le champ {attribute} doit être un fichier.",
+            "filled": "Le champ {attribute} doit avoir une valeur.",
+            "gt": {
+                "numeric": "La valeur de {attribute} doit être supérieure à {value}.",
+                "file": "La taille du fichier de {attribute} doit être supérieure à {value} kilo-octets.",
+                "string": "Le texte {attribute} doit contenir plus de {value} caractères.",
+                "array": "Le tableau {attribute} doit contenir plus de {value} éléments."
+            },
+            "gte": {
+                "numeric": "La valeur de {attribute} doit être supérieure ou égale à {value}.",
+                "file": "La taille du fichier de {attribute} doit être supérieure ou égale à {value} kilo-octets.",
+                "string": "Le texte {attribute} doit contenir au moins {value} caractères.",
+                "array": "Le tableau {attribute} doit contenir au moins {value} éléments."
+            },
+            "image": "Le champ {attribute} doit être une image.",
+            "in": "Le champ {attribute} est invalide.",
+            "in_array": "Le champ {attribute} n'existe pas dans {other}.",
+            "integer": "Le champ {attribute} doit être un entier.",
+            "ip": "Le champ {attribute} doit être une adresse IP valide.",
+            "ipv4": "Le champ {attribute} doit être une adresse IPv4 valide.",
+            "ipv6": "Le champ {attribute} doit être une adresse IPv6 valide.",
+            "json": "Le champ {attribute} doit être un document JSON valide.",
+            "lt": {
+                "numeric": "La valeur de {attribute} doit être inférieure à {value}.",
+                "file": "La taille du fichier de {attribute} doit être inférieure à {value} kilo-octets.",
+                "string": "Le texte {attribute} doit contenir moins de {value} caractères.",
+                "array": "Le tableau {attribute} doit contenir moins de {value} éléments."
+            },
+            "lte": {
+                "numeric": "La valeur de {attribute} doit être inférieure ou égale à {value}.",
+                "file": "La taille du fichier de {attribute} doit être inférieure ou égale à {value} kilo-octets.",
+                "string": "Le texte {attribute} doit contenir au plus {value} caractères.",
+                "array": "Le tableau {attribute} doit contenir au plus {value} éléments."
+            },
             "max": {
-                "string": "Ne peut pas être plus long que {max} caractères"
+                "numeric": "La valeur de {attribute} ne peut être supérieure à {max}.",
+                "file": "La taille du fichier de {attribute} ne peut pas dépasser {max} kilo-octets.",
+                "string": "Le texte de {attribute} ne peut contenir plus de {max} caractères.",
+                "array": "Le tableau {attribute} ne peut contenir plus de {max} éléments."
+            },
+            "mimes": "Le champ {attribute} doit être un fichier de type : {values}.",
+            "mimetypes": "Le champ {attribute} doit être un fichier de type : {values}.",
+            "min": {
+                "numeric": "La valeur de {attribute} doit être supérieure ou égale à {min}.",
+                "file": "La taille du fichier de {attribute} doit être supérieure à {min} kilo-octets.",
+                "string": "Le texte {attribute} doit contenir au moins {min} caractères.",
+                "array": "Le tableau {attribute} doit contenir au moins {min} éléments."
+            },
+            "not_in": "Le champ {attribute} sélectionné n'est pas valide.",
+            "not_regex": "Le format du champ {attribute} n'est pas valide.",
+            "numeric": "Le champ {attribute} doit contenir un nombre.",
+            "present": "Le champ {attribute} doit être présent.",
+            "regex": "Le format du champ {attribute} est invalide.",
+            "required": "Le champ {attribute} est obligatoire.",
+            "required_if": "Le champ {attribute} est obligatoire quand la valeur de {other} est {value}.",
+            "required_unless": "Le champ {attribute} est obligatoire sauf si {other} est {values}.",
+            "required_with": "Le champ {attribute} est obligatoire quand {values} est présent.",
+            "required_with_all": "Le champ {attribute} est obligatoire quand {values} sont présents.",
+            "required_without": "Le champ {attribute} est obligatoire quand {values} n'est pas présent.",
+            "required_without_all": "Le champ {attribute} est requis quand aucun de {values} n'est présent.",
+            "same": "Les champs {attribute} et {other} doivent être identiques.",
+            "size": {
+                "numeric": "La valeur de {attribute} doit être {size}.",
+                "file": "La taille du fichier de {attribute} doit être de {size} kilo-octets.",
+                "string": "Le texte de {attribute} doit contenir {size} caractères.",
+                "array": "Le tableau {attribute} doit contenir {size} éléments."
+            },
+            "starts_with": "Le champ {attribute} doit commencer avec une des valeurs suivantes : {values}",
+            "string": "Le champ {attribute} doit être une chaîne de caractères.",
+            "timezone": "Le champ {attribute} doit être un fuseau horaire valide.",
+            "unique": "La valeur du champ {attribute} est déjà utilisée.",
+            "uploaded": "Le fichier du champ {attribute} n'a pu être téléversé.",
+            "url": "Le format de l'URL de {attribute} n'est pas valide.",
+            "uuid": "Le champ {attribute} doit être un UUID valide",
+            "custom": {
+                "attribute-name": {
+                    "rule-name": "custom-message"
+                }
+            },
+            "attributes": {
+                "name": "nom",
+                "username": "nom d'utilisateur",
+                "email": "adresse email",
+                "first_name": "prénom",
+                "last_name": "nom",
+                "password": "mot de passe",
+                "password_confirmation": "confirmation du mot de passe",
+                "city": "ville",
+                "country": "pays",
+                "address": "adresse",
+                "phone": "téléphone",
+                "mobile": "portable",
+                "age": "âge",
+                "sex": "sexe",
+                "gender": "genre",
+                "day": "jour",
+                "month": "mois",
+                "year": "année",
+                "hour": "heure",
+                "minute": "minute",
+                "second": "seconde",
+                "title": "titre",
+                "content": "contenu",
+                "description": "description",
+                "excerpt": "extrait",
+                "date": "date",
+                "time": "heure",
+                "available": "disponible",
+                "size": "taille"
             }
         },
         "general": {

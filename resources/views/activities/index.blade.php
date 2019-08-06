@@ -15,7 +15,7 @@
                             @endif
                         </div>
                         <div class="row__column row__column--middle">{{ $activity->user->name or __('activities.job_server') }} {{ mb_strtolower(__('activities.' . $activity->action)) }} {{ $activity->description() }}</div>
-                        <div class="row__column row__column--middle row__column--compact">{{ $activity->created_at->diffForHumans() }}</div>
+                        <div class="row__column row__column--middle row__column--compact">{{ $activity->formatted_created_at }}</div>
                     </div>
                 @endforeach
             @else
