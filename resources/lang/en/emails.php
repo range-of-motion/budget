@@ -24,7 +24,6 @@ return [
 
     'weekly_report' => [
         'title' => 'Here\'s your weekly report for',
-        'message' => 'Here\'s your weekly report for',
         'this_week' => 'This week',
         'you_have' => 'you\'ve',
         'spent' => 'Spent',
