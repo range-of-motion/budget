@@ -19,7 +19,7 @@
                     </div>
                 @endforeach
             @else
-                @include('partials.empty_state', ['payload' => 'activities', 'action' => false])
+                @include('partials.empty_state', ['payload' => 'activities'])
             @endif
         </div>
     </div>
