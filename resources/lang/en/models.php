@@ -29,5 +29,8 @@ return [
     'tag' => 'Tag',
 
     'transactions' => 'Transactions',
-    'transaction' => 'Transaction'
+    'transaction' => 'Transaction',
+
+    'most_expensive_tags' => 'Most Expensive Tags',
+    'most_expensive_tag' => 'Most Expensive Tag'
 ];
