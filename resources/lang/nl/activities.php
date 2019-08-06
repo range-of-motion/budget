@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'job_server' => 'Job server',
+
     'transaction' => [
         'created' => 'Transactie Aangemaakt',
         'deleted' => 'Transactie Verwijderd'
@@ -19,5 +21,7 @@ return [
     'import' => [
         'created' => 'Import Aangemaakt',
         'deleted' => 'Import Verwijderd'
-    ]
+    ],
+
+    'job' => 'Job'
 ];

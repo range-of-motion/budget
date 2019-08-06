@@ -29,5 +29,8 @@ return [
     'tag' => 'Categorie',
 
     'transactions' => 'Transacties',
-    'transaction' => 'Transactie'
+    'transaction' => 'Transactie',
+
+    'most_expensive_tags' => 'Duurste Categorieën',
+    'most_expensive_tag' => 'Duurste Categorie'
 ];
