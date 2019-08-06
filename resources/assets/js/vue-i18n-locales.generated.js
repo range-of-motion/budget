@@ -665,7 +665,6 @@ export default {
             },
             "weekly_report": {
                 "title": "Here's your weekly report for",
-                "message": "Here's your weekly report for",
                 "this_week": "This week",
                 "you_have": "you've",
                 "spent": "Spent",
@@ -690,7 +689,6 @@ export default {
             "profile": "Profile",
             "account": "Account",
             "preferences": "Preferences",
-            "empty_state": "There aren't any {resource} yet",
             "verify_account": "You still need to verify your account&mdash;please check your e-mail",
             "resend_verify_registration": "Resend the verification email",
             "spaces_explanation": "Spaces can be used to separate your finances in Budget. For example—you can have a space for your personal finances and another space for your business' finances.",
@@ -740,7 +738,8 @@ export default {
                 "until": "Until",
                 "loading": "Loading",
                 "successfully_created": "You've successfully created that transaction"
-            }
+            },
+            "calculations_not_accurate": "Be aware that the calculations aren't acurate yet. We know this issue and are working on it."
         },
         "pages": {
             "settings": "Settings",
@@ -982,7 +981,9 @@ export default {
             "tags": "Categorieën",
             "tag": "Categorie",
             "transactions": "Transacties",
-            "transaction": "Transactie"
+            "transaction": "Transactie",
+            "most_expensive_tags": "Duurste Categorieën",
+            "most_expensive_tag": "Duurste Categorie"
         },
         "auth": {
             "login": "Login",
@@ -1050,6 +1051,7 @@ export default {
             }
         },
         "activities": {
+            "job_server": "Job server",
             "transaction": {
                 "created": "Transactie Aangemaakt",
                 "deleted": "Transactie Verwijderd"
@@ -1065,7 +1067,8 @@ export default {
             "import": {
                 "created": "Import Aangemaakt",
                 "deleted": "Import Verwijderd"
-            }
+            },
+            "job": "Job"
         },
         "calendar": {
             "months": {
@@ -1236,7 +1239,36 @@ export default {
                 "year": "jaar"
             }
         },
+        "emails": {
+            "why_recieving_this_mail": "Je ontvangt deze mail omdat je een Budget account hebt.",
+            "account": "Account",
+            "contact_us": "Neem contact met ons op",
+            "default_title": "Hallo!",
+            "password_changed": {
+                "message": "Heads up! Je wachtwoord is veranderd",
+                "button": "Login"
+            },
+            "verify_registration": {
+                "welcome_message": "Welkom aan boord",
+                "message": "Wij gaan je helpen om inzicht te krijgen in je fincanciën.<br/>Je hoeft nu niet meer te werken met halfbakken spreadsheets.",
+                "button": "Verifieer Registratie"
+            },
+            "reset_password": {
+                "message": "Het ziet ernaar uit dat iemand een verzoek heeft gedaan om je Budget wachtwoord te resetten. Als jij dit niet was, hoef je niets te doen en hoef je je ook nergens zorgen over te maken.<br/>Als jij dit was, klik de knop beneden om je wachtwoord te resetten.",
+                "button": "Verander Wachtwoord"
+            },
+            "weekly_report": {
+                "title": "Hier is je wekelijks raport voor",
+                "this_week": "Deze week",
+                "you_have": "heb je",
+                "spent": "Uitgegeven",
+                "most_spent": "Meest uitgegeven aan",
+                "tired_of_reports": "Moe van deze rapporten?",
+                "button": "Verander Voorkeuren"
+            }
+        },
         "general": {
+            "all": "Alle",
             "dashboard": "Overzicht",
             "balance": "Saldo",
             "daily_balance": "Dagelijks Saldo",
@@ -1251,18 +1283,42 @@ export default {
             "profile": "Profiel",
             "account": "Account",
             "preferences": "Voorkeuren",
+            "verify_account": "You still need to verify your account&mdash;please check your e-mail",
+            "resend_verify_registration": "Resend the verification email",
+            "spaces_explanation": "Spaces can be used to separate your finances in Budget. For example—you can have a space for your personal finances and another space for your business' finances.",
+            "know_how_to_make_this_app_better": "Know how to make this app better",
             "themes": {
                 "light": "Licht",
                 "dark": "Donker (Experimenteel)"
+            },
+            "time": {
+                "second": "seconds|seconds",
+                "minute": "minute|minutes",
+                "hour": "hour|hours",
+                "day": "day|days",
+                "month": "month|months",
+                "year": "year|years",
+                "today": "today",
+                "ahead": "ahead",
+                "ago": "ago"
             }
         },
         "messages": {
             "empty_state": "Er zijn nog geen {resource}",
-            "verify_account": "Je moet je account nog verifiëren — check je e-mail",
             "email_sent": "Als je je met dat adres hebt ingeschreven, hebben we je een e-mail gestuurd",
             "password_changed": "Je wachtwoord is gewijzigd",
-            "login_failed": "Inloggen mislukt",
+            "login_failed": {
+                "simple": "Inloggen mislukt",
+                "verify_account": "Je moet je account nog verifiëren<br/>Controleer je email of",
+                "wrong_password": "Je ingevoerde wachtwoord is incorrect"
+            },
+            "created_account": "Je account is aangemaakt<br/>Controleer je email om je account te verifiëren",
+            "no_account_found": "We konden geen account vinden voor jouw email",
+            "resent_email": "We hebben succesvol een nieuwe mail gestuurd<br/>Controleer je email om je account te verifiëren",
             "verified_account": "Je account is geverifieerd",
+            "already_verified": "Je account is al geverifieerd",
+            "resend_verify_registration": "verstuur de verificatie email opnieuw",
+            "logged_out": "Je bent uitgelogd",
             "spaces_explanation": "Spaces kunnen worden gebruikt om je financiën op sorteren in Budget. Bijvoorbeeld — je kan een space hebben voor jou persoonlijk en een andere voor je bedrijf.",
             "know_how_to_make_this_app_better": "Weet je wat er beter kan?",
             "successfully_deleted": "Je hebt succesvol die {resource} verwijderd",
@@ -1272,11 +1328,12 @@ export default {
                 "new_spending_description": "Verjaardagscadeau voor Angela",
                 "recurring_explanation": "Dit is een doorlopende transactie",
                 "recurring_duration": "Hoe lang duurt deze doorlopende transactie?",
-                "forever": "Oneindig :(",
+                "forever": "Oneindig",
                 "until": "Tot en met",
                 "loading": "Laden",
                 "successfully_created": "Je hebt succesvol die transactie aangemaakt"
-            }
+            },
+            "calculations_not_accurate": "Let erop dat de berekeningen niet acuraat zijn. We zijn hiervan op de hoogte en werken er hard aan."
         },
         "pages": {
             "settings": "Instellingen",
