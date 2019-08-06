@@ -1,0 +1,31 @@
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    color: $colors-light-background;
+}
+
+.alert-danger {
+    background: $colors-alert-danger;
+}
+
+.alert-success {
+    background: $colors-alert-success;
+}
+
+.alert-fa {
+    margin: auto;
+    width: 5%;
+}
+
+.alert-message {
+    font-weight: 600;
+}
+
+.alert-a {
+    text-decoration: none;
+    color: $colors-light-background;
+}
+
+.alert-a:hover {
+    color: $colors-light-border;
+}
