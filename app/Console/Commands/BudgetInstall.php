@@ -6,29 +6,12 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class BudgetInstall extends Command
-{
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+class BudgetInstall extends Command {
     protected $signature = 'budget:install';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    protected $description = 'Runs most of the commands needed to make Budget work';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -60,16 +43,11 @@ class BudgetInstall extends Command
         $this->executeCommand(['php', 'artisan', 'migrate']);
     }
 
-    public function yarnRunDev() {
+    public function yarnBuild() {
         $this->executeCommand(['yarn', 'run', 'development']);
     }
 
-    /**
-     * Execute the console command.
-     *
-     */
-    public function handle()
-    {
+    public function handle() {
         $this->composerInstall();
         $this->yarnInstall();
         $this->artisanPrepare();
