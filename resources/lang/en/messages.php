@@ -33,5 +33,7 @@ return [
         'until' => 'Until',
         'loading' => 'Loading',
         'successfully_created' => 'You\'ve successfully created that transaction'
-    ]
+    ],
+
+    'calculations_not_accurate' => 'Be aware that the calculations aren\'t acurate yet. We know this issue and are working on it.'
 ];
