@@ -21,9 +21,7 @@ class SpendingController extends Controller {
         ]);
     }
 
-    public function index(Request $request) {
-        $filter = false;
-
+    public function index() {
         $spendingsByMonth = [];
 
         for ($month = 12; $month >= 1; $month --) {
@@ -31,13 +29,6 @@ class SpendingController extends Controller {
                 ->spendings()
                 ->whereYear('happened_on', date('Y'))
                 ->whereMonth('happened_on', $month);
-
-
-            if ($import_id = $request->get('filter_by_import')) {
-                $filter = 'import';
-
-                $query->where('import_id', $import_id);
-            }
 
             $spendingsThisMonth = $query->orderBy('happened_on', 'DESC')
                 ->get();
@@ -47,7 +38,7 @@ class SpendingController extends Controller {
             }
         }
 
-        return view('spendings.index', compact('filter', 'spendingsByMonth'));
+        return view('spendings.index', compact('spendingsByMonth'));
     }
 
     public function create() {

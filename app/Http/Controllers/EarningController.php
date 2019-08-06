@@ -22,15 +22,23 @@ class EarningController extends Controller {
     }
 
     public function index() {
-        $user = Auth::user();
+        $earningsByMonth = [];
 
-        $earnings = session('space')
-            ->earnings()
-            ->orderBy('happened_on', 'DESC')
-            ->orderBy('created_at', 'DESC')
-            ->get();
+        for ($month = 12; $month >= 1; $month --) {
+            $query = session('space')
+                ->earnings()
+                ->whereYear('happened_on', date('Y'))
+                ->whereMonth('happened_on', $month);
 
-        return view('earnings.index', compact('earnings'));
+            $earningsThisMonth = $query->orderBy('happened_on', 'DESC')
+                ->get();
+
+            if (count($earningsThisMonth)) {
+                $earningsByMonth[$month] = $earningsThisMonth;
+            }
+        }
+
+        return view('earnings.index', compact('earningsByMonth'));
     }
 
     public function create() {

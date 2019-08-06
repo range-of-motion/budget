@@ -6,19 +6,14 @@
     <div class="wrapper my-3">
         <div class="row">
             <div class="row__column row__column--middle">
-                <h2>{{ __('models.spendings') }}</h2>
-                @if ($filter)
-                    <div class="mt-1">Only showing spendings for selected {{ strtolower(__('models.' . $filter)) }}</div>
-                @endif
+                <h2>{{ __('models.spendings') }} - {{ now()->year }}</h2>
             </div>
-            @if (!$filter)
-                <div class="row__column row__column--compact row__column--middle">
-                    <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.spending') }}</a>
-                </div>
-            @endif
+            <div class="row__column row__column--compact row__column--middle">
+                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.spending') }}</a>
+            </div>
         </div>
         @if (session('restorableSpending'))
-            <div class="mt-3"><div class="mt-3">{{ __('messages.successfully_deleted', ['resource' => __('models.spending)) }}</div></div>
+            <div class="mt-3">{{ __('messages.successfully_deleted', ['resource' => __('models.spending')]) }}</div>
             <form method="POST" action="/spendings/{{ session('restorableSpending') }}/restore" class="mt-05">
                 {{ csrf_field() }}
                 <button class="button link">{{ __('messages.still_able_to_recover') }}</button>
