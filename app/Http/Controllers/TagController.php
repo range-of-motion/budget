@@ -20,8 +20,7 @@ class TagController extends Controller {
     protected function updateValidator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required', 'max:255',
-            'color' => 'required', 'max:6'
+            'name' => 'required', 'max:255'
         ]);
     }
 
