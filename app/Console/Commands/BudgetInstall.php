@@ -51,6 +51,6 @@ class BudgetInstall extends Command {
         $this->composerInstall();
         $this->yarnInstall();
         $this->artisanPrepare();
-        $this->yarnInstall();
+        $this->yarnBuild();
     }
 }
