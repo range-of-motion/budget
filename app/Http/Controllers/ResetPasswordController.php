@@ -9,8 +9,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class ResetPasswordController extends Controller {
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => 'required_without:password', 'email',
+            'password' => 'required_without:email', 'confirmed'
+        ]);
+    }
+
     public function get(Request $request) {
         if (Auth::check()) {
             return redirect()->route('dashboard');
@@ -22,10 +31,7 @@ class ResetPasswordController extends Controller {
     }
 
     public function post(Request $request) {
-        $request->validate([
-            'email' => 'required_without:password|email',
-            'password' => 'required_without:email|confirmed'
-        ]);
+        $this->validator($request->all())->validate();
 
         if ($request->input('email') && !$request->has('token')) {
             $email = $request->input('email');

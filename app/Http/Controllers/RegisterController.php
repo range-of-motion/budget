@@ -11,8 +11,19 @@ use App\Space;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller {
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required',
+            'email' => 'required', 'email', 'unique:users',
+            'password' => 'required', 'confirmed',
+            'currency' => 'required', 'exists:currencies,id'
+        ]);
+    }
+
     public function index() {
         if (Auth::check()) {
             return redirect()->route('dashboard');
@@ -28,12 +39,7 @@ class RegisterController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
-            'currency' => 'required|exists:currencies,id'
-        ]);
+        $this->validator($request->all())->validate();
 
         // User
         $user = new User;
