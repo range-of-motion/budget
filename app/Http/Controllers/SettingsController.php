@@ -102,7 +102,7 @@ class SettingsController extends Controller {
                 $flag = 'us';
             }
 
-            $languages[] = ['key' => $key, 'label' => '<i class="twf twf-sm twf-' . $flag . '"></i> ' . $value];
+            $languages[] = ['key' => $key, 'label' => '<i class="twf twf-small twf-' . $flag . '"></i> ' . $value];
         }
 
         return view('settings.preferences', compact('languages'));
