@@ -8,6 +8,7 @@
             <a href="/reports/weekly-report?year={{ $year + 1 }}">Next</a>
         </div>
         <div class="box mt-3">
+            <div class="box__section box__section--header">Weekly Balance</div>
             <div class="box__section">
                 <div class="ct-chart ct-major-twelfth"></div>
             </div>

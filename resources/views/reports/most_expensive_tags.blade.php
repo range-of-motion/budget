@@ -17,6 +17,8 @@
                     </div>
                 @endforeach
             </div>
+        @else
+            @include('partials.empty_state', ['payload' => 'most_expensive_tags'])
         @endif
     </div>
 @endsection
