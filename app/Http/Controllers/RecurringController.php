@@ -7,8 +7,20 @@ use Illuminate\Http\Request;
 use App\Recurring;
 use Auth;
 use App\Jobs\ProcessRecurrings;
+use Illuminate\Support\Facades\Validator;
 
 class RecurringController extends Controller {
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'day' => 'required', 'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
+            'end' => 'nullable', 'date', 'date_format:Y-m-d',
+            'tag_id' => 'nullable', 'exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
+            'description' => 'required', 'max:255',
+            'amount' => 'required', 'regex:/^\d*(\.\d{2})?$/'
+        ]);
+    }
+
     public function index() {
         return view('recurrings.index', [
             'recurrings' => session('space')->recurrings()->orderBy('created_at', 'DESC')->get()
@@ -32,28 +44,21 @@ class RecurringController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'day' => ['required',
-                      'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
-                    ],
-            'end' => 'nullable|date|date_format:Y-m-d',
-            'tag' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
-            'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
-        ]);
+        $this->validator($request->all())->validate();
 
         $user = Auth::user();
 
         $recurring = new Recurring;
 
         $recurring->space_id = session('space')->id;
-        $recurring->type = 'monthly';
+        $recurring->type = 'monthly'; // TODO ADD SUPPORT FOR DAILY/WEEKLY/YEARLY
         $recurring->day = ltrim($request->input('day'), '0');
         $recurring->starts_on = date('Y-m-d');
         $recurring->ends_on = $request->input('end');
-        $recurring->tag_id = $request->input('tag');
+        $recurring->tag_id = $request->input('tag_id');
         $recurring->description = $request->input('description');
         $recurring->amount = (int) ($request->input('amount') * 100);
+        $recurring->transaction_type = $request->input('transaction_type');
 
         $recurring->save();
         ProcessRecurrings::dispatch();

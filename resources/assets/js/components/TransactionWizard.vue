@@ -3,14 +3,14 @@
         <div class="bg mb-2">
             <button
                 class="bg__button"
-                :class="{ 'bg__button--active': type == 'earning' }"
-                @click="switchType('earning')">Earning</button>
+                :class="{ 'bg__button--active': transaction_type === 'earning' }"
+                @click="switchTransactionType('earning')">Earning</button>
             <button
                 class="bg__button"
-                :class="{ 'bg__button--active': type == 'spending' }"
-                @click="switchType('spending')">Spending</button>
+                :class="{ 'bg__button--active': type === 'spending' }"
+                @click="switchTransactionType('spending')">Spending</button>
         </div>
-        <div class="input" v-if="type == 'spending'">
+        <div class="input">
             <label>Tag</label>
             <searchable
                 name="tag"
@@ -26,22 +26,22 @@
             <validation-error v-if="errors.day" :message="errors.day"></validation-error>
         </div>
         <div class="input">
-            <label>Description</label>
-            <input type="text" v-model="description" :placeholder="type == 'earning' ? 'Paycheck February' : 'Birthday Present for Angela'" />
+            <label for="description">Description</label>
+            <input id="description" type="text" v-model="description" :placeholder="transaction_type === 'earning' ? 'Paycheck February' : 'Birthday Present for Angela'" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input">
-            <label>Amount</label>
-            <input type="text" v-model="amount" />
+            <label for="amount">Amount</label>
+            <input id="amount" type="text" v-model="amount" />
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
-        <div v-if="type == 'spending'">
+        <div>
             <div class="input row">
                 <div class="row__column row__column--compact mr-1">
                     <input type="checkbox" id="test" v-model="isRecurring" />
                 </div>
                 <div class="row__column">
-                    <label for="test">This is a recurring spending&mdash;create it for me in the future</label>
+                    <label for="test">This is a recurring transaction&mdash;create it for me in the future</label>
                 </div>
             </div>
             <div v-if="isRecurring">
@@ -71,7 +71,7 @@
         </div>
         <button
             class="button"
-            @click="createEarning">
+            @click="createTransaction">
             <span v-if="loading">Loading</span>
             <span v-if="!loading">Create</span>
         </button>
@@ -89,7 +89,7 @@
 
         data() {
             return {
-                type: 'earning',
+                transaction_type: 'earning',
                 errors: [],
 
                 tag: null,
@@ -115,9 +115,8 @@
                 this.recurringEndDate = date
             },
 
-            //
-            switchType(type) {
-                this.type = type
+            switchTransactionType(transaction_type) {
+                this.transaction_type = transaction_type;
 
                 this.success = false
             },
@@ -131,24 +130,25 @@
             },
 
             get100DaysFutureDate() {
-                let now = new Date()
+                let now = new Date();
 
                 return (now.getFullYear() + 1) + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2)
             },
 
-            createEarning() {
+            createTransaction() {
                 if (!this.loading) {
-                    this.loading = true
+                    this.loading = true;
 
-                    if (this.type == 'spending' && this.isRecurring) { // It's a recurring
+                    if (this.isRecurring) { // It's a recurring
                         let body = {
                             _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                             day: this.date.slice(-2),
                             description: this.description,
-                            amount: this.amount
-                        }
+                            amount: this.amount,
+                            transaction_type: this.transaction_type
+                        };
 
-                        if (this.recurringEnd == 'fixed') {
+                        if (this.recurringEnd === 'fixed') {
                             body.end = this.recurringEndDate
                         }
 
@@ -167,13 +167,13 @@
                             date: this.date,
                             description: this.description,
                             amount: this.amount
-                        }
+                        };
 
-                        if (this.type == 'spending' && this.tag) {
+                        if (this.tag) {
                             body.tag_id = this.tag
                         }
 
-                        axios.post('/' + this.type + 's', body).then(response => {
+                        axios.post('/' + this.transaction_type + 's', body).then(response => {
                             this.handleSuccess()
                         }).catch(error => {
                             this.handleErrors(error.response)
@@ -183,39 +183,39 @@
             },
 
             handleSuccess() {
-                this.loading = false
+                this.loading = false;
 
-                this.errors = []
+                this.errors = [];
 
                 //
-                window.location.href = '/transactions'
+                window.location.href = '/transactions';
 
-                this.date = this.getTodaysDate()
-                this.description = ''
-                this.amount = ''
+                this.date = this.getTodaysDate();
+                this.description = '';
+                this.amount = '';
                 // Leave isRecurring as is
-                this.recurringEnd = 'forever'
-                this.recurringEndDate = ''
+                this.recurringEnd = 'forever';
+                this.recurringEndDate = '';
 
                 this.success = true
             },
 
             handleErrors(response) {
-                this.loading = false
+                this.loading = false;
 
-                let errors = []
+                let errors = [];
 
                 if (response.data.errors) {
                     for (let key in response.data.errors) {
                         if (response.data.errors.hasOwnProperty(key)) {
-                            errors[key] = response.data.errors[key][0]
+                            errors[key] = response.data.errors[key][0];
                         }
                     }
                 }
 
-                this.errors = errors
+                this.errors = errors;
 
-                if (response.status != 422) {
+                if (response.status !== 422) {
                     alert('Something went wrong')
                 }
 

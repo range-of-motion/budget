@@ -10,10 +10,13 @@ class TransactionRepository {
 
         // Populate yearMonths with earnings
         foreach (session('space')->earnings as $earning) {
-            $shouldAdd = false;
+            $shouldAdd = true;
 
-            if (!$filterBy) {
-                $shouldAdd = true;
+            // Filter
+            if ($filterBy[0] == 'tag') {
+                if (!$earning->tag || $earning->tag->id != $filterBy[1]) {
+                    $shouldAdd = false;
+                }
             }
 
             if ($shouldAdd) {
