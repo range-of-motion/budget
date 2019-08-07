@@ -108,13 +108,16 @@
                         </ul>
                     </div>
                 </div>
-            @endif
-            @if (Auth::check() && Auth::user()->verification_token)
-                <div class="text-center" style="
-                    padding: 15px;
-                    color: #FFF;
-                    background: #F86380;
-                ">{!! __('general.verify_account') !!}</div>
+            @else
+                <div class="navigation">
+                    <div class="wrapper">
+                        <ul class="navigation__menu">
+                            <li>
+                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="far fa-home fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('general.dashboard') }}</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             @endif
             @yield('body')
             @if (auth()->check())

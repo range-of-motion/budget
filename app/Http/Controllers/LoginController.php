@@ -9,13 +9,22 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller {
     public function index() {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
         return view('login');
     }
 
     public function store(Request $request) {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
         if (Auth::attempt([
             'email' => $request->input('email'),
-            'password' => $request->input('password')
+            'password' => $request->input('password'),
+            'verification_token' => null
         ])) {
             $user = Auth::user();
 
@@ -26,6 +35,8 @@ class LoginController extends Controller {
             ]);
 
             session(['space' => $user->spaces[0]]);
+
+            session()->forget('email');
 
             return redirect()->route('dashboard');
         } else {
@@ -39,12 +50,37 @@ class LoginController extends Controller {
 
             $request->flash();
 
-            return redirect()
-                ->route('login')
-                ->with([
-                    'alert_type' => 'danger',
-                    'alert_message' => 'Failed to login'
-                ]);
+            if($user !== null and $user->verification_token !== null) {
+                session(['email' => $request->input('email')]);
+
+                return redirect()
+                    ->route('login')
+                    ->with([
+                        'alert_type' => 'danger',
+                        'alert_message' => 'login_failed.verify_account'
+                    ]);
+            } elseif($user !== null and $user->verification_token === null) {
+                return redirect()
+                    ->route('login')
+                    ->with([
+                        'alert_type' => 'danger',
+                        'alert_message' => 'login_failed.wrong_password'
+                    ]);
+            } elseif($user === null) {
+                return redirect()
+                    ->route('login')
+                    ->with([
+                        'alert_type' => 'danger',
+                        'alert_message' => 'no_account_found'
+                    ]);
+            } else {
+                return redirect()
+                    ->route('login')
+                    ->with([
+                        'alert_type' => 'danger',
+                        'alert_message' => 'login_failed.simple'
+                    ]);
+            }
         }
     }
 }

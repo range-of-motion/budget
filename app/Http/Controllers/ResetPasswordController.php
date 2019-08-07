@@ -5,22 +5,33 @@ namespace App\Http\Controllers;
 use App\Mail\ResetPassword;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class ResetPasswordController extends Controller {
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => 'required_without:password', 'email',
+            'password' => 'required_without:email', 'confirmed'
+        ]);
+    }
+
     public function get(Request $request) {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
+
         return view('reset_password', [
             'token' => $request->get('token')
         ]);
     }
 
     public function post(Request $request) {
-        $request->validate([
-            'email' => 'required_without:password|email',
-            'password' => 'required_without:email|confirmed'
-        ]);
+        $this->validator($request->all())->validate();
 
         if ($request->input('email') && !$request->has('token')) {
             $email = $request->input('email');
@@ -30,7 +41,9 @@ class ResetPasswordController extends Controller {
             if ($existingUser) {
                 $shippingToken = null;
 
-                $existingRecord = DB::selectOne('SELECT * FROM password_resets WHERE email = ?', [$email]);
+                $existingRecord = DB::table('password_resets')
+                    ->where('email', $email)
+                    ->first();
 
                 if (!$existingRecord) {
                     $shippingToken = str_random(100);
@@ -51,13 +64,15 @@ class ResetPasswordController extends Controller {
                 ->route('login')
                 ->with([
                     'alert_type' => 'success',
-                    'alert_message' => 'If you registered with that address, we\'ve sent you an e-mail'
+                    'alert_message' => 'email_sent'
                 ]);
         } else if ($request->has('token') && $request->has('password') && !$request->has('email')) {
             $token = $request->input('token');
             $password = $request->input('password');
 
-            $record = DB::selectOne('SELECT * FROM password_resets WHERE token = ?', [$token]);
+            $record = DB::table('password_resets')
+                ->where('token', $token)
+                ->first();
 
             if ($record) {
                 $user = User::where('email', $record->email)->first();
@@ -72,7 +87,7 @@ class ResetPasswordController extends Controller {
                 ->route('login')
                 ->with([
                     'alert_type' => 'success',
-                    'alert_message' => 'You\'ve successfully changed your password'
+                    'alert_message' => 'password_changed'
                 ]);
         }
 
