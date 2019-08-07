@@ -15,17 +15,17 @@
         <div class="box">
             @if (count($imports))
                 <div class="box__section box__section--header row">
-                    <div class="row__column">Name</div>
-                    <div class="row__column">Status</div>
+                    <div class="row__column">{{ __('fields.name') }}</div>
+                    <div class="row__column">{{ __('fields.status') }}</div>
                     <div class="row__column row__column--compact" style="width: 150px;"></div>
                 </div>
                 @foreach ($imports as $import)
                     <div class="box__section row">
                         <div class="row__column">{{ $import->name }}</div>
-                        <div class="row__column">{{ $import->status < 2 ? $import->status + 1 . ' / 3' : 'Completed' }}</div>
+                        <div class="row__column">{{ $import->status < 2 ? $import->status + 1 . ' / 3' : __('fields.completed') }}</div>
                         <div class="row__column row__column--compact text-right" style="width: 100px;">
                             @if ($import->status < 2)
-                                <a href="/imports/{{ $import->id }}/{{ $import->status == 0 ? 'prepare' : 'complete' }}">Next</a>
+                                <a href="/imports/{{ $import->id }}/{{ $import->status == 0 ? 'prepare' : 'complete' }}">{{ __('actions.next') }}</a>
                             @endif
                         </div>
                         <div class="row__column row__column--compact text-right" style="width: 50px;">

@@ -18,8 +18,8 @@
             <div class="input input--small">
                 <label>{{ __('fields.theme') }}</label>
                 <select name="theme">
-                    <option value="light" {{ Auth::user()->theme == 'light' ? 'selected' : '' }}>Light</option>
-                    <option value="dark" {{ Auth::user()->theme == 'dark' ? 'selected' : '' }}>Dark (Experimental)</option>
+                    <option value="light" {{ Auth::user()->theme == 'light' ? 'selected' : '' }}>{{ __('general.themes.light') }}</option>
+                    <option value="dark" {{ Auth::user()->theme == 'dark' ? 'selected' : '' }}>{{ __('general.themes.dark') }}</option>
                 </select>
                 @include('partials.validation_error', ['payload' => 'theme'])
             </div>

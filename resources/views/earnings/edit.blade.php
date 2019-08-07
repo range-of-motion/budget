@@ -11,17 +11,17 @@
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">
-                        <label>Date</label>
+                        <label>{{ __('fields.date') }}</label>
                         <DatePicker start-date="{{ $earning->happened_on }}"></DatePicker>
                         @include('partials.validation_error', ['payload' => 'date'])
                     </div>
                     <div class="input input--small">
-                        <label>Description</label>
+                        <label>{{ __('fields.description') }}</label>
                         <input type="text" name="description" value="{{ $earning->description }}" />
                         @include('partials.validation_error', ['payload' => 'description'])
                     </div>
                     <div class="input input--small mb-0">
-                        <label>Amount</label>
+                        <label>{{ __('fields.amount') }}</label>
                         <input type="text" name="amount" value="{{ $earning->formatted_amount }}" />
                         @include('partials.validation_error', ['payload' => 'amount'])
                     </div>
@@ -31,7 +31,7 @@
                         <a href="/earnings">{{ __('actions.cancel') }}</a>
                     </div>
                     <div class="row__column row__column--compact ml-2">
-                        <button class="button">@lang('actions.save')</button>
+                        <button class="button">{{ __('actions.save') }}</button>
                     </div>
                 </div>
             </form>

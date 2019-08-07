@@ -4,14 +4,14 @@
             <button
                 class="bg__button"
                 :class="{ 'bg__button--active': type == 'earning' }"
-                @click="switchType('earning')">Earning</button>
+                @click="switchType('earning')">{{ $t('models.earning') }}</button>
             <button
                 class="bg__button"
                 :class="{ 'bg__button--active': type == 'spending' }"
-                @click="switchType('spending')">Spending</button>
+                @click="switchType('spending')">{{ $t('models.spending') }}</button>
         </div>
         <div class="input" v-if="type == 'spending'">
-            <label>Tag</label>
+            <label>{{ $t('models.tag') }}</label>
             <searchable
                 name="tag"
                 :items="tags"
@@ -19,19 +19,19 @@
             <validation-error v-if="errors.tag_id" :message="errors.tag_id"></validation-error>
         </div>
         <div class="input">
-            <label>Date</label>
+            <label>{{ $t('fields.date') }}</label>
             <date-picker @DateUpdated="onDateUpdate"></date-picker>
             <div class="hint mt-05">YYYY-MM-DD</div>
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
             <validation-error v-if="errors.day" :message="errors.day"></validation-error>
         </div>
         <div class="input">
-            <label>Description</label>
-            <input type="text" v-model="description" :placeholder="type == 'earning' ? 'Paycheck February' : 'Birthday Present for Angela'" />
+            <label>{{ $t('fields.description') }}</label>
+            <input type="text" v-model="description" :placeholder="type == 'earning' ? $t('messages.transaction_wizard.new_earning_description') : $t('messages.transaction_wizard.new_spending_description')" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input">
-            <label>Amount</label>
+            <label>{{ $t('fields.amount') }}</label>
             <input type="text" v-model="amount" />
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
@@ -41,18 +41,18 @@
                     <input type="checkbox" id="test" v-model="isRecurring" />
                 </div>
                 <div class="row__column">
-                    <label for="test">This is a recurring spending&mdash;create it for me in the future</label>
+                    <label for="test">{{ $t('messages.transaction_wizard.recurring_explanation') }}</label>
                 </div>
             </div>
             <div v-if="isRecurring">
                 <div class="input">
-                    <label>How long will this spending go on for?</label>
+                    <label>{{ $t('messages.transaction_wizard.recurring_duration') }}</label>
                     <div class="row">
                         <div class="row__column row__column--compact mr-1">
                             <input id="noEnd" type="radio" v-model="recurringEnd" value="forever" />
                         </div>
                         <div class="row__column">
-                            <label for="noEnd">Forever :(</label>
+                            <label for="noEnd">{{ $t('messages.transaction_wizard.forever') }}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -60,7 +60,7 @@
                             <input id="fixedEnd" type="radio" v-model="recurringEnd" value="fixed" />
                         </div>
                         <div class="row__column">
-                            <label for="fixedEnd">Until</label>
+                            <label for="fixedEnd">{{ $t('messages.transaction_wizard.until')}}</label>
                             <date-picker name="end" :start-date="recurringEndDate" @DateUpdated="onEndUpdate"></date-picker>
                             <div class="hint mt-05">YYYY-MM-DD</div>
                             <validation-error v-if="errors.end" :message="errors.end"></validation-error>
@@ -72,14 +72,14 @@
         <button
             class="button"
             @click="createEarning">
-            <span v-if="loading">Loading</span>
-            <span v-if="!loading">Create</span>
+            <span v-if="loading">{{ $t('messages.transaction_wizard.loading')}}</span>
+            <span v-if="!loading">{{ $t('actions.create')}}</span>
         </button>
         <div
             v-if="success"
             class="mt-2"
             style="color: green;"
-        >Successfully created transaction</div>
+        >{{ $t('messages.transaction_wizard.successfully_created') }}</div>
     </div>
 </template>
 

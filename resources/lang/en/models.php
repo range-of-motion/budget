@@ -1,24 +1,36 @@
 <?php
 
 return [
-    'spaces' => 'Spaces',
-    'space' => 'Space',
+    'activities' => 'Activities',
+    'activity' => 'Activity',
 
-    'tags' => 'Tags',
-    'tag' => 'Tag',
-
-    'recurrings' => 'Recurrings',
-    'recurring' => 'Recurring',
+    'currencies' => 'Currencies',
+    'currency' => 'Currency',
 
     'earnings' => 'Earnings',
     'earning' => 'Earning',
 
+    'ideas' => 'Ideas',
+    'idea' => 'Idea',
+
+    'imports' => 'Imports',
+    'import' => 'Import',
+
+    'recurrings' => 'Recurrings',
+    'recurring' => 'Recurring',
+
+    'spaces' => 'Spaces',
+    'space' => 'Space',
+
     'spendings' => 'Spendings',
     'spending' => 'Spending',
+
+    'tags' => 'Tags',
+    'tag' => 'Tag',
 
     'transactions' => 'Transactions',
     'transaction' => 'Transaction',
 
-    'imports' => 'Imports',
-    'import' => 'Import'
+    'most_expensive_tags' => 'Most Expensive Tags',
+    'most_expensive_tag' => 'Most Expensive Tag'
 ];

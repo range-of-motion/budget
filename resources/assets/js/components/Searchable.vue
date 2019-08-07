@@ -2,12 +2,12 @@
     <div v-click-outside="hide">
         <input type="hidden" :name="name" :value="inputValue" />
         <div class="searchable__input" @click="toggleShown">
-            <span v-if="!selected">Select</span>
+            <span v-if="!selected">{{ $t('actions.select')}}</span>
             <span v-else v-html="selected.label"></span>
         </div>
         <div class="searchable__container">
             <div class="searchable__list" v-if="shown">
-                <input type="search" v-model="query" placeholder="Search" ref="query" />
+                <input type="search" v-model="query" :placeholder="$t('actions.search')" ref="query" />
                 <ul :style="{ 'max-height': size * 50 + 'px' }">
                     <li
                         class="row"

@@ -9,7 +9,7 @@
                 <h2>{{ __('models.transactions') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.transactions') }}</a>
+                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.transaction') }}</a>
             </div>
         </div>
         <div class="row row--responsive">
@@ -17,9 +17,9 @@
                 <div class="box">
                     <div class="box__section">
                         <div class="mb-2">
-                            <a href="/transactions">Reset</a>
+                            <a href="/transactions">{{ __('actions.reset') }}</a>
                         </div>
-                        <span>Filter by Tag</span>
+                        <span>{{ __('actions.filter_by') }} {{ __('models.tag') }}</span>
                         @foreach ($tags as $tag)
                             <div class="mt-1 ml-1">
                                 <a href="/transactions?filterBy=tag-{{ $tag->id }}">{{ $tag->name }}</a>

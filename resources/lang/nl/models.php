@@ -1,18 +1,36 @@
 <?php
 
 return [
-    'tags' => 'Etiketten',
-    'tag' => 'Etiket',
+    'activities' => 'Activiteiten',
+    'activity' => 'Activiteit',
 
-    'recurrings' => 'Terugkerenden',
-    'recurring' => 'Terugkerend',
+    'currencies' => 'Valuta\'s',
+    'currency' => 'Valuta',
 
     'earnings' => 'Inkomsten',
     'earning' => 'Inkomst',
 
+    'ideas' => 'Ideeën',
+    'idea' => 'Idee',
+
+    'imports' => 'Imports',
+    'import' => 'Import',
+
+    'recurrings' => 'Doorlopenden',
+    'recurring' => 'Doorlopende',
+
+    'spaces' => 'Spaces',
+    'space' => 'Space',
+
     'spendings' => 'Uitgaven',
     'spending' => 'Uitgave',
 
-    'imports' => 'Imports',
-    'import' => 'Import'
+    'tags' => 'Categorieën',
+    'tag' => 'Categorie',
+
+    'transactions' => 'Transacties',
+    'transaction' => 'Transactie',
+
+    'most_expensive_tags' => 'Duurste Categorieën',
+    'most_expensive_tag' => 'Duurste Categorie'
 ];

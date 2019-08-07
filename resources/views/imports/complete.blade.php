@@ -1,16 +1,16 @@
 @extends('layout')
 
-@section('title', 'Complete ' . __('models.import'))
+@section('title', __('actions.complete') . ' ' . __('models.import'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2 class="mb-3">Complete {{ __('models.import') }}</h2>
+        <h2 class="mb-3">{{ __('actions.complete') }} {{ __('models.import') }}</h2>
         <div class="box">
             <form method="POST">
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small mb-0">
-                        <label>Date Format</label>
+                        <label>{{ __('fields.date_format') }}</label>
                         <select name="date_format">
                             <option value="Y-m-d" {{ old('date_format') == 'Y-m-d' ? 'selected' : '' }}>YYYY-MM-DD</option>
                             <option value="Y/m/d" {{ old('date_format') == 'Y/m/d' ? 'selected' : '' }}>YYYY/MM/DD</option>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="box__section box__section--header">
                     <div class="row row--gutter">
-                        <div class="row__column row__column--compact" style="width: 100px;">Import</div>
+                        <div class="row__column row__column--compact" style="width: 100px;">{{ __('models.import') }}</div>
                         <div class="row__column">{{ __('models.tag') }}</div>
                         <div class="row__column">{{ __('fields.date') }}</div>
                         <div class="row__column row__column--triple">{{ __('fields.description') }}</div>
@@ -57,7 +57,7 @@
                     </div>
                 @endforeach
                 <div class="box__section box__section--highlight text-right">
-                    <button class="button">Submit</button>
+                    <button class="button">{{ __('actions.submit') }}</button>
                 </div>
             </form>
         </div>

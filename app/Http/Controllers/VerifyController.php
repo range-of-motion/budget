@@ -20,7 +20,7 @@ class VerifyController extends Controller {
             ->route('login')
             ->with([
                 'alert_type' => 'success',
-                'alert_message' => 'You\'ve succesfully verified'
+                'alert_message' => 'verified_account'
             ]);;
     }
 }
