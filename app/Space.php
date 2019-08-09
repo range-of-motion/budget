@@ -46,22 +46,20 @@ class Space extends Model {
 
     //
     public function monthlyBalance($year, $month) {
-        $earnings_amount = DB::table('earnings')
-            ->where('space_id', $this->id)
+        $earningsAmount = Earning::where('space_id', $this->id)
             ->whereYear('happened_on', $year)
             ->whereMonth('happened_on', $month)
             ->sum('amount');
 
-        $spendings_amount = DB::table('spendings')
-            ->where('space_id', $this->id)
+        $spendingsAmount = Spending::where('space_id', $this->id)
             ->whereYear('happened_on', $year)
             ->whereMonth('happened_on', $month)
             ->sum('amount');
 
-        if($spendings_amount === null) {
-            return $earnings_amount;
+        if (!$spendingsAmount) {
+            return $earningsAmount;
         } else {
-            return $earnings_amount - $spendings_amount;
+            return $earningsAmount - $spendingsAmount;
         }
     }
 
