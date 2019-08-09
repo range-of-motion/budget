@@ -14,7 +14,7 @@
                         @endif
                     </div>
                     <div class="row__column row__column--middle">{{ __('activities.' . $activity->action) }} <a href="/{{ $activity->entity_type }}s/{{ $activity->entity_id }}">#{{ $activity->entity_id }}</a></div>
-                    <div class="row__column row__column--middle row__column--compact">{{ $activity->created_at->diffForHumans() }}</div>
+                    <div class="row__column row__column--middle row__column--compact">{{ $activity->formatted_created_at }}</div>
                 </div>
             @endforeach
         </div>
