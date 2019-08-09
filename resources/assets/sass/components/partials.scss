@@ -17,10 +17,6 @@
     width: 5%;
 }
 
-.alert--message {
-    font-weight: 600;
-}
-
 .alert--a {
     text-decoration: none;
     color: $colors-light-background;
@@ -28,4 +24,8 @@
 
 .alert--a:hover {
     color: $colors-light-border;
+}
+
+.alert__message {
+    font-weight: 600;
 }
