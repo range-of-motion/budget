@@ -46,19 +46,21 @@ class Space extends Model {
 
     //
     public function monthlyBalance($year, $month) {
-        $query = DB::selectOne('
-            SELECT (
-                SELECT SUM(amount) 
-                FROM earnings
-                WHERE space_id = :e_space_id AND YEAR(happened_on) = :e_year AND MONTH(happened_on) = :e_month
-            ) - (
-                SELECT SUM(amount) 
-                FROM spendings
-                WHERE space_id = :s_space_id AND YEAR(happened_on) = :s_year AND MONTH(happened_on) = :s_month
-            ) AS balance;
-        ', ['e_space_id' => $this->id, 'e_year' => $year, 'e_month' => $month, 's_space_id' => $this->id, 's_year' => $year, 's_month' => $month]);
+        $earningsAmount = Earning::where('space_id', $this->id)
+            ->whereYear('happened_on', $year)
+            ->whereMonth('happened_on', $month)
+            ->sum('amount');
 
-        return $query->balance;
+        $spendingsAmount = Spending::where('space_id', $this->id)
+            ->whereYear('happened_on', $year)
+            ->whereMonth('happened_on', $month)
+            ->sum('amount');
+
+        if (!$spendingsAmount) {
+            return $earningsAmount;
+        } else {
+            return $earningsAmount - $spendingsAmount;
+        }
     }
 
     public function monthlyRecurrings($year, $month) {
