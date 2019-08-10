@@ -7,7 +7,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 class BudgetInstall extends Command {
-    protected $signature = 'budget:install';
+    protected $signature = 'budget:install {--dev} {--translation}';
 
     protected $description = 'Runs most of the commands needed to make Budget work';
 
@@ -29,7 +29,12 @@ class BudgetInstall extends Command {
     }
 
     public function composerInstall() {
-        $this->executeCommand(['composer', 'install', '--no-dev']);
+        $command = ['composer', 'install'];
+        if (!$this->option('dev')) {
+            array_push($command, '--no-dev');
+        }
+
+        $this->executeCommand($command);
     }
 
     public function yarnInstall() {
@@ -44,13 +49,25 @@ class BudgetInstall extends Command {
     }
 
     public function yarnBuild() {
-        $this->executeCommand(['yarn', 'run', 'development']);
+        $command = ['yarn', 'run', 'development'];
+        if ($this->option('dev')) {
+            array_push($command, '--watch');
+        }
+
+        $this->executeCommand($command);
+    }
+
+    public function generateVuei18nTranslations() {
+        $this->executeCommand(['php', 'artisan', 'vue-i18n:generate']);
     }
 
     public function handle() {
-        $this->composerInstall();
-        $this->yarnInstall();
-        $this->artisanPrepare();
-        $this->yarnBuild();
+        if (!$this->option('translation')) {
+            $this->composerInstall();
+            $this->yarnInstall();
+            $this->artisanPrepare();
+            $this->yarnBuild();
+        }
+        $this->generateVuei18nTranslations();
     }
 }
