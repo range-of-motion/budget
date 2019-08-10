@@ -62,12 +62,13 @@ class BudgetInstall extends Command {
     }
 
     public function handle() {
+        $this->generateVuei18nTranslations();
+
         if (!$this->option('translation')) {
             $this->composerInstall();
             $this->yarnInstall();
             $this->artisanPrepare();
             $this->yarnBuild();
         }
-        $this->generateVuei18nTranslations();
     }
 }
