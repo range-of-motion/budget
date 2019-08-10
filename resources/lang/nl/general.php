@@ -9,7 +9,7 @@ return [
     'left_to_spend' => 'Resterend Te Besteden',
     'total_earned' => 'Totaal Verdiend',
     'total_spent' => 'Totaal Uitgegeven',
-    'most_expensive_tag' => 'Duurste Categroie',
+    'most_expensive_tag' => 'Duurste Categorie',
     'most_expensive_day' => 'Duurste Dag',
     'days_ago' => 'dagen geleden',
 
