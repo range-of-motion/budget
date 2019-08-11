@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Spending;
 use App\Tag;
+use App\Rules\TagBelongsToUser;
 
 use Auth;
 
@@ -47,7 +48,7 @@ class SpendingController extends Controller {
 
     public function store(Request $request) {
         $request->validate([
-            'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
+            'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
             'date' => 'required|date|date_format:Y-m-d',
             'description' => 'required|max:255',
             'amount' => 'required|regex:/^\d*(\.\d{2})?$/'

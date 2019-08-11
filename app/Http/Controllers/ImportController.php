@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Import;
+use App\Rules\TagBelongsToUser;
 use App\Spending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -113,7 +114,7 @@ class ImportController extends Controller {
         foreach ($request->input('rows') as $i => $row) {
             if (isset($row['import']) && $row['import'] == 'on') {
                 $validator = Validator::make($row, [
-                    'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
+                    'tag_id' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
                     'happened_on' => 'date|date_format:' . $date_format,
                     'description' => 'max:255',
                     'amount' => 'regex:/^\d*([\,\.]\d{2})?$/'

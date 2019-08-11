@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\TagBelongsToUser;
 use Illuminate\Http\Request;
 
 use App\Recurring;
@@ -37,7 +38,7 @@ class RecurringController extends Controller {
                       'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
                     ],
             'end' => 'nullable|date|date_format:Y-m-d',
-            'tag' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
+            'tag' => ['nullable', 'exists:tags,id', new TagBelongsToUser],
             'description' => 'required|max:255',
             'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
         ]);
