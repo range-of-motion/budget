@@ -29,9 +29,7 @@
                             @endif
                         </div>
                         <div class="row__column row__column--compact text-right" style="width: 50px;">
-                            @if ($import->spendings->count())
-                                <i class="far fa-trash-alt"></i>
-                            @else
+                            @if (!$import->spendings->count())
                                 <form method="POST" action="/imports/{{ $import->id }}">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
