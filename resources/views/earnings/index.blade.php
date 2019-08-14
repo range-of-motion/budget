@@ -47,7 +47,7 @@
                     </div>
                 @endforeach
             @else
-                @include('partials.empty_state', ['payload' => 'earnings'])
+                @include('partials.empty_state', ['payload' => 'earnings', 'create' => 'transactions'])
             @endif
         </div>
     </div>
