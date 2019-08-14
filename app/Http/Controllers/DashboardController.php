@@ -22,7 +22,7 @@ class DashboardController extends Controller {
         $earningRecurrings = session('space')->monthlyRecurrings(true, $currentYear, $currentMonth);
         $spendingRecurrings = session('space')->monthlyRecurrings(false, $currentYear, $currentMonth);
         $recurrings = $earningRecurrings - $spendingRecurrings;
-        $leftToSpend = $balance - $recurrings;
+        $leftToSpend = max($balance - $recurrings, 0);
 
         $totalSpent = session('space')->spendings()->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$currentYear, $currentMonth])->sum('amount');
 
