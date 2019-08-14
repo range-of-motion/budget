@@ -45,10 +45,12 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-            @else
-                @include('partials.empty_state', ['payload' => 'earnings'])
-            @endif
-        </div>
+                @endif
+            @endforeach
+        @else
+            <div class="box mt-3">
+                @include('partials.empty_state', ['payload' => 'spendings', 'create' => 'transactions'])
+            </div>
+        @endif
     </div>
 @endsection
