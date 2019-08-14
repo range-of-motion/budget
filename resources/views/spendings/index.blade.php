@@ -57,7 +57,7 @@
             @endforeach
         @else
             <div class="box mt-3">
-                @include('partials.empty_state', ['payload' => 'spendings'])
+                @include('partials.empty_state', ['payload' => 'spendings', 'create' => 'transactions'])
             </div>
         @endif
     </div>
