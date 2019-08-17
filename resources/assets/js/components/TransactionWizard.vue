@@ -3,11 +3,11 @@
         <div class="bg mb-2">
             <button
                 class="bg__button"
-                :class="{ 'bg__button--active': transaction_type === 'earning' }"
+                :class="{ 'bg__button--active': transactionType === 'earning' }"
                 @click="switchTransactionType('earning')">Earning</button>
             <button
                 class="bg__button"
-                :class="{ 'bg__button--active': type === 'spending' }"
+                :class="{ 'bg__button--active': transactionType === 'spending' }"
                 @click="switchTransactionType('spending')">Spending</button>
         </div>
         <div class="input">
@@ -89,7 +89,7 @@
 
         data() {
             return {
-                transaction_type: 'earning',
+                transactionType: 'earning',
                 errors: [],
 
                 tag: null,
@@ -115,8 +115,8 @@
                 this.recurringEndDate = date
             },
 
-            switchTransactionType(transaction_type) {
-                this.transaction_type = transaction_type;
+            switchTransactionType(transactionType) {
+                this.transactionType = transactionType;
 
                 this.success = false
             },
@@ -145,7 +145,7 @@
                             day: this.date.slice(-2),
                             description: this.description,
                             amount: this.amount,
-                            transaction_type: this.transaction_type
+                            transaction_type: this.transactionType
                         };
 
                         if (this.recurringEnd === 'fixed') {
@@ -173,7 +173,7 @@
                             body.tag_id = this.tag
                         }
 
-                        axios.post('/' + this.transaction_type + 's', body).then(response => {
+                        axios.post('/' + this.transactionType + 's', body).then(response => {
                             this.handleSuccess()
                         }).catch(error => {
                             this.handleErrors(error.response)

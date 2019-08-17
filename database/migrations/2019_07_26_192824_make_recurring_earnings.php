@@ -14,12 +14,11 @@ class MakeRecurringEarnings extends Migration {
         });
 
         Schema::table('recurrings', function (Blueprint $table) {
-            $table->enum('transaction_type', ['earning', 'spending']);
+            $table->string('transaction_type');
         });
     }
 
-    public function down()
-    {
+    public function down() {
         Schema::table('earnings', function (Blueprint $table) {
             $table->dropColumn('recurring_id');
             $table->dropColumn('tag_id');

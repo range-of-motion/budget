@@ -10,8 +10,7 @@ use App\Jobs\ProcessRecurrings;
 use Illuminate\Support\Facades\Validator;
 
 class RecurringController extends Controller {
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
             'day' => 'required', 'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
             'end' => 'nullable', 'date', 'date_format:Y-m-d',
