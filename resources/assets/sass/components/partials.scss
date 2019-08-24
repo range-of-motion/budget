@@ -1,31 +1,35 @@
 .alert {
+    display: flex;
     padding: 15px;
     border-radius: 5px;
     color: $colors-light-background;
-}
 
-.alert--danger {
-    background: $colors-alert-danger;
-}
+    &.alert--danger {
+        background: $colors-alert-danger;
+    }
 
-.alert--success {
-    background: $colors-alert-success;
-}
+    &.alert--success {
+        background: $colors-alert-success;
+    }
 
-.alert__fa {
-    margin: auto;
-    width: 5%;
-}
+    &.alert__fa {
+        flex: none;
+        margin: auto;
+        width: 5%;
+    }
 
-.alert__a {
-    text-decoration: none;
-    color: $colors-light-background;
-}
+    &.alert__a {
+        text-decoration: none;
+        color: $colors-light-background;
 
-.alert__a:hover {
-    color: $colors-light-border;
-}
+        &:hover {
+            color: $colors-light-border;
+        }
+    }
 
-.alert__message {
-    font-weight: 600;
+    &.alert__message {
+        flex: 1;
+        text-align: center;
+        font-weight: 600;
+    }
 }
