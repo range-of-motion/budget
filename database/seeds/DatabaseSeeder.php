@@ -2,8 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder {
-    public function run() {
+class DatabaseSeeder extends Seeder
+{
+    public function run()
+    {
         $year = date('Y');
 
         // User
@@ -26,7 +28,7 @@ class DatabaseSeeder extends Seeder {
         $tagFood = \App\Tag::create(['space_id' => $space->id, 'name' => 'Food']);
         $tagTransport = \App\Tag::create(['space_id' => $space->id, 'name' => 'Transport']);
 
-        for ($i = 1; $i < 12; $i ++) {
+        for ($i = 1; $i < 12; $i++) {
             // Income
             \App\Earning::create([
                 'space_id' => $space->id,
@@ -53,7 +55,7 @@ class DatabaseSeeder extends Seeder {
             ]);
 
             // Food
-            for ($j = 0; $j < rand(1, 10); $j ++) {
+            for ($j = 0; $j < rand(1, 10); $j++) {
                 \App\Spending::create([
                     'space_id' => $space->id,
                     'tag_id' => $tagFood->id,
@@ -64,7 +66,7 @@ class DatabaseSeeder extends Seeder {
             }
 
             // Transport
-            for ($j = 0; $j < rand(1, 3); $j ++) {
+            for ($j = 0; $j < rand(1, 3); $j++) {
                 \App\Spending::create([
                     'space_id' => $space->id,
                     'tag_id' => $tagTransport->id,
@@ -74,5 +76,8 @@ class DatabaseSeeder extends Seeder {
                 ]);
             }
         }
+
+        //run currencies seeder
+        $this->call(CurrencySeeder::class);
     }
 }
