@@ -14,18 +14,21 @@ use Hash;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 
-class RegisterController extends Controller {
-    public function index() {
+class RegisterController extends Controller
+{
+    public function index()
+    {
         $currencies = [];
 
         foreach (Currency::all() as $currency) {
-            $currencies[] = ['key' => $currency->id, 'label' => $currency->symbol];
+            $currencies[] = ['key' => $currency->id, 'label' => $currency->name . ' - ' . $currency->symbol];
         }
 
         return view('register', compact('currencies'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
