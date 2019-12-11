@@ -85,7 +85,8 @@ return [
         'dk' => 'Danish',
         'de' => 'German',
         'fr' => 'French',
-        'pt' => 'Portuguese'
+        'pt' => 'Portuguese',
+        'he' => 'Hebrew'
     ],
 
     /*
