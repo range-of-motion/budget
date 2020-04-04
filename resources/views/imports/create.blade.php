@@ -17,7 +17,11 @@
                     <div class="input input--small mb-0">
                         <label>{{ __('fields.file') }}</label>
                         <input type="file" name="file" />
-                        @include('partials.validation_error', ['payload' => 'file'])
+                        @if ($errors->has('file') && $errors->get('file')[0] === 'validation.mimes')
+                            <div style="font-size: 14px; color: red; margin-bottom: 20px;">Please upload a CSV</div>
+                        @else
+                            @include('partials.validation_error', ['payload' => 'file'])
+                        @endif
                     </div>
                 </div>
                 <div class="box__section box__section--highlight row row--right">
