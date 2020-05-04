@@ -8,19 +8,20 @@
         "php": ">=5.6.4",
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
+        "fruitcake/laravel-cors": "^1.0",
         "intervention/image": "^2.4",
-        "laravel/framework": "^6.0",
-        "laravel/tinker": "~1.0",
+        "laravel/framework": "^7.0",
+        "laravel/tinker": "^2.0",
         "martinlindhe/laravel-vue-i18n-generator": "^0.1.39",
         "nesbot/carbon": "^2.32",
-        "symfony/process": "^4.3"
+        "symfony/process": "^5.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "laravel/dusk": "^5.11",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "classmap": [
