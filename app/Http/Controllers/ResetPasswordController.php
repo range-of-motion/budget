@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class ResetPasswordController extends Controller {
     public function get(Request $request) {
@@ -33,7 +34,7 @@ class ResetPasswordController extends Controller {
                 $existingRecord = DB::selectOne('SELECT * FROM password_resets WHERE email = ?', [$email]);
 
                 if (!$existingRecord) {
-                    $shippingToken = str_random(100);
+                    $shippingToken = Str::random(100);
 
                     DB::table('password_resets')->insert([
                         'email' => $email,

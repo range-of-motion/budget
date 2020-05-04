@@ -12,6 +12,7 @@ use App\User;
 use App\Space;
 use Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Mail;
 
 class RegisterController extends Controller {
@@ -39,7 +40,7 @@ class RegisterController extends Controller {
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->verification_token = str_random(100);
+        $user->verification_token = Str::random(100);
 
         $user->save();
 
