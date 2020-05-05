@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Earning;
+use App\Models\Earning;
 
 use Auth;
 

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Spending;
-use App\Tag;
+use App\Models\Spending;
+use App\Models\Tag;
 
 use Auth;
 

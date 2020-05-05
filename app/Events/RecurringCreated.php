@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use App\Activity;
-use App\Recurring;
+use App\Models\Activity;
+use App\Models\Recurring;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

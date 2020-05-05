@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\WeeklyReport;
-use App\Space;
+use App\Models\Space;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\User;
-use App\Space;
-use App\Tag;
+use App\Models\User;
+use App\Models\Space;
+use App\Models\Tag;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;

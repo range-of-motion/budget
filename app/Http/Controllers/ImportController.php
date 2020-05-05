@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Import;
-use App\Spending;
+use App\Models\Import;
+use App\Models\Spending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;

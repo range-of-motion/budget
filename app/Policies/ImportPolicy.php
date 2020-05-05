@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Import;
-use App\User;
+use App\Models\Import;
+use App\Models\User;
 
 class ImportPolicy {
     public function modify(User $user, Import $import) {

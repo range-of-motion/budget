@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Idea;
+use App\Models\Idea;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller {

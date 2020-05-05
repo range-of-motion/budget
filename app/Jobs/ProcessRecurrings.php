@@ -7,8 +7,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Recurring;
-use App\Spending;
+use App\Models\Recurring;
+use App\Models\Spending;
 
 class ProcessRecurrings implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -22,10 +22,10 @@ class ProcessRecurrings implements ShouldQueue {
 
         $recurrings = Recurring
             ::where('type', 'monthly')
-            ->when((int) date('t')  == $day, 
+            ->when((int) date('t')  == $day,
             function ($query) use ($day) {
                 return $query->where('day', '>=', $day);
-            }, 
+            },
             function ($query) use ($day) {
                 return $query->where('day', $day);
             })

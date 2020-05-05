@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Recurring;
+use App\Models\User;
+use App\Models\Recurring;
 
 class RecurringPolicy {
     public function view(User $user, Recurring $recurring) {

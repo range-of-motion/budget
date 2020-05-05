@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Spending;
+use App\Models\User;
+use App\Models\Spending;
 
 class SpendingPolicy {
     public function view(User $user, Spending $spending) {

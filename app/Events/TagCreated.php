@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use App\Activity;
-use App\Tag;
+use App\Models\Activity;
+use App\Models\Tag;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
-use App\Tag;
+use App\Models\Tag;
 
 class TagController extends Controller {
     private $validationRules = [

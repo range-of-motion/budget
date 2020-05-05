@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Earning;
+use App\Models\User;
+use App\Models\Earning;
 
 class EarningPolicy {
     public function view(User $user, Earning $earning) {

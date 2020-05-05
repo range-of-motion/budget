@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\LoginAttempt;
+use App\Models\LoginAttempt;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
 use App\Mail\VerifyRegistration;
-use App\Currency;
-use App\User;
-use App\Space;
+use App\Models\Currency;
+use App\Models\User;
+use App\Models\Space;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;

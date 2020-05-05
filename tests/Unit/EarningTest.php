@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use App\Earning;
+use App\Models\Earning;
 
 class EarningTest extends TestCase {
     public function testFormattedAmount() {

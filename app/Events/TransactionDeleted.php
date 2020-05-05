@@ -2,9 +2,9 @@
 
 namespace App\Events;
 
-use App\Earning;
-use App\Activity;
-use App\Spending;
+use App\Models\Earning;
+use App\Models\Activity;
+use App\Models\Spending;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
