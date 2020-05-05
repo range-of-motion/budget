@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Recurring;
-use App\Space;
-use App\User;
+use App\Models\Recurring;
+use App\Models\Space;
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;

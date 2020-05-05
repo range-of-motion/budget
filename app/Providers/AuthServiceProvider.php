@@ -2,18 +2,18 @@
 
 namespace App\Providers;
 
-use App\Earning;
-use App\Import;
+use App\Models\Earning;
+use App\Models\Import;
 use App\Policies\EarningPolicy;
 use App\Policies\ImportPolicy;
 use App\Policies\SpendingPolicy;
 use App\Policies\TagPolicy;
-use App\Spending;
-use App\Tag;
+use App\Models\Spending;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Policies\RecurringPolicy;
-use App\Recurring;
+use App\Models\Recurring;
 
 class AuthServiceProvider extends ServiceProvider
 {

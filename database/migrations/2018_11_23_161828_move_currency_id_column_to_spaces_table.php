@@ -13,7 +13,7 @@ class MoveCurrencyIdColumnToSpacesTable extends Migration {
         });
 
         // Move
-        foreach (\App\Space::all() as $space) {
+        foreach (\App\Models\Space::all() as $space) {
             $user = $space->users()->first();
 
             $space->currency_id = $user->currency_id;

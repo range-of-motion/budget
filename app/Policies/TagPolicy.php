@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Tag;
+use App\Models\User;
+use App\Models\Tag;
 
 class TagPolicy {
     public function edit(User $user, Tag $tag) {

@@ -1,12 +1,12 @@
 <?php
 
 use Faker\Generator;
-use App\User;
-use App\Space;
-use App\Tag;
-use App\Earning;
-use App\Spending;
-use App\Recurring;
+use App\Models\User;
+use App\Models\Space;
+use App\Models\Tag;
+use App\Models\Earning;
+use App\Models\Spending;
+use App\Models\Recurring;
 use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Generator $faker) {

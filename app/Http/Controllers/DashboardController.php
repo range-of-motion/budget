@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 
-use App\Earning;
-use App\Recurring;
-use App\Spending;
+use App\Models\Earning;
+use App\Models\Recurring;
+use App\Models\Spending;
 use Auth;
 use DB;
 

@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use App\Import;
-use App\Activity;
+use App\Models\Import;
+use App\Models\Activity;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

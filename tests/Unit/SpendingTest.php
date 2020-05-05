@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use App\Spending;
+use App\Models\Spending;
 
 class SpendingTest extends TestCase {
     public function testFormattedAmount() {

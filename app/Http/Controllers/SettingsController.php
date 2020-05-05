@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
-use App\Currency;
+use App\Models\Currency;
 use Auth;
 use Image;
 use Storage;

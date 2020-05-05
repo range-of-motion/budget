@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Events\TransactionCreated;
 use App\Events\TransactionDeleted;

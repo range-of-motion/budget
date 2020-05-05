@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Recurring;
+use App\Models\Recurring;
 use Auth;
 use App\Jobs\ProcessRecurrings;
 

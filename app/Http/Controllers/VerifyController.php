@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VerifyController extends Controller {
@@ -15,7 +15,7 @@ class VerifyController extends Controller {
 
         $user->verification_token = null;
         $user->save();
-        
+
         return redirect()
             ->route('login')
             ->with([
