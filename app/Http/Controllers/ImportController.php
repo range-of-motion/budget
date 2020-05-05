@@ -23,7 +23,7 @@ class ImportController extends Controller {
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|max:255',
-            'file' => 'required|max:200' // TODO VALIDATE CSV
+            'file' => 'required|max:200|mimes:csv,txt'
         ]);
 
         $path = $request->file('file')->store('imports');
