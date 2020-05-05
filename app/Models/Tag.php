@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Events\TagCreated;
 use App\Events\TagDeleted;
