@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotificationsTable extends Migration {
+class CreateActivitiesTable extends Migration {
     public function up() {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('space_id');
             $table->unsignedInteger('user_id')->nullable();
@@ -21,11 +21,11 @@ class CreateNotificationsTable extends Migration {
     }
 
     public function down() {
-        Schema::table('notifications', function ($table) {
-            $table->dropForeign('notifications_space_id_foreign');
-            $table->dropForeign('notifications_user_id_foreign');
+        Schema::table('activities', function ($table) {
+            $table->dropForeign('activities_space_id_foreign');
+            $table->dropForeign('activities_user_id_foreign');
         });
 
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('activities');
     }
 }
