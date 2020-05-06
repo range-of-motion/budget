@@ -10,6 +10,7 @@ class CreateTagsTable extends Migration {
             $table->increments('id');
             $table->unsignedInteger('space_id');
             $table->string('name');
+            $table->char('color', 6);
             $table->timestamps();
             $table->softDeletes();
         });

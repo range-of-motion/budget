@@ -13,9 +13,11 @@ class CreateUsersTable extends Migration {
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('verification_token', 100)->nullable();
             $table->rememberToken();
-            $table->string('language');
+            $table->string('language')->default('en');
             $table->string('theme')->default('light');
+            $table->boolean('weekly_report')->default(true);
             $table->timestamps();
         });
     }
