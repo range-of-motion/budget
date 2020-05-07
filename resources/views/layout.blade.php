@@ -137,7 +137,7 @@
             @yield('body')
             @if (auth()->check())
                 <div class="text-center mb-3">
-                    <a class="fs-sm" href="/ideas/create">{{ __('general.know_how_to_make_this_app_better') }}?</a>
+                    <a class="fs-sm" href="/ideas/create">{{ __('general.know_how_to_make_this_app_better') }}?</a> &middot; {{ $versionNumber }}
                 </div>
             @endif
         </div>

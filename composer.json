@@ -44,7 +44,8 @@
             "php artisan key:generate"
         ],
         "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall"
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "git describe --always --tags > version.txt"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate"
