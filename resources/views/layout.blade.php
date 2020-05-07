@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <link rel="stylesheet" href="/storage/twemoji-flags.css" />
-        <script src="/storage/fontawesome/all.min.js"></script>
+        <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js" integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i" />
         <link rel="stylesheet" href="/css/app.css" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
@@ -58,16 +58,16 @@
                     <div class="wrapper">
                         <ul class="navigation__menu">
                             <li>
-                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="far fa-home fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('general.dashboard') }}</span></a>
+                                <a href="/dashboard" {!! (Request::path() == 'dashboard') ? 'class="active"' : '' !!}><i class="fas fa-home fa-sm color-blue"></i> <span class="hidden ml-05">{{ __('general.dashboard') }}</span></a>
                             </li>
                             <li>
-                                <a href="/transactions" {!! (Request::path() == 'transactions') ? 'class="active"' : '' !!}><i class="far fa-exchange-alt fa-sm color-green"></i> <span class="hidden ml-05">{{ __('models.transactions') }}</span></a>
+                                <a href="/transactions" {!! (Request::path() == 'transactions') ? 'class="active"' : '' !!}><i class="fas fa-exchange-alt fa-sm color-green"></i> <span class="hidden ml-05">{{ __('models.transactions') }}</span></a>
                             </li>
                             <li>
-                                <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="far fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('models.tags') }}</span></a>
+                                <a href="/tags" {!! (Request::path() == 'tags') ? 'class="active"' : '' !!}><i class="fas fa-tag fa-sm color-red"></i> <span class="hidden ml-05">{{ __('models.tags') }}</span></a>
                             </li>
                             <li>
-                                <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><i class="far fa-chart-line fa-sm color-blue"></i> <span class="hidden ml-05">Reports</span></a>
+                                <a href="/reports" {!! (Request::path() == 'reports') ? 'class="active"' : '' !!}><i class="fas fa-chart-line fa-sm color-blue"></i> <span class="hidden ml-05">Reports</span></a>
                             </li>
                         </ul>
                         <ul class="navigation__menu">
@@ -86,7 +86,7 @@
                             </li>
                             <li>
                                 <a href="/activities">
-                                    <i class="far fa-clock"></i>
+                                    <i class="fas fa-clock"></i>
                                 </a>
                             </li>
                             @if (Auth::user()->spaces->count() > 1)

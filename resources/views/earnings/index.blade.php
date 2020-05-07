@@ -31,7 +31,7 @@
                         <div class="row__column row__column--middle row row--right">
                             <div class="row__column row__column--compact">
                                 <a href="/earnings/{{ $earning->id }}/edit">
-                                    <i class="far fa-pencil"></i>
+                                    <i class="fas fa-pencil"></i>
                                 </a>
                             </div>
                             <div class="row__column row__column--compact ml-2">
@@ -39,7 +39,7 @@
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                     <button class="button link">
-                                        <i class="far fa-trash-alt"></i>
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
                             </div>
