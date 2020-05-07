@@ -46,7 +46,7 @@
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
                                         <button class="button link">
-                                            <i class="far fa-trash-alt"></i>
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 </div>

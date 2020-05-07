@@ -23,7 +23,7 @@
                             <div class="row mt-1">
                                 <div class="row__column row__column--compact" style="font-size: 14px; font-weight: 600;">{!! $currency !!} {{ number_format($recurring->amount / 100, 2) }}</div>
                                 @if ($recurring->due_days)
-                                    <div class="row__column row__column--compact ml-2" style="font-size: 14px; font-weight: 600;"><i class="far fa-clock"></i> Due in {{ $recurring->due_days }} days</div>
+                                    <div class="row__column row__column--compact ml-2" style="font-size: 14px; font-weight: 600;"><i class="fas fa-clock"></i> Due in {{ $recurring->due_days }} days</div>
                                 @endif
                             </div>
                         </div>
