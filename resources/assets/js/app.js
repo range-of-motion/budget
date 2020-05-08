@@ -44,5 +44,13 @@ Vue.directive('click-outside', {
 })
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
+    mounted() {
+        let input = document.querySelector('[autofocus]');
+
+        if (input) {
+            input.focus()
+        }
+    }
 })
