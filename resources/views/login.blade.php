@@ -12,11 +12,11 @@
                     {{ csrf_field() }}
                     <div class="input">
                         <label>E-mail</label>
-                        <input type="email" name="email" value="{{ old('email') }}" />
+                        <input type="email" name="email" value="{{ old('email') }}" class="shadow" />
                     </div>
                     <div class="input">
                         <label>Password</label>
-                        <input type="password" name="password" />
+                        <input type="password" name="password" class="shadow" />
                     </div>
                     <button class="button button--wide">Log in</button>
                     <div class="mt-2 text-right">

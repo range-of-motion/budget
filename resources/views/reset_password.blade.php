@@ -13,16 +13,16 @@
                         <input type="hidden" name="token" value="{{ $token }}" />
                         <div class="input">
                             <label>Password</label>
-                            <input type="password" name="password" />
+                            <input type="password" name="password" class="shadow" />
                         </div>
                         <div class="input">
                             <label>Verify Password</label>
-                            <input type="password" name="password_confirmation" />
+                            <input type="password" name="password_confirmation" class="shadow" />
                         </div>
                     @else
                         <div class="input">
                             <label>E-mail</label>
-                            <input type="email" name="email" />
+                            <input type="email" name="email" class="shadow" />
                         </div>
                     @endif
                     <button class="button button--wide">Submit</button>
