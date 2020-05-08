@@ -38,7 +38,7 @@
                             initial="{{ old('currency') }}"></searchable>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
-                    <button class="button">Register</button>
+                    <button class="button button--wide">Register</button>
                 </form>
             </div>
         </div>

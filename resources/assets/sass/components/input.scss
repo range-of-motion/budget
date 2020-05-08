@@ -139,6 +139,11 @@ button.button {
         color: $colors-primary;
         background: none;
     }
+
+    &.button--wide {
+        padding: 12.5px 20px;
+        width: 100%;
+    }
 }
 
 .button, .button-dropdown {

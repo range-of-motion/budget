@@ -25,7 +25,7 @@
                             <input type="email" name="email" />
                         </div>
                     @endif
-                    <button class="button">Submit</button>
+                    <button class="button button--wide">Submit</button>
                 </form>
             </div>
         </div>
