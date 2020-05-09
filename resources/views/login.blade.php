@@ -2,7 +2,10 @@
 
 @section('body')
     <div class="wrapper wrapper--narrow my-3">
-        <h2 class="text-center mb-3">Log in</h2>
+        <div class="text-center">
+            <img src="/logo.svg" style="width: 100%; max-height: 50px;" />
+            <h2 class="mt-2 mb-3">Log in</h2>
+        </div>
         @if (session('alert_type') && session('alert_message'))
             @include('partials.alerts.' . session('alert_type'), ['payload' => ['classes' => 'mb-2', 'message' => session('alert_message')]])
         @endif
@@ -12,20 +15,16 @@
                     {{ csrf_field() }}
                     <div class="input">
                         <label>E-mail</label>
-                        <input type="email" name="email" value="{{ old('email') }}" />
+                        <input type="email" name="email" value="{{ old('email') }}" class="shadow" autofocus />
                     </div>
                     <div class="input">
                         <label>Password</label>
-                        <input type="password" name="password" />
-                    </div>
-                    <div class="row row--separate" style="justify-content: space-between;">
-                        <div class="row__column row__column--compact">
-                            <button class="button">Log in</button>
-                        </div>
-                        <div class="row__column row__column--compact row__column--middle">
-                            <a href="/reset_password">Forgot your password?</a>
+                        <input type="password" name="password" class="shadow" />
+                        <div class="mt-1 text-right">
+                            <a href="/reset_password" class="fs-sm">Forgot your password?</a>
                         </div>
                     </div>
+                    <button class="button button--wide">Log in</button>
                 </form>
             </div>
         </div>
