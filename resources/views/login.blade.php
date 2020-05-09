@@ -2,7 +2,10 @@
 
 @section('body')
     <div class="wrapper wrapper--narrow my-3">
-        <h2 class="text-center mb-3">Log in</h2>
+        <div class="text-center">
+            <img src="/logo.svg" style="width: 100%; max-height: 50px;" />
+            <h2 class="mt-2 mb-3">Log in</h2>
+        </div>
         @if (session('alert_type') && session('alert_message'))
             @include('partials.alerts.' . session('alert_type'), ['payload' => ['classes' => 'mb-2', 'message' => session('alert_message')]])
         @endif

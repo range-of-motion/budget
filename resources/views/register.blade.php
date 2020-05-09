@@ -4,7 +4,10 @@
 
 @section('body')
     <div class="wrapper wrapper--narrow my-3">
-        <h2 class="text-center mb-3">Register</h2>
+        <div class="text-center">
+            <img src="/logo.svg" style="width: 100%; max-height: 50px;" />
+            <h2 class="mt-2 mb-3">Register</h2>
+        </div>
         <div class="box">
             <div class="box__section">
                 <form method="POST">
