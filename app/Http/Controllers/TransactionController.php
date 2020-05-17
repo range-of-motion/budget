@@ -11,7 +11,7 @@ class TransactionController extends Controller {
     }
 
     public function index(Request $request) {
-        $filterBy = null;
+        $filterBy = [];
 
         if ($request->get('filterBy')) {
             $filterBy = explode('-', $request->get('filterBy'));
