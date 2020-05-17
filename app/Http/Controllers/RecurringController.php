@@ -58,6 +58,6 @@ class RecurringController extends Controller {
         $recurring->save();
         ProcessRecurrings::dispatch();
 
-        return redirect()->route('recurrings.show', ['id' => $recurring->id]);
+        return redirect()->route('recurrings.show', ['recurring' => $recurring->id]);
     }
 }
