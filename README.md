@@ -17,6 +17,14 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 * Dashboard displaying monthly statistics about your spendings
 * Available in multiple languages (English, Dutch, Danish, German)
 
+## Requirements
+
+* PHP 7.2.5 or higher
+* HTTP server (for example Apache or NGINX)
+* MySQL
+* Composer
+* Node.js
+
 ## Installation
 
 ```
