@@ -27,32 +27,13 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 
 ## Installation
 
-```
-composer install --no-dev
-yarn install
+* Clone the repository (`git clone https://github.com/range-of-motion/budget.git`)
+    * You should always check out a tag, since the `master` branch might not always be stable (`git checkout TAG`)
+* Run installation command (`php artisan budget:install`)
+* Configure additional services in `.env` (database or mail for example)
+* Head over to your list of crons (`crontab -e`) and add `* * * * * cd /path-to-budget && php artisan schedule:run >> /dev/null 2>&1`
 
-cp .env.example .env
-php artisan key:generate
-
-php artisan storage:link
-
-php artisan migrate
-
-yarn run development
-
-php artisan serve
-
-php artisan queue:work
-```
-
-In addition to this you will have to create a cronjob to trigger budgets scheduling.
-(Without this, recurring transactions and weekly reports won't work)
-
-```
-* * * * * cd /path/to/budget/ && php artisan schedule:run >> 2>&1
-```
-
-It's best to make sure this command is run with the user that runs budget (eg. www-data)
+*Note that in order for certain features to work properly, the jobs queue needs to be watched. This can be done by either running `php artisan queue:work` or using [Supervisor](https://laravel.com/docs/7.x/queues#supervisor-configuration).*
 
 ## Contact
 
