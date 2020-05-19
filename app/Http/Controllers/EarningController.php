@@ -76,10 +76,7 @@ class EarningController extends Controller {
         $earning->delete();
 
         return redirect()
-            ->route('earnings.index')
-            ->with([
-                'restorableEarning' => $restorableEarning
-            ]);
+            ->route('transactions.index');
     }
 
     public function restore($id) {

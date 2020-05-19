@@ -74,10 +74,7 @@ class SpendingController extends Controller {
         $spending->delete();
 
         return redirect()
-            ->route('spendings.index')
-            ->with([
-                'restorableSpending' => $restorableSpending
-            ]);
+            ->route('transactions.index');
     }
 
     public function restore($id) {
