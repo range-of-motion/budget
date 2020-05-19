@@ -62,7 +62,7 @@ class EarningController extends Controller {
         $earning->fill([
             'happened_on' => $request->input('date'),
             'description' => $request->input('description'),
-            'amount' => $request->input('amount')
+            'amount' => (int) ($request->input('amount') * 100)
         ])->save();
 
         return redirect()->route('transactions.index');
