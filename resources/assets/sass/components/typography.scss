@@ -43,3 +43,9 @@ a {
     text-decoration: none;
     color: $colors-primary;
 }
+
+.c {
+    &-light {
+        color: #CCC;
+    }
+}

@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/spendings', 'SpendingController@index')->name('index');
         Route::get('/spendings/create', 'SpendingController@create')->name('create');
         Route::post('/spendings', 'SpendingController@store');
+        Route::get('/spendings/{spending}/edit', 'SpendingController@edit')->name('edit');
+        Route::patch('/spendings/{spending}', 'SpendingController@update');
         Route::delete('/spendings/{spending}', 'SpendingController@destroy');
         Route::post('/spendings/{id}/restore', 'SpendingController@restore');
     });

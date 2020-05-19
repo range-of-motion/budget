@@ -65,7 +65,7 @@ class EarningController extends Controller {
             'amount' => $request->input('amount')
         ])->save();
 
-        return redirect()->route('earnings.index');
+        return redirect()->route('transactions.index');
     }
 
     public function destroy(Earning $earning) {
@@ -76,10 +76,7 @@ class EarningController extends Controller {
         $earning->delete();
 
         return redirect()
-            ->route('earnings.index')
-            ->with([
-                'restorableEarning' => $restorableEarning
-            ]);
+            ->route('transactions.index');
     }
 
     public function restore($id) {
