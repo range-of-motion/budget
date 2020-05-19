@@ -10,6 +10,14 @@ class SpendingPolicy {
         return $user->spaces->contains($spending->space_id);
     }
 
+    public function edit(User $user, Spending $spending) {
+        return $user->spaces->contains($spending->space_id);
+    }
+
+    public function update(User $user, Spending $spending) {
+        return $user->spaces->contains($spending->space_id);
+    }
+
     public function delete(User $user, Spending $spending) {
         return $user->spaces->contains($spending->space_id);
     }

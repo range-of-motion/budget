@@ -37,6 +37,9 @@
                                 <div class="box__section row">
                                     <div class="row__column row__column--middle row row--middle">
                                         <div>{{ $transaction->description }}</div>
+                                        <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}/edit">
+                                            <i class="fas fa-pencil fa-xs c-light ml-1"></i>
+                                        </a>
                                         <form action="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}" method="POST">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}

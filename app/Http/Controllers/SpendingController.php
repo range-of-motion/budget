@@ -66,6 +66,31 @@ class SpendingController extends Controller {
         return redirect()->route('dashboard');
     }
 
+    public function edit(Spending $spending) {
+        $this->authorize('edit', $spending);
+
+        return view('spendings.edit', compact('spending'));
+    }
+
+    public function update(Request $request, Spending $spending) {
+        $this->authorize('update', $spending);
+
+        // TODO MOVE TO CENTRAL PLACE FOR REUSABILITY
+        $request->validate([
+            'date' => 'required|date|date_format:Y-m-d',
+            'description' => 'required|max:255',
+            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
+        ]);
+
+        $spending->fill([
+            'happened_on' => $request->input('date'),
+            'description' => $request->input('description'),
+            'amount' => (int) ($request->input('amount') * 100)
+        ])->save();
+
+        return redirect()->route('transactions.index');
+    }
+
     public function destroy(Spending $spending) {
         $this->authorize('delete', $spending);
 
