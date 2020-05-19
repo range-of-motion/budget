@@ -13,9 +13,13 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 
 ## Features
 
-* Ability to organize spendings using tags
-* Dashboard displaying monthly statistics about your spendings
-* Available in multiple languages (English, Dutch, Danish, German)
+* Insertion and management of transactions
+* Ability to organize transactions using tags
+* Support for importing transactions (CSV format)
+* Reports that visualize financials (showing weekly balance and most expensive tags, for example)
+* Supports multiple currencies
+* Available in multiple languages
+* Weekly summary available through e-mail
 
 ## Requirements
 
@@ -30,7 +34,7 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 * Clone the repository (`git clone https://github.com/range-of-motion/budget.git`)
     * You should always check out a tag, since the `master` branch might not always be stable (`git checkout TAG`)
 * Run installation command (`php artisan budget:install`)
-* Configure additional services in `.env` (database or mail for example)
+* Configure additional services in `.env` (database or mail, for example)
 * Head over to your list of crons (`crontab -e`) and add `* * * * * cd /path-to-budget && php artisan schedule:run >> /dev/null 2>&1`
 
 *Note that in order for certain features to work properly, the jobs queue needs to be watched. This can be done by either running `php artisan queue:work` or using [Supervisor](https://laravel.com/docs/7.x/queues#supervisor-configuration).*
