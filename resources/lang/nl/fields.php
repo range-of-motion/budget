@@ -15,5 +15,7 @@ return [
     'description' => 'Omschrijving',
     'amount' => 'Bedrag',
 
-    'file' => 'Bestand'
+    'file' => 'Bestand',
+
+    'color' => 'Kleur'
 ];
