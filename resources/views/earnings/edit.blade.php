@@ -11,7 +11,7 @@
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">
-                        <label>Date</label>
+                        <label>{{ __('fields.date') }}</label>
                         <DatePicker start-date="{{ $earning->happened_on }}"></DatePicker>
                         @include('partials.validation_error', ['payload' => 'date'])
                     </div>
@@ -21,7 +21,7 @@
                         @include('partials.validation_error', ['payload' => 'description'])
                     </div>
                     <div class="input input--small mb-0">
-                        <label>Amount</label>
+                        <label>{{ __('fields.amount') }}</label>
                         <input type="text" name="amount" value="{{ $earning->formatted_amount }}" />
                         @include('partials.validation_error', ['payload' => 'amount'])
                     </div>
