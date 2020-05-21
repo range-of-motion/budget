@@ -3,6 +3,9 @@
 return [
     'dashboard' => 'Overzicht',
 
+    'balance' => 'Balans',
+    'recurrings' => 'Terugkerenden',
+    'left_to_spend' => 'Over om uit te geven',
     'total_earned' => 'Totaal Verdiend',
     'total_spent' => 'Totaal Uitgegeven',
     'most_expensive_tag' => 'Duurste Etiket',

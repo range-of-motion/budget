@@ -5,7 +5,7 @@
         <div class="row">
             <div class="row__column mr-3" style="max-width: 300px;">
                 <div class="box">
-                    <div class="box__section box__section--header">Settings</div>
+                    <div class="box__section box__section--header">{{ __('pages.settings') }}</div>
                     <ul class="box__section">
                         <li><a href="/settings/profile"><i class="fas fa-user fa-sm"></i> {{ __('general.profile') }}</a></li>
                         <li><a href="/settings/account"><i class="fas fa-lock fa-sm"></i> {{ __('general.account') }}</a></li>

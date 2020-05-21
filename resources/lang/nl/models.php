@@ -13,6 +13,9 @@ return [
     'spendings' => 'Uitgaven',
     'spending' => 'Uitgave',
 
+    'transactions' => 'Transacties',
+    'transaction' => 'Transactie',
+
     'imports' => 'Imports',
     'import' => 'Import'
 ];
