@@ -17,7 +17,6 @@ class BudgetInstall extends Command {
 
     public function executeCommand($command) {
         $process = new Process($command);
-        $process->setTty(true);
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -40,7 +39,6 @@ class BudgetInstall extends Command {
         $this->executeCommand(['cp', '.env.example', '.env']);
         $this->executeCommand(['php', 'artisan', 'key:generate']);
         $this->executeCommand(['php', 'artisan', 'storage:link']);
-        $this->executeCommand(['php', 'artisan', 'migrate']);
     }
 
     public function yarnBuild() {

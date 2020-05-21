@@ -1,0 +1,35 @@
+version: '3'
+
+volumes:
+  database2: {}
+
+services:
+  # Named "database2" because "database" conflicts with directory inside project
+  database2:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: budget
+      MYSQL_USER: budget
+      MYSQL_PASSWORD: test
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - database2:/var/lib/mysql
+
+  php:
+    build: ./
+    environment:
+      DB_HOST: database2
+      DB_DATABASE: budget
+      DB_USERNAME: budget
+      DB_PASSWORD: test
+    volumes:
+      - ./:/usr/share/nginx/budget
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./:/usr/share/nginx/budget
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
