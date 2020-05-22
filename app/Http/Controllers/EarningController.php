@@ -17,18 +17,6 @@ class EarningController extends Controller {
         ];
     }
 
-    public function index() {
-        $user = Auth::user();
-
-        $earnings = session('space')
-            ->earnings()
-            ->orderBy('happened_on', 'DESC')
-            ->orderBy('created_at', 'DESC')
-            ->get();
-
-        return view('earnings.index', compact('earnings'));
-    }
-
     public function create() {
         return view('earnings.create');
     }
@@ -90,6 +78,6 @@ class EarningController extends Controller {
 
         $earning->restore();
 
-        return redirect()->route('earnings.index');
+        return redirect()->route('transactions.index');
     }
 }
