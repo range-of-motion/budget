@@ -10,35 +10,6 @@ use App\Models\Tag;
 use Auth;
 
 class SpendingController extends Controller {
-    public function index(Request $request) {
-        $filter = false;
-
-        $spendingsByMonth = [];
-
-        for ($month = 12; $month >= 1; $month --) {
-            $query = session('space')
-                ->spendings()
-                ->whereYear('happened_on', date('Y'))
-                ->whereMonth('happened_on', $month);
-
-
-            if ($import_id = $request->get('filter_by_import')) {
-                $filter = 'import';
-
-                $query->where('import_id', $import_id);
-            }
-
-            $spendingsThisMonth = $query->orderBy('happened_on', 'DESC')
-                ->get();
-
-            if (count($spendingsThisMonth)) {
-                $spendingsByMonth[$month] = $spendingsThisMonth;
-            }
-        }
-
-        return view('spendings.index', compact('filter', 'spendingsByMonth'));
-    }
-
     public function create() {
         $tags = session('space')->tags()->orderBy('created_at', 'DESC')->get();
 
@@ -113,6 +84,6 @@ class SpendingController extends Controller {
 
         $spending->restore();
 
-        return redirect()->route('spendings.index');
+        return redirect()->route('transactions.index');
     }
 }

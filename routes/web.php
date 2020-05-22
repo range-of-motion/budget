@@ -24,7 +24,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::name('earnings.')->group(function () {
-        Route::get('/earnings', 'EarningController@index')->name('index');
         Route::get('/earnings/create', 'EarningController@create')->name('create');
         Route::post('/earnings', 'EarningController@store');
         Route::get('/earnings/{earning}/edit', 'EarningController@edit')->name('edit');
@@ -34,7 +33,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::name('spendings.')->group(function () {
-        Route::get('/spendings', 'SpendingController@index')->name('index');
         Route::get('/spendings/create', 'SpendingController@create')->name('create');
         Route::post('/spendings', 'SpendingController@store');
         Route::get('/spendings/{spending}/edit', 'SpendingController@edit')->name('edit');
