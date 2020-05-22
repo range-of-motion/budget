@@ -13,5 +13,11 @@ before_script:
   - php artisan key:generate
   - php artisan migrate --database=testing
 
-script:
-  - vendor/bin/phpunit
+jobs:
+  include:
+    - stage: test
+      name: "PHPUnit"
+      script: vendor/bin/phpunit
+    - stage: test
+      name: "PHPCS"
+      script: vendor/bin/phpcs

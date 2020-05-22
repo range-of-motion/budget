@@ -21,7 +21,8 @@
         "fzaninotto/faker": "~1.4",
         "laravel/dusk": "^5.11",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "autoload": {
         "classmap": [
