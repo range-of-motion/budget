@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ruleset name="Budget">
+  <file>./app</file>
+  <file>./config</file>
+
+  <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+</ruleset>
