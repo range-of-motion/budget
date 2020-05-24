@@ -35,9 +35,16 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
     * You should always check out a tag, since the `master` branch might not always be stable (`git checkout TAG`)
 * Run installation command (`php artisan budget:install`)
 * Configure additional services in `.env` (database or mail, for example)
+* Run migrations for database (`php artisan migrate`)
 * Head over to your list of crons (`crontab -e`) and add `* * * * * cd /path-to-budget && php artisan schedule:run >> /dev/null 2>&1`
 
 *Note that in order for certain features to work properly, the jobs queue needs to be watched. This can be done by either running `php artisan queue:work` or using [Supervisor](https://laravel.com/docs/7.x/queues#supervisor-configuration).*
+
+## Docker
+
+You can run Budget using Docker. Spinning it up (`docker-compose up`) will create 3 containers–for MySQL, PHP and NGINX.
+
+*Disclaimer–currently the Docker setup is missing cronjobs and the queue worker.*
 
 ## Contact
 
