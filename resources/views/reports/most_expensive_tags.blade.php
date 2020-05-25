@@ -13,7 +13,7 @@
                         <div class="row__column row__column--middle">
                             <progress max="{{ $totalSpent }}" value="{{ $tag->amount }}"></progress>
                         </div>
-                        <div class="row__column row__column--middle text-right">{!! $currency !!} {{ number_format($tag->amount / 100, 2) }} / {!! $currency !!} {{ number_format($totalSpent / 100, 2) }}</div>
+                        <div class="row__column row__column--middle text-right">{!! $currency !!} {{ \App\Helper::formatNumber($tag->amount / 100) }} / {!! $currency !!} {{ \App\Helper::formatNumber($totalSpent / 100) }}</div>
                     </div>
                 @endforeach
             </div>

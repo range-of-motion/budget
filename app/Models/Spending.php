@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\TransactionCreated;
 use App\Events\TransactionDeleted;
+use App\Helper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -28,7 +29,7 @@ class Spending extends Model {
 
     // Accessors
     public function getFormattedAmountAttribute() {
-        return number_format($this->amount / 100, 2);
+        return Helper::formatNumber($this->amount / 100);
     }
 
     public function getFormattedHappenedOnAttribute() {
