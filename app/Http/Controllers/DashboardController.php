@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class DashboardController extends Controller {
                 ->where('happened_on', $currentYear . '-' . $currentMonth . '-' . $i)
                 ->sum('amount');
 
-            $dailyBalance[$i] = number_format($balanceTick / 100, 2);
+            $dailyBalance[$i] = Helper::formatNumber($balanceTick / 100);
         }
 
         return view('dashboard', [

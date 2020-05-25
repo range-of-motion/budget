@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +33,7 @@ class ReportController extends Controller {
                 ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
                 ->sum('amount');
 
-            $weeks[$i] = number_format($balance / 100, 2, '.', '');
+            $weeks[$i] = Helper::formatNumber($balance / 100);
         }
 
         return view('reports.weekly_report', [
