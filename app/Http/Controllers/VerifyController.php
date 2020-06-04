@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class VerifyController extends Controller {
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository) {
+        $this->userRepository = $userRepository;
+    }
+
     public function __invoke($token) {
-        $user = User::where('verification_token', $token)->first();
+        $user = $this->userRepository->getByVerificationToken($token);
 
         if (!$user) {
             return redirect()->route('login');
         }
 
-        $user->verification_token = null;
-        $user->save();
+        $this->userRepository->verifyById($user->id);
 
         return redirect()
             ->route('login')
