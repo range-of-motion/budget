@@ -47,7 +47,7 @@ class RecurringController extends Controller {
         $recurring = new Recurring;
 
         $recurring->space_id = session('space')->id;
-        $recurring->type = 'monthly';
+        $recurring->interval = 'monthly';
         $recurring->day = ltrim($request->input('day'), '0');
         $recurring->starts_on = date('Y-m-d');
         $recurring->ends_on = $request->input('end');
