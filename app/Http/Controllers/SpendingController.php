@@ -40,7 +40,9 @@ class SpendingController extends Controller {
     public function edit(Spending $spending) {
         $this->authorize('edit', $spending);
 
-        return view('spendings.edit', compact('spending'));
+        $tags = session('space')->tags()->orderBy('created_at', 'DESC')->get();
+
+        return view('spendings.edit', compact('tags', 'spending'));
     }
 
     public function update(Request $request, Spending $spending) {
@@ -48,12 +50,14 @@ class SpendingController extends Controller {
 
         // TODO MOVE TO CENTRAL PLACE FOR REUSABILITY
         $request->validate([
+            'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
             'date' => 'required|date|date_format:Y-m-d',
             'description' => 'required|max:255',
             'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
         ]);
 
         $spending->fill([
+            'tag_id' => $request->input('tag_id'),
             'happened_on' => $request->input('date'),
             'description' => $request->input('description'),
             'amount' => (int) ($request->input('amount') * 100)
