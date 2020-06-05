@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Earning;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -9,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Models\Recurring;
 use App\Models\Spending;
+use Exception;
 
 class ProcessRecurrings implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -41,14 +43,30 @@ class ProcessRecurrings implements ShouldQueue {
             })->get();
 
         foreach ($recurrings as $recurring) {
-            $spending = new Spending;
-            $spending->space_id = $recurring->space_id;
-            $spending->recurring_id = $recurring->id;
-            $spending->tag_id = $recurring->tag_id;
-            $spending->happened_on = date('Y-m-d');
-            $spending->description = $recurring->description;
-            $spending->amount = $recurring->amount;
-            $spending->save();
+            if ($recurring->type !== 'earning' && $recurring->type !== 'spending') {
+                throw new Exception('Unknown type "' . $recurring->type . '" for recurring');
+            }
+
+            if ($recurring->type === 'earning') {
+                $earning = new Earning;
+                $earning->space_id = $recurring->space_id;
+                $earning->recurring_id = $recurring->id;
+                $earning->happened_on = date('Y-m-d');
+                $earning->description = $recurring->description;
+                $earning->amount = $recurring->amount;
+                $earning->save();
+            }
+
+            if ($recurring->type === 'spending') {
+                $spending = new Spending;
+                $spending->space_id = $recurring->space_id;
+                $spending->recurring_id = $recurring->id;
+                $spending->tag_id = $recurring->tag_id;
+                $spending->happened_on = date('Y-m-d');
+                $spending->description = $recurring->description;
+                $spending->amount = $recurring->amount;
+                $spending->save();
+            }
 
             $recurring->last_used_on = date('Y-m-d');
             $recurring->save();
