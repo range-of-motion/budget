@@ -11,6 +11,16 @@
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">
+                        <label>{{ __('models.tag') }}</label>
+                        <select name="tag_id">
+                            <option value="">-</option>
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}" {{ $tag->id === $spending->tag_id ? 'selected' : '' }}>{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                        @include('partials.validation_error', ['payload' => 'tag_id'])
+                    </div>
+                    <div class="input input--small">
                         <label>{{ __('fields.date') }}</label>
                         <DatePicker start-date="{{ $spending->happened_on }}"></DatePicker>
                         @include('partials.validation_error', ['payload' => 'date'])
