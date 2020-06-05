@@ -63,7 +63,7 @@
                                             <i class="fas fa-recycle"></i>
                                         @endif
                                     </div>
-                                    <div class="row__column row__column--compact row__column--middle {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
+                                    <div class="row__column row__column--compact row__column--middle w-150 text-right {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
                                     <div class="row__column row__column--compact row__column--middle ml-1 {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">
                                         @if (get_class($transaction) == 'App\Models\Earning')
                                             <i class="fas fa-arrow-alt-left fa-sm"></i>
