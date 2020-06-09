@@ -35,13 +35,13 @@
             <input type="text" v-model="amount" />
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
-        <div v-if="type == 'spending'">
+        <div>
             <div class="input row">
                 <div class="row__column row__column--compact mr-1">
                     <input type="checkbox" id="test" v-model="isRecurring" />
                 </div>
                 <div class="row__column">
-                    <label for="test">This is a recurring spending&mdash;create it for me in the future</label>
+                    <label for="test">This is a recurring transaction&mdash;create it for me in the future</label>
                 </div>
             </div>
             <div v-if="isRecurring">
@@ -52,7 +52,7 @@
                             <input id="noEnd" type="radio" v-model="recurringEnd" value="forever" />
                         </div>
                         <div class="row__column">
-                            <label for="noEnd">Forever :(</label>
+                            <label for="noEnd">Forever</label>
                         </div>
                     </div>
                     <div class="row">
@@ -140,9 +140,10 @@
                 if (!this.loading) {
                     this.loading = true
 
-                    if (this.type == 'spending' && this.isRecurring) { // It's a recurring
+                    if (this.isRecurring) { // It's a recurring
                         let body = {
                             _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            type: this.type,
                             day: this.date.slice(-2),
                             description: this.description,
                             amount: this.amount

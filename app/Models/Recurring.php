@@ -12,6 +12,10 @@ class Recurring extends Model {
 
     protected $dates = ['deleted_at'];
 
+    protected $fillable = [
+        'type'
+    ];
+
     protected $dispatchesEvents = [
         'created' => RecurringCreated::class,
         'deleted' => RecurringDeleted::class

@@ -59,7 +59,7 @@
                                         @endif
                                     </div>
                                     <div class="row__column row__column--compact w-50">
-                                        @if (get_class($transaction) === 'App\Models\Spending' && $transaction->recurring_id)
+                                        @if ($transaction->recurring_id)
                                             <i class="fas fa-recycle"></i>
                                         @endif
                                     </div>

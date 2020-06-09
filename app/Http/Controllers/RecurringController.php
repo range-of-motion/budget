@@ -33,6 +33,7 @@ class RecurringController extends Controller {
 
     public function store(Request $request) {
         $request->validate([
+            'type' => 'required|in:earning,spending',
             'day' => ['required',
                       'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
                     ],
@@ -47,7 +48,8 @@ class RecurringController extends Controller {
         $recurring = new Recurring;
 
         $recurring->space_id = session('space')->id;
-        $recurring->type = 'monthly';
+        $recurring->type = $request->type;
+        $recurring->interval = 'monthly';
         $recurring->day = ltrim($request->input('day'), '0');
         $recurring->starts_on = date('Y-m-d');
         $recurring->ends_on = $request->input('end');
