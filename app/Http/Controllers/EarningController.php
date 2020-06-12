@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use Illuminate\Http\Request;
 
 use App\Models\Earning;
@@ -29,7 +30,7 @@ class EarningController extends Controller {
         $earning->space_id = session('space')->id;
         $earning->happened_on = $request->input('date');
         $earning->description = $request->input('description');
-        $earning->amount = (int) ($request->input('amount') * 100);
+        $earning->amount = Helper::rawNumberToInteger($request->input('amount'));
 
         $earning->save();
 
@@ -50,7 +51,7 @@ class EarningController extends Controller {
         $earning->fill([
             'happened_on' => $request->input('date'),
             'description' => $request->input('description'),
-            'amount' => (int) ($request->input('amount') * 100)
+            'amount' => Helper::rawNumberToInteger($request->input('amount'))
         ])->save();
 
         return redirect()->route('transactions.index');

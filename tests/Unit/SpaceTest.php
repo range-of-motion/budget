@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Helper;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,7 +17,7 @@ class SpaceTest extends TestCase {
 
         factory(Earning::class)->create([
             'space_id' => $space->id,
-            'amount' => (int) ('39' * 100),
+            'amount' => Helper::rawNumberToInteger(39),
             'happened_on' => now()
         ]);
 
@@ -24,7 +25,7 @@ class SpaceTest extends TestCase {
 
         factory(Spending::class)->create([
             'space_id' => $space->id,
-            'amount' => (int) ('12' * 100),
+            'amount' => Helper::rawNumberToInteger(12),
             'happened_on' => now()
         ]);
 
@@ -32,7 +33,7 @@ class SpaceTest extends TestCase {
 
         factory(Spending::class)->create([
             'space_id' => $space->id,
-            'amount' => (int) ('50' * 100),
+            'amount' => Helper::rawNumberToInteger(50),
             'happened_on' => now()
         ]);
 
@@ -41,7 +42,7 @@ class SpaceTest extends TestCase {
 
         factory(Earning::class)->create([
             'space_id' => $space->id,
-            'amount' => (int) ('10' * 100),
+            'amount' => Helper::rawNumberToInteger(10),
             'happened_on' => date_create_from_format('Y-m-d', '2018-01-01')
         ]);
 
@@ -51,7 +52,7 @@ class SpaceTest extends TestCase {
 
         factory(Earning::class)->create([
             'space_id' => 2,
-            'amount' => (int) ('10' * 100),
+            'amount' => Helper::rawNumberToInteger(10),
             'happened_on' => date_create_from_format('Y-m-d', '2020-01-01')
         ]);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use App\Models\Import;
 use App\Models\Spending;
 use Illuminate\Http\Request;
@@ -144,7 +145,7 @@ class ImportController extends Controller {
                     'tag_id' => $row['tag_id'],
                     'happened_on' => $row['happened_on'],
                     'description' => $row['description'],
-                    'amount' => (int) ($amount * 100)
+                    'amount' => Helper::rawNumberToInteger($amount)
                 ]);
             }
         }

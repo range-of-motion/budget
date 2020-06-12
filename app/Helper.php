@@ -7,4 +7,9 @@ class Helper {
     {
         return number_format($number, 2, '.', '');
     }
+
+    public static function rawNumberToInteger(float $rawNumber): int
+    {
+        return (int) round($rawNumber * 100);
+    }
 }

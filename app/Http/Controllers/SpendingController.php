@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use Illuminate\Http\Request;
 
 use App\Models\Spending;
@@ -30,7 +31,7 @@ class SpendingController extends Controller {
         $spending->tag_id = $request->input('tag_id');
         $spending->happened_on = $request->input('date');
         $spending->description = $request->input('description');
-        $spending->amount = (int) ($request->input('amount') * 100);
+        $spending->amount = Helper::rawNumberToInteger($request->input('amount'));
 
         $spending->save();
 
@@ -60,7 +61,7 @@ class SpendingController extends Controller {
             'tag_id' => $request->input('tag_id'),
             'happened_on' => $request->input('date'),
             'description' => $request->input('description'),
-            'amount' => (int) ($request->input('amount') * 100)
+            'amount' => Helper::rawNumberToInteger($request->input('amount'))
         ])->save();
 
         return redirect()->route('transactions.index');
