@@ -13,7 +13,7 @@
     @endif
     @foreach ($payload->attachments as $attachment)
         <div class="box__section">
-            <img src="{{ $attachment->file_path }}" style="max-width: 100%; max-height: 200px; border-radius: 5px; vertical-align: top;" />
+            <img src="{{ $attachment->file_b64 }}" style="max-width: 100%; max-height: 200px; border-radius: 5px; vertical-align: top;" />
         </div>
     @endforeach
 </div>
