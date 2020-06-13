@@ -16,6 +16,8 @@ Route::post('/register', 'RegisterController@store');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
+    Route::post('/attachments', 'AttachmentController@store');
+
     Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
 
     Route::name('transactions.')->group(function () {
