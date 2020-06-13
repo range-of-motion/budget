@@ -17,6 +17,15 @@ class SpendingController extends Controller {
         return view('spendings.create', compact('tags'));
     }
 
+    public function show(Request $request, Spending $spending)
+    {
+        $this->authorize('view', $spending);
+
+        return view('spendings.show', [
+            'spending' => $spending
+        ]);
+    }
+
     public function store(Request $request) {
         $request->validate([
             'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER

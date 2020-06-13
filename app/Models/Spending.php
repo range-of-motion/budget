@@ -50,4 +50,10 @@ class Spending extends Model {
     public function tag() {
         return $this->belongsTo(Tag::class);
     }
+
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class, 'transaction_id')
+            ->where('transaction_type', 'spending');
+    }
 }

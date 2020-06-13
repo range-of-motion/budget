@@ -32,5 +32,9 @@ class Earning extends Model {
     }
 
     // Relations
-    //
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class, 'transaction_id')
+            ->where('transaction_type', 'earning');
+    }
 }

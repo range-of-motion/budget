@@ -1,13 +1,11 @@
 .row {
     display: flex;
 
-    &.row--middle {
-        align-items: center;
-    }
+    &.row--middle { align-items: center; }
+    &.row--bottom { align-items: flex-end; }
 
-    &.row--right {
-        justify-content: flex-end;
-    }
+    &.row--separate { justify-content: space-between; }
+    &.row--right { justify-content: flex-end; }
 
     &.row--gutter {
         margin-left: -20px;
