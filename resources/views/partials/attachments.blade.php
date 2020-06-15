@@ -12,8 +12,16 @@
         <div class="box__section text-center">No attachments for this transaction</div>
     @endif
     @foreach ($payload->attachments as $attachment)
-        <div class="box__section">
+        <div class="box__section row">
             <img src="{{ $attachment->file_b64 }}" style="max-width: 100%; max-height: 200px; border-radius: 5px; vertical-align: top;" />
+            <div class="ml-2">
+                <form method="POST" action="/attachments/{{ $attachment->id }}/delete">
+                    {{ csrf_field() }}
+                    <button class="button link">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     @endforeach
 </div>

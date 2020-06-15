@@ -34,4 +34,21 @@ class AttachmentController extends Controller
 
         return redirect('/' . $transactionType . 's/' . $transactionId);
     }
+
+    public function delete(Request $request, string $id)
+    {
+        $attachment = $this->attachmentRepository->getById($id);
+
+        if (!$attachment) {
+            abort(404);
+        }
+
+        // Memorize some details before we delete it
+        $transactionType = $attachment->transaction_type;
+        $transactionId = $attachment->transaction_id;
+
+        $this->attachmentRepository->delete($id);
+
+        return redirect('/' . $transactionType . 's/' . $transactionId);
+    }
 }
