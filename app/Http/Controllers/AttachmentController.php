@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attachment;
 use App\Repositories\AttachmentRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class AttachmentController extends Controller
@@ -33,6 +34,21 @@ class AttachmentController extends Controller
         $this->attachmentRepository->create($transactionType, $transactionId, $filePath);
 
         return redirect('/' . $transactionType . 's/' . $transactionId);
+    }
+
+    public function download(Request $request, Attachment $attachment)
+    {
+        $user = Auth::user();
+
+        if (!$user->spaces->contains($attachment->transaction->space_id)) {
+            abort(403);
+        }
+
+        if ($attachment->file_type !== 'pdf') {
+            return null;
+        }
+
+        return response()->download(storage_path() . '/app/' . $attachment->file_path);
     }
 
     public function delete(Request $request, string $id)

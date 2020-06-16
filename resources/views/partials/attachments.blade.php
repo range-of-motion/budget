@@ -13,7 +13,16 @@
     @endif
     @foreach ($payload->attachments as $attachment)
         <div class="box__section row">
-            <img src="{{ $attachment->file_b64 }}" style="max-width: 100%; max-height: 200px; border-radius: 5px; vertical-align: top;" />
+            <div>
+                @if ($attachment->file_type !== 'pdf')
+                    <img src="{{ $attachment->file_b64 }}" style="max-width: 100%; max-height: 200px; border-radius: 5px; vertical-align: top;" />
+                @else
+                    <div class="mb-1" style="display: flex; align-items: center; justify-content: center; width: 200px; height: 200px; border-radius: 5px; background: #EEE;">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <a href="/attachments/{{ $attachment->id }}/download">Download</a>
+                @endif
+            </div>
             <div class="ml-2">
                 <form method="POST" action="/attachments/{{ $attachment->id }}/delete">
                     {{ csrf_field() }}

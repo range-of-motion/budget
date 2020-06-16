@@ -17,6 +17,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
     Route::post('/attachments', 'AttachmentController@store');
+    Route::get('/attachments/{attachment}/download', 'AttachmentController@download');
     Route::post('/attachments/{id}/delete', 'AttachmentController@delete');
 
     Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
