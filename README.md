@@ -15,6 +15,7 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 
 * Insertion and management of transactions
 * Ability to organize transactions using tags
+* Facilitate uploading and organizing of receipts
 * Support for importing transactions (CSV format)
 * Reports that visualize financials (showing weekly balance and most expensive tags, for example)
 * Supports multiple currencies

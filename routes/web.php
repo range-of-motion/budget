@@ -16,6 +16,10 @@ Route::post('/register', 'RegisterController@store');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
 
+    Route::post('/attachments', 'AttachmentController@store');
+    Route::get('/attachments/{attachment}/download', 'AttachmentController@download');
+    Route::post('/attachments/{id}/delete', 'AttachmentController@delete');
+
     Route::get('/transactions/create', 'TransactionController@create')->name('transactions.create');
 
     Route::name('transactions.')->group(function () {
@@ -24,6 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::name('earnings.')->group(function () {
+        Route::get('/earnings/{earning}', 'EarningController@show')->name('show');
         Route::get('/earnings/create', 'EarningController@create')->name('create');
         Route::post('/earnings', 'EarningController@store');
         Route::get('/earnings/{earning}/edit', 'EarningController@edit')->name('edit');
@@ -33,6 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::name('spendings.')->group(function () {
+        Route::get('/spendings/{spending}', 'SpendingController@show')->name('show');
         Route::get('/spendings/create', 'SpendingController@create')->name('create');
         Route::post('/spendings', 'SpendingController@store');
         Route::get('/spendings/{spending}/edit', 'SpendingController@edit')->name('edit');
