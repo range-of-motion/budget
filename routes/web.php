@@ -2,16 +2,18 @@
 
 Route::get('/', 'IndexController@index')->name('index');
 
-Route::get('/login', 'LoginController@index')->name('login');
-Route::post('/login', 'LoginController@store');
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/login', 'LoginController@index')->name('login');
+    Route::post('/login', 'LoginController@store');
 
-Route::get('/verify/{token}', 'VerifyController')->name('verify');
+    Route::get('/verify/{token}', 'VerifyController')->name('verify');
 
-Route::get('/reset_password', 'ResetPasswordController@get')->name('reset_password');
-Route::post('/reset_password', 'ResetPasswordController@post');
+    Route::get('/reset_password', 'ResetPasswordController@get')->name('reset_password');
+    Route::post('/reset_password', 'ResetPasswordController@post');
 
-Route::get('/register', 'RegisterController@index')->name('register');
-Route::post('/register', 'RegisterController@store');
+    Route::get('/register', 'RegisterController@index')->name('register');
+    Route::post('/register', 'RegisterController@store');
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard');
