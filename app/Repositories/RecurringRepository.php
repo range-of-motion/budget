@@ -21,8 +21,15 @@ class RecurringRepository
         ];
     }
 
-    public function create(int $spaceId, string $type, int $day, ?string $endDate, ?int $tagId, string $description, string $amount): Recurring
-    {
+    public function create(
+        int $spaceId,
+        string $type,
+        int $day,
+        ?string $endDate,
+        ?int $tagId,
+        string $description,
+        string $amount
+    ): Recurring {
         if ($type !== 'earning' && $type !== 'spending') {
             throw new Exception('Unknown type "' . $type . '"');
         }

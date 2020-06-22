@@ -12,23 +12,26 @@ use App\Models\Recurring;
 use App\Models\Spending;
 use Exception;
 
-class ProcessRecurrings implements ShouldQueue {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+class ProcessRecurrings implements ShouldQueue
+{
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
-    public function __construct() {
+    public function __construct()
+    {
         //
     }
 
-    public function handle() {
+    public function handle()
+    {
         $day = (int) date('j');
 
-        $recurrings = Recurring
-            ::where('interval', 'monthly')
-            ->when((int) date('t')  == $day,
-            function ($query) use ($day) {
+        $recurrings = Recurring::where('interval', 'monthly')
+            ->when((int) date('t')  == $day, function ($query) use ($day) {
                 return $query->where('day', '>=', $day);
-            },
-            function ($query) use ($day) {
+            }, function ($query) use ($day) {
                 return $query->where('day', $day);
             })
             ->where('starts_on', '<=', date('Y-m-d'))
@@ -48,7 +51,7 @@ class ProcessRecurrings implements ShouldQueue {
             }
 
             if ($recurring->type === 'earning') {
-                $earning = new Earning;
+                $earning = new Earning();
                 $earning->space_id = $recurring->space_id;
                 $earning->recurring_id = $recurring->id;
                 $earning->happened_on = date('Y-m-d');
@@ -58,7 +61,7 @@ class ProcessRecurrings implements ShouldQueue {
             }
 
             if ($recurring->type === 'spending') {
-                $spending = new Spending;
+                $spending = new Spending();
                 $spending->space_id = $recurring->space_id;
                 $spending->recurring_id = $recurring->id;
                 $spending->tag_id = $recurring->tag_id;

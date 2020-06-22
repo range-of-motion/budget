@@ -7,7 +7,8 @@ use App\Events\TagDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tag extends Model {
+class Tag extends Model
+{
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
@@ -20,16 +21,19 @@ class Tag extends Model {
     ];
 
     // Relations
-    public function spendings() {
+    public function spendings()
+    {
         return $this->hasMany(Spending::class);
     }
 
     // Custom
-    private static function randomColorPart() {
+    private static function randomColorPart()
+    {
         return str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT);
     }
 
-    public static function randomColor() {
+    public static function randomColor()
+    {
         return self::randomColorPart() . self::randomColorPart() . self::randomColorPart();
     }
 }

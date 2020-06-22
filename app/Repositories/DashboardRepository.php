@@ -40,7 +40,7 @@ class DashboardRepository
         $balanceTick = 0;
         $dailyBalance = [];
 
-        for ($i = 1; $i <= $daysInMonth; $i ++) {
+        for ($i = 1; $i <= $daysInMonth; $i++) {
             $balanceTick -= session('space')
                 ->spendings()
                 ->where('happened_on', $year . '-' . $month . '-' . $i)

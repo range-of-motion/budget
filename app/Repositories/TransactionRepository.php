@@ -5,7 +5,8 @@ namespace App\Repositories;
 use App\Helper;
 use Carbon\Carbon;
 
-class TransactionRepository {
+class TransactionRepository
+{
     public function getWeeklyBalance(string $year): array
     {
         $weeks = [];
@@ -17,7 +18,7 @@ class TransactionRepository {
             $weekMode = 7;
         }
 
-        for ($i = 1; $i <= 53; $i ++) { // This used to be 52, IDK what happens after we moved it to 53
+        for ($i = 1; $i <= 53; $i++) { // This used to be 52, IDK what happens after we moved it to 53
             $balance += session('space')
                 ->earnings()
                 ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
@@ -34,7 +35,8 @@ class TransactionRepository {
         return $weeks;
     }
 
-    public function getTransactionsByYearMonth(array $filterBy = []) {
+    public function getTransactionsByYearMonth(array $filterBy = [])
+    {
         $yearMonths = [];
 
         // Populate yearMonths with earnings

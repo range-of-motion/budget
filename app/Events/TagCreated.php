@@ -13,10 +13,14 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Auth;
 
-class TagCreated {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+class TagCreated
+{
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-    public function __construct(Tag $tag) {
+    public function __construct(Tag $tag)
+    {
         $userId = null;
 
         if (Auth::check()) {

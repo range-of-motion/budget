@@ -6,7 +6,8 @@ use App\Models\Tag;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class TagRepository {
+class TagRepository
+{
     public function getValidationRules(): array
     {
         return [
@@ -15,7 +16,8 @@ class TagRepository {
         ];
     }
 
-    public function getMostExpensiveTags(int $spaceId, int $limit = null, int $year = null, int $month = null) {
+    public function getMostExpensiveTags(int $spaceId, int $limit = null, int $year = null, int $month = null)
+    {
         $sql = '
             SELECT
                 tags.name AS name,

@@ -14,10 +14,14 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Auth;
 
-class TransactionCreated {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+class TransactionCreated
+{
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-    public function __construct($transaction) {
+    public function __construct($transaction)
+    {
         $userId = null;
 
         if (Auth::check()) {

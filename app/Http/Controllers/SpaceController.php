@@ -6,8 +6,10 @@ use App\Models\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SpaceController extends Controller {
-    public function __invoke($id) {
+class SpaceController extends Controller
+{
+    public function __invoke($id)
+    {
         $space = Space::find($id);
 
         if ($space->users->contains(Auth::user()->id)) {

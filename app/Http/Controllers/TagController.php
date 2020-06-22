@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Auth;
 use App\Models\Tag;
 use App\Repositories\TagRepository;
 
-class TagController extends Controller {
+class TagController extends Controller
+{
     private $tagRepository;
 
     public function __construct(TagRepository $tagRepository)
@@ -16,17 +16,20 @@ class TagController extends Controller {
         $this->tagRepository = $tagRepository;
     }
 
-    public function index() {
+    public function index()
+    {
         return view('tags.index', [
             'tags' => session('space')->tags()->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('tags.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate($this->tagRepository->getValidationRules());
 
         $this->tagRepository->create(session('space')->id, $request->input('name'), $request->input('color'));
@@ -34,15 +37,18 @@ class TagController extends Controller {
         return redirect()->route('tags.index');
     }
 
-    public function edit(Tag $tag) {
+    public function edit(Tag $tag)
+    {
         $this->authorize('edit', $tag);
 
         return view('tags.edit', compact('tag'));
     }
 
-    public function update(Request $request, Tag $tag) {
+    public function update(Request $request, Tag $tag)
+    {
         $this->authorize('update', $tag);
 
+        // phpcs:ignore
         $request->validate(array_slice($this->tagRepository->getValidationRules(), 0, 1, true)); // Get rid of last entry in $validationRules as it's not required for updating
 
         $this->tagRepository->update($tag->id, [
@@ -53,7 +59,8 @@ class TagController extends Controller {
         return redirect()->route('tags.index');
     }
 
-    public function destroy(Tag $tag) {
+    public function destroy(Tag $tag)
+    {
         $this->authorize('delete', $tag);
 
         if (!$tag->spendings->count()) {
