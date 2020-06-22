@@ -19,6 +19,14 @@ class UserRepository
         ];
     }
 
+    public function getValidationRulesForPasswordReset(): array
+    {
+        return [
+            'email' => 'required_without:password|email',
+            'password' => 'required_without:email|confirmed'
+        ];
+    }
+
     public function getById(int $id): ?User
     {
         return User::where('id', $id)->first();
@@ -55,5 +63,16 @@ class UserRepository
             'password' => Hash::make($password),
             'verification_token' => Str::random(100)
         ]);
+    }
+
+    public function update(int $id, array $data): void
+    {
+        $user = $this->getById($id);
+
+        if (!$user) {
+            throw new Exception('Could not find user with ID ' . $id);
+        }
+
+        $user->fill($data)->save();
     }
 }
