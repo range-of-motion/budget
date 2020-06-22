@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\Models\Tag;
+use App\Repositories\TagRepository;
 
 class TagController extends Controller {
-    private $validationRules = [
-        'name' => 'required|max:255',
-        'color' => 'required|max:6'
-    ];
+    private $tagRepository;
+
+    public function __construct(TagRepository $tagRepository)
+    {
+        $this->tagRepository = $tagRepository;
+    }
 
     public function index() {
         return view('tags.index', [
@@ -24,13 +27,9 @@ class TagController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate($this->validationRules);
+        $request->validate($this->tagRepository->getValidationRules());
 
-        Tag::create([
-            'space_id' => session('space')->id,
-            'name' => $request->input('name'),
-            'color' => $request->input('color')
-        ]);
+        $this->tagRepository->create(session('space')->id, $request->input('name'), $request->input('color'));
 
         return redirect()->route('tags.index');
     }
@@ -44,12 +43,12 @@ class TagController extends Controller {
     public function update(Request $request, Tag $tag) {
         $this->authorize('update', $tag);
 
-        $request->validate(array_slice($this->validationRules, 0, 1, true)); // Get rid of last entry in $validationRules as it's not required for updating
+        $request->validate(array_slice($this->tagRepository->getValidationRules(), 0, 1, true)); // Get rid of last entry in $validationRules as it's not required for updating
 
-        $tag->fill([
+        $this->tagRepository->update($tag->id, [
             'name' => $request->input('name'),
             'color' => $request->input('color')
-        ])->save();
+        ]);
 
         return redirect()->route('tags.index');
     }

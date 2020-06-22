@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Helper;
 use App\Models\Recurring;
 use Exception;
 
@@ -37,7 +36,7 @@ class RecurringRepository
             'ends_on' => $endDate,
             'tag_id' => $tagId,
             'description' => $description,
-            'amount' => Helper::rawNumberToInteger($amount)
+            'amount' => $amount
         ]);
     }
 }

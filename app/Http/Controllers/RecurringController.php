@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use Illuminate\Http\Request;
 
 use App\Models\Recurring;
@@ -49,7 +50,7 @@ class RecurringController extends Controller {
             $request->input('end', null),
             $request->input('tag', null),
             $request->input('description'),
-            $request->input('amount')
+            Helper::rawNumberToInteger($request->input('amount'))
         );
 
         ProcessRecurrings::dispatch();

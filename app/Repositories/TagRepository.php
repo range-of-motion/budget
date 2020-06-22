@@ -2,9 +2,19 @@
 
 namespace App\Repositories;
 
+use App\Models\Tag;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class TagRepository {
+    public function getValidationRules(): array
+    {
+        return [
+            'name' => 'required|max:255',
+            'color' => 'required|max:6'
+        ];
+    }
+
     public function getMostExpensiveTags(int $spaceId, int $limit = null, int $year = null, int $month = null) {
         $sql = '
             SELECT
@@ -48,5 +58,30 @@ class TagRepository {
         }
 
         return DB::select($sql . ';', $data);
+    }
+
+    public function create(int $spaceId, string $name, string $color): Tag
+    {
+        // Check if color is HEX
+        if (strlen($color) !== 6 || !ctype_xdigit($color)) {
+            throw new Exception('Invalid color');
+        }
+
+        return Tag::create([
+            'space_id' => $spaceId,
+            'name' => $name,
+            'color' => $color
+        ]);
+    }
+
+    public function update(int $tagId, array $data): void
+    {
+        $tag = Tag::find($tagId);
+
+        if (!$tag) {
+            throw new Exception('Could not find tag with ID ' . $tagId);
+        }
+
+        $tag->fill($data)->save();
     }
 }

@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Helper;
 use App\Models\Import;
 use App\Models\Spending;
+use App\Repositories\SpendingRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
 class ImportController extends Controller {
+    private $spendingRepository;
+
+    public function __construct(SpendingRepository $spendingRepository)
+    {
+        $this->spendingRepository = $spendingRepository;
+    }
+
     public function index() {
         return view('imports.index')->with([
             'imports' => session('space')->imports()->orderBy('created_at', 'DESC')->get()
@@ -139,14 +147,14 @@ class ImportController extends Controller {
                 // TODO CHECK HOW THIS WORKS WITH 1k+ AMOUNTS
                 $amount = str_replace(',', '.', $row['amount']);
 
-                Spending::create([
-                    'space_id' => session('space')->id,
-                    'import_id' => $import->id,
-                    'tag_id' => $row['tag_id'],
-                    'happened_on' => $row['happened_on'],
-                    'description' => $row['description'],
-                    'amount' => Helper::rawNumberToInteger($amount)
-                ]);
+                $this->spendingRepository->create(
+                    session('space')->id,
+                    $import->id,
+                    $row['tag_id'],
+                    $row['happened_on'],
+                    $row['description'],
+                    $amount
+                );
             }
         }
 

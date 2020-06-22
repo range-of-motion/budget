@@ -6,16 +6,15 @@ use App\Helper;
 use Illuminate\Http\Request;
 
 use App\Models\Earning;
-
+use App\Repositories\EarningRepository;
 use Auth;
 
 class EarningController extends Controller {
-    protected function validationRules() {
-        return [
-            'date' => 'required|date|date_format:Y-m-d',
-            'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
-        ];
+    private $earningRepository;
+
+    public function __construct(EarningRepository $earningRepository)
+    {
+        $this->earningRepository = $earningRepository;
     }
 
     public function show(Request $request, Earning $earning)
@@ -32,16 +31,9 @@ class EarningController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate($this->validationRules());
+        $request->validate($this->earningRepository->getValidationRules());
 
-        $earning = new Earning;
-
-        $earning->space_id = session('space')->id;
-        $earning->happened_on = $request->input('date');
-        $earning->description = $request->input('description');
-        $earning->amount = Helper::rawNumberToInteger($request->input('amount'));
-
-        $earning->save();
+        $this->earningRepository->create(session('space')->id, $request->input('date'), $request->input('description'), Helper::rawNumberToInteger($request->input('amount')));
 
         return redirect()->route('dashboard');
     }
@@ -55,13 +47,13 @@ class EarningController extends Controller {
     public function update(Request $request, Earning $earning) {
         $this->authorize('update', $earning);
 
-        $request->validate($this->validationRules());
+        $request->validate($this->earningRepository->getValidationRules());
 
-        $earning->fill([
+        $this->earningRepository->update($earning->id, [
             'happened_on' => $request->input('date'),
             'description' => $request->input('description'),
             'amount' => Helper::rawNumberToInteger($request->input('amount'))
-        ])->save();
+        ]);
 
         return redirect()->route('transactions.index');
     }
