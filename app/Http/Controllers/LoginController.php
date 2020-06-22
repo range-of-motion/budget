@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LoginAttempt;
-use App\Models\User;
+use App\Repositories\LoginAttemptRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller {
+    private $userRepository;
+    private $loginAttemptRepository;
+
+    public function __construct(UserRepository $userRepository, LoginAttemptRepository $loginAttemptRepository)
+    {
+        $this->userRepository = $userRepository;
+        $this->loginAttemptRepository = $loginAttemptRepository;
+    }
+
     public function index() {
         return view('login');
     }
@@ -19,23 +28,15 @@ class LoginController extends Controller {
         ])) {
             $user = Auth::user();
 
-            LoginAttempt::create([
-                'user_id' => $user->id,
-                'ip' => $request->ip(),
-                'failed' => false
-            ]);
+            $this->loginAttemptRepository->create($user->id, $request->ip(), false);
 
             session(['space' => $user->spaces[0]]);
 
             return redirect()->route('dashboard');
         } else {
-            $user = User::where('email', $request->input('email'))->first();
+            $user = $this->userRepository->getByEmail($request->input('email'));
 
-            LoginAttempt::create([
-                'user_id' => $user ? $user->id : null,
-                'ip' => $request->ip(),
-                'failed' => true
-            ]);
+            $this->loginAttemptRepository->create($user ? $user->id : null, $request->ip(), true);
 
             $request->flash();
 

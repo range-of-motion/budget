@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 class Space extends Model {
     use SoftDeletes;
 
+    protected $fillable = [
+        'currency_id',
+        'name'
+    ];
+
     protected $dates = ['deleted_at'];
 
     // Relations
