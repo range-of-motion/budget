@@ -2,9 +2,38 @@
 
 namespace App\Repositories;
 
+use App\Helper;
 use Carbon\Carbon;
 
 class TransactionRepository {
+    public function getWeeklyBalance(string $year): array
+    {
+        $weeks = [];
+        $balance = 0;
+
+        $weekMode = 3;
+
+        if (date('w', strtotime($year . '-01-01')) == 1) {
+            $weekMode = 7;
+        }
+
+        for ($i = 1; $i <= 53; $i ++) { // This used to be 52, IDK what happens after we moved it to 53
+            $balance += session('space')
+                ->earnings()
+                ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
+                ->sum('amount');
+
+            $balance -= session('space')
+                ->spendings()
+                ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
+                ->sum('amount');
+
+            $weeks[$i] = Helper::formatNumber($balance / 100);
+        }
+
+        return $weeks;
+    }
+
     public function getTransactionsByYearMonth(array $filterBy = []) {
         $yearMonths = [];
 
