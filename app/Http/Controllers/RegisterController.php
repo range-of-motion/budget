@@ -7,62 +7,45 @@ use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
 use App\Mail\VerifyRegistration;
-use App\Models\Currency;
-use App\Models\User;
-use App\Models\Space;
-use Hash;
+use App\Repositories\CurrencyRepository;
+use App\Repositories\LoginAttemptRepository;
+use App\Repositories\SpaceRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Mail;
 
 class RegisterController extends Controller {
+    private $currencyRepository;
+    private $userRepository;
+    private $spaceRepository;
+    private $loginAttemptRepository;
+
+    public function __construct(CurrencyRepository $currencyRepository, UserRepository $userRepository, SpaceRepository $spaceRepository, LoginAttemptRepository $loginAttemptRepository)
+    {
+        $this->currencyRepository = $currencyRepository;
+        $this->userRepository = $userRepository;
+        $this->spaceRepository = $spaceRepository;
+        $this->loginAttemptRepository = $loginAttemptRepository;
+    }
+
     public function index() {
-        $currencies = [];
-
-        foreach (Currency::all() as $currency) {
-            $currencies[] = ['key' => $currency->id, 'label' => $currency->symbol];
-        }
-
-        return view('register', compact('currencies'));
+        return view('register', [
+            'currencies' => $this->currencyRepository->getKeyValueArray()
+        ]);
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
-            'currency' => 'required|exists:currencies,id'
-        ]);
+        $request->validate($this->userRepository->getValidationRulesForRegistration());
 
-        // User
-        $user = new User;
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->verification_token = Str::random(100);
-
-        $user->save();
-
-        // Space
-        $space = new Space;
-
-        $space->currency_id = $request->currency;
-        $space->name = $user->name . '\'s Space';
-
-        $space->save();
-
+        $user = $this->userRepository->create($request->name, $request->email, $request->password);
+        $space = $this->spaceRepository->create($request->currency, $user->name . '\'s Space');
         $user->spaces()->attach($space->id, ['role' => 'admin']);
 
         Mail::to($user->email)->queue(new VerifyRegistration($user));
 
         Auth::loginUsingId($user->id);
 
-        LoginAttempt::create([
-            'user_id' => $user->id,
-            'ip' => $request->ip(),
-            'failed' => false
-        ]);
+        $this->loginAttemptRepository->create($user->id, $request->ip(), false);
 
         session(['space' => $user->spaces[0]]);
 
