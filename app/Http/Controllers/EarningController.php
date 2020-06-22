@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use Illuminate\Http\Request;
-
 use App\Models\Earning;
 use App\Repositories\EarningRepository;
 use Auth;
 
-class EarningController extends Controller {
+class EarningController extends Controller
+{
     private $earningRepository;
 
     public function __construct(EarningRepository $earningRepository)
@@ -26,25 +26,34 @@ class EarningController extends Controller {
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('earnings.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate($this->earningRepository->getValidationRules());
 
-        $this->earningRepository->create(session('space')->id, $request->input('date'), $request->input('description'), Helper::rawNumberToInteger($request->input('amount')));
+        $this->earningRepository->create(
+            session('space')->id,
+            $request->input('date'),
+            $request->input('description'),
+            Helper::rawNumberToInteger($request->input('amount'))
+        );
 
         return redirect()->route('dashboard');
     }
 
-    public function edit(Earning $earning) {
+    public function edit(Earning $earning)
+    {
         $this->authorize('edit', $earning);
 
         return view('earnings.edit', compact('earning'));
     }
 
-    public function update(Request $request, Earning $earning) {
+    public function update(Request $request, Earning $earning)
+    {
         $this->authorize('update', $earning);
 
         $request->validate($this->earningRepository->getValidationRules());
@@ -58,7 +67,8 @@ class EarningController extends Controller {
         return redirect()->route('transactions.index');
     }
 
-    public function destroy(Earning $earning) {
+    public function destroy(Earning $earning)
+    {
         $this->authorize('delete', $earning);
 
         $restorableEarning = $earning->id;
@@ -69,7 +79,8 @@ class EarningController extends Controller {
             ->route('transactions.index');
     }
 
-    public function restore($id) {
+    public function restore($id)
+    {
         $earning = Earning::withTrashed()->find($id);
 
         if (!$earning) {

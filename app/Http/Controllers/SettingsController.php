@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
 use App\Models\Currency;
@@ -12,12 +11,15 @@ use Storage;
 use Hash;
 use Mail;
 
-class SettingsController extends Controller {
-    public function getIndex() {
+class SettingsController extends Controller
+{
+    public function getIndex()
+    {
         return redirect()->route('settings.profile');
     }
 
-    public function postIndex(Request $request) {
+    public function postIndex(Request $request)
+    {
         $request->validate([
             'avatar' => 'nullable|mimes:jpeg,jpg,png,gif',
             'password' => 'nullable|confirmed',
@@ -78,21 +80,25 @@ class SettingsController extends Controller {
         return back();
     }
 
-    public function getProfile() {
+    public function getProfile()
+    {
         return view('settings.profile');
     }
 
-    public function getAccount() {
+    public function getAccount()
+    {
         return view('settings.account');
     }
 
-    public function getSpaces() {
+    public function getSpaces()
+    {
         return view('settings.spaces.index', [
             'spaces' => Auth::user()->spaces
         ]);
     }
 
-    public function getPreferences() {
+    public function getPreferences()
+    {
         $languages = [];
 
         foreach (config('app.locales') as $key => $value) {

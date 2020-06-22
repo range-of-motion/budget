@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class ResetPasswordController extends Controller {
+class ResetPasswordController extends Controller
+{
     private $userRepository;
     private $passwordResetRepository;
 
@@ -20,13 +21,15 @@ class ResetPasswordController extends Controller {
         $this->passwordResetRepository = $passwordResetRepository;
     }
 
-    public function get(Request $request) {
+    public function get(Request $request)
+    {
         return view('reset_password', [
             'token' => $request->get('token')
         ]);
     }
 
-    public function post(Request $request) {
+    public function post(Request $request)
+    {
         $request->validate($this->userRepository->getValidationRulesForPasswordReset());
 
         if ($request->input('email') && !$request->has('token')) {
@@ -56,7 +59,7 @@ class ResetPasswordController extends Controller {
                     'alert_type' => 'success',
                     'alert_message' => 'If you registered with that address, we\'ve sent you an e-mail'
                 ]);
-        } else if ($request->has('token') && $request->has('password') && !$request->has('email')) {
+        } elseif ($request->has('token') && $request->has('password') && !$request->has('email')) {
             $token = $request->input('token');
             $password = $request->input('password');
 

@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
-class ImportController extends Controller {
+class ImportController extends Controller
+{
     private $spendingRepository;
 
     public function __construct(SpendingRepository $spendingRepository)
@@ -19,17 +20,20 @@ class ImportController extends Controller {
         $this->spendingRepository = $spendingRepository;
     }
 
-    public function index() {
+    public function index()
+    {
         return view('imports.index')->with([
             'imports' => session('space')->imports()->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('imports.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required|max:255',
             'file' => 'required|max:200|mimes:csv,txt'
@@ -47,7 +51,8 @@ class ImportController extends Controller {
         return redirect()->route('imports.index');
     }
 
-    public function getPrepare(Import $import) {
+    public function getPrepare(Import $import)
+    {
         $this->authorize('modify', $import);
 
         $headers = [];
@@ -62,7 +67,8 @@ class ImportController extends Controller {
         return view('imports.prepare', compact('headers'));
     }
 
-    public function postPrepare(Request $request, Import $import) {
+    public function postPrepare(Request $request, Import $import)
+    {
         $this->authorize('modify', $import);
 
         $request->validate([
@@ -83,7 +89,8 @@ class ImportController extends Controller {
         return redirect()->route('imports.index');
     }
 
-    public function getComplete(Import $import) {
+    public function getComplete(Import $import)
+    {
         $this->authorize('modify', $import);
 
         $tags = session('space')->tags;
@@ -108,7 +115,8 @@ class ImportController extends Controller {
         return view('imports.complete', compact('tags', 'rows'));
     }
 
-    public function postComplete(Request $request, Import $import) {
+    public function postComplete(Request $request, Import $import)
+    {
         $this->authorize('modify', $import);
 
         $request->validate([
@@ -165,7 +173,8 @@ class ImportController extends Controller {
         return redirect()->route('imports.index');
     }
 
-    public function destroy(Request $request, Import $import) {
+    public function destroy(Request $request, Import $import)
+    {
         if (!$import->spendings->count()) {
             $import->delete();
         }

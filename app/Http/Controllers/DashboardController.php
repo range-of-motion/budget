@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Helper;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
-
 use App\Models\Earning;
 use App\Models\Recurring;
 use App\Models\Spending;
@@ -13,7 +12,8 @@ use App\Repositories\DashboardRepository;
 use Auth;
 use DB;
 
-class DashboardController extends Controller {
+class DashboardController extends Controller
+{
     private $dashboardRepository;
     private $tagRepository;
 
@@ -23,7 +23,8 @@ class DashboardController extends Controller {
         $this->tagRepository = $tagRepository;
     }
 
-    public function __invoke() {
+    public function __invoke()
+    {
         $space_id = session('space')->id;
         $currentYear = date('Y');
         $currentMonth = date('m');

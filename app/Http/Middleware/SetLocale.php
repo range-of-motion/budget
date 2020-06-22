@@ -5,8 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Carbon\Carbon;
 
-class SetLocale {
-    public function handle($request, Closure $next) {
+class SetLocale
+{
+    public function handle($request, Closure $next)
+    {
         if (\Auth::check()) {
             $user = \Auth::user();
 

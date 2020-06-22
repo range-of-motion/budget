@@ -3,13 +3,15 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
 use Auth;
 
-class AppServiceProvider extends ServiceProvider {
-    public function boot() {
-        view()->composer('*', function($view) {
-            $versionNumber = file_exists(base_path() . '/version.txt') ? file_get_contents(base_path() . '/version.txt') : '-';
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        view()->composer('*', function ($view) {
+            $versionFileExists = file_exists(base_path() . '/version.txt');
+            $versionNumber = $versionFileExists ? file_get_contents(base_path() . '/version.txt') : '-';
 
             $view->with([
                 'userName' => Auth::check() ? Auth::user()->name : null,
@@ -19,7 +21,8 @@ class AppServiceProvider extends ServiceProvider {
         });
     }
 
-    public function register() {
+    public function register()
+    {
         //
     }
 }

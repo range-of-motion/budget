@@ -8,7 +8,8 @@ use App\Helper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Earning extends Model {
+class Earning extends Model
+{
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
@@ -26,11 +27,13 @@ class Earning extends Model {
     ];
 
     // Accessors
-    public function getFormattedAmountAttribute() {
+    public function getFormattedAmountAttribute()
+    {
         return Helper::formatNumber($this->amount / 100);
     }
 
-    public function getFormattedHappenedOnAttribute() {
+    public function getFormattedHappenedOnAttribute()
+    {
         $secondsDifference = strtotime(date('Y-m-d')) - strtotime($this->happened_on);
 
         return ($secondsDifference / 60 / 60 / 24) . ' days ago';

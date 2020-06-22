@@ -29,9 +29,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->job(new ProcessRecurrings)->daily();
+        $schedule->job(new ProcessRecurrings())->daily();
 
-        $schedule->job(new SendWeeklyReports)->weekly()->fridays()->at('21:00');
+        $schedule->job(new SendWeeklyReports())->weekly()->fridays()->at('21:00');
     }
 
     /**
@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

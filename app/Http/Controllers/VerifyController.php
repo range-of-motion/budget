@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
-class VerifyController extends Controller {
+class VerifyController extends Controller
+{
     private $userRepository;
 
-    public function __construct(UserRepository $userRepository) {
+    public function __construct(UserRepository $userRepository)
+    {
         $this->userRepository = $userRepository;
     }
 
-    public function __invoke($token) {
+    public function __invoke($token)
+    {
         $user = $this->userRepository->getByVerificationToken($token);
 
         if (!$user) {
@@ -26,6 +29,6 @@ class VerifyController extends Controller {
             ->with([
                 'alert_type' => 'success',
                 'alert_message' => 'You\'ve succesfully verified'
-            ]);;
+            ]);
     }
 }

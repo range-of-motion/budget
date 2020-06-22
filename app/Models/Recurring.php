@@ -7,7 +7,8 @@ use App\Events\RecurringDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Recurring extends Model {
+class Recurring extends Model
+{
     use SoftDeletes;
 
     protected $fillable = [
@@ -30,7 +31,8 @@ class Recurring extends Model {
     ];
 
     // Accessors
-    public function getDueDaysAttribute() {
+    public function getDueDaysAttribute()
+    {
         if ($this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on)) {
             if (date('j') > $this->day) {
                 return date('t') - date('j') + $this->day;
@@ -42,16 +44,19 @@ class Recurring extends Model {
         return 0;
     }
 
-    public function getStatusAttribute() {
+    public function getStatusAttribute()
+    {
         return $this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on);
     }
 
     // Relations
-    public function spendings() {
+    public function spendings()
+    {
         return $this->hasMany(Spending::class);
     }
 
-    public function tag() {
+    public function tag()
+    {
         return $this->belongsTo(Tag::class);
     }
 }

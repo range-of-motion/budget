@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use Illuminate\Http\Request;
-
 use App\Models\Recurring;
 use Auth;
 use App\Jobs\ProcessRecurrings;
 use App\Repositories\RecurringRepository;
 
-class RecurringController extends Controller {
+class RecurringController extends Controller
+{
     private $recurringRepository;
 
     public function __construct(RecurringRepository $recurringRepository)
@@ -18,19 +18,22 @@ class RecurringController extends Controller {
         $this->recurringRepository = $recurringRepository;
     }
 
-    public function index() {
+    public function index()
+    {
         return view('recurrings.index', [
             'recurrings' => session('space')->recurrings()->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
-    public function show(Recurring $recurring) {
+    public function show(Recurring $recurring)
+    {
         $this->authorize('view', $recurring);
 
         return view('recurrings.show', compact('recurring'));
     }
 
-    public function create() {
+    public function create()
+    {
         $tags = [];
 
         foreach (session('space')->tags as $tag) {
@@ -40,7 +43,8 @@ class RecurringController extends Controller {
         return view('recurrings.create', compact('tags'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate($this->recurringRepository->getValidationRules());
 
         $recurring = $this->recurringRepository->create(

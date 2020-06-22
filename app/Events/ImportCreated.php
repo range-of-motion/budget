@@ -13,10 +13,14 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Auth;
 
-class ImportCreated {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+class ImportCreated
+{
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-    public function __construct(Import $import) {
+    public function __construct(Import $import)
+    {
         Activity::create([
             'space_id' => $import->space_id,
             'user_id' => Auth::user()->id,

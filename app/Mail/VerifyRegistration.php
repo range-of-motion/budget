@@ -6,19 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use App\Models\User;
 
-class VerifyRegistration extends Mailable {
-    use Queueable, SerializesModels;
+class VerifyRegistration extends Mailable
+{
+    use Queueable;
+    use SerializesModels;
 
     protected $user;
 
-    public function __construct(User $user) {
+    public function __construct(User $user)
+    {
         $this->user = $user;
     }
 
-    public function build() {
+    public function build()
+    {
         return $this->view('emails.verify_registration')
             ->with([
                 'name' => $this->user->name,

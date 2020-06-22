@@ -13,10 +13,14 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Auth;
 
-class RecurringDeleted {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+class RecurringDeleted
+{
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
-    public function __construct(Recurring $recurring) {
+    public function __construct(Recurring $recurring)
+    {
         $userId = null;
 
         if (Auth::check()) {

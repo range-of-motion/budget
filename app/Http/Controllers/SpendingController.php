@@ -7,7 +7,8 @@ use App\Models\Spending;
 use App\Repositories\SpendingRepository;
 use Illuminate\Http\Request;
 
-class SpendingController extends Controller {
+class SpendingController extends Controller
+{
     private $spendingRepository;
 
     public function __construct(SpendingRepository $spendingRepository)
@@ -15,7 +16,8 @@ class SpendingController extends Controller {
         $this->spendingRepository = $spendingRepository;
     }
 
-    public function create() {
+    public function create()
+    {
         $tags = session('space')->tags()->orderBy('created_at', 'DESC')->get();
 
         return view('spendings.create', compact('tags'));
@@ -30,7 +32,8 @@ class SpendingController extends Controller {
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate($this->spendingRepository->getValidationRules());
 
         $this->spendingRepository->create(
@@ -45,7 +48,8 @@ class SpendingController extends Controller {
         return redirect()->route('dashboard');
     }
 
-    public function edit(Spending $spending) {
+    public function edit(Spending $spending)
+    {
         $this->authorize('edit', $spending);
 
         $tags = session('space')->tags()->orderBy('created_at', 'DESC')->get();
@@ -53,7 +57,8 @@ class SpendingController extends Controller {
         return view('spendings.edit', compact('tags', 'spending'));
     }
 
-    public function update(Request $request, Spending $spending) {
+    public function update(Request $request, Spending $spending)
+    {
         $this->authorize('update', $spending);
 
         $request->validate($this->spendingRepository->getValidationRules());
@@ -68,7 +73,8 @@ class SpendingController extends Controller {
         return redirect()->route('transactions.index');
     }
 
-    public function destroy(Spending $spending) {
+    public function destroy(Spending $spending)
+    {
         $this->authorize('delete', $spending);
 
         $restorableSpending = $spending->id;
@@ -79,7 +85,8 @@ class SpendingController extends Controller {
             ->route('transactions.index');
     }
 
-    public function restore($id) {
+    public function restore($id)
+    {
         $spending = Spending::withTrashed()->find($id);
 
         if (!$spending) {

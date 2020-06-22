@@ -14,27 +14,34 @@ use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 
-class RegisterController extends Controller {
+class RegisterController extends Controller
+{
     private $currencyRepository;
     private $userRepository;
     private $spaceRepository;
     private $loginAttemptRepository;
 
-    public function __construct(CurrencyRepository $currencyRepository, UserRepository $userRepository, SpaceRepository $spaceRepository, LoginAttemptRepository $loginAttemptRepository)
-    {
+    public function __construct(
+        CurrencyRepository $currencyRepository,
+        UserRepository $userRepository,
+        SpaceRepository $spaceRepository,
+        LoginAttemptRepository $loginAttemptRepository
+    ) {
         $this->currencyRepository = $currencyRepository;
         $this->userRepository = $userRepository;
         $this->spaceRepository = $spaceRepository;
         $this->loginAttemptRepository = $loginAttemptRepository;
     }
 
-    public function index() {
+    public function index()
+    {
         return view('register', [
             'currencies' => $this->currencyRepository->getKeyValueArray()
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate($this->userRepository->getValidationRulesForRegistration());
 
         $user = $this->userRepository->create($request->name, $request->email, $request->password);

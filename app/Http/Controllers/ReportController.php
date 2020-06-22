@@ -7,7 +7,8 @@ use App\Repositories\TransactionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ReportController extends Controller {
+class ReportController extends Controller
+{
     private $transactionRepository;
     private $tagRepository;
 
@@ -17,25 +18,29 @@ class ReportController extends Controller {
         $this->tagRepository = $tagRepository;
     }
 
-    public function index() {
+    public function index()
+    {
         return view('reports.index');
     }
 
-    private function weeklyReport($year) {
+    private function weeklyReport($year)
+    {
         return view('reports.weekly_report', [
             'year' => $year,
             'weeks' => $this->transactionRepository->getWeeklyBalance($year)
         ]);
     }
 
-    private function mostExpensiveTags() {
+    private function mostExpensiveTags()
+    {
         $totalSpent = session('space')->spendings()->sum('amount');
         $mostExpensiveTags = $this->tagRepository->getMostExpensiveTags(session('space')->id);
 
         return view('reports.most_expensive_tags', compact('totalSpent', 'mostExpensiveTags'));
     }
 
-    public function show(Request $request, $slug) {
+    public function show(Request $request, $slug)
+    {
         switch ($slug) {
             case 'weekly-report':
                 $year = date('Y');

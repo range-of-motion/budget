@@ -7,7 +7,8 @@ use App\Events\ImportDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Import extends Model {
+class Import extends Model
+{
     use SoftDeletes;
 
     protected $fillable = [
@@ -26,7 +27,8 @@ class Import extends Model {
     ];
 
     // Relations
-    public function spendings() {
+    public function spendings()
+    {
         return $this->hasMany(Spending::class);
     }
 }

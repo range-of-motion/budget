@@ -8,16 +8,20 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\User;
 
-class PasswordChanged extends Mailable {
-    use Queueable, SerializesModels;
+class PasswordChanged extends Mailable
+{
+    use Queueable;
+    use SerializesModels;
 
     protected $updated_at;
 
-    public function __construct($updated_at) {
+    public function __construct($updated_at)
+    {
         $this->updated_at = $updated_at;
     }
 
-    public function build() {
+    public function build()
+    {
         return $this->view('emails.password_changed')
             ->with([
                 'updated_at' => $this->updated_at
