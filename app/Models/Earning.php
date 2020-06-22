@@ -13,7 +13,12 @@ class Earning extends Model {
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['happened_on', 'description', 'amount'];
+    protected $fillable = [
+        'space_id',
+        'happened_on',
+        'description',
+        'amount'
+    ];
 
     protected $dispatchesEvents = [
         'created' => TransactionCreated::class,
