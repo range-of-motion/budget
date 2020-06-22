@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper;
 use Illuminate\Http\Request;
 
 use App\Models\Recurring;
 use Auth;
 use App\Jobs\ProcessRecurrings;
+use App\Repositories\RecurringRepository;
 
 class RecurringController extends Controller {
+    private $recurringRepository;
+
+    public function __construct(RecurringRepository $recurringRepository)
+    {
+        $this->recurringRepository = $recurringRepository;
+    }
+
     public function index() {
         return view('recurrings.index', [
             'recurrings' => session('space')->recurrings()->orderBy('created_at', 'DESC')->get()
@@ -33,32 +40,18 @@ class RecurringController extends Controller {
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'type' => 'required|in:earning,spending',
-            'day' => ['required',
-                      'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
-                    ],
-            'end' => 'nullable|date|date_format:Y-m-d',
-            'tag' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
-            'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
-        ]);
+        $request->validate($this->recurringRepository->getValidationRules());
 
-        $user = Auth::user();
+        $recurring = $this->recurringRepository->create(
+            session('space')->id,
+            $request->type,
+            (int) ltrim($request->input('day'), 0),
+            $request->input('end', null),
+            $request->input('tag', null),
+            $request->input('description'),
+            $request->input('amount')
+        );
 
-        $recurring = new Recurring;
-
-        $recurring->space_id = session('space')->id;
-        $recurring->type = $request->type;
-        $recurring->interval = 'monthly';
-        $recurring->day = ltrim($request->input('day'), '0');
-        $recurring->starts_on = date('Y-m-d');
-        $recurring->ends_on = $request->input('end');
-        $recurring->tag_id = $request->input('tag');
-        $recurring->description = $request->input('description');
-        $recurring->amount = Helper::rawNumberToInteger($request->input('amount'));
-
-        $recurring->save();
         ProcessRecurrings::dispatch();
 
         return redirect()->route('recurrings.show', ['recurring' => $recurring->id]);

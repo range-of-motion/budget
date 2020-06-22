@@ -25,4 +25,23 @@ class RecurringTest extends TestCase {
 
         $response->assertStatus(403);
     }
+
+    public function testSuccessfulRecurringCreation(): void
+    {
+        $requestData = [
+            'type' => 'spending',
+            'day' => 1,
+            'description' => 'Test',
+            'amount' => 123
+        ];
+
+        $user = factory(User::class)->create();
+        $space = factory(Space::class)->create();
+
+        $response = $this->actingAs($user)
+            ->withSession(['space' => $space])
+            ->postJson('/recurrings', $requestData);
+
+        $response->assertStatus(302);
+    }
 }

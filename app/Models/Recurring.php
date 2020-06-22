@@ -10,11 +10,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Recurring extends Model {
     use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
-        'type'
+        'space_id',
+        'type',
+        'interval',
+        'day',
+        'starts_on',
+        'ends_on',
+        'tag_id',
+        'description',
+        'amount'
     ];
+
+    protected $dates = ['deleted_at'];
 
     protected $dispatchesEvents = [
         'created' => RecurringCreated::class,
