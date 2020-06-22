@@ -3,5 +3,5 @@
   <file>./app</file>
   <file>./config</file>
 
-  <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+  <rule ref="PSR12" />
 </ruleset>
