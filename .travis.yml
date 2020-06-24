@@ -19,5 +19,8 @@ jobs:
       name: "PHPUnit"
       script: vendor/bin/phpunit
     - stage: test
+      name: "Dusk"
+      script: php artisan serve & php artisan dusk
+    - stage: test
       name: "PHPCS"
       script: vendor/bin/phpcs
