@@ -25,9 +25,30 @@ class RecurringRepository
     public function getSupportedIntervals(): array
     {
         return [
+            'yearly',
             'monthly',
             'daily'
         ];
+    }
+
+    public function getDueYearly(): Collection
+    {
+        $dateToday = date('Y-m-d');
+        $dateYearAgo = date('Y-m-d', strtotime('-1 year'));
+
+        return Recurring::where('interval', 'yearly')
+            ->where('starts_on', '<=', $dateToday)
+            ->where(function ($query) use ($dateToday) {
+                $query
+                    ->where('ends_on', '>=', $dateToday)
+                    ->orWhere('ends_on', null);
+            })
+            ->where(function ($query) use ($dateYearAgo) {
+                $query
+                    ->where('last_used_on', '<=', $dateYearAgo)
+                    ->orWhere('last_used_on', null);
+            })
+            ->get();
     }
 
     /**
