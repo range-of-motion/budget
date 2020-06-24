@@ -37,6 +37,7 @@ class EarningController extends Controller
 
         $this->earningRepository->create(
             session('space')->id,
+            null,
             $request->input('date'),
             $request->input('description'),
             Helper::rawNumberToInteger($request->input('amount'))

@@ -158,6 +158,7 @@ class ImportController extends Controller
                 $this->spendingRepository->create(
                     session('space')->id,
                     $import->id,
+                    null,
                     $row['tag_id'],
                     $row['happened_on'],
                     $row['description'],

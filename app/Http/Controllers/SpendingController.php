@@ -39,6 +39,7 @@ class SpendingController extends Controller
         $this->spendingRepository->create(
             session('space')->id,
             null,
+            null,
             $request->input('tag_id'),
             $request->input('date'),
             $request->input('description'),
