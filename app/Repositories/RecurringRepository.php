@@ -22,6 +22,14 @@ class RecurringRepository
         ];
     }
 
+    public function getSupportedIntervals(): array
+    {
+        return [
+            'monthly',
+            'daily'
+        ];
+    }
+
     /**
      * Grabs recurrings that checks all of the following statements
      *  targeted day is today, or in future if today is last day of the month
@@ -78,6 +86,7 @@ class RecurringRepository
     public function create(
         int $spaceId,
         string $type,
+        string $interval,
         int $day,
         ?string $endDate,
         ?int $tagId,
@@ -88,10 +97,14 @@ class RecurringRepository
             throw new Exception('Unknown type "' . $type . '"');
         }
 
+        if (!in_array($interval, $this->getSupportedIntervals())) {
+            throw new Exception('Unknown interval "' . $interval . '"');
+        }
+
         return Recurring::create([
             'space_id' => $spaceId,
             'type' => $type,
-            'interval' => 'monthly',
+            'interval' => $interval,
             'day' => $day,
             'starts_on' => date('Y-m-d'),
             'ends_on' => $endDate,
