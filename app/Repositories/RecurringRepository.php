@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Recurring;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 
 class RecurringRepository
 {
@@ -28,7 +29,7 @@ class RecurringRepository
      *  has no expiration date, or one that is in the future
      *  has not been used yet, or prior to today
      */
-    public function getDueByDayOfMonth(): iterable
+    public function getDueMonthly(): Collection
     {
         $dayOfMonth = (int) date('j');
 
@@ -41,6 +42,25 @@ class RecurringRepository
             }, function ($query) use ($dayOfMonth) {
                 return $query->where('day', $dayOfMonth);
             })
+            ->where('starts_on', '<=', $dateToday)
+            ->where(function ($query) use ($dateToday) {
+                $query
+                    ->where('ends_on', '>=', $dateToday)
+                    ->orWhere('ends_on', null);
+            })
+            ->where(function ($query) use ($dateToday) {
+                $query
+                    ->where('last_used_on', '<', $dateToday)
+                    ->orWhere('last_used_on', null);
+            })
+            ->get();
+    }
+
+    public function getDueDaily(): Collection
+    {
+        $dateToday = date('Y-m-d');
+
+        return Recurring::where('interval', 'daily')
             ->where('starts_on', '<=', $dateToday)
             ->where(function ($query) use ($dateToday) {
                 $query
