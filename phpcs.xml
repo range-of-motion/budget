@@ -2,6 +2,7 @@
 <ruleset name="Budget">
   <file>./app</file>
   <file>./config</file>
+  <file>./tests</file>
 
   <rule ref="PSR12" />
 </ruleset>

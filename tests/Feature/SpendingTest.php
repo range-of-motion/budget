@@ -9,8 +9,10 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class SpendingTest extends TestCase {
-    public function testUnauthorizedUserCantDeleteSpending() {
+class SpendingTest extends TestCase
+{
+    public function testUnauthorizedUserCantDeleteSpending()
+    {
         $user = factory(User::class)->create();
 
         $space = factory(Space::class)->create();

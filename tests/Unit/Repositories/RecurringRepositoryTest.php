@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Repositories;
 
 use App\Repositories\RecurringRepository;
 use Tests\TestCase;
