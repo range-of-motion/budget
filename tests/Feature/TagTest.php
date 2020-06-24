@@ -9,9 +9,11 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TagTest extends TestCase {
+class TagTest extends TestCase
+{
     // Edit
-    public function testAuthorizedUserCanEditTag() {
+    public function testAuthorizedUserCanEditTag()
+    {
         $user = factory(User::class)->create();
 
         $space = factory(Space::class)->create();
@@ -29,7 +31,8 @@ class TagTest extends TestCase {
         $response->assertStatus(200);
     }
 
-    public function testUnauthorizedUserCantEditTag() {
+    public function testUnauthorizedUserCantEditTag()
+    {
         $user = factory(User::class)->create();
 
         $space = factory(Space::class)->create();
@@ -46,7 +49,8 @@ class TagTest extends TestCase {
     }
 
     // Update
-    public function testUpdateTag() {
+    public function testUpdateTag()
+    {
         $user = factory(User::class)->create();
 
         $space = factory(Space::class)->create();

@@ -9,8 +9,10 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class EarningTest extends TestCase {
-    public function testUnauthorizedUserCantDeleteEarning() {
+class EarningTest extends TestCase
+{
+    public function testUnauthorizedUserCantDeleteEarning()
+    {
         $user = factory(User::class)->create();
 
         $space = factory(Space::class)->create();

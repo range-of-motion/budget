@@ -6,13 +6,14 @@ use App\Helper;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use App\Models\Earning;
 use App\Models\Spending;
 use App\Models\Space;
 
-class SpaceTest extends TestCase {
-    public function testMonthlyBalance() {
+class SpaceTest extends TestCase
+{
+    public function testMonthlyBalance()
+    {
         $space = factory(Space::class)->create();
 
         factory(Earning::class)->create([

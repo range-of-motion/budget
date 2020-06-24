@@ -10,8 +10,10 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TagTest extends TestCase {
-    public function testMostExpensiveTags() {
+class TagTest extends TestCase
+{
+    public function testMostExpensiveTags()
+    {
         $space = factory(Space::class)->create();
 
         $repository = new TagRepository();

@@ -9,8 +9,10 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RecurringTest extends TestCase {
-    public function testUnauthorizedUserCantViewRecurring() {
+class RecurringTest extends TestCase
+{
+    public function testUnauthorizedUserCantViewRecurring()
+    {
         $user = factory(User::class)->create();
 
         $space = factory(Space::class)->create();
