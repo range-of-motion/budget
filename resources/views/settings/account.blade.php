@@ -9,7 +9,7 @@
         <div class="box__section">
             <div class="input input--small">
                 <label>{{ __('fields.email') }}</label>
-                <input type="text" name="email" value="{{ Auth::user()->email }}" />
+                <input type="email" name="email" value="{{ Auth::user()->email }}" />
             </div>
             <div class="row">
                 <div class="row__column input">
