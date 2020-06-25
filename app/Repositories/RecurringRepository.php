@@ -12,6 +12,7 @@ class RecurringRepository
     {
         return [
             'type' => 'required|in:earning,spending',
+            'interval' => 'required|in:' . implode(',', $this->getSupportedIntervals()),
             'day' => ['required',
                 'regex:/\b(0?[1-9]|[12][0-9]|3[01])\b/',
             ],

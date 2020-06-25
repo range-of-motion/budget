@@ -45,6 +45,14 @@
                 </div>
             </div>
             <div v-if="isRecurring">
+                <div class="bg mb-2">
+                    <button
+                        v-for="interval in recurringsIntervals"
+                        :key="'recurringsIntervals-' + interval"
+                        class="bg__button"
+                        :class="{ 'bg__button--active': recurringInterval == interval }"
+                        @click="switchRecurringInterval(interval)">{{ interval | capitalize }}</button>
+                </div>
                 <div class="input">
                     <label>How long will this spending go on for?</label>
                     <div class="row">
@@ -85,7 +93,10 @@
 
 <script>
     export default {
-        props: ['tags'],
+        props: [
+            'tags',
+            'recurringsIntervals'
+        ],
 
         data() {
             return {
@@ -97,6 +108,7 @@
                 description: '',
                 amount: '10.00',
                 isRecurring: false,
+                recurringInterval: 'monthly',
                 recurringEnd: 'forever',
                 recurringEndDate: this.get100DaysFutureDate(),
 
@@ -136,6 +148,10 @@
                 return (now.getFullYear() + 1) + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2)
             },
 
+            switchRecurringInterval(interval) {
+                this.recurringInterval = interval;
+            },
+
             createEarning() {
                 if (!this.loading) {
                     this.loading = true
@@ -144,6 +160,7 @@
                         let body = {
                             _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                             type: this.type,
+                            interval: this.recurringInterval,
                             day: this.date.slice(-2),
                             description: this.description,
                             amount: this.amount

@@ -50,7 +50,7 @@ class RecurringController extends Controller
         $recurring = $this->recurringRepository->create(
             session('space')->id,
             $request->type,
-            'monthly',
+            $request->interval,
             (int) ltrim($request->input('day'), 0),
             $request->input('end', null),
             $request->input('tag', null),
