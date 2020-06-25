@@ -34,6 +34,7 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 
 * Clone the repository (`git clone https://github.com/range-of-motion/budget.git`)
     * You should always check out a tag, since the `master` branch might not always be stable (`git checkout TAG`)
+* Install dependencies (`composer install --no-dev -o`)
 * Run installation command (`php artisan budget:install`)
 * Configure additional services in `.env` (database or mail, for example)
 * Run migrations for database (`php artisan migrate`)

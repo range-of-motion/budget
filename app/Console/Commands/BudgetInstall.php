@@ -9,7 +9,6 @@ use Symfony\Component\Process\Process;
 class BudgetInstall extends Command
 {
     protected $signature = 'budget:install';
-
     protected $description = 'Runs most of the commands needed to make Budget work';
 
     public function __construct()
@@ -17,7 +16,7 @@ class BudgetInstall extends Command
         parent::__construct();
     }
 
-    public function executeCommand($command)
+    private function executeCommand($command): string
     {
         $process = new Process($command);
         $process->run();
@@ -26,37 +25,37 @@ class BudgetInstall extends Command
             throw new ProcessFailedException($process);
         }
 
-        echo $process->getIncrementalErrorOutput();
-        echo $process->getOutput();
+        return $process->getOutput();
     }
 
-    public function composerInstall()
+    private function nodePackageManagerExists(): bool
     {
-        $this->executeCommand(['composer', 'install', '--no-dev']);
+        $output = $this->executeCommand(['which', 'npm']);
+
+        return strpos($output, 'not found') === false;
     }
 
-    public function yarnInstall()
+    private function yarnExists(): bool
     {
-        $this->executeCommand(['yarn', 'install']);
+        $output = $this->executeCommand(['which', 'yarn']);
+
+        return strpos($output, 'not found') === false;
     }
 
-    public function artisanPrepare()
+    public function handle(): void
     {
+        if ($this->yarnExists()) {
+            $this->executeCommand(['yarn', 'install']);
+            $this->executeCommand(['yarn', 'run', 'production']);
+        } elseif ($this->nodePackageManagerExists()) {
+            $this->executeCommand(['npm', 'install']);
+            $this->executeCommand(['npm', 'run', 'production']);
+        } else {
+            $this->warn('Neither Yarn or NPM were found, please install either and retry this command');
+        }
+
         $this->executeCommand(['cp', '.env.example', '.env']);
         $this->executeCommand(['php', 'artisan', 'key:generate']);
         $this->executeCommand(['php', 'artisan', 'storage:link']);
-    }
-
-    public function yarnBuild()
-    {
-        $this->executeCommand(['yarn', 'run', 'development']);
-    }
-
-    public function handle()
-    {
-        $this->composerInstall();
-        $this->yarnInstall();
-        $this->artisanPrepare();
-        $this->yarnBuild();
     }
 }
