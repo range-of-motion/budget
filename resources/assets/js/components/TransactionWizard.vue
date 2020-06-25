@@ -162,6 +162,7 @@
                             type: this.type,
                             interval: this.recurringInterval,
                             day: this.date.slice(-2),
+                            start: this.date,
                             description: this.description,
                             amount: this.amount
                         }

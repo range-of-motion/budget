@@ -52,6 +52,7 @@ class RecurringController extends Controller
             $request->type,
             $request->interval,
             (int) ltrim($request->input('day'), 0),
+            $request->start,
             $request->input('end', null),
             $request->input('tag', null),
             $request->input('description'),

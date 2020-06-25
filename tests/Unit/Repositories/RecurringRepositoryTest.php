@@ -29,7 +29,17 @@ class RecurringRepositoryTest extends TestCase
         $spaceId = 1;
         $tagId = 1;
 
-        $recurring = $this->recurringRepository->create($spaceId, 'spending', 'monthly', 3, null, $tagId, 'Foo', 10000);
+        $recurring = $this->recurringRepository->create(
+            $spaceId,
+            'spending',
+            'monthly',
+            3,
+            date('Y-m-d'),
+            null,
+            $tagId,
+            'Foo',
+            10000
+        );
 
         $this->assertNotNull($recurring);
         $this->assertEquals(10000, $recurring->amount);
