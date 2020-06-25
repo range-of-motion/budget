@@ -30,11 +30,6 @@ class BudgetInstall extends Command
         echo $process->getOutput();
     }
 
-    public function composerInstall()
-    {
-        $this->executeCommand(['composer', 'install', '--no-dev']);
-    }
-
     public function yarnInstall()
     {
         $this->executeCommand(['yarn', 'install']);
@@ -54,7 +49,6 @@ class BudgetInstall extends Command
 
     public function handle()
     {
-        $this->composerInstall();
         $this->yarnInstall();
         $this->artisanPrepare();
         $this->yarnBuild();
