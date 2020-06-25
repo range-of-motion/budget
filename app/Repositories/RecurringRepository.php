@@ -27,6 +27,7 @@ class RecurringRepository
         return [
             'yearly',
             'monthly',
+            'biweekly',
             'weekly',
             'daily'
         ];
@@ -81,6 +82,26 @@ class RecurringRepository
             ->where(function ($query) use ($dateToday) {
                 $query
                     ->where('last_used_on', '<', $dateToday)
+                    ->orWhere('last_used_on', null);
+            })
+            ->get();
+    }
+
+    public function getDueBiweekly(): Collection
+    {
+        $dateToday = date('Y-m-d');
+        $dateTwoWeeksAgo = date('Y-m-d', strtotime('-2 weeks'));
+
+        return Recurring::where('interval', 'biweekly')
+            ->where('starts_on', '<=', $dateToday)
+            ->where(function ($query) use ($dateToday) {
+                $query
+                    ->where('ends_on', '>=', $dateToday)
+                    ->orWhere('ends_on', null);
+            })
+            ->where(function ($query) use ($dateTwoWeeksAgo) {
+                $query
+                    ->where('last_used_on', '<=', $dateTwoWeeksAgo)
                     ->orWhere('last_used_on', null);
             })
             ->get();
