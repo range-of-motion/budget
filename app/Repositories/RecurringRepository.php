@@ -62,29 +62,35 @@ class RecurringRepository
      */
     public function getDueMonthly(): Collection
     {
-        $dayOfMonth = (int) date('j');
-
         $dateToday = date('Y-m-d');
-        $daysInMonth = (int) date('t');
+        $lastDateCurrentMonth = date('Y-m-d', strtotime('last day of this month'));
 
-        return Recurring::where('interval', 'monthly')
-            ->when($daysInMonth == $dayOfMonth, function ($query) use ($dayOfMonth) {
-                return $query->where('day', '>=', $dayOfMonth);
-            }, function ($query) use ($dayOfMonth) {
-                return $query->where('day', $dayOfMonth);
-            })
+        $dateMonthAgo = date('Y-m-d', strtotime('-1 month'));
+        $lastDateLastMonth = date('Y-m-d', strtotime('last day of last month'));
+
+        $query = Recurring::where('interval', 'monthly')
             ->where('starts_on', '<=', $dateToday)
             ->where(function ($query) use ($dateToday) {
                 $query
                     ->where('ends_on', '>=', $dateToday)
                     ->orWhere('ends_on', null);
-            })
-            ->where(function ($query) use ($dateToday) {
+            });
+
+        if ($dateToday === $lastDateCurrentMonth) {
+            $query->where(function ($query) use ($lastDateLastMonth) {
                 $query
-                    ->where('last_used_on', '<', $dateToday)
+                    ->where('last_used_on', '<=', $lastDateLastMonth)
                     ->orWhere('last_used_on', null);
-            })
-            ->get();
+            });
+        } else {
+            $query->where(function ($query) use ($dateMonthAgo) {
+                $query
+                    ->where('last_used_on', '<=', $dateMonthAgo)
+                    ->orWhere('last_used_on', null);
+            });
+        }
+
+        return $query->get();
     }
 
     public function getDueBiweekly(): Collection

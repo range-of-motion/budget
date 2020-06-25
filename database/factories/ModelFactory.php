@@ -49,6 +49,7 @@ $factory->define(Spending::class, function (Generator $faker) {
 
 $factory->define(Recurring::class, function (Generator $faker) {
     return [
+        'type' => 'earning',
         'interval' => 'monthly',
         'day' => $faker->numberBetween(1, 28),
         'starts_on' => $faker->dateTimeBetween('-50 days', 'now')->format('Y-m-d'),
