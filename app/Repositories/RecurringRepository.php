@@ -27,6 +27,7 @@ class RecurringRepository
         return [
             'yearly',
             'monthly',
+            'weekly',
             'daily'
         ];
     }
@@ -80,6 +81,26 @@ class RecurringRepository
             ->where(function ($query) use ($dateToday) {
                 $query
                     ->where('last_used_on', '<', $dateToday)
+                    ->orWhere('last_used_on', null);
+            })
+            ->get();
+    }
+
+    public function getDueWeekly(): Collection
+    {
+        $dateToday = date('Y-m-d');
+        $dateWeekAgo = date('Y-m-d', strtotime('-1 week'));
+
+        return Recurring::where('interval', 'weekly')
+            ->where('starts_on', '<=', $dateToday)
+            ->where(function ($query) use ($dateToday) {
+                $query
+                    ->where('ends_on', '>=', $dateToday)
+                    ->orWhere('ends_on', null);
+            })
+            ->where(function ($query) use ($dateWeekAgo) {
+                $query
+                    ->where('last_used_on', '<=', $dateWeekAgo)
                     ->orWhere('last_used_on', null);
             })
             ->get();
