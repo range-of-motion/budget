@@ -32,7 +32,19 @@
         </div>
         <div class="input">
             <label>Amount</label>
-            <input type="text" v-model="amount" />
+            <div class="row">
+                <div class="row__column row__column--double">
+                    <input type="text" v-model="amount" />
+                </div>
+                <div class="row__column ml-2">
+                    <select v-model="selectedCurrencyId">
+                        <option v-for="currency in currencies" :key="'currencies-' + currency.id" :value="currency.id">
+                            <span v-html="currency.symbol"></span>
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="hint mt-05" v-if="selectedCurrencyId !== defaultCurrencyId">{{ currencies.find(c => c.id === selectedCurrencyId).name }} will be converted into {{ currencies.find(c => c.id === defaultCurrencyId).name }}</div>
             <validation-error v-if="errors.amount" :message="errors.amount"></validation-error>
         </div>
         <div>
@@ -95,6 +107,8 @@
     export default {
         props: [
             'tags',
+            'currencies',
+            'defaultCurrencyId',
             'recurringsIntervals'
         ],
 
@@ -107,6 +121,7 @@
                 date: this.getTodaysDate(),
                 description: '',
                 amount: '10.00',
+                selectedCurrencyId: this.defaultCurrencyId,
                 isRecurring: false,
                 recurringInterval: 'monthly',
                 recurringEnd: 'forever',
