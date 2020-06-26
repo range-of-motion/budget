@@ -16,10 +16,11 @@ class EarningRepository
         ];
     }
 
-    public function create(int $spaceId, string $date, string $description, int $amount): Earning
+    public function create(int $spaceId, ?int $recurringId, string $date, string $description, int $amount): Earning
     {
         return Earning::create([
             'space_id' => $spaceId,
+            'recurring_id' => $recurringId,
             'happened_on' => $date,
             'description' => $description,
             'amount' => $amount

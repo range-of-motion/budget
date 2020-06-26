@@ -17,6 +17,7 @@ class Spending extends Model
     protected $fillable = [
         'space_id',
         'import_id',
+        'recurring_id',
         'tag_id',
         'happened_on',
         'description',

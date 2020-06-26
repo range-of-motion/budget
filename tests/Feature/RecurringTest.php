@@ -32,7 +32,9 @@ class RecurringTest extends TestCase
     {
         $requestData = [
             'type' => 'spending',
+            'interval' => 'monthly',
             'day' => 1,
+            'start' => date('Y-m-d'),
             'description' => 'Test',
             'amount' => 123
         ];

@@ -18,6 +18,7 @@ class Recurring extends Model
         'day',
         'starts_on',
         'ends_on',
+        'last_used_on',
         'tag_id',
         'description',
         'amount'

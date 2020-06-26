@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\RecurringRepository;
 use App\Repositories\TransactionRepository;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function __construct(TransactionRepository $transactionRepository)
+    private $recurringRepository;
+
+    public function __construct(TransactionRepository $transactionRepository, RecurringRepository $recurringRepository)
     {
         $this->repository = $transactionRepository;
+        $this->recurringRepository = $recurringRepository;
     }
 
     public function index(Request $request)
@@ -37,6 +41,9 @@ class TransactionController extends Controller
             ];
         }
 
-        return view('transactions.create', compact('tags'));
+        return view('transactions.create', [
+            'tags' => $tags,
+            'recurringsIntervals' => $this->recurringRepository->getSupportedIntervals()
+        ]);
     }
 }
