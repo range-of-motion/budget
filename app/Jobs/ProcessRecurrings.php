@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Repositories\EarningRepository;
 use App\Repositories\RecurringRepository;
 use App\Repositories\SpendingRepository;
+use DateTime;
 use Exception;
 
 class ProcessRecurrings implements ShouldQueue
@@ -54,31 +55,97 @@ class ProcessRecurrings implements ShouldQueue
                 throw new Exception('Unknown type "' . $recurring->type . '" for recurring');
             }
 
-            if ($recurring->type === 'earning') {
-                $this->earningRepository->create(
-                    $recurring->space_id,
-                    $recurring->id,
-                    date('Y-m-d'),
-                    $recurring->description,
-                    $recurring->amount
-                );
+            // Determine date on which transaction should occur
+            $occurancesDates = [];
+
+            $startingDate = ($recurring->last_used_on ?: $recurring->starts_on);
+            $today = date('Y-m-d');
+
+            $cursorDate = $startingDate;
+            while ($cursorDate <= $today) {
+                if (!$recurring->last_used_on || $cursorDate !== $recurring->last_used_on) {
+                    $occurancesDates[] = $cursorDate; // Prevent "last_used_on" from being pushed to "occurancesDates"
+                }
+
+                switch ($recurring->interval) {
+                    case 'daily':
+                        $cursorDate = date('Y-m-d', strtotime('+1 day', strtotime($cursorDate)));
+                        break;
+
+                    case 'weekly':
+                        $cursorDate = date('Y-m-d', strtotime('+1 week', strtotime($cursorDate)));
+                        break;
+
+                    case 'biweekly':
+                        $cursorDate = date('Y-m-d', strtotime('+2 weeks', strtotime($cursorDate)));
+                        break;
+
+                    // Monthly is a different story, because of the different lengths of the months
+                    // See below
+
+                    case 'yearly':
+                        $cursorDate = date('Y-m-d', strtotime('+1 year', strtotime($cursorDate)));
+                        break;
+                }
+
+                /**
+                 * Take 2020-01-30.
+                 *
+                 * Next month would be 2020-02-30, but that date doesn't exist.
+                 *
+                 * Which means it should become 2020-02-29.
+                 *
+                 * However the iteration after that, shouldn't be 2020-03-29, but rather 2020-03-30, since
+                 * the 30th was the day we originally started on.
+                 *
+                 * Hence why this next piece of code exists :shrug:
+                 */
+                if ($recurring->interval === 'monthly') {
+                    $year = date('Y', strtotime($cursorDate));
+                    $month = date('n', strtotime($cursorDate));
+                    $day = date('j', strtotime($startingDate));
+
+                    $month++;
+                    if ($month > 12) {
+                        $month = 1;
+                        $year++;
+                    }
+
+                    while (!checkdate($month, $day, $year)) {
+                        $day--;
+                    }
+
+                    $cursorDate = date('Y-m-d', strtotime($year . '-' . $month . '-' . $day));
+                }
             }
 
-            if ($recurring->type === 'spending') {
-                $this->spendingRepository->create(
-                    $recurring->space_id,
-                    null,
-                    $recurring->id,
-                    $recurring->tag_id,
-                    date('Y-m-d'),
-                    $recurring->description,
-                    $recurring->amount
-                );
-            }
+            foreach ($occurancesDates as $occuranceDate) {
+                if ($recurring->type === 'earning') {
+                    $this->earningRepository->create(
+                        $recurring->space_id,
+                        $recurring->id,
+                        $occuranceDate,
+                        $recurring->description,
+                        $recurring->amount
+                    );
+                }
 
-            $this->recurringRepository->update($recurring->id, [
-                'last_used_on' => date('Y-m-d')
-            ]);
+                if ($recurring->type === 'spending') {
+                    $this->spendingRepository->create(
+                        $recurring->space_id,
+                        null,
+                        $recurring->id,
+                        $recurring->tag_id,
+                        $occuranceDate,
+                        $recurring->description,
+                        $recurring->amount
+                    );
+                }
+
+                $this->recurringRepository->update($recurring->id, [
+                    'last_used_on' => $occuranceDate
+                ]);
+            }
         }
     }
 }
