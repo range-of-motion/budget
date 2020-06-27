@@ -1,4 +1,7 @@
 #!/usr/bin/execlineb -P
+# simple way of doing cronjobs for now
+# this service will execute laravel's queue runner and then sleep for 60 seconds
+# it will then stop causing the process supervisor to restart it
 with-contenv
 s6-envuidgid nginx
 foreground {
