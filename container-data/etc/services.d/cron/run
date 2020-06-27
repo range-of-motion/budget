@@ -1,0 +1,8 @@
+#!/usr/bin/execlineb -P
+with-contenv
+s6-envuidgid nginx
+foreground {
+    cd /app
+    artisan schedule:run
+}
+sleep 60

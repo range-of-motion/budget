@@ -1,0 +1,3 @@
+#!/usr/bin/execlineb -P
+with-contenv
+/usr/sbin/php-fpm7 --nodaemonize --fpm-config /etc/php7/php-fpm.conf
