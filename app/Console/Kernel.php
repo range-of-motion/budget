@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\FetchConversionRates;
 use App\Jobs\ProcessRecurrings;
 use App\Jobs\SendWeeklyReports;
 use Illuminate\Console\Scheduling\Schedule;
@@ -29,7 +30,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
+        // Daily
         $schedule->job(new ProcessRecurrings())->daily();
+        $schedule->job(new FetchConversionRates())->daily();
 
         $schedule->job(new SendWeeklyReports())->weekly()->fridays()->at('21:00');
     }
