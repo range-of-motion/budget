@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConversionRate extends Model
 {
+    protected $fillable = [
+        'base_currency_id',
+        'target_currency_id',
+        'rate'
+    ];
+
     public function base()
     {
         return $this->belongsTo(Currency::class);
