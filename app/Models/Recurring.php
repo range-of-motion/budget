@@ -51,6 +51,11 @@ class Recurring extends Model
     }
 
     // Relations
+    public function space()
+    {
+        return $this->belongsTo(Space::class);
+    }
+
     public function spendings()
     {
         return $this->hasMany(Spending::class);

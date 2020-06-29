@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use App\Models\Spending;
+use App\Repositories\ConversionRateRepository;
 use App\Repositories\SpendingRepository;
 use Illuminate\Http\Request;
 
 class SpendingController extends Controller
 {
     private $spendingRepository;
+    private $conversionRateRepository;
 
-    public function __construct(SpendingRepository $spendingRepository)
-    {
+    public function __construct(
+        SpendingRepository $spendingRepository,
+        ConversionRateRepository $conversionRateRepository
+    ) {
         $this->spendingRepository = $spendingRepository;
+        $this->conversionRateRepository = $conversionRateRepository;
     }
 
     public function create()
@@ -36,6 +41,17 @@ class SpendingController extends Controller
     {
         $request->validate($this->spendingRepository->getValidationRules());
 
+        $amount = Helper::rawNumberToInteger($request->input('amount'));
+
+        // Convert amount if a different currency was selected
+        if ($request->has('currency_id') && $request->currency_id !== session('space')->currency_id) {
+            $amount = $this->conversionRateRepository->convert(
+                $request->currency_id,
+                session('space')->currency_id,
+                $amount
+            );
+        }
+
         $this->spendingRepository->create(
             session('space')->id,
             null,
@@ -43,7 +59,7 @@ class SpendingController extends Controller
             $request->input('tag_id'),
             $request->input('date'),
             $request->input('description'),
-            Helper::rawNumberToInteger($request->input('amount'))
+            $amount
         );
 
         return redirect()->route('dashboard');

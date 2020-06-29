@@ -3,14 +3,20 @@
 namespace App\Repositories;
 
 use App\Models\ConversionRate;
+use Exception;
 
 class ConversionRateRepository
 {
-    public function createOrUpdate(int $baseCurrencyId, int $targetCurrencyId, float $rate): void
+    public function getByIds(int $baseCurrencyId, int $targetCurrencyId)
     {
-        $existingConversionRate = ConversionRate::where('base_currency_id', $baseCurrencyId)
+        return ConversionRate::where('base_currency_id', $baseCurrencyId)
             ->where('target_currency_id', $targetCurrencyId)
             ->first();
+    }
+
+    public function createOrUpdate(int $baseCurrencyId, int $targetCurrencyId, float $rate): void
+    {
+        $existingConversionRate = $this->getByIds($baseCurrencyId, $targetCurrencyId);
 
         if ($existingConversionRate) {
             $existingConversionRate->fill([
@@ -23,5 +29,19 @@ class ConversionRateRepository
                 'rate' => $rate
             ]);
         }
+    }
+
+    /**
+     * $amount should be an integer, so if you want to convert "9.99", turn it into "99900" before calling this method
+     */
+    public function convert(int $baseCurrencyId, int $targetCurrencyId, int $amount): int
+    {
+        $conversionRate = $this->getByIds($baseCurrencyId, $targetCurrencyId);
+
+        if (!$conversionRate) {
+            throw new Exception('Could not find conversion rate');
+        }
+
+        return $amount * $conversionRate->rate;
     }
 }

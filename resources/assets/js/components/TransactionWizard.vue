@@ -200,6 +200,7 @@
                             _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                             date: this.date,
                             description: this.description,
+                            currency_id: this.selectedCurrencyId,
                             amount: this.amount
                         }
 
