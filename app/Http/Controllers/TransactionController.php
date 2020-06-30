@@ -50,7 +50,7 @@ class TransactionController extends Controller
 
         return view('transactions.create', [
             'tags' => $tags,
-            'currencies' => $this->currencyRepository->getAll(),
+            'currencies' => $this->currencyRepository->getIfConversionRatePresent(),
             'defaultCurrencyId' => session('space')->currency_id,
             'recurringsIntervals' => $this->recurringRepository->getSupportedIntervals()
         ]);
