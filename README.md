@@ -3,6 +3,7 @@
 ![GitHub latest release](https://img.shields.io/github/v/release/range-of-motion/budget?include_prereleases)
 ![GitHub downloads](https://img.shields.io/github/downloads/range-of-motion/budget/total)
 [![Build status](https://travis-ci.com/range-of-motion/budget.svg?branch=master)](https://travis-ci.com/range-of-motion/budget)
+[![codecov](https://codecov.io/gh/range-of-motion/budget/branch/master/graph/badge.svg)](https://codecov.io/gh/range-of-motion/budget)
 [![GitHub license](https://img.shields.io/github/license/range-of-motion/budget.svg)](https://github.com/range-of-motion/budget/blob/master/LICENSE)
 
 Budget is an open-source web application that helps you keep track of your finances.
