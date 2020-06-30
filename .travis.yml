@@ -17,7 +17,7 @@ jobs:
   include:
     - stage: test
       name: "PHPUnit"
-      script: vendor/bin/phpunit
+      script: vendor/bin/phpunit --coverage-text
     - stage: test
       name: "Dusk"
       script: php artisan serve & php artisan dusk
