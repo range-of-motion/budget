@@ -39,9 +39,11 @@ class LoginController extends Controller
 
             return redirect()->route('dashboard');
         } else {
-            $user = $this->userRepository->getByEmail($request->input('email'));
+            if ($request->input('email')) {
+                $user = $this->userRepository->getByEmail($request->input('email'));
 
-            $this->loginAttemptRepository->create($user ? $user->id : null, $request->ip(), true);
+                $this->loginAttemptRepository->create($user ? $user->id : null, $request->ip(), true);
+            }
 
             $request->flash();
 
