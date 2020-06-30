@@ -179,7 +179,8 @@
                             day: this.date.slice(-2),
                             start: this.date,
                             description: this.description,
-                            amount: this.amount
+                            amount: this.amount,
+                            currency_id: this.selectedCurrencyId
                         }
 
                         if (this.recurringEnd == 'fixed') {

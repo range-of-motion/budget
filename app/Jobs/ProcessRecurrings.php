@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Repositories\ConversionRateRepository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -21,6 +22,7 @@ class ProcessRecurrings implements ShouldQueue
     use SerializesModels;
 
     private $recurringRepository;
+    private $conversionRateRepository;
     private $earningRepository;
     private $spendingRepository;
 
@@ -31,10 +33,12 @@ class ProcessRecurrings implements ShouldQueue
 
     public function handle(
         RecurringRepository $recurringRepository,
+        ConversionRateRepository $conversionRateRepository,
         EarningRepository $earningRepository,
         SpendingRepository $spendingRepository
     ) {
         $this->recurringRepository = $recurringRepository;
+        $this->conversionRateRepository = $conversionRateRepository;
         $this->earningRepository = $earningRepository;
         $this->spendingRepository = $spendingRepository;
 
@@ -53,6 +57,17 @@ class ProcessRecurrings implements ShouldQueue
         foreach ($recurrings as $recurring) {
             if ($recurring->type !== 'earning' && $recurring->type !== 'spending') {
                 throw new Exception('Unknown type "' . $recurring->type . '" for recurring');
+            }
+
+            // If necessary, convert amount based on conversion rates
+            $amount = $recurring->amount;
+
+            if ($recurring->currency_id !== $recurring->space->currency_id) {
+                $amount = $this->conversionRateRepository->convert(
+                    $recurring->currency_id,
+                    $recurring->space->currency_id,
+                    $amount
+                );
             }
 
             // Determine date on which transaction should occur
@@ -126,7 +141,7 @@ class ProcessRecurrings implements ShouldQueue
                         $recurring->id,
                         $occuranceDate,
                         $recurring->description,
-                        $recurring->amount
+                        $amount
                     );
                 }
 
@@ -138,7 +153,7 @@ class ProcessRecurrings implements ShouldQueue
                         $recurring->tag_id,
                         $occuranceDate,
                         $recurring->description,
-                        $recurring->amount
+                        $amount
                     );
                 }
 
