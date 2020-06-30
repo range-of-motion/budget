@@ -17,7 +17,8 @@ jobs:
   include:
     - stage: test
       name: "PHPUnit"
-      script: vendor/bin/phpunit
+      script: vendor/bin/phpunit --coverage-clover=coverage.xml
+      after_success: bash <(curl -s https://codecov.io/bash)
     - stage: test
       name: "Dusk"
       script: php artisan serve & php artisan dusk
