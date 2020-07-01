@@ -127,7 +127,7 @@
             @if (auth()->check())
                 <div class="text-center mb-3">
                     @if ($suggestionBoxEnabled)
-                        <a class="fs-sm" href="/ideas/create">{{ __('general.know_how_to_make_this_app_better') }}?</a> &middot; {{ $versionNumber }}
+                        <a class="fs-sm" href="/ideas/create">{{ __('general.got_a_suggestion') }}?</a> &middot; {{ $versionNumber }}
                     @else
                         {{ $versionNumber }}
                     @endif
