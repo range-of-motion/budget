@@ -28,5 +28,7 @@ return [
     'account' => 'Compte',
     'preferences' => 'Préférences',
 
-    'empty_state' => 'Il n\'y  a pas encore de :resource'
+    'empty_state' => 'Il n\'y  a pas encore de :resource',
+
+    'of' => 'sur'
 ];

@@ -23,5 +23,7 @@ return [
 
     'verify_account' => 'You still need to verify your account&mdash;please check your e-mail',
     'spaces_explanation' => 'Spaces can be used to separate your finances in Budget. For example—you can have a space for your personal finances and another space for your business\' finances.',
-    'got_a_suggestion' => 'Got a suggestion'
+    'got_a_suggestion' => 'Got a suggestion',
+
+    'of' => 'of'
 ];

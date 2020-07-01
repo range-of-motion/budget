@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EarningController;
 use App\Http\Controllers\IdeaController;
@@ -75,6 +76,8 @@ Route::group(['middleware' => ['auth']], function () {
         'store',
         'show'
     ]);
+
+    Route::get('/budgets', [BudgetController::class, 'index']);
 
     Route::resource('/tags', TagController::class)->only([
         'index',

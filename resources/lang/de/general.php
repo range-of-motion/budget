@@ -19,5 +19,7 @@ return [
     'password' => 'Passwort',
     'language' => 'Sprache',
     'theme' => 'Design',
-    'recurrings' => 'Zyklisch'
+    'recurrings' => 'Zyklisch',
+
+    'of' => 'von'
 ];
