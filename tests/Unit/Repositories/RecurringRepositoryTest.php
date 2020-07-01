@@ -107,20 +107,16 @@ class RecurringRepositoryTest extends TestCase
 
     public function testDueMonthly(): void
     {
-        $todayDayOfMonth = 23;
-
         // Assert that recurring (that has never been used before) is due
         $neverUsedRecurring = factory(Recurring::class)->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'monthly',
-            'day' => $todayDayOfMonth
+            'starts_on' => date('Y-m-d', strtotime('-1 month'))
         ]);
 
-        $recurringsDueMonthly = $this->recurringRepository->getDueMonthly($todayDayOfMonth);
-
         $contains = false;
-        foreach ($recurringsDueMonthly as $recurring) {
+        foreach ($this->recurringRepository->getDueMonthly() as $recurring) {
             if ($recurring->id === $neverUsedRecurring->id) {
                 $contains = true;
             }
@@ -133,14 +129,12 @@ class RecurringRepositoryTest extends TestCase
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'monthly',
-            'day' => $todayDayOfMonth,
-            'last_used_on' => date('Y-m-d', strtotime('-1 month', strtotime(date('Y-m') . '-' . $todayDayOfMonth)))
+            'starts_on' => date('Y-m-d', strtotime('-1 month')),
+            'last_used_on' => date('Y-m-d', strtotime('-1 month'))
         ]);
 
-        $recurringsDueMonthly = $this->recurringRepository->getDueMonthly($todayDayOfMonth);
-
         $contains = false;
-        foreach ($recurringsDueMonthly as $recurring) {
+        foreach ($this->recurringRepository->getDueMonthly() as $recurring) {
             if ($recurring->id === $usedMonthAgoRecurring->id) {
                 $contains = true;
             }
@@ -153,14 +147,12 @@ class RecurringRepositoryTest extends TestCase
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'monthly',
-            'day' => $todayDayOfMonth,
-            'last_used_on' => date('Y-m-d', strtotime('+1 day', strtotime(date('Y-m') . '-' . $todayDayOfMonth)))
+            'starts_on' => date('Y-m-d', strtotime('-1 month', strtotime('+ 1 day'))),
+            'last_used_on' => date('Y-m-d', strtotime('-1 month', strtotime('+ 1 day')))
         ]);
 
-        $recurringsDueMonthly = $this->recurringRepository->getDueMonthly($todayDayOfMonth);
-
         $contains = false;
-        foreach ($recurringsDueMonthly as $recurring) {
+        foreach ($this->recurringRepository->getDueMonthly() as $recurring) {
             if ($recurring->id === $usedLessThanMonthAgoRecurring->id) {
                 $contains = true;
             }
