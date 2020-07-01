@@ -42,14 +42,14 @@ RUN set -eux \
     && apk add --no-cache --virtual .build-deps \
         git \
         nodejs \
-        npm \
+        yarn \
         zip \
         composer \
-    && npm install -g yarn \
-# install budget and remove the default dotenv file
+# install budget
     && composer install --no-dev -o \
-    && artisan budget:install \
-    && rm .env \
+    && yarn install \
+    && yarn run production \
+    && artisan storage:link \
 # make a listing of the folder structure in /app/storage so we can later recreate it during runtime
     && find /app/storage -type d -print0 > /app/storage.txt \
 # change ownership to user where it'll run under
@@ -63,16 +63,19 @@ RUN set -eux \
     && sed -i 's/user = nobody/user = nginx/g' /etc/php7/php-fpm.d/www.conf \
     && sed -i 's/group = nobody/group = nginx/g' /etc/php7/php-fpm.d/www.conf \
     && sed -i 's/;clear_env = no/clear_env = no/g' /etc/php7/php-fpm.d/www.conf \
+# make php-fpm listen to unix socket and fix up permissions
+    && sed -i 's/listen = 127.0.0.1:9000/listen = \/run\/php-fpm\/php-fpm.sock/g' /etc/php7/php-fpm.d/www.conf \
+    && sed -i 's/;listen.owner = nobody/listen.owner = nobody/g' /etc/php7/php-fpm.d/www.conf \
+    && sed -i 's/;listen.group = nginx/listen.group = nginx/g' /etc/php7/php-fpm.d/www.conf \
+    && sed -i 's/;listen.mode = 0660/listen.mode = 0660/g' /etc/php7/php-fpm.d/www.conf \
 # fixup nginx so that it has a directory to store its .pid file and pipe all the logs to stdout and stderr
-    && mkdir /run/nginx \
+    && mkdir /run/nginx /run/php-fpm \
     && ln -s /dev/stderr /var/log/nginx/error.log \
     && ln -s /dev/stdout /var/log/nginx/access.log \
 # cleanup image and remove everything that's not needed for runtime
-    && npm uninstall -g yarn \
     && apk del .build-deps \
     && rm -rf \
         /tmp/* \
-        /root/.npm \
         /root/.composer \
         /app/node_modules \
         /usr/local/share/.cache/yarn

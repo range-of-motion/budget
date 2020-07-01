@@ -2,7 +2,7 @@
 
 set -eu
 # recreate the folder structure in /app/storage which is probably mounted to a volume
-xargs -rt0 mkdir -p -m 0700 < /app/storage.txt
+xargs -r0 mkdir -p -m 0700 < /app/storage.txt
 # fix up all the permissions
 chown -R nginx.nginx /app/storage
 find /app/storage -type d -exec chmod 0700 {} \;
@@ -10,8 +10,7 @@ find /app/storage -type f -exec chmod 0600 {} \;
 
 # check if DB_HOST environment variable is set and if not abort startup
 DB_HOST=$(echo $DB_HOST | cut -d '=' -f2)
-if [ -z "$DB_HOST" ]
-then
+if [ -z "$DB_HOST" ]; then
     echo "DB_HOST variable is not set" && exit 1
 fi
 
