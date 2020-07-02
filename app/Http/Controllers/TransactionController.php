@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CurrencyRepository;
 use App\Repositories\RecurringRepository;
 use App\Repositories\TransactionRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
+    private $currencyRepository;
     private $recurringRepository;
 
-    public function __construct(TransactionRepository $transactionRepository, RecurringRepository $recurringRepository)
-    {
+    public function __construct(
+        TransactionRepository $transactionRepository,
+        CurrencyRepository $currencyRepository,
+        RecurringRepository $recurringRepository
+    ) {
         $this->repository = $transactionRepository;
+        $this->currencyRepository = $currencyRepository;
         $this->recurringRepository = $recurringRepository;
     }
 
@@ -43,6 +50,8 @@ class TransactionController extends Controller
 
         return view('transactions.create', [
             'tags' => $tags,
+            'currencies' => $this->currencyRepository->getIfConversionRatePresent(),
+            'defaultCurrencyId' => session('space')->currency_id,
             'recurringsIntervals' => $this->recurringRepository->getSupportedIntervals()
         ]);
     }

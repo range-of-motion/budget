@@ -5,16 +5,21 @@ namespace App\Http\Controllers;
 use App\Helper;
 use Illuminate\Http\Request;
 use App\Models\Earning;
+use App\Repositories\ConversionRateRepository;
 use App\Repositories\EarningRepository;
 use Auth;
 
 class EarningController extends Controller
 {
     private $earningRepository;
+    private $conversionRateRepository;
 
-    public function __construct(EarningRepository $earningRepository)
-    {
+    public function __construct(
+        EarningRepository $earningRepository,
+        ConversionRateRepository $conversionRateRepository
+    ) {
         $this->earningRepository = $earningRepository;
+        $this->conversionRateRepository = $conversionRateRepository;
     }
 
     public function show(Request $request, Earning $earning)
@@ -35,12 +40,23 @@ class EarningController extends Controller
     {
         $request->validate($this->earningRepository->getValidationRules());
 
+        $amount = Helper::rawNumberToInteger($request->input('amount'));
+
+        // Convert amount if a different currency was selected
+        if ($request->has('currency_id') && $request->currency_id !== session('space')->currency_id) {
+            $amount = $this->conversionRateRepository->convert(
+                $request->currency_id,
+                session('space')->currency_id,
+                $amount
+            );
+        }
+
         $this->earningRepository->create(
             session('space')->id,
             null,
             $request->input('date'),
             $request->input('description'),
-            Helper::rawNumberToInteger($request->input('amount'))
+            $amount
         );
 
         return redirect()->route('dashboard');

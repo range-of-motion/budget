@@ -21,7 +21,8 @@ class Recurring extends Model
         'last_used_on',
         'tag_id',
         'description',
-        'amount'
+        'amount',
+        'currency_id'
     ];
 
     protected $dates = ['deleted_at'];
@@ -51,6 +52,11 @@ class Recurring extends Model
     }
 
     // Relations
+    public function space()
+    {
+        return $this->belongsTo(Space::class);
+    }
+
     public function spendings()
     {
         return $this->hasMany(Spending::class);

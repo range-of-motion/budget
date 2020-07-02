@@ -20,7 +20,8 @@ class RecurringRepository
             'end' => 'nullable|date|date_format:Y-m-d',
             'tag' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
             'description' => 'required|max:255',
-            'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
+            'amount' => 'required|regex:/^\d*(\.\d{2})?$/',
+            'currency_id' => 'required|exists:currencies,id'
         ];
     }
 
@@ -163,7 +164,8 @@ class RecurringRepository
         ?string $endDate,
         ?int $tagId,
         string $description,
-        string $amount
+        string $amount,
+        int $currencyId
     ): Recurring {
         if ($type !== 'earning' && $type !== 'spending') {
             throw new Exception('Unknown type "' . $type . '"');
@@ -182,7 +184,8 @@ class RecurringRepository
             'ends_on' => $endDate,
             'tag_id' => $tagId,
             'description' => $description,
-            'amount' => $amount
+            'amount' => $amount,
+            'currency_id' => $currencyId
         ]);
     }
 

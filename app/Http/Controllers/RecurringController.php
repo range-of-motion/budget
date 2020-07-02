@@ -56,7 +56,8 @@ class RecurringController extends Controller
             $request->input('end', null),
             $request->input('tag', null),
             $request->input('description'),
-            Helper::rawNumberToInteger($request->input('amount'))
+            Helper::rawNumberToInteger($request->input('amount')),
+            $request->currency_id
         );
 
         ProcessRecurrings::dispatch();

@@ -12,6 +12,7 @@ class EarningRepository
         return [
             'date' => 'required|date|date_format:Y-m-d',
             'description' => 'required|max:255',
+            'currency_id' => 'nullable|exists:currencies,id',
             'amount' => 'required|regex:/^\d*(\.\d{2})?$/'
         ];
     }

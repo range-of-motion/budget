@@ -18,7 +18,8 @@ class RecurringTest extends TestCase
         $space = factory(Space::class)->create();
 
         $recurring = factory(Recurring::class)->create([
-            'space_id' => $space->id
+            'space_id' => $space->id,
+            'currency_id' => $space->currency_id
         ]);
 
         $this->actingAs($user);
@@ -30,17 +31,18 @@ class RecurringTest extends TestCase
 
     public function testSuccessfulRecurringCreation(): void
     {
+        $user = factory(User::class)->create();
+        $space = factory(Space::class)->create();
+
         $requestData = [
             'type' => 'spending',
             'interval' => 'monthly',
             'day' => 1,
             'start' => date('Y-m-d'),
             'description' => 'Test',
-            'amount' => 123
+            'amount' => 123,
+            'currency_id' => $space->currency_id
         ];
-
-        $user = factory(User::class)->create();
-        $space = factory(Space::class)->create();
 
         $response = $this->actingAs($user)
             ->withSession(['space' => $space])

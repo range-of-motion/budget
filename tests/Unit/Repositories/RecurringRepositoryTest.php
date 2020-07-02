@@ -26,11 +26,11 @@ class RecurringRepositoryTest extends TestCase
 
     public function testCreation(): void
     {
-        $spaceId = 1;
+        $space = Space::find(1);
         $tagId = 1;
 
         $recurring = $this->recurringRepository->create(
-            $spaceId,
+            $space->id,
             'spending',
             'monthly',
             3,
@@ -38,7 +38,8 @@ class RecurringRepositoryTest extends TestCase
             null,
             $tagId,
             'Foo',
-            10000
+            10000,
+            $space->currency_id
         );
 
         $this->assertNotNull($recurring);
