@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CurrencyRepository
 {
+    public function getById(int $id): ?Currency
+    {
+        return Currency::find($id);
+    }
+
     public function getAll()
     {
         return Currency::all();
