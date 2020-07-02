@@ -1,6 +1,52 @@
 #!/usr/bin/with-contenv sh
 
 set -eu
+
+if [ -z ${APP_KEY+x} ]; then
+    abort=true
+    echo "No APP_KEY set."
+    echo "Please use the 'artisan key:generate --show' command and use this result as the APP_KEY environment variable."
+    echo "Example: docker run --rm range-of-motion/budget key:generate --show"
+    echo "Example: docker-compose run --rm budget artisan key:generate --show"
+fi
+
+if [ "${DB_CONNECTION:-mysql}" = "mysql" ]; then
+    if [ -z ${DB_HOST+x} ]; then
+        abort=true
+        echo "No DB_HOST set."
+    fi
+
+    if [ -z ${DB_PORT+x} ]; then
+        abort=true
+        echo "No DB_PORT set."
+    fi
+
+    if [ -z ${DB_DATABASE+x} ]; then
+        abort=true
+        echo "No DB_DATABASE set."
+    fi
+
+    if [ -z ${DB_USERNAME+x} ]; then
+        abort=true
+        echo "No DB_USERNAME set."
+    fi
+
+    if [ -z ${DB_PASSWORD+x} ]; then
+        abort=true
+        echo "No DB_PASSWORD set."
+    fi
+
+elif [ "${DB_CONNECTION:-x}" = "sqlite" ]; then
+    if [ -z ${DB_DATABASE+x} ]; then
+        abort=true
+        echo "No DB_DATABASE set."
+    fi
+fi
+
+if [ "${abort:+x}" ]; then
+    echo "The required environmental variables have not been set. Aborting container startup." && exit 1
+fi
+
 # recreate the folder structure in /app/storage which is probably mounted to a volume
 xargs -r0 mkdir -p -m 0700 < /app/storage.txt
 # fix up all the permissions
@@ -8,15 +54,9 @@ chown -R nginx.nginx /app/storage
 find /app/storage -type d -exec chmod 0700 {} \;
 find /app/storage -type f -exec chmod 0600 {} \;
 
-# check if DB_HOST environment variable is set and if not abort startup
-DB_HOST=$(echo $DB_HOST | cut -d '=' -f2)
-if [ -z "$DB_HOST" ]; then
-    echo "DB_HOST variable is not set" && exit 1
-fi
-
 # check if we can setup a TCP connection to our database and then start a migration
 # this isn't the best way of doing this so I might rework this later
-wait-for-it.sh -s "$DB_HOST:3306" -- artisan migrate --force
+wait-for-it.sh -s "$DB_HOST:$DB_PORT" -- artisan migrate --force
 
 # if the last command failed migration probably failed, so we'll abort startup
 if [ $? -ne 0 ]; then
