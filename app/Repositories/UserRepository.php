@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\APIKey;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -74,5 +75,15 @@ class UserRepository
         }
 
         $user->fill($data)->save();
+    }
+
+    public function createAPIKey(int $userId): APIKey
+    {
+        $token = Str::random(50);
+
+        return APIKey::create([
+            'user_id' => $userId,
+            'token' => $token
+        ]);
     }
 }
