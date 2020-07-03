@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\APIKey;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -41,6 +42,26 @@ class UserRepository
     public function getByVerificationToken(string $token): ?User
     {
         return User::where('verification_token', $token)->first();
+    }
+
+    public function getByAPIKey(string $token): ?User
+    {
+        $apiKey = DB::selectOne(DB::raw('
+            SELECT a1.*, COUNT(a2.id) AS newer_keys
+            FROM api_keys a1
+            LEFT JOIN api_keys a2 ON a1.user_id = a2.user_id AND a2.created_at > a1.created_at
+            WHERE a1.token = ?
+            GROUP BY a1.id
+            HAVING newer_keys = 0;
+        '), [$token]);
+
+        if (!$apiKey) {
+            return null;
+        }
+
+        $user = $this->getById($apiKey->user_id);
+
+        return $user;
     }
 
     public function verifyById(int $id): void
