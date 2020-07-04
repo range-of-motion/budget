@@ -17,6 +17,10 @@
                             <option value="Ymd" {{ old('date_format') == 'Ymd' ? 'selected' : '' }}>YYYYMMDD</option>
                         </select>
                     </div>
+                    <div class="row mt-2">
+                        <button id="selectAll" style="padding: 5px 10px;" class="button">Select all</button>
+                        <button id="deselectAll" style="padding: 5px 10px;" class="button ml-1">Deselect all</button>
+                    </div>
                 </div>
                 <div class="box__section box__section--header">
                     <div class="row row--gutter">
@@ -62,4 +66,36 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function selectAll() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"][name^="rows"]');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        }
+
+        function deselectAll() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"][name^="rows"]');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        }
+
+        document.querySelector('#selectAll').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            selectAll();
+        });
+
+        document.querySelector('#deselectAll').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            deselectAll();
+        });
+    </script>
 @endsection
