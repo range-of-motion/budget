@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Models;
+namespace Tests\Unit;
 
 use App\Helper;
 use PHPUnit\Framework\TestCase;
@@ -32,6 +32,20 @@ class HelperTest extends TestCase
             $result = Helper::rawNumberToInteger($case['rawNumber']);
 
             $this->assertEquals($case['expected'], $result);
+        }
+    }
+
+    public function testDelimiterDetection(): void
+    {
+        $testCases = [
+            'hello|world' => '|',
+            'id,name,address' => ',',
+            'hello,goodbye|foo|bar' => '|',
+            'id;description;amount;foo;bar' => ';'
+        ];
+
+        foreach ($testCases as $input => $expected) {
+            $this->assertEquals($expected, Helper::detectDelimiter($input));
         }
     }
 }

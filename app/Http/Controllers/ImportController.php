@@ -58,8 +58,14 @@ class ImportController extends Controller
         $headers = [];
 
         $file = fopen(storage_path('app/imports/' . $import->file), 'r');
-        $firstRow = fgetcsv($file, 999, ',');
 
+        // Detect delimiter
+        $firstRowRaw = fgets($file);
+        $delimiter = Helper::detectDelimiter($firstRowRaw);
+
+        rewind($file); // Reset file pointer to make sure fgetcsv() starts at first line
+
+        $firstRow = fgetcsv($file, 999, $delimiter);
         foreach ($firstRow as $column) {
             $headers[] = $column;
         }
@@ -97,19 +103,18 @@ class ImportController extends Controller
 
         $file = fopen(storage_path('app/imports/' . $import->file), 'r');
 
-        $heading = true;
+        // Detect delimiter
+        $rawHeaderRow = fgets($file);
+        $delimiter = Helper::detectDelimiter($rawHeaderRow);
+
         $rows = [];
 
-        while ($row = fgetcsv($file, 999, ',')) {
-            if (!$heading) {
-                $rows[] = [
-                    'happened_on' => $row[$import->column_happened_on],
-                    'description' => $row[$import->column_description],
-                    'amount' => $row[$import->column_amount]
-                ];
-            } else {
-                $heading = false;
-            }
+        while ($row = fgetcsv($file, 999, $delimiter)) {
+            $rows[] = [
+                'happened_on' => $row[$import->column_happened_on],
+                'description' => $row[$import->column_description],
+                'amount' => $row[$import->column_amount]
+            ];
         }
 
         return view('imports.complete', compact('tags', 'rows'));
