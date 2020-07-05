@@ -4,7 +4,14 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ __('models.budgets') }}</h2>
+        <div class="row">
+            <div class="row__column row__column--middle">
+                <h2>{{ __('models.budgets') }}</h2>
+            </div>
+            <div class="row__column row__column--compact row__column--middle">
+                <a href="/budgets/create" class="button">{{ __('actions.create') }} {{ __('models.budget') }}</a>
+            </div>
+        </div>
         <div class="box mt-3">
             @if (!count($budgets))
                 <div class="box__section text-center">{{ __('general.empty_state', ['resource' => strtolower(__('models.budgets'))]) }}</div>

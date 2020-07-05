@@ -15,6 +15,8 @@ return [
     'description' => 'Description',
     'amount' => 'Amount',
 
+    'period' => 'Period',
+
     'file' => 'File',
 
     'color' => 'Color'

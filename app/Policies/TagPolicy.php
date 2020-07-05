@@ -7,6 +7,11 @@ use App\Models\Tag;
 
 class TagPolicy
 {
+    public function view(User $user, Tag $tag)
+    {
+        return $user->spaces->contains($tag->space_id);
+    }
+
     public function edit(User $user, Tag $tag)
     {
         return $user->spaces->contains($tag->space_id);

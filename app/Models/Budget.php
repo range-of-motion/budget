@@ -11,6 +11,14 @@ class Budget extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'space_id',
+        'tag_id',
+        'period',
+        'amount',
+        'starts_on'
+    ];
+
     public function space()
     {
         return $this->belongsTo(Space::class);
