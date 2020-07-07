@@ -22,7 +22,9 @@ class PasswordChanged extends Mailable
 
     public function build()
     {
-        return $this->view('emails.password_changed')
+        return $this
+            ->view('emails.password_changed')
+            ->text('emails.password_changed_plain')
             ->with([
                 'updated_at' => $this->updated_at
             ]);
