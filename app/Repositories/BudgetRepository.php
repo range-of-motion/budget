@@ -46,7 +46,7 @@ class BudgetRepository
             ', [
                 $spaceId,
                 $tagId
-            ])->count == 1;
+            ])->count > 0;
     }
 
     public function getActive()
