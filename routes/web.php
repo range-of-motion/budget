@@ -18,6 +18,7 @@ use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\SpendingController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\TranslationsController;
 use App\Http\Controllers\VerifyController;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -119,17 +120,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/ideas', [IdeaController::class, 'store']);
     });
 
-    Route::get('/translations', function () {
-        $strings = [];
-
-        foreach (glob(resource_path('lang/' . Auth::user()->language . '/*.php')) as $file) {
-            $fileName = basename($file, '.php');
-
-            $strings[$fileName] = require $file;
-        }
-
-        return 'window.i18n = ' . json_encode($strings) . ';';
-    });
+    Route::get('/translations', TranslationsController::class);
 });
 
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
