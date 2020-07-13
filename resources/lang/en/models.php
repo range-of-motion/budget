@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'budgets' => 'Budgets',
+    'budget' => 'Budget',
+
     'spaces' => 'Spaces',
     'space' => 'Space',
 

@@ -23,5 +23,12 @@ return [
         4 => 'Sexta-feira',
         5 => 'Sábado-feira',
         6 => 'Domingo-feira'
+    ],
+    'intervals' => [
+        'yearly' => 'Anual',
+        'monthly' => 'Por mês',
+        'biweekly' => 'Quinzenal',
+        'weekly' => 'Semanal',
+        'daily' => 'Diariamente'
     ]
 ];

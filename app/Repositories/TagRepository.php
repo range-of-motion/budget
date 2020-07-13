@@ -16,6 +16,11 @@ class TagRepository
         ];
     }
 
+    public function getById(int $id): ?Tag
+    {
+        return Tag::find($id);
+    }
+
     public function getMostExpensiveTags(int $spaceId, int $limit = null, int $year = null, int $month = null)
     {
         $sql = '

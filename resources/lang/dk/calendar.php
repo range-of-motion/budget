@@ -23,5 +23,12 @@ return [
         4 => 'Fredag',
         5 => 'Lørdag',
         6 => 'Søndag'
+    ],
+    'intervals' => [
+        'yearly' => 'Årligt',
+        'monthly' => 'Månedligt',
+        'biweekly' => 'Hver anden uge',
+        'weekly' => 'Ugentlig',
+        'daily' => 'Dagligt'
     ]
 ];

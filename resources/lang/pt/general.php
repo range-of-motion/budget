@@ -19,5 +19,7 @@ return [
     'account' => 'Conta',
     'preferences' => 'Preferências',
 
-    'empty_state' => 'Não há qualquer recurso ainda'
+    'empty_state' => 'Não há qualquer recurso ainda',
+
+    'of' => 'de'
 ];

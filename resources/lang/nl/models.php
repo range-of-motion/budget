@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'budgets' => 'Budgetten',
+    'budget' => 'Budget',
+
     'tags' => 'Etiketten',
     'tag' => 'Etiket',
 

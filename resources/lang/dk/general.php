@@ -16,5 +16,7 @@ return [
     'account' => 'Account',
     'preferences' => 'Præferencer',
 
-    'empty_state' => 'Der er endnu ingen :resource'
+    'empty_state' => 'Der er endnu ingen :resource',
+
+    'of' => 'af'
 ];

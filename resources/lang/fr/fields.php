@@ -9,6 +9,7 @@ return [
     'language' => 'Langue',
     'theme' => 'Thème',
     'currency' => 'Devise',
-    'weekly_report' => 'Rapport Hebdomadaire
-'
+    'weekly_report' => 'Rapport Hebdomadaire',
+
+    'period' => 'Période'
 ];

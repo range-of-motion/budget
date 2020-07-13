@@ -23,5 +23,7 @@ return [
 
     'verify_account' => 'Je moet je account nog verifiëren&mdash;check je e-mail',
     'spaces_explanation' => 'Spaces kunnen worden gebruikt om je financiën op sorteren in Budget. Bijvoorbeeld—je kan een space hebben voor jou persoonlijk en een andere voor je bedrijf.',
-    'got_a_suggestion' => 'Heb je een suggestie'
+    'got_a_suggestion' => 'Heb je een suggestie',
+
+    'of' => 'van'
 ];

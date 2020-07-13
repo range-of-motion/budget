@@ -15,5 +15,7 @@ return [
     'description' => 'Beskrivelse',
     'amount' => 'Beløb',
 
+    'period' => 'Periode',
+
     'file' => 'Fil'
 ];

@@ -27,6 +27,26 @@ canvas {
     width: 100%;
 }
 
+progress {
+    appearance: none;
+    width: 100%;
+    max-width: 300px;
+    height: 10px;
+    vertical-align: 0;
+
+    &::-webkit-progress-bar {
+        background: #E2E8F0;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        overflow: hidden; // To prevent the border-radius from the value from overflowing when its width is below 10px
+    }
+
+    &::-webkit-progress-value {
+        background: $colors-primary;
+        border-radius: 5px;
+    }
+}
+
 .bg {
     display: flex;
 
