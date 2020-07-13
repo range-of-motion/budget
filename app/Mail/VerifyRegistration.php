@@ -22,7 +22,9 @@ class VerifyRegistration extends Mailable
 
     public function build()
     {
-        return $this->view('emails.verify_registration')
+        return $this
+            ->view('emails.verify_registration')
+            ->text('emails.verify_registration_plain')
             ->with([
                 'name' => $this->user->name,
                 'verification_token' => $this->user->verification_token

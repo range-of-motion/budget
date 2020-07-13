@@ -28,7 +28,9 @@ class WeeklyReport extends Mailable
 
     public function build()
     {
-        return $this->view('emails.weekly_report')
+        return $this
+            ->view('emails.weekly_report')
+            ->text('emails.weekly_report_plain')
             ->with([
                 'space' => $this->space,
                 'week' => $this->week,
