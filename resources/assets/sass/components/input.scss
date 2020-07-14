@@ -156,6 +156,17 @@ button.button {
     font-size: 14px;
     font-weight: 600;
     color: #FFF;
+
+    &.button--secondary {
+        background: #FFF;
+        color: #000;
+        border: 1px solid $colors-light-border;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    &.button--small {
+        padding: 5px 10px;
+    }
 }
 
 .shadow {

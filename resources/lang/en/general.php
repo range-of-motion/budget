@@ -19,6 +19,9 @@ return [
     'account' => 'Account',
     'preferences' => 'Preferences',
 
+    'general' => 'General',
+    'members' => 'Members',
+
     'empty_state' => 'There aren\'t any :resource yet',
 
     'verify_account' => 'You still need to verify your account&mdash;please check your e-mail',

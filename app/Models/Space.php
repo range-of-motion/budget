@@ -20,7 +20,7 @@ class Space extends Model
     // Relations
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_space');
+        return $this->belongsToMany(User::class, 'user_space')->withPivot('role');
     }
 
     public function currency()

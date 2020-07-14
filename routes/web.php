@@ -120,7 +120,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/settings/spaces', [SettingsController::class, 'getSpaces'])->name('spaces.index');
     });
 
-    Route::get('/spaces/{id}', SpaceController::class);
+    Route::name('spaces.')->group(function () {
+        Route::get('/spaces/{space}', [SpaceController::class, 'show'])->name('show');
+        Route::get('/spaces/{space}/edit', [SpaceController::class, 'edit'])->name('edit');
+        Route::post('/spaces/{space}/update', [SpaceController::class, 'update'])->name('update');
+    });
 
     Route::name('ideas.')->group(function () {
         Route::get('/ideas/create', [IdeaController::class, 'create'])->name('create');

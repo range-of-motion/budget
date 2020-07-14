@@ -19,6 +19,9 @@ return [
     'account' => 'Account',
     'preferences' => 'Voorkeuren',
 
+    'general' => 'Algemeen',
+    'members' => 'Leden',
+
     'empty_state' => 'Er zijn nog geen :resource',
 
     'verify_account' => 'Je moet je account nog verifiëren&mdash;check je e-mail',
