@@ -21,6 +21,9 @@ return [
 
     'general' => 'General',
     'members' => 'Members',
+    'invites' => 'Invites',
+    'invited_by' => 'Invited by',
+    'invite_someone' => 'Invite someone',
 
     'empty_state' => 'There aren\'t any :resource yet',
 

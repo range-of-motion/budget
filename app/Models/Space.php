@@ -23,6 +23,11 @@ class Space extends Model
         return $this->belongsToMany(User::class, 'user_space')->withPivot('role');
     }
 
+    public function invites()
+    {
+        return $this->hasMany(SpaceInvite::class);
+    }
+
     public function currency()
     {
         return $this->belongsTo(Currency::class);

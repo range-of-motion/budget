@@ -10,5 +10,7 @@ return [
     'verify' => 'Verify',
 
     'yes' => 'Yes',
-    'no' => 'No'
+    'no' => 'No',
+
+    'invite' => 'Invite'
 ];

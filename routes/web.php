@@ -124,6 +124,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/spaces/{space}', [SpaceController::class, 'show'])->name('show');
         Route::get('/spaces/{space}/edit', [SpaceController::class, 'edit'])->name('edit');
         Route::post('/spaces/{space}/update', [SpaceController::class, 'update'])->name('update');
+        Route::post('/spaces/{space}/invite', [SpaceController::class, 'invite'])->name('invite');
     });
 
     Route::name('ideas.')->group(function () {

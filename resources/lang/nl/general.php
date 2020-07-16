@@ -21,6 +21,9 @@ return [
 
     'general' => 'Algemeen',
     'members' => 'Leden',
+    'invites' => 'Uitnodigingen',
+    'invited_by' => 'Uitgenodigd door',
+    'invite_someone' => 'Nodig iemand uit',
 
     'empty_state' => 'Er zijn nog geen :resource',
 

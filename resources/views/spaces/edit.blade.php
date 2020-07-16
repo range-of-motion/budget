@@ -47,5 +47,64 @@
                 </div>
             </div>
         </div>
+        <div class="box mt-3">
+            <div class="box__section row">
+                <div class="row__column">
+                    <h2>{{ __('general.invites') }}</h2>
+                </div>
+                <div class="row__column row__column--double">
+                    @if (!count($space->invites))
+                        <span>There aren't any invites</span>
+                    @endif
+                    @foreach ($space->invites as $i => $invite)
+                        <div class="{{ $i > 0 ? 'mt-2' : '' }}">
+                            <div class="color-dark mb-1">{{ $invite->invitee->name }}</div>
+                            <div class="fs-sm">{{ __('general.invited_by') }} {{ $invite->inviter->name }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="box mt-3">
+            <div class="box__section row">
+                <div class="row__column">
+                    <h2>{{ __('general.invite_someone') }}</h2>
+                </div>
+                <div class="row__column row__column--double">
+                    @if (session('inviteStatus'))
+                        @switch(session('inviteStatus'))
+                            @case('success')
+                                <div class="color-green mb-2">An invite has been sent</div>
+                                @break
+
+                            @case('present')
+                                <div class="color-red mb-2">User is already part of space</div>
+                                @break
+
+                            @case('exists')
+                                <div class="color-red mb-2">Invite has already been sent</div>
+                                @break
+                        @endswitch
+                    @endif
+                    <form method="POST" action="/spaces/{{ $space->id }}/invite">
+                        {{ csrf_field() }}
+                        <div class="input input--small">
+                            <label>{{ __('fields.email') }}</label>
+                            <input type="email" name="email" />
+                            @include('partials.validation_error', ['payload' => 'email'])
+                        </div>
+                        <div class="input input--small">
+                            <label>{{ __('fields.role') }}</label>
+                            <select name="role">
+                                <option value="admin">Admin</option>
+                                <option value="regular" selected>Regular</option>
+                            </select>
+                            @include('partials.validation_error', ['payload' => 'role'])
+                        </div>
+                        <button class="button">{{ __('actions.invite') }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
