@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Actions\CreateSpaceInviteAction;
 use App\Exceptions\SpaceInviteAlreadyExistsException;
 use App\Exceptions\SpaceInviteInviteeAlreadyPresentException;
+use App\Mail\InvitedToSpace;
 use App\Models\Space;
 use App\Models\SpaceInvite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class SpaceController extends Controller
 {
@@ -66,7 +68,7 @@ class SpaceController extends Controller
         $inviteeUser = User::where('email', $request->email)->first();
 
         try {
-            (new CreateSpaceInviteAction())->execute(
+            $invite = (new CreateSpaceInviteAction())->execute(
                 $space->id,
                 $inviteeUser->id,
                 $authenticatedUser->id,
@@ -82,7 +84,7 @@ class SpaceController extends Controller
                 ->with('inviteStatus', 'exists');
         }
 
-        // TODO SEND MAIL
+        Mail::to($inviteeUser->email)->send(new InvitedToSpace($invite));
 
         return redirect()
             ->route('spaces.edit', ['space' => $space->id])
