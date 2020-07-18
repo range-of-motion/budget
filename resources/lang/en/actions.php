@@ -12,5 +12,8 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
 
-    'invite' => 'Invite'
+    'invite' => 'Invite',
+
+    'accept' => 'Accept',
+    'deny' => 'Deny'
 ];

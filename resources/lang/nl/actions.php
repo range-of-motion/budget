@@ -12,5 +12,8 @@ return [
     'yes' => 'Ja',
     'no' => 'Nee',
 
-    'invite' => 'Nodig uit'
+    'invite' => 'Nodig uit',
+
+    'accept' => 'Accepteer',
+    'deny' => 'Weiger'
 ];

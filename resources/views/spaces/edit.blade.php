@@ -59,7 +59,7 @@
                     @foreach ($space->invites as $i => $invite)
                         <div class="{{ $i > 0 ? 'mt-2' : '' }}">
                             <div class="color-dark mb-1">{{ $invite->invitee->name }}</div>
-                            <div class="fs-sm">{{ __('general.invited_by') }} {{ $invite->inviter->name }}</div>
+                            <div class="fs-sm">{{ __('general.invited_by') }} {{ $invite->inviter->name }} &middot; {{ $invite->status }}</div>
                         </div>
                     @endforeach
                 </div>

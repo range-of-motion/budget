@@ -31,5 +31,9 @@ return [
     'spaces_explanation' => 'Spaces kunnen worden gebruikt om je financiën op sorteren in Budget. Bijvoorbeeld—je kan een space hebben voor jou persoonlijk en een andere voor je bedrijf.',
     'got_a_suggestion' => 'Heb je een suggestie',
 
+    'invite' => 'Uitnodiging',
+    'invited_to' => 'Je bent uitgenodigd voor',
+    'sent_by' => 'Verstuurd door',
+
     'of' => 'van'
 ];

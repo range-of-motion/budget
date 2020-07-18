@@ -31,5 +31,9 @@ return [
     'spaces_explanation' => 'Spaces can be used to separate your finances in Budget. For example—you can have a space for your personal finances and another space for your business\' finances.',
     'got_a_suggestion' => 'Got a suggestion',
 
+    'invite' => 'Invite',
+    'invited_to' => 'You\'ve been invited to',
+    'sent_by' => 'Sent by',
+
     'of' => 'of'
 ];

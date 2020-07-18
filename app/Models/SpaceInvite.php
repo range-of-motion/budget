@@ -10,7 +10,12 @@ class SpaceInvite extends Model
         'space_id',
         'inviter_user_id',
         'invitee_user_id',
-        'role'
+        'role',
+        'accepted'
+    ];
+
+    protected $casts = [
+        'accepted' => 'boolean'
     ];
 
     // Relations
@@ -27,5 +32,23 @@ class SpaceInvite extends Model
     public function inviter()
     {
         return $this->belongsTo(User::class, 'inviter_user_id');
+    }
+
+    // Accessors
+    public function getStatusAttribute(): string
+    {
+        if ($this->accepted === null) {
+            return 'Pending';
+        }
+
+        if ($this->accepted === true) {
+            return 'Accepted (' . date('d-m', strtotime($this->updated_at)) . ')';
+        }
+
+        if ($this->accepted === false) {
+            return 'Denied (' . date('d-m', strtotime($this->updated_at)) . ')';
+        }
+
+        return 'Unknown';
     }
 }
