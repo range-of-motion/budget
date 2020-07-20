@@ -10,5 +10,10 @@ return [
     'verify' => 'Controleer',
 
     'yes' => 'Ja',
-    'no' => 'Nee'
+    'no' => 'Nee',
+
+    'invite' => 'Nodig uit',
+
+    'accept' => 'Accepteer',
+    'deny' => 'Weiger'
 ];

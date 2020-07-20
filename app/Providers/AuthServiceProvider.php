@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Policies\RecurringPolicy;
 use App\Models\Recurring;
+use App\Models\Space;
+use App\Models\SpaceInvite;
+use App\Policies\SpaceInvitePolicy;
+use App\Policies\SpacePolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +29,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
         Earning::class => EarningPolicy::class,
+        Space::class => SpacePolicy::class,
+        SpaceInvite::class => SpaceInvitePolicy::class,
         Spending::class => SpendingPolicy::class,
         Recurring::class => RecurringPolicy::class,
         Tag::class => TagPolicy::class,

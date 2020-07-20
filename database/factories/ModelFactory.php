@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Models\Earning;
 use App\Models\Spending;
 use App\Models\Recurring;
+use App\Models\SpaceInvite;
 use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Generator $faker) {
@@ -25,6 +26,15 @@ $factory->define(Space::class, function (Generator $faker) {
     return [
         'currency_id' => $faker->numberBetween(1, 3),
         'name' => $faker->firstName . '\'s Space'
+    ];
+});
+
+$factory->define(SpaceInvite::class, function (Generator $faker) {
+    return [
+        'space_id' => Space::all()->random()->id,
+        'invitee_user_id' => User::all()->random()->id,
+        'inviter_user_id' => User::all()->random()->id,
+        'role' => 'regular'
     ];
 });
 

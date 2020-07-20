@@ -19,5 +19,7 @@ return [
 
     'file' => 'Bestand',
 
-    'color' => 'Kleur'
+    'color' => 'Kleur',
+
+    'role' => 'Rol'
 ];

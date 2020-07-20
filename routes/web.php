@@ -16,6 +16,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SpaceController;
+use App\Http\Controllers\SpaceInviteController;
 use App\Http\Controllers\SpendingController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TransactionController;
@@ -120,7 +121,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/settings/spaces', [SettingsController::class, 'getSpaces'])->name('spaces.index');
     });
 
-    Route::get('/spaces/{id}', SpaceController::class);
+    Route::name('spaces.')->group(function () {
+        Route::get('/spaces/{space}', [SpaceController::class, 'show'])->name('show');
+        Route::get('/spaces/{space}/edit', [SpaceController::class, 'edit'])->name('edit');
+        Route::post('/spaces/{space}/update', [SpaceController::class, 'update'])->name('update');
+        Route::post('/spaces/{space}/invite', [SpaceController::class, 'invite'])->name('invite');
+    });
+
+    Route::name('space_invites.')->group(function () {
+        Route::get('/spaces/{space}/invites/{invite}', [SpaceInviteController::class, 'show'])->name('show');
+        Route::post('/spaces/{space}/invites/{invite}/accept', [SpaceInviteController::class, 'accept'])->name('accept');
+        Route::post('/spaces/{space}/invites/{invite}/deny', [SpaceInviteController::class, 'deny'])->name('deny');
+    });
 
     Route::name('ideas.')->group(function () {
         Route::get('/ideas/create', [IdeaController::class, 'create'])->name('create');

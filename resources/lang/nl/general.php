@@ -19,11 +19,21 @@ return [
     'account' => 'Account',
     'preferences' => 'Voorkeuren',
 
+    'general' => 'Algemeen',
+    'members' => 'Leden',
+    'invites' => 'Uitnodigingen',
+    'invited_by' => 'Uitgenodigd door',
+    'invite_someone' => 'Nodig iemand uit',
+
     'empty_state' => 'Er zijn nog geen :resource',
 
     'verify_account' => 'Je moet je account nog verifiëren&mdash;check je e-mail',
     'spaces_explanation' => 'Spaces kunnen worden gebruikt om je financiën op sorteren in Budget. Bijvoorbeeld—je kan een space hebben voor jou persoonlijk en een andere voor je bedrijf.',
     'got_a_suggestion' => 'Heb je een suggestie',
+
+    'invite' => 'Uitnodiging',
+    'invited_to' => 'Je bent uitgenodigd voor',
+    'sent_by' => 'Verstuurd door',
 
     'of' => 'van'
 ];

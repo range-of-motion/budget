@@ -19,5 +19,7 @@ return [
 
     'file' => 'File',
 
-    'color' => 'Color'
+    'color' => 'Color',
+
+    'role' => 'Role'
 ];
