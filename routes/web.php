@@ -122,6 +122,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::name('spaces.')->group(function () {
+        Route::get('/spaces/create', [SpaceController::class, 'create'])->name('create');
+        Route::post('/spaces', [SpaceController::class, 'store'])->name('store');
         Route::get('/spaces/{space}', [SpaceController::class, 'show'])->name('show');
         Route::get('/spaces/{space}/edit', [SpaceController::class, 'edit'])->name('edit');
         Route::post('/spaces/{space}/update', [SpaceController::class, 'update'])->name('update');
