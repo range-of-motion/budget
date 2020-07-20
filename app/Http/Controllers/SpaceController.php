@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CreateSpaceInviteAction;
+use App\Actions\StoreSpaceInSessionAction;
 use App\Exceptions\SpaceInviteAlreadyExistsException;
 use App\Exceptions\SpaceInviteInviteeAlreadyPresentException;
 use App\Mail\InvitedToSpace;
@@ -20,7 +21,7 @@ class SpaceController extends Controller
         $space = Space::find($id);
 
         if ($space->users->contains(Auth::user()->id)) {
-            session(['space' => $space]);
+            (new StoreSpaceInSessionAction())->execute($space->id);
         }
 
         return redirect()->route('dashboard');

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Space extends Model
 {
@@ -61,6 +62,12 @@ class Space extends Model
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    // Accessors
+    public function getAbbreviatedNameAttribute(): string
+    {
+        return Str::limit($this->name, 3);
     }
 
     //

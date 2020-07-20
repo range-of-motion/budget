@@ -25,7 +25,7 @@ class DashboardController extends Controller
 
     public function __invoke()
     {
-        $space_id = session('space')->id;
+        $space_id = session('space_id');
         $currentYear = date('Y');
         $currentMonth = date('m');
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);

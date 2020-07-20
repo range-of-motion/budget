@@ -17,4 +17,10 @@ class Activity extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // Scopes
+    public function scopeOfSpace($query, $spaceId)
+    {
+        return $query->where('space_id', $spaceId);
+    }
 }

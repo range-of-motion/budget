@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Recurring;
 use Auth;
 use App\Jobs\ProcessRecurrings;
+use App\Models\Tag;
 use App\Repositories\RecurringRepository;
 
 class RecurringController extends Controller
@@ -20,9 +21,9 @@ class RecurringController extends Controller
 
     public function index()
     {
-        return view('recurrings.index', [
-            'recurrings' => session('space')->recurrings()->orderBy('created_at', 'DESC')->get()
-        ]);
+        $recurrings = Recurring::ofSpace(session('space_id'))->latest()->get();
+
+        return view('recurrings.index', ['recurrings' => $recurrings]);
     }
 
     public function show(Recurring $recurring)
@@ -36,7 +37,7 @@ class RecurringController extends Controller
     {
         $tags = [];
 
-        foreach (session('space')->tags as $tag) {
+        foreach (Tag::ofSpace(session('space_id'))->get() as $tag) {
             $tags[] = ['key' => $tag->id, 'label' => $tag->name];
         }
 
@@ -48,7 +49,7 @@ class RecurringController extends Controller
         $request->validate($this->recurringRepository->getValidationRules());
 
         $recurring = $this->recurringRepository->create(
-            session('space')->id,
+            session('space_id'),
             $request->type,
             $request->interval,
             (int) ltrim($request->input('day'), 0),

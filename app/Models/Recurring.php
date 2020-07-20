@@ -66,4 +66,10 @@ class Recurring extends Model
     {
         return $this->belongsTo(Tag::class);
     }
+
+    // Scopes
+    public function scopeOfSpace($query, $spaceId)
+    {
+        return $query->where('space_id', $spaceId);
+    }
 }

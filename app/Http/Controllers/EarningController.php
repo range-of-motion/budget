@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper;
 use Illuminate\Http\Request;
 use App\Models\Earning;
+use App\Models\Space;
 use App\Repositories\ConversionRateRepository;
 use App\Repositories\EarningRepository;
 use Auth;
@@ -43,16 +44,16 @@ class EarningController extends Controller
         $amount = Helper::rawNumberToInteger($request->input('amount'));
 
         // Convert amount if a different currency was selected
-        if ($request->has('currency_id') && $request->currency_id !== session('space')->currency_id) {
+        if ($request->has('currency_id') && $request->currency_id !== Space::find(session('space_id'))->currency_id) {
             $amount = $this->conversionRateRepository->convert(
                 $request->currency_id,
-                session('space')->currency_id,
+                Space::find(session('space_id'))->currency_id,
                 $amount
             );
         }
 
         $this->earningRepository->create(
-            session('space')->id,
+            session('space_id'),
             null,
             $request->input('date'),
             $request->input('description'),

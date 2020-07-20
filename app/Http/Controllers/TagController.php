@@ -18,9 +18,9 @@ class TagController extends Controller
 
     public function index()
     {
-        return view('tags.index', [
-            'tags' => session('space')->tags()->orderBy('created_at', 'DESC')->get()
-        ]);
+        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
+
+        return view('tags.index', ['tags' => $tags]);
     }
 
     public function create()
@@ -32,7 +32,7 @@ class TagController extends Controller
     {
         $request->validate($this->tagRepository->getValidationRules());
 
-        $this->tagRepository->create(session('space')->id, $request->input('name'), $request->input('color'));
+        $this->tagRepository->create(session('space_id'), $request->input('name'), $request->input('color'));
 
         return redirect()->route('tags.index');
     }

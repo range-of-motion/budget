@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\StoreSpaceInSessionAction;
 use App\Repositories\LoginAttemptRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class LoginController extends Controller
 
             $this->loginAttemptRepository->create($user->id, $request->ip(), false);
 
-            session(['space' => $user->spaces[0]]);
+            (new StoreSpaceInSessionAction())->execute($user->spaces[0]->id);
 
             return redirect()->route('dashboard');
         } else {

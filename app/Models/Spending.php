@@ -63,4 +63,10 @@ class Spending extends Model
         return $this->hasMany(Attachment::class, 'transaction_id')
             ->where('transaction_type', 'spending');
     }
+
+    // Scopes
+    public function scopeOfSpace($query, $spaceId)
+    {
+        return $query->where('space_id', $spaceId);
+    }
 }
