@@ -124,7 +124,24 @@
                     padding: 15px;
                     color: #FFF;
                     background: #F86380;
-                ">{!! __('general.verify_account') !!}</div>
+                ">{!! __('general.verify_account') !!} (or <form method="POST" action="{{ route('resend_verification_mail') }}" style="display: inline-block;">{{ csrf_field() }}<button class="button link">resend</button></form>)</div>
+            @endif
+            @if (session('verification_mail_status'))
+                <div class="wrapper mt-3">
+                    @switch(session('verification_mail_status'))
+                        @case('success')
+                            @include('partials.alerts.success', ['payload' => ['classes' => '', 'message' => 'An e-mail has been sent your way']])
+                            @break
+
+                        @case('already_verified')
+                            @include('partials.alerts.danger', ['payload' => ['classes' => '', 'message' => 'You\'ve already been verified']])
+                            @break
+
+                        @case('rate_limited')
+                            @include('partials.alerts.danger', ['payload' => ['classes' => '', 'message' => 'Please wait a few minutes before requesting another e-mail']])
+                            @break
+                    @endswitch
+                </div>
             @endif
             @yield('body')
             @if (auth()->check())
