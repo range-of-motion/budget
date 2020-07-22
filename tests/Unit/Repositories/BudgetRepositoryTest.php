@@ -83,7 +83,7 @@ class BudgetRepositoryTest extends TestCase
     {
         $space = factory(Space::class)->create(['id' => 200]);
 
-        $this->withSession(['space' => (object) ['id' => $space->id]]);
+        $this->withSession(['space_id' => $space->id]);
         $this->assertEmpty($this->budgetRepository->getActive());
     }
 
@@ -98,7 +98,7 @@ class BudgetRepositoryTest extends TestCase
             'ends_on' => date('Y-m-d', strtotime('last day of last month'))
         ]);
 
-        $this->withSession(['space' => (object) ['id' => 200]]);
+        $this->withSession(['space_id' => 200]);
         $this->assertEmpty($this->budgetRepository->getActive());
     }
 
@@ -112,7 +112,7 @@ class BudgetRepositoryTest extends TestCase
             'starts_on' => date('Y-m-d', strtotime('first day of this month'))
         ]);
 
-        $this->withSession(['space' => (object) ['id' => 200]]);
+        $this->withSession(['space_id' => 200]);
         $this->assertCount(1, $this->budgetRepository->getActive());
     }
 
@@ -164,7 +164,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetSpentByIdUsingFreshBudget(): void
     {
-        $this->withSession(['space' => (object) ['id' => 1]]);
+        $this->withSession(['space_id' => 1]);
 
         $budget = factory(Budget::class)->create([
             'space_id' => 1,
@@ -177,7 +177,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetSpentByIdUsingYearlyBudget(): void
     {
-        $this->withSession(['space' => (object) ['id' => $this->spaceId]]);
+        $this->withSession(['space_id' => $this->spaceId]);
 
         $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
 
@@ -213,7 +213,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetSpentByIdUsingMonthlyBudget(): void
     {
-        $this->withSession(['space' => (object) ['id' => $this->spaceId]]);
+        $this->withSession(['space_id' => $this->spaceId]);
 
         $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
 
@@ -249,7 +249,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetSpentByIdUsingWeeklyBudget(): void
     {
-        $this->withSession(['space' => (object) ['id' => $this->spaceId]]);
+        $this->withSession(['space_id' => $this->spaceId]);
 
         $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
 
@@ -285,7 +285,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetSpentByIdUsingDailyBudget(): void
     {
-        $this->withSession(['space' => (object) ['id' => $this->spaceId]]);
+        $this->withSession(['space_id' => $this->spaceId]);
 
         $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
 

@@ -19,7 +19,7 @@ class DashboardTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->withSession(['space' => $space])
+            ->withSession(['space_id' => $space->id])
             ->get('/dashboard');
 
         $response
@@ -54,7 +54,7 @@ class DashboardTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->withSession(['space' => $space])
+            ->withSession(['space_id' => $space->id])
             ->get('/dashboard');
 
         $response
