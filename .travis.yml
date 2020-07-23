@@ -6,12 +6,16 @@ php:
 services:
   - mysql
 
+addons:
+  chrome: stable
+
 before_script:
   - mysql -e 'create database budget_testing;'
   - cp .env.travis .env
   - composer install --no-interaction
   - php artisan key:generate
   - php artisan migrate --database=testing
+  - php artisan dusk:chrome-driver 84 # Seems to be the current stable
 
 jobs:
   include:
@@ -21,7 +25,7 @@ jobs:
       after_success: bash <(curl -s https://codecov.io/bash)
     - stage: test
       name: "Dusk"
-      script: php artisan serve & php artisan dusk
+      script: google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost & php artisan serve & php artisan dusk
     - stage: test
       name: "PHPCS"
       script: vendor/bin/phpcs
