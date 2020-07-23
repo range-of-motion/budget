@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Helper;
+use App\Models\Earning;
+use App\Models\Spending;
 use Carbon\Carbon;
 
 class TransactionRepository
@@ -19,13 +21,11 @@ class TransactionRepository
         }
 
         for ($i = 1; $i <= 53; $i++) { // This used to be 52, IDK what happens after we moved it to 53
-            $balance += session('space')
-                ->earnings()
+            $balance += Earning::ofSpace(session('space_id'))
                 ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
                 ->sum('amount');
 
-            $balance -= session('space')
-                ->spendings()
+            $balance -= Spending::ofSpace(session('space_id'))
                 ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
                 ->sum('amount');
 
@@ -40,7 +40,7 @@ class TransactionRepository
         $yearMonths = [];
 
         // Populate yearMonths with earnings
-        foreach (session('space')->earnings as $earning) {
+        foreach (Earning::ofSpace(session('space_id'))->get() as $earning) {
             $shouldAdd = false;
 
             if (!$filterBy) {
@@ -59,7 +59,7 @@ class TransactionRepository
         }
 
         // Populate yearMonths with spendings
-        foreach (session('space')->spendings as $spending) {
+        foreach (Spending::ofSpace(session('space_id'))->get() as $spending) {
             $shouldAdd = true;
 
             // Filter

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Models\Currency;
+use App\Models\Space;
 use App\Models\Spending;
+use App\Models\Tag;
 use App\Repositories\ConversionRateRepository;
 use App\Repositories\SpendingRepository;
 use Illuminate\Http\Request;
@@ -23,9 +26,9 @@ class SpendingController extends Controller
 
     public function create()
     {
-        $tags = session('space')->tags()->orderBy('created_at', 'DESC')->get();
+        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
 
-        return view('spendings.create', compact('tags'));
+        return view('spendings.create', ['tags' => $tags]);
     }
 
     public function show(Request $request, Spending $spending)
@@ -44,16 +47,16 @@ class SpendingController extends Controller
         $amount = Helper::rawNumberToInteger($request->input('amount'));
 
         // Convert amount if a different currency was selected
-        if ($request->has('currency_id') && $request->currency_id !== session('space')->currency_id) {
+        if ($request->has('currency_id') && $request->currency_id !== Space::find(session('space_id'))->currency_id) {
             $amount = $this->conversionRateRepository->convert(
                 $request->currency_id,
-                session('space')->currency_id,
+                Space::find(session('space_id'))->currency_id,
                 $amount
             );
         }
 
         $this->spendingRepository->create(
-            session('space')->id,
+            session('space_id'),
             null,
             null,
             $request->input('tag_id'),
@@ -69,7 +72,7 @@ class SpendingController extends Controller
     {
         $this->authorize('edit', $spending);
 
-        $tags = session('space')->tags()->orderBy('created_at', 'DESC')->get();
+        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
 
         return view('spendings.edit', compact('tags', 'spending'));
     }

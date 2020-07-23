@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Space;
+use App\Models\Tag;
 use App\Repositories\CurrencyRepository;
 use App\Repositories\RecurringRepository;
 use App\Repositories\TransactionRepository;
@@ -33,7 +35,7 @@ class TransactionController extends Controller
 
         return view('transactions.index', [
             'yearMonths' => $this->repository->getTransactionsByYearMonth($filterBy),
-            'tags' => session('space')->tags
+            'tags' => Tag::ofSpace(session('space_id'))->get()
         ]);
     }
 
@@ -41,7 +43,7 @@ class TransactionController extends Controller
     {
         $tags = [];
 
-        foreach (session('space')->tags as $tag) {
+        foreach (Tag::ofSpace(session('space_id'))->get() as $tag) {
             $tags[] = [
                 'key' => $tag->id,
                 'label' => '<div class="row"><div class="row__column row__column--compact row__column--middle mr-1"><div style="width: 15px; height: 15px; border-radius: 2px; background: #' . $tag->color . ';"></div></div><div class="row__column row__column--middle">' . $tag->name . '</div></div>' // phpcs:ignore
@@ -51,7 +53,7 @@ class TransactionController extends Controller
         return view('transactions.create', [
             'tags' => $tags,
             'currencies' => $this->currencyRepository->getIfConversionRatePresent(),
-            'defaultCurrencyId' => session('space')->currency_id,
+            'defaultCurrencyId' => Space::find(session('space_id'))->currency_id,
             'recurringsIntervals' => $this->recurringRepository->getSupportedIntervals()
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Spending;
 use App\Repositories\TagRepository;
 use App\Repositories\TransactionRepository;
 use Illuminate\Http\Request;
@@ -33,8 +34,8 @@ class ReportController extends Controller
 
     private function mostExpensiveTags()
     {
-        $totalSpent = session('space')->spendings()->sum('amount');
-        $mostExpensiveTags = $this->tagRepository->getMostExpensiveTags(session('space')->id);
+        $totalSpent = Spending::ofSpace(session('space_id'))->sum('amount');
+        $mostExpensiveTags = $this->tagRepository->getMostExpensiveTags(session('space_id'));
 
         return view('reports.most_expensive_tags', compact('totalSpent', 'mostExpensiveTags'));
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use App\Models\Tag;
 use App\Repositories\BudgetRepository;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
@@ -29,9 +30,9 @@ class BudgetController extends Controller
 
     public function create()
     {
-        return view('budgets.create', [
-            'tags' => session('space')->tags()->orderBy('created_at', 'DESC')->get()
-        ]);
+        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
+
+        return view('budgets.create', ['tags' => $tags]);
     }
 
     public function store(Request $request)
@@ -45,13 +46,13 @@ class BudgetController extends Controller
             throw ValidationException::withMessages(['tag_id' => __('validation.forbidden')]);
         }
 
-        if ($this->budgetRepository->doesExist(session('space')->id, $request->tag_id)) {
+        if ($this->budgetRepository->doesExist(session('space_id'), $request->tag_id)) {
             return redirect('/budgets/create')
                 ->with('message', 'A budget like this already exists');
         }
 
         $amount = Helper::rawNumberToInteger($request->amount);
-        $this->budgetRepository->create(session('space')->id, $request->tag_id, $request->period, $amount);
+        $this->budgetRepository->create(session('space_id'), $request->tag_id, $request->period, $amount);
 
         return redirect('/budgets');
     }

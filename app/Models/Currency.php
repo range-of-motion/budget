@@ -11,4 +11,10 @@ class Currency extends Model
     protected $fillable = [
         'iso'
     ];
+
+    // Scopes
+    public function scopeOfSpace($query, $spaceId)
+    {
+        return $query->where('space_id', $spaceId);
+    }
 }

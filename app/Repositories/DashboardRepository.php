@@ -3,17 +3,20 @@
 namespace App\Repositories;
 
 use App\Helper;
+use App\Models\Earning;
+use App\Models\Space;
+use App\Models\Spending;
 
 class DashboardRepository
 {
     public function getBalance(string $year, string $month)
     {
-        return session('space')->monthlyBalance($year, $month);
+        return Space::find(session('space_id'))->monthlyBalance($year, $month);
     }
 
     public function getRecurrings(string $year, string $month)
     {
-        return session('space')->monthlyRecurrings($year, $month);
+        return Space::find(session('space_id'))->monthlyRecurrings($year, $month);
     }
 
     public function getLeftToSpend(string $year, string $month)
@@ -27,8 +30,7 @@ class DashboardRepository
     // TODO MOVE TO SPENDINGREPOSITORY IN FUTURE
     public function getTotalAmountSpent(string $year, string $month)
     {
-        return session('space')
-            ->spendings()
+        return Spending::ofSpace(session('space_id'))
             ->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$year, $month])
             ->sum('amount');
     }
@@ -41,13 +43,11 @@ class DashboardRepository
         $dailyBalance = [];
 
         for ($i = 1; $i <= $daysInMonth; $i++) {
-            $balanceTick -= session('space')
-                ->spendings()
+            $balanceTick -= Spending::ofSpace(session('space_id'))
                 ->where('happened_on', $year . '-' . $month . '-' . $i)
                 ->sum('amount');
 
-            $balanceTick += session('space')
-                ->earnings()
+            $balanceTick += Earning::ofSpace(session('space_id'))
                 ->where('happened_on', $year . '-' . $month . '-' . $i)
                 ->sum('amount');
 

@@ -45,7 +45,7 @@ class RecurringTest extends TestCase
         ];
 
         $response = $this->actingAs($user)
-            ->withSession(['space' => $space])
+            ->withSession(['space_id' => $space->id])
             ->postJson('/recurrings', $requestData);
 
         $response->assertStatus(302);

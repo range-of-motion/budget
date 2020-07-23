@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Currency;
+use App\Models\Space;
 use Illuminate\Database\Eloquent\Collection;
 
 class CurrencyRepository
@@ -19,7 +20,7 @@ class CurrencyRepository
 
     public function getIfConversionRatePresent(): Collection
     {
-        $spaceCurrencyId = [session('space')->currency_id];
+        $spaceCurrencyId = [Space::find(session('space_id'))->currency_id];
 
         return Currency::select('currencies.*')
             ->leftJoin('conversion_rates AS cr', 'cr.base_currency_id', '=', 'currencies.id')

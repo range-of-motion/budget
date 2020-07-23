@@ -26,7 +26,7 @@ class CreateSpendingTest extends TestCase
         $response = $this
             ->followingRedirects()
             ->actingAs($this->user)
-            ->withSession(['space' => $this->space])
+            ->withSession(['space_id' => $this->space->id])
             ->postJson('/spendings', [
                 'date' => date('Y-m-d'),
                 'description' => 'Something for the test',
@@ -42,7 +42,7 @@ class CreateSpendingTest extends TestCase
         $response = $this
             ->followingRedirects()
             ->actingAs($this->user)
-            ->withSession(['space' => $this->space])
+            ->withSession(['space_id' => $this->space->id])
             ->postJson('/spendings', [
                 'date' => date('Y-m-d'),
                 'description' => 'Something for the test',

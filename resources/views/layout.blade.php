@@ -85,7 +85,7 @@
                                 <li>
                                     <dropdown>
                                         <span slot="button">
-                                            {{ \Illuminate\Support\Str::limit(session('space')->name, 3) }} <i class="fas fa-caret-down fa-sm"></i>
+                                            {{ $selectedSpace->abbreviated_name }} <i class="fas fa-caret-down fa-sm"></i>
                                         </span>
                                         <ul slot="menu" v-cloak>
                                             @foreach (Auth::user()->spaces as $space)

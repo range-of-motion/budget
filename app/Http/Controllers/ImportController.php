@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper;
 use App\Models\Import;
 use App\Models\Spending;
+use App\Models\Tag;
 use App\Repositories\SpendingRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class ImportController extends Controller
     public function index()
     {
         return view('imports.index')->with([
-            'imports' => session('space')->imports()->orderBy('created_at', 'DESC')->get()
+            'imports' => Import::ofSpace(session('space_id'))->latest()->get()
         ]);
     }
 
@@ -43,7 +44,7 @@ class ImportController extends Controller
         $pathParts = explode('/', $path);
 
         Import::create([
-            'space_id' => session('space')->id,
+            'space_id' => session('space_id'),
             'name' => $request->input('name'),
             'file' => end($pathParts)
         ]);
@@ -99,7 +100,7 @@ class ImportController extends Controller
     {
         $this->authorize('modify', $import);
 
-        $tags = session('space')->tags;
+        $tags = Tag::ofSpace(session('space_id'))->get();
 
         $file = fopen(storage_path('app/imports/' . $import->file), 'r');
 
@@ -161,7 +162,7 @@ class ImportController extends Controller
                 $amount = str_replace(',', '.', $row['amount']);
 
                 $this->spendingRepository->create(
-                    session('space')->id,
+                    session('space_id'),
                     $import->id,
                     null,
                     $row['tag_id'],
