@@ -43,6 +43,14 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 
 *Note that in order for certain features to work properly, the jobs queue needs to be watched. This can be done by either running `php artisan queue:work` or using [Supervisor](https://laravel.com/docs/7.x/queues#supervisor-configuration).*
 
+## Updating
+
+Use the command below to update to the latest version.
+
+```
+php artisan budget:update
+```
+
 ## Docker
 
 You can run Budget using Docker. Spinning it up (`docker-compose up`) will create 3 containers–for MySQL, PHP and NGINX.
