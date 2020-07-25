@@ -48,4 +48,8 @@ a {
     &-light {
         color: #CCC;
     }
+
+    &-red {
+        color: $colors-red;
+    }
 }
