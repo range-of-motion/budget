@@ -113,4 +113,11 @@ class SettingsController extends Controller
 
         return view('settings.preferences', compact('languages'));
     }
+
+    public function getBilling(Request $request)
+    {
+        $user = $request->user();
+
+        return view('settings.billing', ['user' => $user]);
+    }
 }
