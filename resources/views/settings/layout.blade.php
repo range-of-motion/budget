@@ -23,6 +23,7 @@
                     {{ csrf_field() }}
                     @yield('settings_body')
                 </form>
+                @yield('settings_body_formless')
             </div>
         </div>
     </div>

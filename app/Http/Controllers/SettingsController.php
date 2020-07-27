@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreateStripeCheckoutAction;
+use App\Actions\CreateStripeCustomerAction;
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
 use App\Models\Currency;
@@ -119,5 +121,18 @@ class SettingsController extends Controller
         $user = $request->user();
 
         return view('settings.billing', ['user' => $user]);
+    }
+
+    public function postUpgrade(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user->stripe_customer_id) {
+            (new CreateStripeCustomerAction())->execute($user->id);
+        }
+
+        $stripeCheckoutId = (new CreateStripeCheckoutAction())->execute($user->id);
+
+        return view('stripe_checkout_redirect', ['stripeCheckoutId' => $stripeCheckoutId]);
     }
 }

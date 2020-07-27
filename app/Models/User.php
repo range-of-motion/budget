@@ -15,6 +15,7 @@ class User extends Authenticatable
         'password',
         'verification_token',
         'last_verification_mail_sent_at',
+        'stripe_customer_id',
         'plan'
     ];
 
