@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\CreateStripeCheckoutAction;
 use App\Actions\CreateStripeCustomerAction;
+use App\Actions\FetchStripeSubscriptionAction;
+use App\Exceptions\UserStripelessException;
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
 use App\Models\Currency;
@@ -119,8 +121,18 @@ class SettingsController extends Controller
     public function getBilling(Request $request)
     {
         $user = $request->user();
+        $stripeSubscription = null;
 
-        return view('settings.billing', ['user' => $user]);
+        try {
+            $stripeSubscription = (new FetchStripeSubscriptionAction())->execute($user->id);
+        } catch (UserStripelessException $e) {
+            // Don't worry, $stripeSubscription will simply be `null`
+        }
+
+        return view('settings.billing', [
+            'user' => $user,
+            'stripeSubscription' => $stripeSubscription
+        ]);
     }
 
     public function postUpgrade(Request $request)
