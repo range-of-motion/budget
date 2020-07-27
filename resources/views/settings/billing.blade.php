@@ -8,14 +8,17 @@
     <div class="box">
         <div class="box__section">
             <div class="row row--middle mb-1">
-                <div style="color: black;" class="mr-1">{{ ucfirst($user->plan) }}</div>
-                @if ($user->plan === 'standard')
+                <div style="color: black;" class="mr-1">{{ $stripeSubscription ? 'Premium' : 'Standard' }}</div>
+                @if (!$stripeSubscription)
                     <form method="POST" action="{{ route('settings.billing.upgrade') }}">
                         {{ csrf_field() }}
                         <button class="button button--small">Upgrade</button>
                     </form>
                 @else
-                    <a class="button button--small button--secondary" href="#">Cancel</a>
+                    <form method="POST" action="{{ route('settings.billing.cancel') }}">
+                        {{ csrf_field() }}
+                        <button class="button button--small button--secondary">Cancel</button>
+                    </form>
                 @endif
             </div>
             € {{ $stripeSubscription ? \App\Helper::formatNumber($stripeSubscription->plan->amount / 100) : '0.00' }} per month @if ($stripeSubscription)&middot; Next payment due on {{ date('Y-m-d', $stripeSubscription->current_period_end) }}@endif

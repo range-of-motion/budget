@@ -143,8 +143,33 @@ class SettingsController extends Controller
             (new CreateStripeCustomerAction())->execute($user->id);
         }
 
+        $stripeSubscription = (new FetchStripeSubscriptionAction())->execute($user->id);
+
+        if ($stripeSubscription) {
+            return redirect()->route('settings.billing');
+        }
+
         $stripeCheckoutId = (new CreateStripeCheckoutAction())->execute($user->id);
 
         return view('stripe_checkout_redirect', ['stripeCheckoutId' => $stripeCheckoutId]);
+    }
+
+    public function postCancel(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user->stripe_customer_id) {
+            return redirect()->route('settings.billing');
+        }
+
+        $stripeSubscription = (new FetchStripeSubscriptionAction())->execute($user->id);
+
+        if (!$stripeSubscription) {
+            return redirect()->route('settings.billing');
+        }
+
+        $stripeSubscription->cancel();
+
+        return redirect()->route('settings.billing');
     }
 }
