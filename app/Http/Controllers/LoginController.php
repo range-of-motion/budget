@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Actions\StoreSpaceInSessionAction;
+use App\Models\User;
 use App\Repositories\LoginAttemptRepository;
-use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    private $userRepository;
     private $loginAttemptRepository;
 
-    public function __construct(UserRepository $userRepository, LoginAttemptRepository $loginAttemptRepository)
+    public function __construct(LoginAttemptRepository $loginAttemptRepository)
     {
-        $this->userRepository = $userRepository;
         $this->loginAttemptRepository = $loginAttemptRepository;
     }
 
@@ -41,7 +39,7 @@ class LoginController extends Controller
             return redirect()->route('dashboard');
         } else {
             if ($request->input('email')) {
-                $user = $this->userRepository->getByEmail($request->input('email'));
+                $user = User::where('email', $request->input('email'))->first();
 
                 $this->loginAttemptRepository->create($user ? $user->id : null, $request->ip(), true);
             }

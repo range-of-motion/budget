@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ResetPassword;
+use App\Models\User;
 use App\Repositories\PasswordResetRepository;
-use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -12,12 +12,10 @@ use Illuminate\Support\Str;
 
 class ResetPasswordController extends Controller
 {
-    private $userRepository;
     private $passwordResetRepository;
 
-    public function __construct(UserRepository $userRepository, PasswordResetRepository $passwordResetRepository)
+    public function __construct(PasswordResetRepository $passwordResetRepository)
     {
-        $this->userRepository = $userRepository;
         $this->passwordResetRepository = $passwordResetRepository;
     }
 
@@ -30,12 +28,12 @@ class ResetPasswordController extends Controller
 
     public function post(Request $request)
     {
-        $request->validate($this->userRepository->getValidationRulesForPasswordReset());
+        $request->validate(User::getValidationRulesForPasswordReset());
 
         if ($request->input('email') && !$request->has('token')) {
             $email = $request->input('email');
 
-            $existingUser = $this->userRepository->getByEmail($email);
+            $existingUser = User::where('email', $email)->first();
 
             if ($existingUser) {
                 $shippingToken = null;
@@ -66,9 +64,9 @@ class ResetPasswordController extends Controller
             $record = $this->passwordResetRepository->getByToken($token);
 
             if ($record) {
-                $user = $this->userRepository->getByEmail($record->email);
+                $user = User::where('email', $record->email)->first();
 
-                $this->userRepository->update($user->id, ['password' => Hash::make($password)]);
+                $user->update(['password' => Hash::make($password)]);
             }
 
             $this->passwordResetRepository->delete($token);
