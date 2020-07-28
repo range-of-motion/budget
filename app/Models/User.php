@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Space::class, 'user_space')->withPivot('role');
     }
+
+    public function widgets()
+    {
+        return $this->hasMany(Widget::class);
+    }
 }
