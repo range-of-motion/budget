@@ -39,6 +39,15 @@ class SpaceInviteController extends Controller
             abort(410);
         }
 
+        if (!$request->user()->can('accept', SpaceInvite::class)) {
+            $request->session()->flash('maximum_reached', true);
+
+            return redirect()->route('space_invites.show', [
+                'space' => $space->id,
+                'invite' => $invite->id
+            ]);
+        }
+
         (new AcceptSpaceInviteAction())->execute($invite->id);
 
         return redirect()->route('settings.spaces.index');

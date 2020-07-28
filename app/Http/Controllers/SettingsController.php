@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreateStripeCheckoutAction;
+use App\Actions\CreateStripeCustomerAction;
+use App\Actions\FetchStripeSubscriptionAction;
+use App\Exceptions\UserStripelessException;
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
 use App\Models\Currency;
@@ -112,5 +116,60 @@ class SettingsController extends Controller
         }
 
         return view('settings.preferences', compact('languages'));
+    }
+
+    public function getBilling(Request $request)
+    {
+        $user = $request->user();
+        $stripeSubscription = null;
+
+        try {
+            $stripeSubscription = (new FetchStripeSubscriptionAction())->execute($user->id);
+        } catch (UserStripelessException $e) {
+            // Don't worry, $stripeSubscription will simply be `null`
+        }
+
+        return view('settings.billing', [
+            'user' => $user,
+            'stripeSubscription' => $stripeSubscription
+        ]);
+    }
+
+    public function postUpgrade(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user->stripe_customer_id) {
+            (new CreateStripeCustomerAction())->execute($user->id);
+        }
+
+        $stripeSubscription = (new FetchStripeSubscriptionAction())->execute($user->id);
+
+        if ($stripeSubscription) {
+            return redirect()->route('settings.billing');
+        }
+
+        $stripeCheckoutId = (new CreateStripeCheckoutAction())->execute($user->id);
+
+        return view('stripe_checkout_redirect', ['stripeCheckoutId' => $stripeCheckoutId]);
+    }
+
+    public function postCancel(Request $request)
+    {
+        $user = $request->user();
+
+        if (!$user->stripe_customer_id) {
+            return redirect()->route('settings.billing');
+        }
+
+        $stripeSubscription = (new FetchStripeSubscriptionAction())->execute($user->id);
+
+        if (!$stripeSubscription) {
+            return redirect()->route('settings.billing');
+        }
+
+        $stripeSubscription->cancel();
+
+        return redirect()->route('settings.billing');
     }
 }

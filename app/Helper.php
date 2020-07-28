@@ -29,4 +29,9 @@ class Helper
 
         return array_search(max($delimiters), $delimiters);
     }
+
+    public static function arePlansEnabled(): bool
+    {
+        return env('PLANS_ENABLED', false);
+    }
 }

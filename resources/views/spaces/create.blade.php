@@ -5,6 +5,9 @@
 @section('body')
     <div class="wrapper my-3">
         <h2 class="mb-3">{{ __('actions.create') }} {{ __('models.space') }}</h2>
+        @if (Session::get('maximum_reached') === true)
+            <div class="mt-3 c-red" style="line-height: 150%;">You have reached the maximum amount of spaces you can be part of.</div>
+        @endif
         <div class="box mt-3">
             <form method="POST" action="{{ route('spaces.store') }}" autocomplete="off">
                 {{ csrf_field() }}

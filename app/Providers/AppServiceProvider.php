@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helper;
 use App\Models\Space;
 use Illuminate\Support\ServiceProvider;
 use Auth;
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
                 'userName' => Auth::check() ? Auth::user()->name : null,
                 'currency' => $selectedSpace ? $selectedSpace->currency->symbol : '-',
                 'selectedSpace' => $selectedSpace,
+                'arePlansEnabled' => Helper::arePlansEnabled(),
                 'suggestionBoxEnabled' => env('SUGGESTION_BOX_ENABLED', false),
                 'versionNumber' => $versionNumber
             ]);

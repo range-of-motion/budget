@@ -14,11 +14,17 @@ class User extends Authenticatable
         'email',
         'password',
         'verification_token',
-        'last_verification_mail_sent_at'
+        'last_verification_mail_sent_at',
+        'stripe_customer_id',
+        'plan'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $attributes = [
+        'plan' => 'standard'
     ];
 
     // Accessors

@@ -5,6 +5,9 @@
 @section('body')
     <div class="wrapper wrapper--narrow my-3">
         <h2>{{ __('general.invite') }}</h2>
+        @if (Session::get('maximum_reached') === true)
+            <div class="mt-3 c-red" style="line-height: 150%;">You have reached the maximum amount of spaces you can be part of.</div>
+        @endif
         <div class="box mt-3">
             <div class="box__section">
                 <h3 class="color-dark mb-1">{{ __('general.invited_to') }} "{{ $invite->space->name }}"</h3>
