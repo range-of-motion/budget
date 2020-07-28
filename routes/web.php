@@ -13,6 +13,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RecurringController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ResendVerificationMailController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SpaceController;
@@ -40,6 +41,8 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::post('/resend-verification-mail', ResendVerificationMailController::class)->name('resend_verification_mail');
 
     Route::post('/attachments', [AttachmentController::class, 'store']);
     Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'download']);
