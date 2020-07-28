@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreateSpaceAction;
 use App\Actions\CreateSpaceInviteAction;
 use App\Actions\StoreSpaceInSessionAction;
 use App\Exceptions\SpaceInviteAlreadyExistsException;
 use App\Exceptions\SpaceInviteInviteeAlreadyPresentException;
 use App\Mail\InvitedToSpace;
+use App\Models\Currency;
 use App\Models\Space;
 use App\Models\SpaceInvite;
 use App\Models\User;
@@ -16,6 +18,25 @@ use Illuminate\Support\Facades\Mail;
 
 class SpaceController extends Controller
 {
+    public function create()
+    {
+        $currencies = Currency::all();
+
+        return view('spaces.create', ['currencies' => $currencies]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'currency_id' => 'required|exists:currencies,id'
+        ]);
+
+        (new CreateSpaceAction())->execute($request->name, $request->currency_id, Auth::id());
+
+        return redirect()->route('settings.spaces.index');
+    }
+
     public function show($id)
     {
         $space = Space::find($id);
