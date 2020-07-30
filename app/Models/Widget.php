@@ -12,6 +12,13 @@ class Widget extends Model
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+        'type',
+        'sorting_index',
+        'properties'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
