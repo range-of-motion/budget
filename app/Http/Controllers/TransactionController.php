@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Earning;
 use App\Models\Space;
+use App\Models\Spending;
 use App\Models\Tag;
 use App\Repositories\CurrencyRepository;
 use App\Repositories\RecurringRepository;
@@ -27,14 +29,25 @@ class TransactionController extends Controller
 
     public function index(Request $request)
     {
-        $filterBy = [];
+        $earnings = Earning::ofSpace(session('space_id'))
+            ->get();
 
-        if ($request->get('filterBy')) {
-            $filterBy = explode('-', $request->get('filterBy'));
+        foreach ($earnings as $earning) {
+            $earning->type = 'earning';
         }
 
+        $spendings = Spending::ofSpace(session('space_id'))
+            ->with('tag')
+            ->get();
+
+        foreach ($spendings as $spending) {
+            $spending->type = 'spending';
+        }
+
+        $transactions = $earnings->concat($spendings);
+
         return view('transactions.index', [
-            'yearMonths' => $this->repository->getTransactionsByYearMonth($filterBy),
+            'transactions' => $transactions,
             'tags' => Tag::ofSpace(session('space_id'))->get()
         ]);
     }

@@ -109,6 +109,15 @@ progress {
     font-style: italic;
 }
 
+.hoverable {
+    color: inherit;
+
+    &:hover {
+        cursor: pointer;
+        background: $colors-light-body;
+    }
+}
+
 .button-dropdown {
     border-radius: $dimensions-box-border-radius;
 

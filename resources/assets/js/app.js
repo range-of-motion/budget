@@ -7,6 +7,7 @@ import ButtonDropdown from './components/ButtonDropdown.vue';
 import DatePicker from './components/DatePicker.vue';
 import BarChart from './components/BarChart.vue';
 import Dropdown from './components/Dropdown.vue';
+import Transactions from './components/Transactions.vue';
 import TransactionWizard from './components/TransactionWizard.vue';
 import ValidationError from './components/ValidationError.vue';
 import Searchable from './components/Searchable.vue';
@@ -22,6 +23,7 @@ Vue.component('datepicker', DatePicker); // TODO DEPRECATE
 Vue.component('date-picker', DatePicker);
 Vue.component('barchart', BarChart);
 Vue.component('dropdown', Dropdown);
+Vue.component('transactions', Transactions);
 Vue.component('transaction-wizard', TransactionWizard);
 Vue.component('validation-error', ValidationError);
 Vue.component('searchable', Searchable);
