@@ -162,6 +162,10 @@
 }
 
 .color {
+    &-inherit {
+        color: inherit;
+    }
+
     &-blue {
         color: $colors-blue;
     }
