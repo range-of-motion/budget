@@ -27,3 +27,9 @@
         </div>
     </div>
 @endsection
+
+@section('settings_body_formless')
+    <delete-user-button
+        class="mt-2"
+        csrf-token="{{ csrf_token() }}"></delete-user-button>
+@endsection

@@ -104,6 +104,13 @@ class SettingsController extends Controller
         return view('settings.account');
     }
 
+    public function postAccountDelete()
+    {
+        // TODO DELETE
+
+        return redirect()->route('login');
+    }
+
     public function getSpaces()
     {
         return view('settings.spaces.index', [

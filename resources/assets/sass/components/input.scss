@@ -140,9 +140,25 @@ button.button {
         background: none;
     }
 
+    &.button--link-danger {
+        padding: 0;
+        font-size: 16px;
+        color: $colors-red;
+        background: none;
+    }
+
     &.button--wide {
         padding: 12.5px 20px;
         width: 100%;
+    }
+
+    &.button--light {
+        background: #EEE;
+        color: #000;
+    }
+
+    &.button--danger {
+        background: $colors-red;
     }
 }
 
