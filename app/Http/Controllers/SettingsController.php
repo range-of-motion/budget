@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\CreateStripeCheckoutAction;
 use App\Actions\CreateStripeCustomerAction;
+use App\Actions\DeleteUserAction;
 use App\Actions\FetchStripeSubscriptionAction;
 use App\Exceptions\UserStripelessException;
 use Illuminate\Http\Request;
@@ -106,7 +107,9 @@ class SettingsController extends Controller
 
     public function postAccountDelete()
     {
-        // TODO DELETE
+        (new DeleteUserAction())->execute(Auth::id());
+
+        Auth::logout();
 
         return redirect()->route('login');
     }
