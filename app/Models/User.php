@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     // Accessors
-    public function getAvatarAttribute($avatar)
+    public function getAvatarPathAttribute($avatar)
     {
         return $avatar ? '/storage/avatars/' . $avatar : 'https://via.placeholder.com/250';
     }

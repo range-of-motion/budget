@@ -10,7 +10,7 @@
                 <div class="box__section row">
                     <div class="row__column row__column--compact mr-2" style="width: 25px;">
                         @if ($activity->user)
-                            <img class="avatar" src="{{ $activity->user->avatar }}" />
+                            <img class="avatar" src="{{ $activity->user->avatar_path }}" />
                         @endif
                     </div>
                     <div class="row__column row__column--middle">{{ __('activities.' . $activity->action) }} <a href="/{{ $activity->entity_type }}s/{{ $activity->entity_id }}">#{{ $activity->entity_id }}</a></div>

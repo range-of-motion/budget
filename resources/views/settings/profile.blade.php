@@ -9,7 +9,7 @@
         <div class="box__section">
             <div class="input input--small">
                 <label>{{ __('fields.avatar') }}</label>
-                <img src="{{ Auth::user()->avatar }}" style="width: 200px; height: 200px; border-radius: 5px; object-fit: cover;" />
+                <img src="{{ Auth::user()->avatar_path }}" style="width: 200px; height: 200px; border-radius: 5px; object-fit: cover;" />
                 <input type="file" name="avatar" />
                 @include('partials.validation_error', ['payload' => 'avatar'])
             </div>
