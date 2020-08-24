@@ -29,7 +29,10 @@
 @endsection
 
 @section('settings_body_formless')
-    <delete-user-button
-        class="mt-2"
-        csrf-token="{{ csrf_token() }}"></delete-user-button>
+    <div class="mt-2">
+        @if (session('delete_user_error') === 'active_stripe_subscription')
+            <div class="color-red mb-1">Unable to delete user, you still have a premium plan (and would continue to be billed otherwise)</div>
+        @endif
+        <delete-user-button csrf-token="{{ csrf_token() }}"></delete-user-button>
+    </div>
 @endsection
