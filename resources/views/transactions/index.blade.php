@@ -34,7 +34,7 @@
                         <h2 class="{{ key($yearMonths) != $key ? 'mt-3' : '' }} mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
                         <div class="box">
                             @foreach ($transactions as $transaction)
-                                <div class="box__section row">
+                                <div class="box__section row row--responsive">
                                     <div class="row__column row__column--middle row row--middle">
                                         <div>{{ $transaction->description }}</div>
                                         <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}">
@@ -66,13 +66,15 @@
                                             <i class="fas fa-recycle"></i>
                                         @endif
                                     </div>
-                                    <div class="row__column row__column--compact row__column--middle w-150 text-right {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
-                                    <div class="row__column row__column--compact row__column--middle ml-1 {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">
-                                        @if (get_class($transaction) == 'App\Models\Earning')
-                                            <i class="fas fa-arrow-alt-left fa-sm"></i>
-                                        @else
-                                            <i class="fas fa-arrow-alt-right fa-sm"></i>
-                                        @endif
+                                    <div class="row__column row__column--compact row__column--middle w-150 row row--middle row--right {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">
+                                        <div class="row__column row__column--compact">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
+                                        <div class="row__column row__column--compact ml-1">
+                                            @if (get_class($transaction) == 'App\Models\Earning')
+                                                <i class="fas fa-arrow-alt-left fa-sm"></i>
+                                            @else
+                                                <i class="fas fa-arrow-alt-right fa-sm"></i>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

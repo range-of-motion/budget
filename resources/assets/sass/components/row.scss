@@ -48,6 +48,14 @@
             &:first-child {
                 margin-top: 0;
             }
+
+            &.row__column--middle {
+                align-self: flex-start;
+            }
+        }
+
+        > .row.row--right {
+            justify-content: flex-start;
         }
     }
 }
