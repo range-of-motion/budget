@@ -10,6 +10,7 @@ return [
     'theme' => 'Thema',
     'currency' => 'Valuta',
     'weekly_report' => 'Wekelijks Verslag',
+    'default_transaction_type' => 'Standaard transactietype',
 
     'date' => 'Datum',
     'description' => 'Omschrijving',

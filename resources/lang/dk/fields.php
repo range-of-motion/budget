@@ -10,6 +10,7 @@ return [
     'theme' => 'Tema',
     'currency' => 'Valuta',
     'weekly_report' => 'Ugentlig Rapport',
+    'default_transaction_type' => 'Standard transaktionstype',
 
     'date' => 'Dato',
     'description' => 'Beskrivelse',

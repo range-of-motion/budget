@@ -10,6 +10,7 @@ return [
     'theme' => 'Tema',
     'currency' => 'Moeda',
     'weekly_report' => 'Relatório Semanal',
+    'default_transaction_type' => 'Tipo de transação padrão',
 
     'date' => 'Data',
     'description' => 'Descrição',
