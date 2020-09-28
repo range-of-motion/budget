@@ -33,6 +33,16 @@
                 </div>
                 @include('partials.validation_error', ['payload' => 'weekly_report'])
             </div>
+            <div class="input input--small">
+                <label>{{ __('fields.default_transaction_type') }}</label>
+                <div>
+                    <input type="radio" name="default_transaction_type" value="earning" {{ Auth::user()->default_transaction_type === 'earning' ? 'checked' : '' }} /> {{ __('models.earning') }}
+                </div>
+                <div>
+                    <input type="radio" name="default_transaction_type" value="spending" {{ Auth::user()->default_transaction_type === 'spending' ? 'checked' : '' }} /> {{ __('models.spending') }}
+                </div>
+                @include('partials.validation_error', ['payload' => 'default_transaction_type'])
+            </div>
             <button class="button">{{ __('actions.save') }}</button>
         </div>
     </div>

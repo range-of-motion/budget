@@ -29,7 +29,8 @@ class SettingsController extends Controller
             'password' => 'nullable|confirmed',
             'language' => 'nullable|in:' . implode(',', array_keys(config('app.locales'))),
             'theme' => 'nullable|in:light,dark',
-            'weekly_report' => 'nullable|in:true,false'
+            'weekly_report' => 'nullable|in:true,false',
+            'default_transaction_type' => 'nullable|in:earning,spending'
         ]);
 
         $user = Auth::user();
@@ -72,6 +73,10 @@ class SettingsController extends Controller
 
         if ($request->has('weekly_report')) {
             $user->weekly_report = $request->input('weekly_report') == 'true' ? true : false;
+        }
+
+        if ($request->has('default_transaction_type')) {
+            $user->default_transaction_type = $request->input('default_transaction_type');
         }
 
         $user->save();
