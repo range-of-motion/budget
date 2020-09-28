@@ -108,13 +108,14 @@
         props: [
             'tags',
             'currencies',
+            'defaultTransactionType',
             'defaultCurrencyId',
             'recurringsIntervals'
         ],
 
         data() {
             return {
-                type: 'earning',
+                type: this.defaultTransactionType,
                 errors: [],
 
                 tag: null,

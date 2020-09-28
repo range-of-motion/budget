@@ -53,6 +53,7 @@ class TransactionController extends Controller
         return view('transactions.create', [
             'tags' => $tags,
             'currencies' => $this->currencyRepository->getIfConversionRatePresent(),
+            'defaultTransactionType' => Auth::user()->default_transaction_type,
             'defaultCurrencyId' => Space::find(session('space_id'))->currency_id,
             'recurringsIntervals' => $this->recurringRepository->getSupportedIntervals()
         ]);

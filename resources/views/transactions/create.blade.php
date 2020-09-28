@@ -8,6 +8,7 @@
         <transaction-wizard
             :tags='@json($tags)'
             :currencies='@json($currencies)'
+            default-transaction-type='{{ $defaultTransactionType }}'
             :default-currency-id='{{ $defaultCurrencyId }}'
             :recurrings-intervals='@json($recurringsIntervals)'
         ></transaction-wizard>
