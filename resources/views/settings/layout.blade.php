@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <div class="row">
+        <div class="row row--responsive">
             <div class="row__column mr-3" style="max-width: 300px;">
                 <div class="box">
                     <div class="box__section box__section--header">{{ __('pages.settings') }}</div>
