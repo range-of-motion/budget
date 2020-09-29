@@ -36,6 +36,10 @@
 
             startDate: {
                 default: null
+            },
+
+            firstDayOfWeek: {
+                type: String
             }
         },
 
@@ -57,7 +61,13 @@
             },
 
             firstDayOffset: function () {
-                return new Date(this.displayYear, this.displayMonth - 1, 1).getDay() - 1;
+                let offset = new Date(this.displayYear, this.displayMonth - 1, 1).getDay();
+
+                if (this.firstDayOfWeek === 'monday') {
+                    offset -= 1;
+                }
+
+                return offset;
             }
         },
 

@@ -11,6 +11,7 @@ return [
     'currency' => 'Currency',
     'weekly_report' => 'Weekly Report',
     'default_transaction_type' => 'Default transactiontype',
+    'first_day_of_week' => 'First day of the week',
 
     'date' => 'Date',
     'description' => 'Description',

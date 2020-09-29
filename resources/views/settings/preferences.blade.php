@@ -43,6 +43,16 @@
                 </div>
                 @include('partials.validation_error', ['payload' => 'default_transaction_type'])
             </div>
+            <div class="input input--small">
+                <label>{{ __('fields.first_day_of_week') }}</label>
+                <div>
+                    <input type="radio" name="first_day_of_week" value="sunday" {{ Auth::user()->first_day_of_week === 'sunday' ? 'checked' : '' }} /> {{ __('calendar.weekdays.6') }}
+                </div>
+                <div>
+                    <input type="radio" name="first_day_of_week" value="monday" {{ Auth::user()->first_day_of_week === 'monday' ? 'checked' : '' }} /> {{ __('calendar.weekdays.0') }}
+                </div>
+                @include('partials.validation_error', ['payload' => 'first_day_of_week'])
+            </div>
             <button class="button">{{ __('actions.save') }}</button>
         </div>
     </div>

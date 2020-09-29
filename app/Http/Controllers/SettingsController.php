@@ -30,7 +30,8 @@ class SettingsController extends Controller
             'language' => 'nullable|in:' . implode(',', array_keys(config('app.locales'))),
             'theme' => 'nullable|in:light,dark',
             'weekly_report' => 'nullable|in:true,false',
-            'default_transaction_type' => 'nullable|in:earning,spending'
+            'default_transaction_type' => 'nullable|in:earning,spending',
+            'first_day_of_week' => 'nullable|in:sunday,monday'
         ]);
 
         $user = Auth::user();
@@ -77,6 +78,10 @@ class SettingsController extends Controller
 
         if ($request->has('default_transaction_type')) {
             $user->default_transaction_type = $request->input('default_transaction_type');
+        }
+
+        if ($request->has('first_day_of_week')) {
+            $user->first_day_of_week = $request->input('first_day_of_week');
         }
 
         $user->save();

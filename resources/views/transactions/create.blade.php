@@ -9,6 +9,7 @@
             :tags='@json($tags)'
             :currencies='@json($currencies)'
             default-transaction-type='{{ $defaultTransactionType }}'
+            first-day-of-week='{{ $firstDayOfWeek }}'
             :default-currency-id='{{ $defaultCurrencyId }}'
             :recurrings-intervals='@json($recurringsIntervals)'
         ></transaction-wizard>
