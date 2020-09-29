@@ -20,7 +20,9 @@
         </div>
         <div class="input">
             <label>Date</label>
-            <date-picker @DateUpdated="onDateUpdate"></date-picker>
+            <date-picker
+                :first-day-of-week="firstDayOfWeek"
+                @DateUpdated="onDateUpdate"></date-picker>
             <div class="hint mt-05">YYYY-MM-DD</div>
             <validation-error v-if="errors.date" :message="errors.date"></validation-error>
             <validation-error v-if="errors.day" :message="errors.day"></validation-error>
@@ -81,7 +83,11 @@
                         </div>
                         <div class="row__column">
                             <label for="fixedEnd">Until</label>
-                            <date-picker name="end" :start-date="recurringEndDate" @DateUpdated="onEndUpdate"></date-picker>
+                            <date-picker
+                                name="end"
+                                :start-date="recurringEndDate"
+                                :first-day-of-week="firstDayOfWeek"
+                                @DateUpdated="onEndUpdate"></date-picker>
                             <div class="hint mt-05">YYYY-MM-DD</div>
                             <validation-error v-if="errors.end" :message="errors.end"></validation-error>
                         </div>
@@ -109,6 +115,7 @@
             'tags',
             'currencies',
             'defaultTransactionType',
+            'firstDayOfWeek',
             'defaultCurrencyId',
             'recurringsIntervals'
         ],

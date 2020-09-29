@@ -54,6 +54,7 @@ class TransactionController extends Controller
             'tags' => $tags,
             'currencies' => $this->currencyRepository->getIfConversionRatePresent(),
             'defaultTransactionType' => Auth::user()->default_transaction_type,
+            'firstDayOfWeek' => Auth::user()->first_day_of_week,
             'defaultCurrencyId' => Space::find(session('space_id'))->currency_id,
             'recurringsIntervals' => $this->recurringRepository->getSupportedIntervals()
         ]);

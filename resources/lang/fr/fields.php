@@ -11,6 +11,7 @@ return [
     'currency' => 'Devise',
     'weekly_report' => 'Rapport Hebdomadaire',
     'default_transaction_type' => 'Type de transaction standard',
+    'first_day_of_week' => 'Premier jour de la semaine',
 
     'period' => 'Période'
 ];

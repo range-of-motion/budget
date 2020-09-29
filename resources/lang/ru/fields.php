@@ -11,6 +11,7 @@ return [
     'currency' => 'Валюта',
     'weekly_report' => 'Еженедельный отчет',
     'default_transaction_type' => 'Тип транзакции по умолчанию',
+    'first_day_of_week' => 'Воскресенье',
 
     'date' => 'Дата',
     'description' => 'Описание',

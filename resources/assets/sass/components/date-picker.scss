@@ -42,7 +42,7 @@
                 border-right: none;
             }
 
-            &:hover {
+            &:not([disabled]):hover {
                 cursor: pointer;
             }
 
@@ -67,7 +67,7 @@
     }
 
     .date-picker__bottom button {
-        &:hover {
+        &:not([disabled]):hover {
             background: $colors-light-border;
         }
     }
@@ -86,7 +86,7 @@
     }
 
     .date-picker__bottom button {
-        &:hover {
+        &:not([disabled]):hover {
             background: $colors-dark-border;
         }
     }
