@@ -14,6 +14,9 @@
                 </div>
                 <div class="date-picker__bottom">
                     <button
+                        v-for="i in firstDayOffset"
+                        disabled />
+                    <button
                         v-for="i in maxDays(displayYear, displayMonth)"
                         @click="choose($event, i)"
                         :class="{ active: isActive(i) }"
@@ -51,6 +54,10 @@
         computed: {
             form: function () {
                 return this.year + '-' + this.addPotentialDigit(this.month) + '-' + this.addPotentialDigit(this.date)
+            },
+
+            firstDayOffset: function () {
+                return new Date(this.displayYear, this.displayMonth - 1, 1).getDay() - 1;
             }
         },
 
