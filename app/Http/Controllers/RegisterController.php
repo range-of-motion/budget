@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Actions\StoreSpaceInSessionAction;
 use App\Actions\SendVerificationMailAction;
+use App\Models\Currency;
 use App\Models\LoginAttempt;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
-use App\Repositories\CurrencyRepository;
 use App\Repositories\LoginAttemptRepository;
 use App\Repositories\SpaceRepository;
 use App\Repositories\UserRepository;
@@ -16,18 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    private $currencyRepository;
     private $userRepository;
     private $spaceRepository;
     private $loginAttemptRepository;
 
     public function __construct(
-        CurrencyRepository $currencyRepository,
         UserRepository $userRepository,
         SpaceRepository $spaceRepository,
         LoginAttemptRepository $loginAttemptRepository
     ) {
-        $this->currencyRepository = $currencyRepository;
         $this->userRepository = $userRepository;
         $this->spaceRepository = $spaceRepository;
         $this->loginAttemptRepository = $loginAttemptRepository;
@@ -36,7 +33,7 @@ class RegisterController extends Controller
     public function index()
     {
         return view('register', [
-            'currencies' => $this->currencyRepository->getKeyValueArray()
+            'currencies' => Currency::orderBy('name')->get()
         ]);
     }
 

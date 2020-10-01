@@ -34,12 +34,11 @@
                     </div>
                     <div class="input">
                         <label>Currency</label>
-                        <searchable
-                            class="shadow"
-                            name="currency"
-                            size="2"
-                            :items='@json($currencies)'
-                            initial="{{ old('currency') }}"></searchable>
+                        <select name="currency" class="shadow">
+                            @foreach ($currencies as $currency)
+                                <option value="{{ $currency->id }}">{{ $currency->name }} ({!! $currency->symbol !!})</option>
+                            @endforeach
+                        </select>
                         @include('partials.validation_error', ['payload' => 'currency'])
                     </div>
                     <button class="button button--wide">Register</button>
