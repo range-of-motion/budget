@@ -15,7 +15,7 @@ before_script:
   - composer install --no-interaction
   - php artisan key:generate
   - php artisan migrate --database=testing
-  - php artisan dusk:chrome-driver 84 # Seems to be the current stable
+  - php artisan dusk:chrome-driver
 
 jobs:
   include:
