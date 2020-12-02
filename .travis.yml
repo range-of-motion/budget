@@ -10,6 +10,8 @@ addons:
   chrome: stable
 
 before_script:
+  - phpenv config-rm xdebug.ini
+  - pecl install pcov
   - mysql -e 'create database budget_testing;'
   - cp .env.travis .env
   - composer install --no-interaction
