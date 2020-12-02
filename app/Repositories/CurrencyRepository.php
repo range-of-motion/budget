@@ -29,18 +29,4 @@ class CurrencyRepository
             ->groupBy('currencies.id')
             ->get();
     }
-
-    public function getKeyValueArray(): array
-    {
-        $response = [];
-
-        foreach ($this->getAll() as $currency) {
-            $response[] = [
-                'key' => $currency->id,
-                'label' => $currency->symbol
-            ];
-        }
-
-        return $response;
-    }
 }
