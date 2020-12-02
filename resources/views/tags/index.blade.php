@@ -3,48 +3,41 @@
 @section('title', __('models.tags'))
 
 @section('body')
-    <div class="wrapper my-3">
-        <div class="row mb-3">
-            <div class="row__column row__column--middle">
-                <h2>{{ __('models.tags') }}</h2>
-            </div>
-            <div class="row__column row__column--compact row__column--middle">
-                <a href="/tags/create" class="button">{{ __('actions.create') }} {{ __('models.tag') }}</a>
-            </div>
+    <div class="tw-my-8 tw-mx-auto tw-max-w-4xl">
+        <div class="tw-mb-4 tw-flex tw-items-end tw-justify-between">
+            <h2>{{ __('models.tags') }}</h2>
+            <a href="/tags/create" class="tw-py-2 tw-px-4 bg-blue tw-text-white tw-text-sm tw-font-bold tw-rounded">{{ __('actions.create') }} {{ __('models.tag') }}</a>
         </div>
-        <div class="box">
+        <div class="tw-bg-white tw-rounded tw-shadow">
             @if (count($tags))
-                <div class="box__section box__section--header row">
-                    <div class="row__column row__column--compact mr-2" style="width: 20px;"></div>
-                    <div class="row__column">{{ __('fields.name') }}</div>
-                    <div class="row__column row__column--double" style="flex: 2;">{{ __('models.spendings') }}</div>
+                <div class="tw-py-3 tw-px-5 tw-flex tw-bg-gray-50">
+                    <div class="tw-w-10"></div>
+                    <div class="tw-flex-1">{{ __('fields.name') }}</div>
+                    <div class="tw-flex-1">{{ __('models.spendings') }}</div>
+                    <div class="tw-w-20"></div>
                 </div>
                 @foreach ($tags as $tag)
-                    <div class="box__section row">
-                        <div class="row__column row__column--compact row__column--middle mr-2">
-                            <div style="width: 15px; height: 15px; border-radius: 2px; background: #{{ $tag->color }};"></div>
+                    <div class="tw-p-5 tw-flex tw-border-t tw-border-gray-200">
+                        <div class="tw-w-10 tw-flex tw-items-center">
+                            <div class="tw-w-4 tw-h-4 tw-rounded" style="background: #{{ $tag->color }};"></div>
                         </div>
-                        <div class="row__column row__column--middle">{{ $tag->name }}</div>
-                        <div class="row__column row__column--middle">{{ $tag->spendings->count() }}</div>
-                        <div class="row__column row__column--middle row row--right">
-                            <div class="row__column row__column--compact">
-                                <a href="/tags/{{ $tag->id }}/edit">
-                                    <i class="fas fa-pencil"></i>
-                                </a>
-                            </div>
-                            <div class="row__column row__column--compact ml-2">
-                                @if ($tag->spendings->count())
-                                    <i class="fas fa-trash-alt"></i>
-                                @else
-                                    <form method="POST" action="/tags/{{ $tag->id }}">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <button class="button link">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                @endif
-                            </div>
+                        <div class="tw-flex-1">{{ $tag->name }}</div>
+                        <div class="tw-flex-1">{{ $tag->spendings->count() }}</div>
+                        <div class="tw-w-20 tw-flex tw-justify-end tw-items-center">
+                            <a href="/tags/{{ $tag->id }}/edit" class="tw-mr-5">
+                                <i class="fas fa-pencil"></i>
+                            </a>
+                            @if ($tag->spendings->count())
+                                <i class="fas fa-trash-alt"></i>
+                            @else
+                                <form method="POST" action="/tags/{{ $tag->id }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="button link">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 @endforeach
