@@ -6,7 +6,7 @@
     <div class="tw-my-8 tw-mx-auto tw-max-w-4xl">
         <div class="tw-mb-4 tw-flex tw-items-end tw-justify-between">
             <h2>{{ __('models.tags') }}</h2>
-            <a href="/tags/create" class="tw-py-2 tw-px-4 bg-blue tw-text-white tw-text-sm tw-font-bold tw-rounded">{{ __('actions.create') }} {{ __('models.tag') }}</a>
+            <x-button target="/tags/create">{{ __('actions.create') . ' ' . __('models.tag') }}</x-button>
         </div>
         <div class="tw-bg-white tw-rounded tw-shadow">
             @if (count($tags))
