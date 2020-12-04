@@ -49,6 +49,10 @@ class SendWeeklyReports implements ShouldQueue
                 ORDER BY spendings.amount DESC LIMIT 1', [$space->id, $lastWeekDate, $currentDate]);
 
             foreach ($space->users as $user) {
+                if (!$user->email) {
+                    continue;
+                }
+
                 // Only send if user wants to receive report
                 if ($user->weekly_report) {
                     Mail::to($user->email)->queue(new WeeklyReport(

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Actions\CreateStripeCheckoutAction;
 use App\Actions\CreateStripeCustomerAction;
+use App\Actions\DeleteUserAction;
 use App\Actions\FetchStripeSubscriptionAction;
+use App\Exceptions\UserActiveStripeSubscriptionException;
 use App\Exceptions\UserStripelessException;
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
@@ -102,6 +104,21 @@ class SettingsController extends Controller
     public function getAccount()
     {
         return view('settings.account');
+    }
+
+    public function postAccountDelete(Request $request)
+    {
+        try {
+            (new DeleteUserAction())->execute(Auth::id());
+        } catch (UserActiveStripeSubscriptionException $e) {
+            $request->session()->flash('delete_user_error', 'active_stripe_subscription');
+
+            return redirect()->route('settings.account');
+        }
+
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 
     public function getSpaces()

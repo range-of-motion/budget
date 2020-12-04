@@ -100,7 +100,7 @@
                             <li>
                                 <dropdown>
                                     <span slot="button">
-                                        <img src="{{ Auth::user()->avatar }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
+                                        <img src="{{ Auth::user()->avatar_path }}" class="avatar mr-05" /> <i class="fas fa-caret-down fa-sm"></i>
                                     </span>
                                     <ul slot="menu" v-cloak>
                                         <li>

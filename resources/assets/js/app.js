@@ -6,6 +6,7 @@ import { Chrome } from 'vue-color';
 import ButtonDropdown from './components/ButtonDropdown.vue';
 import DatePicker from './components/DatePicker.vue';
 import BarChart from './components/BarChart.vue';
+import DeleteUserButton from './components/DeleteUserButton.vue';
 import Dropdown from './components/Dropdown.vue';
 import TransactionWizard from './components/TransactionWizard.vue';
 import ValidationError from './components/ValidationError.vue';
@@ -21,6 +22,7 @@ Vue.component('button-dropdown', ButtonDropdown);
 Vue.component('datepicker', DatePicker); // TODO DEPRECATE
 Vue.component('date-picker', DatePicker);
 Vue.component('barchart', BarChart);
+Vue.component('delete-user-button', DeleteUserButton);
 Vue.component('dropdown', Dropdown);
 Vue.component('transaction-wizard', TransactionWizard);
 Vue.component('validation-error', ValidationError);
