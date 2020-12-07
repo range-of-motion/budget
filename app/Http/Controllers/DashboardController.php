@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper;
 use App\Repositories\TagRepository;
-use Illuminate\Http\Request;
-use App\Models\Earning;
-use App\Models\Recurring;
-use App\Models\Spending;
 use App\Repositories\DashboardRepository;
 use Auth;
 use DB;
