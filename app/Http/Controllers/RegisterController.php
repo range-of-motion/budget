@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\StoreSpaceInSessionAction;
 use App\Actions\SendVerificationMailAction;
 use App\Models\Currency;
-use App\Models\LoginAttempt;
 use Illuminate\Http\Request;
-// use App\Http\Controllers\Controller;
-
 use App\Repositories\LoginAttemptRepository;
 use App\Repositories\SpaceRepository;
 use App\Repositories\UserRepository;

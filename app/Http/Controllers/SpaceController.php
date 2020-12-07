@@ -10,7 +10,6 @@ use App\Exceptions\SpaceInviteInviteeAlreadyPresentException;
 use App\Mail\InvitedToSpace;
 use App\Models\Currency;
 use App\Models\Space;
-use App\Models\SpaceInvite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
