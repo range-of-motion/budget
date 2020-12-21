@@ -9,9 +9,10 @@
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.4",
-        "laravel/framework": "^7.0",
+        "laravel/framework": "^8.0",
+        "laravel/legacy-factories": "^1.1",
         "laravel/tinker": "^2.0",
         "nesbot/carbon": "^2.32",
         "stripe/stripe-php": "^7.44",
@@ -22,15 +23,14 @@
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "^8.5",
+        "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.5"
     },
     "autoload": {
-        "classmap": [
-            "database"
-        ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
