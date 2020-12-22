@@ -11,6 +11,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.4",
+        "laravel/dusk": "^6.11",
         "laravel/framework": "^8.0",
         "laravel/legacy-factories": "^1.1",
         "laravel/tinker": "^2.0",
