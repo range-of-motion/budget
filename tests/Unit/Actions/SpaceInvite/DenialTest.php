@@ -18,7 +18,7 @@ class DenialTest extends TestCase
 
     public function testSuccessfulDenial(): void
     {
-        $invite = factory(SpaceInvite::class)->create();
+        $invite = SpaceInvite::factory()->create();
 
         (new DenySpaceInviteAction())->execute($invite->id);
 

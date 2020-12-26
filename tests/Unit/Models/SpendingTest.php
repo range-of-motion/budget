@@ -12,7 +12,7 @@ class SpendingTest extends TestCase
 {
     public function testFormattedAmount()
     {
-        $spending = factory(Spending::class)->make([
+        $spending = Spending::factory()->make([
             'amount' => Helper::rawNumberToInteger(92.35)
         ]);
 

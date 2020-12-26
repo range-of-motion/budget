@@ -15,7 +15,7 @@ class UserVerificationTest extends TestCase
     {
         $token = 123;
 
-        factory(User::class)->create([
+        User::factory()->create([
             'verification_token' => $token
         ]);
 

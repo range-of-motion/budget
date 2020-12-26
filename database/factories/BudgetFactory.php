@@ -1,13 +1,19 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Budget;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Budget::class, function (Faker $faker) {
-    return [
-        'period' => 'monthly',
-        'amount' => $faker->randomNumber(3)
-    ];
-});
+class BudgetFactory extends Factory
+{
+    protected $model = Budget::class;
+
+    public function definition(): array
+    {
+        return [
+            'period' => 'monthly',
+            'amount' => $this->faker->randomNumber(3)
+        ];
+    }
+}

@@ -26,7 +26,7 @@ class ResetPasswordTest extends TestCase
 
     public function testFulfilmentReset(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = Str::random(10);
         $password = 'nuclear1234';

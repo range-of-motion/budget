@@ -19,8 +19,8 @@ class AcceptanceTest extends TestCase
 
     public function testSuccessfulAcceptance(): void
     {
-        $user = factory(User::class)->create();
-        $invite = factory(SpaceInvite::class)->create();
+        $user = User::factory()->create();
+        $invite = SpaceInvite::factory()->create();
 
         $this->be($user); // Necessary because AcceptSpaceInviteAction uses authentication
 

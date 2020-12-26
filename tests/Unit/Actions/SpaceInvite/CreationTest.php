@@ -14,9 +14,9 @@ class CreationTest extends TestCase
 {
     public function testInviteeAlreadyPresent(): void
     {
-        $space = factory(Space::class)->create();
-        $inviteeUser = factory(User::class)->create();
-        $inviterUser = factory(User::class)->create();
+        $space = Space::factory()->create();
+        $inviteeUser = User::factory()->create();
+        $inviterUser = User::factory()->create();
 
         $inviteeUser->spaces()->attach($space->id, ['role' => 'regular']);
 
@@ -32,11 +32,11 @@ class CreationTest extends TestCase
 
     public function testInviteAlreadyExists(): void
     {
-        $space = factory(Space::class)->create();
-        $inviteeUser = factory(User::class)->create();
-        $inviterUser = factory(User::class)->create();
+        $space = Space::factory()->create();
+        $inviteeUser = User::factory()->create();
+        $inviterUser = User::factory()->create();
 
-        factory(SpaceInvite::class)->create([
+        SpaceInvite::factory()->create([
             'space_id' => $space->id,
             'invitee_user_id' => $inviteeUser->id
         ]);
@@ -53,9 +53,9 @@ class CreationTest extends TestCase
 
     public function testSuccessfulCreation(): void
     {
-        $space = factory(Space::class)->create();
-        $inviteeUser = factory(User::class)->create();
-        $inviterUser = factory(User::class)->create();
+        $space = Space::factory()->create();
+        $inviteeUser = User::factory()->create();
+        $inviterUser = User::factory()->create();
 
         $invite = (new CreateSpaceInviteAction())->execute(
             $space->id,

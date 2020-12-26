@@ -1,13 +1,19 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Currency;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Currency::class, function (Faker $faker) {
-    return [
-        'name' => $faker->word(),
-        'symbol' => $faker->word()
-    ];
-});
+class CurrencyFactory extends Factory
+{
+    protected $model = Currency::class;
+
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->word(),
+            'symbol' => $this->faker->word()
+        ];
+    }
+}

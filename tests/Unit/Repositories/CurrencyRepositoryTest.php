@@ -22,11 +22,11 @@ class CurrencyRepositoryTest extends TestCase
     public function testGetIfConversionRatePresentMethod(): void
     {
         // Prepare
-        $firstCurrency = factory(Currency::class)->create();
-        $secondCurrency = factory(Currency::class)->create();
+        $firstCurrency = Currency::factory()->create();
+        $secondCurrency = Currency::factory()->create();
 
-        $firstSpace = factory(Space::class)->create(['currency_id' => $firstCurrency->id]);
-        $secondSpace = factory(Space::class)->create(['currency_id' => $secondCurrency->id]);
+        $firstSpace = Space::factory()->create(['currency_id' => $firstCurrency->id]);
+        $secondSpace = Space::factory()->create(['currency_id' => $secondCurrency->id]);
 
         // Select first currency, assuming there are no conversion rates yet, the method should return 1 currency
         $this->session(['space_id' => $firstSpace->id]);
@@ -34,7 +34,7 @@ class CurrencyRepositoryTest extends TestCase
         $this->assertCount(1, $this->currencyRepository->getIfConversionRatePresent());
 
         // Create conversion rate, the method should return 2 currencies
-        factory(ConversionRate::class)->create([
+        ConversionRate::factory()->create([
             'base_currency_id' => $secondCurrency,
             'target_currency_id' => $firstCurrency
         ]);

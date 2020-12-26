@@ -13,11 +13,11 @@ class RecurringTest extends TestCase
 {
     public function testUnauthorizedUserCantViewRecurring()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $space = factory(Space::class)->create();
+        $space = Space::factory()->create();
 
-        $recurring = factory(Recurring::class)->create([
+        $recurring = Recurring::factory()->create([
             'space_id' => $space->id,
             'currency_id' => $space->currency_id
         ]);
@@ -31,8 +31,8 @@ class RecurringTest extends TestCase
 
     public function testSuccessfulRecurringCreation(): void
     {
-        $user = factory(User::class)->create();
-        $space = factory(Space::class)->create();
+        $user = User::factory()->create();
+        $space = Space::factory()->create();
 
         $requestData = [
             'type' => 'spending',

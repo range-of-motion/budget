@@ -20,7 +20,7 @@ class BudgetRepositoryTest extends TestCase
         parent::setUp();
 
         $this->budgetRepository = new BudgetRepository();
-        $this->spaceId = factory(Space::class)->create()->id;
+        $this->spaceId = Space::factory()->create()->id;
     }
 
     /**
@@ -56,7 +56,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testDoesExistMethodUsingExistingBudget(): void
     {
-        factory(Budget::class)->create(['space_id' => 1, 'tag_id' => 1]);
+        Budget::factory()->create(['space_id' => 1, 'tag_id' => 1]);
 
         // Assert that existing budget returns true
         $this->assertEquals(true, $this->budgetRepository->doesExist(1, 1));
@@ -64,7 +64,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testDoesExistMethodUsingExpiredBudget(): void
     {
-        factory(Budget::class)->create([
+        Budget::factory()->create([
             'space_id' => 1,
             'tag_id' => 2,
             'starts_on' => date('Y-m-d', strtotime('-2 months')),
@@ -81,7 +81,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetActiveMethodUsingFreshSpace(): void
     {
-        $space = factory(Space::class)->create(['id' => 200]);
+        $space = Space::factory()->create(['id' => 200]);
 
         $this->withSession(['space_id' => $space->id]);
         $this->assertEmpty($this->budgetRepository->getActive());
@@ -89,9 +89,9 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetActiveMethodUsingInactiveBudget(): void
     {
-        $tag = factory(Tag::class)->create(['space_id' => 200]);
+        $tag = Tag::factory()->create(['space_id' => 200]);
 
-        factory(Budget::class)->create([
+        Budget::factory()->create([
             'space_id' => 200,
             'tag_id' => $tag->id,
             'starts_on' => date('Y-m-d', strtotime('first day of last month')),
@@ -104,9 +104,9 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetActiveMethodUsingActiveBudget(): void
     {
-        $tag = factory(Tag::class)->create(['space_id' => 200]);
+        $tag = Tag::factory()->create(['space_id' => 200]);
 
-        factory(Budget::class)->create([
+        Budget::factory()->create([
             'space_id' => 200,
             'tag_id' => $tag->id,
             'starts_on' => date('Y-m-d', strtotime('first day of this month'))
@@ -128,7 +128,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetByIdMethodUsingExistingBudget(): void
     {
-        $budget = factory(Budget::class)->create();
+        $budget = Budget::factory()->create();
 
         // Assert that existing budget actually exists
         $this->assertEquals($budget->id, $this->budgetRepository->getById($budget->id)->id);
@@ -149,7 +149,7 @@ class BudgetRepositoryTest extends TestCase
 
     public function testGetSpentByIdUsingNonExistingPeriod(): void
     {
-        $budget = factory(Budget::class)->create([
+        $budget = Budget::factory()->create([
             'space_id' => 1,
             'tag_id' => 3,
             'period' => 'hourly'
@@ -166,7 +166,7 @@ class BudgetRepositoryTest extends TestCase
     {
         $this->withSession(['space_id' => 1]);
 
-        $budget = factory(Budget::class)->create([
+        $budget = Budget::factory()->create([
             'space_id' => 1,
             'tag_id' => 3
         ]);
@@ -179,9 +179,9 @@ class BudgetRepositoryTest extends TestCase
     {
         $this->withSession(['space_id' => $this->spaceId]);
 
-        $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
+        $tag = Tag::factory()->create(['space_id' => $this->spaceId]);
 
-        $budget = factory(Budget::class)->create([
+        $budget = Budget::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'period' => 'yearly'
@@ -190,7 +190,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion without spendings
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d', strtotime('last year')),
@@ -200,7 +200,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion with spendings, but outside of period
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d'),
@@ -215,9 +215,9 @@ class BudgetRepositoryTest extends TestCase
     {
         $this->withSession(['space_id' => $this->spaceId]);
 
-        $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
+        $tag = Tag::factory()->create(['space_id' => $this->spaceId]);
 
-        $budget = factory(Budget::class)->create([
+        $budget = Budget::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'period' => 'monthly'
@@ -226,7 +226,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion without spendings
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d', strtotime('last month')),
@@ -236,7 +236,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion with spendings, but outside of period
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d'),
@@ -251,9 +251,9 @@ class BudgetRepositoryTest extends TestCase
     {
         $this->withSession(['space_id' => $this->spaceId]);
 
-        $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
+        $tag = Tag::factory()->create(['space_id' => $this->spaceId]);
 
-        $budget = factory(Budget::class)->create([
+        $budget = Budget::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'period' => 'weekly'
@@ -262,7 +262,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion without spendings
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d', strtotime('2 weeks ago')),
@@ -272,7 +272,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion with spendings, but outside of period
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d'),
@@ -287,9 +287,9 @@ class BudgetRepositoryTest extends TestCase
     {
         $this->withSession(['space_id' => $this->spaceId]);
 
-        $tag = factory(Tag::class)->create(['space_id' => $this->spaceId]);
+        $tag = Tag::factory()->create(['space_id' => $this->spaceId]);
 
-        $budget = factory(Budget::class)->create([
+        $budget = Budget::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'period' => 'daily'
@@ -298,7 +298,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion without spendings
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d', strtotime('yesterday')),
@@ -308,7 +308,7 @@ class BudgetRepositoryTest extends TestCase
         // Assertion with spendings, but outside of period
         $this->assertEquals(0, $this->budgetRepository->getSpentById($budget->id));
 
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $this->spaceId,
             'tag_id' => $tag->id,
             'happened_on' => date('Y-m-d'),

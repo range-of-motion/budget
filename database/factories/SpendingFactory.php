@@ -1,14 +1,20 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Spending;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Spending::class, function (Faker $faker) {
-    return [
-        'happened_on' => $faker->dateTimeBetween('-50 days', 'now')->format('Y-m-d'),
-        'description' => implode(' ', array_map('ucfirst', $faker->words(3))),
-        'amount' => $faker->randomNumber(3)
-    ];
-});
+class SpendingFactory extends Factory
+{
+    protected $model = Spending::class;
+
+    public function definition(): array
+    {
+        return [
+            'happened_on' => $this->faker->dateTimeBetween('-50 days', 'now')->format('Y-m-d'),
+            'description' => implode(' ', array_map('ucfirst', $this->faker->words(3))),
+            'amount' => $this->faker->randomNumber(3)
+        ];
+    }
+}

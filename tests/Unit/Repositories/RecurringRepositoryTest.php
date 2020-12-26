@@ -21,7 +21,7 @@ class RecurringRepositoryTest extends TestCase
         parent::setUp();
 
         $this->recurringRepository = new RecurringRepository();
-        $this->space = factory(Space::class)->create(); // Instantiate it here, for reusability
+        $this->space = Space::factory()->create(); // Instantiate it here, for reusability
     }
 
     public function testCreation(): void
@@ -49,7 +49,7 @@ class RecurringRepositoryTest extends TestCase
     public function testDueYearly(): void
     {
         // Assert that recurring (that has never been used before) is due
-        $neverUsedRecurring = factory(Recurring::class)->create([
+        $neverUsedRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'yearly',
@@ -68,7 +68,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used a year ago) is due
-        $yearAgoRecurring = factory(Recurring::class)->create([
+        $yearAgoRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'yearly',
@@ -87,7 +87,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used less than a year ago) is not due
-        $lessThanYearAgoRecurring = factory(Recurring::class)->create([
+        $lessThanYearAgoRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'yearly',
@@ -109,7 +109,7 @@ class RecurringRepositoryTest extends TestCase
     public function testDueMonthly(): void
     {
         // Assert that recurring (that has never been used before) is due
-        $neverUsedRecurring = factory(Recurring::class)->create([
+        $neverUsedRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'monthly',
@@ -126,7 +126,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used a month ago, on the same day of the month) is due
-        $usedMonthAgoRecurring = factory(Recurring::class)->create([
+        $usedMonthAgoRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'monthly',
@@ -144,7 +144,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used less than a month ago) is not due
-        $usedLessThanMonthAgoRecurring = factory(Recurring::class)->create([
+        $usedLessThanMonthAgoRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'monthly',
@@ -165,7 +165,7 @@ class RecurringRepositoryTest extends TestCase
     public function testDueBiweekly(): void
     {
         // Assert that recurring (that has never been used before) is due
-        $neverUsedRecurring = factory(Recurring::class)->create([
+        $neverUsedRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'biweekly',
@@ -184,7 +184,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used a week ago) is not due
-        $weekAgoReccuring = factory(Recurring::class)->create([
+        $weekAgoReccuring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'biweekly',
@@ -203,7 +203,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertFalse($contains);
 
         // Assert that recurring (that was last used two weeks ago) is due
-        $twoWeeksAgoReccuring = factory(Recurring::class)->create([
+        $twoWeeksAgoReccuring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'biweekly',
@@ -222,7 +222,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used less than 2 weeks ago) is not due
-        $lessThanTwoWeeksAgoReccuring = factory(Recurring::class)->create([
+        $lessThanTwoWeeksAgoReccuring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'biweekly',
@@ -244,7 +244,7 @@ class RecurringRepositoryTest extends TestCase
     public function testDueWeekly(): void
     {
         // Assert that recurring (that has never been used before) is due
-        $neverUsedRecurring = factory(Recurring::class)->create([
+        $neverUsedRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'weekly',
@@ -263,7 +263,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used a week ago) is due
-        $weekAgoReccuring = factory(Recurring::class)->create([
+        $weekAgoReccuring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'weekly',
@@ -282,7 +282,7 @@ class RecurringRepositoryTest extends TestCase
         $this->assertTrue($contains);
 
         // Assert that recurring (that was last used less than a week ago) is not due
-        $lessThanWeekAgoReccuring = factory(Recurring::class)->create([
+        $lessThanWeekAgoReccuring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'weekly',
@@ -304,7 +304,7 @@ class RecurringRepositoryTest extends TestCase
     public function testDueDaily(): void
     {
         // Assert that recurring (that has never been used before) is due
-        $neverUsedRecurring = factory(Recurring::class)->create([
+        $neverUsedRecurring = Recurring::factory()->create([
             'space_id' => $this->space->id,
             'type' => 'earning',
             'interval' => 'daily',
