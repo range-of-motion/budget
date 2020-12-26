@@ -13,11 +13,11 @@ class EarningTest extends TestCase
 {
     public function testUnauthorizedUserCantDeleteEarning()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $space = factory(Space::class)->create();
+        $space = Space::factory()->create();
 
-        $earning = factory(Earning::class)->create([
+        $earning = Earning::factory()->create([
             'space_id' => $space->id
         ]);
 

@@ -1,12 +1,18 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\ConversionRate;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(ConversionRate::class, function (Faker $faker) {
-    return [
-        'rate' => $faker->randomFloat(2, .5, 2)
-    ];
-});
+class ConversionRateFactory extends Factory
+{
+    protected $model = ConversionRate::class;
+
+    public function definition(): array
+    {
+        return [
+            'rate' => $this->faker->randomFloat(2, .5, 2)
+        ];
+    }
+}

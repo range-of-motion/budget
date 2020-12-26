@@ -13,11 +13,11 @@ class SpendingTest extends TestCase
 {
     public function testUnauthorizedUserCantDeleteSpending()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $space = factory(Space::class)->create();
+        $space = Space::factory()->create();
 
-        $spending = factory(Spending::class)->create([
+        $spending = Spending::factory()->create([
             'space_id' => $space->id
         ]);
 

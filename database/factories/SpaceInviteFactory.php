@@ -1,17 +1,23 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Space;
 use App\Models\SpaceInvite;
 use App\Models\User;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(SpaceInvite::class, function (Faker $faker) {
-    return [
-        'space_id' => Space::all()->random()->id,
-        'invitee_user_id' => User::all()->random()->id,
-        'inviter_user_id' => User::all()->random()->id,
-        'role' => 'regular'
-    ];
-});
+class SpaceInviteFactory extends Factory
+{
+    protected $model = SpaceInvite::class;
+
+    public function definition(): array
+    {
+        return [
+            'space_id' => Space::all()->random()->id,
+            'invitee_user_id' => User::all()->random()->id,
+            'inviter_user_id' => User::all()->random()->id,
+            'role' => 'regular'
+        ];
+    }
+}

@@ -14,14 +14,14 @@ class TagTest extends TestCase
 {
     public function testMostExpensiveTags()
     {
-        $space = factory(Space::class)->create();
+        $space = Space::factory()->create();
 
         $repository = new TagRepository();
 
         // No tags existing
         $this->assertEmpty($repository->getMostExpensiveTags($space->id));
 
-        $tag = factory(Tag::class)->create([
+        $tag = Tag::factory()->create([
             'space_id' => $space->id
         ]);
 
@@ -30,7 +30,7 @@ class TagTest extends TestCase
         $this->assertEquals(0, $repository->getMostExpensiveTags($space->id)[0]->amount);
 
         // After creating spending for said tag
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $space->id,
             'tag_id' => $tag->id,
             'amount' => 1025

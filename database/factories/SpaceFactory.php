@@ -1,13 +1,19 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Space;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Space::class, function (Faker $faker) {
-    return [
-        'currency_id' => $faker->numberBetween(1, 3),
-        'name' => $faker->firstName . '\'s Space'
-    ];
-});
+class SpaceFactory extends Factory
+{
+    protected $model = Space::class;
+
+    public function definition(): array
+    {
+        return [
+            'currency_id' => $this->faker->numberBetween(1, 3),
+            'name' => $this->faker->firstName . '\'s Space'
+        ];
+    }
+}

@@ -14,13 +14,13 @@ class TagTest extends TestCase
     // Edit
     public function testAuthorizedUserCanEditTag()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $space = factory(Space::class)->create();
+        $space = Space::factory()->create();
 
         $user->spaces()->sync([$space->id]);
 
-        $tag = factory(Tag::class)->create([
+        $tag = Tag::factory()->create([
             'space_id' => $space->id
         ]);
 
@@ -33,11 +33,11 @@ class TagTest extends TestCase
 
     public function testUnauthorizedUserCantEditTag()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $space = factory(Space::class)->create();
+        $space = Space::factory()->create();
 
-        $tag = factory(Tag::class)->create([
+        $tag = Tag::factory()->create([
             'space_id' => $space->id
         ]);
 
@@ -51,13 +51,13 @@ class TagTest extends TestCase
     // Update
     public function testUpdateTag()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $space = factory(Space::class)->create();
+        $space = Space::factory()->create();
 
         $user->spaces()->sync([$space->id]);
 
-        $tag = factory(Tag::class)->create([
+        $tag = Tag::factory()->create([
             'space_id' => $space->id,
             'name' => 'Before'
         ]);

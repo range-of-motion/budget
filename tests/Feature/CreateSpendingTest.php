@@ -17,8 +17,8 @@ class CreateSpendingTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create();
-        $this->space = factory(Space::class)->create();
+        $this->user = User::factory()->create();
+        $this->space = Space::factory()->create();
     }
 
     public function testFailedValidation(): void

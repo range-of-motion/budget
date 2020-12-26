@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Events\RecurringCreated;
 use App\Events\RecurringDeleted;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Recurring extends Model
 {
+    use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [

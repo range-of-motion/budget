@@ -14,8 +14,8 @@ class DashboardTest extends TestCase
 {
     public function testEmptySpace(): void
     {
-        $user = factory(User::class)->create();
-        $space = factory(Space::class)->create();
+        $user = User::factory()->create();
+        $space = Space::factory()->create();
 
         $response = $this
             ->actingAs($user)
@@ -36,17 +36,17 @@ class DashboardTest extends TestCase
 
     public function testUsedSpace(): void
     {
-        $user = factory(User::class)->create();
-        $space = factory(Space::class)->create();
+        $user = User::factory()->create();
+        $space = Space::factory()->create();
 
         // Earn 10 bucks
-        factory(Earning::class)->create([
+        Earning::factory()->create([
             'space_id' => $space->id,
             'happened_on' => date('Y-m-d'),
             'amount' => 1000]);
 
         // Spend 5 bucks
-        factory(Spending::class)->create([
+        Spending::factory()->create([
             'space_id' => $space->id,
             'happened_on' => date('Y-m-d'),
             'amount' => 500

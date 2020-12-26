@@ -12,7 +12,7 @@ class EarningTest extends TestCase
 {
     public function testFormattedAmount()
     {
-        $earning = factory(Earning::class)->make([
+        $earning = Earning::factory()->make([
             'amount' => Helper::rawNumberToInteger(39)
         ]);
 

@@ -18,7 +18,7 @@ class FetchTranslationsTest extends TestCase
 
     public function testUsingAuthorizedUser(): void
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $response = $this
             ->actingAs($user)
@@ -31,7 +31,7 @@ class FetchTranslationsTest extends TestCase
 
     public function testUsingDifferentLanguage(): void
     {
-        $user = factory(User::class)->create(['language' => 'nl']);
+        $user = User::factory()->create(['language' => 'nl']);
 
         $response = $this
             ->actingAs($user)
