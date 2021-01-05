@@ -39,6 +39,7 @@
                 display: none;
             }
         </style>
+        @livewireStyles
     </head>
     <body class="theme-{{ Auth::check() ? Auth::user()->theme : 'light' }}">
         <div id="app">
@@ -156,5 +157,6 @@
         </div>
         <script src="/js/app.js"></script>
         @yield('scripts')
+        @livewireScripts
     </body>
 </html>
