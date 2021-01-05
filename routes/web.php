@@ -121,6 +121,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/settings/profile', [SettingsController::class, 'getProfile'])->name('profile');
         Route::get('/settings/account', [SettingsController::class, 'getAccount'])->name('account');
         Route::get('/settings/preferences', [SettingsController::class, 'getPreferences'])->name('preferences');
+        Route::get('/settings/dashboard', [SettingsController::class, 'getDashboard'])->name('dashboard');
         Route::get('/settings/billing', [SettingsController::class, 'getBilling'])->name('billing')->middleware('stripe');
         Route::post('/settings/billing/upgrade', [SettingsController::class, 'postUpgrade'])->name('billing.upgrade')->middleware('stripe');
         Route::post('/settings/billing/cancel', [SettingsController::class, 'postCancel'])->name('billing.cancel')->middleware('stripe');

@@ -14,6 +14,7 @@
         "laravel/dusk": "^6.11",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
+        "livewire/livewire": "^2.3",
         "nesbot/carbon": "^2.32",
         "stripe/stripe-php": "^7.44",
         "symfony/dom-crawler": "^5.1",

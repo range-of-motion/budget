@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $this->tagRepository = $tagRepository;
     }
 
-    public function __invoke()
+    public function __invoke(Request $request)
     {
         $space_id = session('space_id');
         $currentYear = date('Y');
@@ -35,9 +35,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'month' => date('n'),
 
-            'balance' => $this->dashboardRepository->getBalance($currentYear, $currentMonth),
-            'recurrings' => $this->dashboardRepository->getRecurrings($currentYear, $currentMonth),
-            'leftToSpend' => $this->dashboardRepository->getLeftToSpend($currentYear, $currentMonth),
+            'widgets' => $request->user()->widgets()->orderBy('sorting_index')->get(),
 
             'totalSpent' => $this->dashboardRepository->getTotalAmountSpent($currentYear, $currentMonth),
             'mostExpensiveTags' => $mostExpensiveTags,

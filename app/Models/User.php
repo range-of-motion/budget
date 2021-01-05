@@ -29,6 +29,25 @@ class User extends Authenticatable
         'plan' => 'standard'
     ];
 
+    //
+    public static function getValidationRulesForRegistration(): array
+    {
+        return [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+            'currency' => 'required|exists:currencies,id'
+        ];
+    }
+
+    public static function getValidationRulesForPasswordReset(): array
+    {
+        return [
+            'email' => 'required_without:password|email',
+            'password' => 'required_without:email|confirmed'
+        ];
+    }
+
     // Accessors
     public function getAvatarAttribute($avatar)
     {
@@ -39,5 +58,10 @@ class User extends Authenticatable
     public function spaces()
     {
         return $this->belongsToMany(Space::class, 'user_space')->withPivot('role');
+    }
+
+    public function widgets()
+    {
+        return $this->hasMany(Widget::class);
     }
 }

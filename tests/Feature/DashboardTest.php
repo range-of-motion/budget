@@ -2,17 +2,16 @@
 
 namespace Tests\Feature;
 
-use App\Models\Earning;
 use App\Models\Space;
-use App\Models\Spending;
 use App\Models\User;
+use App\Models\Widget;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {
-    public function testEmptySpace(): void
+    public function testZeroWidgets(): void
     {
         $user = User::factory()->create();
         $space = Space::factory()->create();
@@ -22,34 +21,17 @@ class DashboardTest extends TestCase
             ->withSession(['space_id' => $space->id])
             ->get('/dashboard');
 
-        $response
-            ->assertStatus(200)
-            ->assertSeeTextInOrder([
-                '0.00',
-                'Balance',
-                '0.00',
-                'Recurrings',
-                '0.00',
-                'Left to Spend'
-            ]);
+        $response->assertStatus(200);
     }
 
-    public function testUsedSpace(): void
+    public function testBalanceWidget(): void
     {
         $user = User::factory()->create();
         $space = Space::factory()->create();
 
-        // Earn 10 bucks
-        Earning::factory()->create([
-            'space_id' => $space->id,
-            'happened_on' => date('Y-m-d'),
-            'amount' => 1000]);
-
-        // Spend 5 bucks
-        Spending::factory()->create([
-            'space_id' => $space->id,
-            'happened_on' => date('Y-m-d'),
-            'amount' => 500
+        Widget::factory()->create([
+            'user_id' => $user->id,
+            'type' => 'balance'
         ]);
 
         $response = $this
@@ -59,13 +41,27 @@ class DashboardTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertSeeTextInOrder([
-                '5.00',
-                'Balance',
-                '0.00',
-                'Recurrings',
-                '5.00',
-                'Left to Spend'
-            ]);
+            ->assertSeeText('Balance');
+    }
+
+    public function testSpentWidget(): void
+    {
+        $user = User::factory()->create();
+        $space = Space::factory()->create();
+
+        Widget::factory()->create([
+            'user_id' => $user->id,
+            'type' => 'spent',
+            'properties' => ['period' => 'this_month']
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->withSession(['space_id' => $space->id])
+            ->get('/dashboard');
+
+        $response
+            ->assertStatus(200)
+            ->assertSeeText('Spent this month');
     }
 }

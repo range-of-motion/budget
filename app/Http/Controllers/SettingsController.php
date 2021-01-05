@@ -128,6 +128,11 @@ class SettingsController extends Controller
         return view('settings.preferences', compact('languages'));
     }
 
+    public function getDashboard()
+    {
+        return view('settings.dashboard');
+    }
+
     public function getBilling(Request $request)
     {
         $user = $request->user();
