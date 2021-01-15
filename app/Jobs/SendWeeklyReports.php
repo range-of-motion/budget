@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Helper;
 use App\Mail\WeeklyReport;
 use App\Models\Space;
 use Illuminate\Bus\Queueable;
@@ -49,6 +50,11 @@ class SendWeeklyReports implements ShouldQueue
                 ORDER BY spendings.amount DESC LIMIT 1', [$space->id, $lastWeekDate, $currentDate]);
 
             foreach ($space->users as $user) {
+                // If plans are enabled, weekly reports can only be sent to users with a premium plan
+                if (Helper::arePlansEnabled() && $user->plan === 'standard') {
+                    continue;
+                }
+
                 // Only send if user wants to receive report
                 if ($user->weekly_report) {
                     Mail::to($user->email)->queue(new WeeklyReport(
