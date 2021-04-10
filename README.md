@@ -8,7 +8,7 @@
 
 Budget is an open-source web application that helps you keep track of your finances.
 
-You can use Budget by hosting it yourself, or using [the instance hosted by us](https://budget.pixely.me).
+You can use Budget by hosting it yourself, or using [the instance hosted by us](https://budgethq.com).
 
 ![Product](https://user-images.githubusercontent.com/9268822/46098425-a8877300-c1c4-11e8-9293-f43ceb9d6f97.png)
 
