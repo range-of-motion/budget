@@ -25,7 +25,8 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "^9.0",
-        "squizlabs/php_codesniffer": "^3.5"
+        "slevomat/coding-standard": "^7.0",
+        "squizlabs/php_codesniffer": "^3.6"
     },
     "autoload": {
         "psr-4": {
