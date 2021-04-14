@@ -8,7 +8,6 @@ use App\Models\Earning;
 use App\Models\Space;
 use App\Repositories\ConversionRateRepository;
 use App\Repositories\EarningRepository;
-use Auth;
 
 class EarningController extends Controller
 {

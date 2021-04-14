@@ -4,8 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Helper;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Earning;
 use App\Models\Spending;
 use App\Models\Space;

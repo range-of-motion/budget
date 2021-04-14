@@ -10,7 +10,6 @@ use App\Policies\SpendingPolicy;
 use App\Policies\TagPolicy;
 use App\Models\Spending;
 use App\Models\Tag;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Policies\RecurringPolicy;
 use App\Models\Recurring;

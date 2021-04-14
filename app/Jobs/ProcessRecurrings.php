@@ -11,7 +11,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Repositories\EarningRepository;
 use App\Repositories\RecurringRepository;
 use App\Repositories\SpendingRepository;
-use DateTime;
 use Exception;
 
 class ProcessRecurrings implements ShouldQueue

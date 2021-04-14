@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
-use App\Models\Currency;
 use App\Models\Space;
 use App\Models\Spending;
 use App\Models\Tag;

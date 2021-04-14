@@ -6,8 +6,6 @@ use App\Models\Earning;
 use App\Models\Space;
 use App\Models\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EarningTest extends TestCase
 {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Actions\VerifyUserAction;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class VerifyController extends Controller
 {

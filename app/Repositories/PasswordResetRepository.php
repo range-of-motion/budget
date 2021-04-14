@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\DB;
 
 class PasswordResetRepository

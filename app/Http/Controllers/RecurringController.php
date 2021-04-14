@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Helper;
 use Illuminate\Http\Request;
 use App\Models\Recurring;
-use Auth;
 use App\Jobs\ProcessRecurrings;
 use App\Models\Tag;
 use App\Repositories\RecurringRepository;
