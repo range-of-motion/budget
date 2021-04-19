@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use App\Models\Space;
 use App\Models\User;
 use App\Models\Widget;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase

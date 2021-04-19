@@ -6,7 +6,6 @@ use App\Actions\CreateUserAction;
 use App\Actions\StoreSpaceInSessionAction;
 use App\Actions\SendVerificationMailAction;
 use App\Models\Currency;
-use App\Models\LoginAttempt;
 use App\Models\User;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;

@@ -8,7 +8,6 @@ use App\Actions\FetchStripeSubscriptionAction;
 use App\Exceptions\UserStripelessException;
 use Illuminate\Http\Request;
 use App\Mail\PasswordChanged;
-use App\Models\Currency;
 use Auth;
 use Image;
 use Storage;

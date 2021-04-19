@@ -5,4 +5,6 @@
   <file>./tests</file>
 
   <rule ref="PSR12" />
+
+  <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
 </ruleset>
