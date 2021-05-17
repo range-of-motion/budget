@@ -158,6 +158,11 @@ class ImportController extends Controller
                 // TODO CHECK HOW THIS WORKS WITH 1k+ AMOUNTS
                 $amount = str_replace(',', '.', $row['amount']);
 
+                //correct amount to be in cents
+                if(strpos($row['amount'], '.')!==false){
+                  $amount *= 100;
+                }
+
                 $this->spendingRepository->create(
                     session('space_id'),
                     $import->id,
