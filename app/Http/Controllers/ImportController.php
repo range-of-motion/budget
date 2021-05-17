@@ -6,16 +6,19 @@ use App\Helper;
 use App\Models\Import;
 use App\Models\Tag;
 use App\Repositories\SpendingRepository;
+use App\Repositories\EarningRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ImportController extends Controller
 {
     private $spendingRepository;
+    private $earningRepository;
 
-    public function __construct(SpendingRepository $spendingRepository)
+    public function __construct(SpendingRepository $spendingRepository, EarningRepository $earningRepository)
     {
         $this->spendingRepository = $spendingRepository;
+        $this->earningRepository = $earningRepository;
     }
 
     public function index()
@@ -163,15 +166,28 @@ class ImportController extends Controller
                   $amount *= 100;
                 }
 
-                $this->spendingRepository->create(
+                if($row['amount']<0){
+                  $row['amount']*=-1;
+                  $this->spendingRepository->create(
+                      session('space_id'),
+                      $import->id,
+                      null,
+                      $row['tag_id'],
+                      $row['happened_on'],
+                      $row['description'],
+                      $amount
+                  );
+                } else {
+                  $this-earningRepository->create(
                     session('space_id'),
-                    $import->id,
                     null,
                     $row['tag_id'],
                     $row['happened_on'],
                     $row['description'],
                     $amount
-                );
+                  );
+                }
+
             }
         }
 
