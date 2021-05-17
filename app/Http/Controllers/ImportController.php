@@ -181,7 +181,6 @@ class ImportController extends Controller
                   $this->earningRepository->create(
                     session('space_id'),
                     null,
-                    $row['tag_id'],
                     $row['happened_on'],
                     $row['description'],
                     $amount
