@@ -178,7 +178,7 @@ class ImportController extends Controller
                       $amount
                   );
                 } else {
-                  $this-earningRepository->create(
+                  $this->earningRepository->create(
                     session('space_id'),
                     null,
                     $row['tag_id'],
