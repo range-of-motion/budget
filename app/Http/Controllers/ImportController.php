@@ -157,7 +157,7 @@ class ImportController extends Controller
         }
 
         foreach ($request->input('rows') as $row) {
-            if (isset($row['import'])) {
+            if (isset($row['import']) && isset($row['amount'])) {
                 // TODO CHECK HOW THIS WORKS WITH 1k+ AMOUNTS
                 $amount = str_replace(',', '.', $row['amount']);
 
