@@ -162,12 +162,12 @@ class ImportController extends Controller
                 $amount = str_replace(',', '.', $row['amount']);
 
                 //correct amount to be in cents
-                if(strpos($row['amount'], '.')!==false){
+                if(strpos($amount, '.')!==false){
                   $amount *= 100;
                 }
 
-                if($row['amount']<0){
-                  $row['amount']*=-1;
+                if($amount<0){
+                  $amount*=-1;
                   $this->spendingRepository->create(
                       session('space_id'),
                       $import->id,
