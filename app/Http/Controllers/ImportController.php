@@ -136,7 +136,7 @@ class ImportController extends Controller
                     'tag_id' => 'nullable|exists:tags,id', // TODO CHECK IF TAG BELONGS TO USER
                     'happened_on' => 'date|date_format:' . $date_format,
                     'description' => 'max:255',
-                    'amount' => 'regex:/^\d*([\,\.]\d{2})?$/'
+                    'amount' => 'regex:/^(\-)?\d*([\,\.]\d{2})?$/'
                 ]);
 
                 if ($validator->fails()) {
