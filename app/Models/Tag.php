@@ -23,6 +23,11 @@ class Tag extends Model
     ];
 
     // Relations
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class);
+    }
+
     public function spendings()
     {
         return $this->hasMany(Spending::class);
