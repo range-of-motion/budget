@@ -33,7 +33,7 @@
                                 </a>
                             </div>
                             <div class="row__column row__column--compact ml-2">
-                                @if ($tag->spendings->count())
+                                @if ($tag->budgets->count() || $tag->spendings->count())
                                     <i class="fas fa-trash-alt"></i>
                                 @else
                                     <form method="POST" action="/tags/{{ $tag->id }}">
