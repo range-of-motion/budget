@@ -44,12 +44,12 @@ class BudgetInstall extends Command
 
     public function handle(): void
     {
-        if ($this->yarnExists()) {
-            $this->executeCommand(['yarn', 'install']);
-            $this->executeCommand(['yarn', 'run', 'production']);
-        } elseif ($this->nodePackageManagerExists()) {
+        if ($this->nodePackageManagerExists()) {
             $this->executeCommand(['npm', 'install']);
             $this->executeCommand(['npm', 'run', 'production']);
+        // } elseif ($this->yarnExists()) {
+        //     $this->executeCommand(['yarn', 'install']);
+        //     $this->executeCommand(['yarn', 'run', 'production']);
         } else {
             $this->warn('Neither Yarn or NPM were found, please install either and retry this command');
         }
