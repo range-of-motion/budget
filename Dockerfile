@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
 # Install system packages (Git, packages for archives, Node.js)
 RUN apt-get update \
