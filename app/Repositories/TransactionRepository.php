@@ -85,7 +85,7 @@ class TransactionRepository
         // Sort transactions
         foreach ($yearMonths as &$yearMonth) {
             usort($yearMonth, function ($a, $b) {
-                return $a->happened_on < $b->happened_on;
+                return $a->happened_on <=> $b->happened_on;
             });
         }
 
