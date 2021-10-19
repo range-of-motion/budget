@@ -22,7 +22,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "axios": "^0.21.1",
+        "axios": "^0.21.2",
         "vue-color": "^2.7.0"
     }
 }
