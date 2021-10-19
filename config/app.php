@@ -222,4 +222,9 @@ return [
         'Image' => Intervention\Image\Facades\Image::class
     ],
 
+    /**
+     * Custom
+     */
+
+    'disable_registration' => env('DISABLE_REGISTRATION', false),
 ];

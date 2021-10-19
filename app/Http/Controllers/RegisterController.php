@@ -29,6 +29,10 @@ class RegisterController extends Controller
 
     public function index()
     {
+        if (config('app.disable_registration')) {
+            abort(404);
+        }
+
         return view('register', [
             'currencies' => Currency::orderBy('name')->get()
         ]);
@@ -36,6 +40,10 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        if (config('app.disable_registration')) {
+            abort(404);
+        }
+
         $request->validate(User::getValidationRulesForRegistration());
 
         $user = (new CreateUserAction())->execute($request->name, $request->email, $request->password);
