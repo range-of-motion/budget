@@ -79,7 +79,7 @@ jobs:
         run: php artisan migrate --database=testing
       - name: Run Dusk
         run: |
-          php artisan dusk:chrome-driver 94
+          php artisan dusk:chrome-driver
           nohup bash -c './vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &'
           nohup bash -c 'php artisan serve > /dev/null 2>&1 &'
           php artisan dusk
