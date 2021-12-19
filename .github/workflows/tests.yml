@@ -3,6 +3,16 @@ name: Tests
 on: [push]
 
 jobs:
+  security-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Download binary
+        run: |
+          curl -L -s https://github.com/fabpot/local-php-security-checker/releases/download/v1.2.0/local-php-security-checker_1.2.0_linux_amd64 -o local-php-security-checker
+          chmod +x local-php-security-checker
+      - name: Run binary
+        run: ./local-php-security-checker
   phpcs:
     runs-on: ubuntu-latest
     steps:
