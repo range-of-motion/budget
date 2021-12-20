@@ -18,7 +18,7 @@
             @endif
             @foreach ($budgets as $budget)
                 <div class="box__section">
-                    <div>{{ $budget->tag->name }}</div>
+                    <div v-pre>{{ $budget->tag->name }}</div>
                     <progress class="mt-2 mb-1" value="{{ $budget->spent }}" min="0" max="{{ $budget->amount }}"></progress>
                     <div style="font-size: 14px; font-weight: 600;">{!! $currency !!} {{ $budget->formatted_spent }} {{ __('general.of') }} {!! $currency !!} {{ $budget->formatted_amount }}</div>
                 </div>

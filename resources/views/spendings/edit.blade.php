@@ -15,7 +15,7 @@
                         <select name="tag_id">
                             <option value="">-</option>
                             @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}" {{ $tag->id === $spending->tag_id ? 'selected' : '' }}>{{ $tag->name }}</option>
+                                <option value="{{ $tag->id }}" {{ $tag->id === $spending->tag_id ? 'selected' : '' }} v-pre>{{ $tag->name }}</option>
                             @endforeach
                         </select>
                         @include('partials.validation_error', ['payload' => 'tag_id'])

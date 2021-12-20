@@ -22,7 +22,7 @@
                         <span>Filter by Tag</span>
                         @foreach ($tags as $tag)
                             <div class="mt-1 ml-1">
-                                <a href="/transactions?filterBy=tag-{{ $tag->id }}">{{ $tag->name }}</a>
+                                <a href="/transactions?filterBy=tag-{{ $tag->id }}" v-pre>{{ $tag->name }}</a>
                             </div>
                         @endforeach
                     </div>
@@ -57,7 +57,7 @@
                                                 <div class="row__column row__column--compact row__column--middle mr-05" style="font-size: 12px;">
                                                     <i class="fas fa-tag" style="color: #{{ $transaction->tag->color }};"></i>
                                                 </div>
-                                                <div class="row__column row__column--compact row__column--middle">{{ $transaction->tag->name }}</div>
+                                                <div class="row__column row__column--compact row__column--middle" v-pre>{{ $transaction->tag->name }}</div>
                                             </div>
                                         @endif
                                     </div>
