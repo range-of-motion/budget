@@ -40,7 +40,7 @@
                 <div class="row__column row__column--double">
                     @foreach ($space->users as $i => $user)
                         <div class="{{ $i > 0 ? 'mt-2' : null }}">
-                            <div class="color-dark mb-1">{{ $user->name }}</div>
+                            <div class="color-dark mb-1" v-pre>{{ $user->name }}</div>
                             <div class="fs-sm">{{ ucfirst($user->pivot->role) }}</div>
                         </div>
                     @endforeach
@@ -58,8 +58,8 @@
                     @endif
                     @foreach ($space->invites as $i => $invite)
                         <div class="{{ $i > 0 ? 'mt-2' : '' }}">
-                            <div class="color-dark mb-1">{{ $invite->invitee->name }}</div>
-                            <div class="fs-sm">{{ __('general.invited_by') }} {{ $invite->inviter->name }} &middot; {{ $invite->status }}</div>
+                            <div class="color-dark mb-1" v-pre>{{ $invite->invitee->name }}</div>
+                            <div class="fs-sm" v-pre>{{ __('general.invited_by') }} {{ $invite->inviter->name }} &middot; {{ $invite->status }}</div>
                         </div>
                     @endforeach
                 </div>
