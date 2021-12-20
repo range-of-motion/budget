@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>{{ $recurring->description }}</h2>
+        <h2 v-pre>{{ $recurring->description }}</h2>
         <div class="row my-3">
             <div class="row__column row__column--compact">
                 @if ($recurring->status)
