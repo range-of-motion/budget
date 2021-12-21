@@ -21,7 +21,7 @@
                 </div>
                 @foreach ($imports as $import)
                     <div class="box__section row">
-                        <div class="row__column">{{ $import->name }}</div>
+                        <div class="row__column" v-pre>{{ $import->name }}</div>
                         <div class="row__column">{{ $import->status < 2 ? $import->status + 1 . ' / 3' : 'Completed' }}</div>
                         <div class="row__column row__column--compact text-right" style="width: 100px;">
                             @if ($import->status < 2)

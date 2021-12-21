@@ -18,7 +18,7 @@
                     <div class="box__section row">
                         <div class="row__column">
                             <div class="color-dark">
-                                <a href="/recurrings/{{ $recurring->id }}">{{ $recurring->description }}</a>
+                                <a href="/recurrings/{{ $recurring->id }}" v-pre>{{ $recurring->description }}</a>
                             </div>
                             <div class="row mt-1">
                                 <div class="row__column row__column--compact" style="font-size: 14px; font-weight: 600;">{!! $currency !!} {{ \App\Helper::formatNumber($recurring->amount / 100) }}</div>

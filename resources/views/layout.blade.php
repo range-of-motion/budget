@@ -91,7 +91,7 @@
                                         <ul slot="menu" v-cloak>
                                             @foreach (Auth::user()->spaces as $space)
                                                 <li>
-                                                    <a href="/spaces/{{ $space->id }}">{{ $space->name }}</a>
+                                                    <a href="/spaces/{{ $space->id }}" v-pre>{{ $space->name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>

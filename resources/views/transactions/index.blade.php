@@ -22,7 +22,7 @@
                         <span>Filter by Tag</span>
                         @foreach ($tags as $tag)
                             <div class="mt-1 ml-1">
-                                <a href="/transactions?filterBy=tag-{{ $tag->id }}">{{ $tag->name }}</a>
+                                <a href="/transactions?filterBy=tag-{{ $tag->id }}" v-pre>{{ $tag->name }}</a>
                             </div>
                         @endforeach
                     </div>
@@ -36,7 +36,7 @@
                             @foreach ($transactions as $transaction)
                                 <div class="box__section row row--responsive">
                                     <div class="row__column row__column--middle row row--middle">
-                                        <div>{{ $transaction->description }}</div>
+                                        <div v-pre>{{ $transaction->description }}</div>
                                         <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}">
                                             <i class="fas fa-info-circle fa-xs c-light ml-1"></i>
                                         </a>
@@ -57,7 +57,7 @@
                                                 <div class="row__column row__column--compact row__column--middle mr-05" style="font-size: 12px;">
                                                     <i class="fas fa-tag" style="color: #{{ $transaction->tag->color }};"></i>
                                                 </div>
-                                                <div class="row__column row__column--compact row__column--middle">{{ $transaction->tag->name }}</div>
+                                                <div class="row__column row__column--compact row__column--middle" v-pre>{{ $transaction->tag->name }}</div>
                                             </div>
                                         @endif
                                     </div>

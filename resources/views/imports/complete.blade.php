@@ -40,7 +40,7 @@
                                 <select name="rows[{{ $index }}][tag_id]">
                                     <option value="">-</option>
                                     @foreach ($tags as $tag)
-                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        <option value="{{ $tag->id }}" v-pre>{{ $tag->name }}</option>
                                     @endforeach
                                 </select>
                                 @include('partials.validation_error', ['payload' => 'rows.' . $index . '.tag_id'])

@@ -11,7 +11,7 @@
         <ul class="box__section">
             @foreach ($spaces as $space)
                 <li class="row row--middle">
-                    <div class="row__column">{{ $space->name }} &middot; {{ ucfirst($space->pivot->role) }}</div>
+                    <div class="row__column" v-pre>{{ $space->name }} &middot; {{ ucfirst($space->pivot->role) }}</div>
                     <div class="row__column row__column--compact">
                         @can('edit', $space)
                             <a class="button button--secondary button--small" href="/spaces/{{ $space->id }}/edit">{{ __('pages.settings') }}</a>

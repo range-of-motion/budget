@@ -24,7 +24,7 @@
                         <div class="row__column row__column--compact row__column--middle mr-2">
                             <div style="width: 15px; height: 15px; border-radius: 2px; background: #{{ $tag->color }};"></div>
                         </div>
-                        <div class="row__column row__column--middle">{{ $tag->name }}</div>
+                        <div class="row__column row__column--middle" v-pre>{{ $tag->name }}</div>
                         <div class="row__column row__column--middle">{{ $tag->spendings->count() }}</div>
                         <div class="row__column row__column--middle row row--right">
                             <div class="row__column row__column--compact">
