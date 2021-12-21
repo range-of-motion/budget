@@ -38,4 +38,11 @@ class TagTest extends TestCase
 
         // TODO TEST YEAR, MONTH AND LIMIT
     }
+
+    public function testRandomColor(): void
+    {
+        $randomColor = Tag::randomColor();
+
+        $this->assertIsString($randomColor);
+    }
 }
