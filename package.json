@@ -10,13 +10,15 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.2",
         "cross-env": "^5.0.1",
         "laravel-mix": "^6.0.43",
         "lodash": "^4.17.21",
-        "postcss": "^8.3.1",
+        "postcss": "^8.4.7",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.22.7",
         "sass-loader": "7.*",
+        "tailwindcss": "^3.0.23",
         "vue": "^2.5.3",
         "vue-loader": "^15.9.5",
         "vue-template-compiler": "^2.6.10"
