@@ -1,3 +1,3 @@
 @foreach ($errors->get($payload) as $error)
-    <div style="font-size: 14px; color: red; margin-bottom: 20px;">{{ $error }}</div>
+    <div class="text-red-500 text-sm mt-1">{{ $error }}</div>
 @endforeach

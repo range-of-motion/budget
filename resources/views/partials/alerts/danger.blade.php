@@ -1,11 +1,4 @@
-<div class="row {{ $payload['classes'] }}" style="
-    padding: 15px;
-    color: #FFF;
-    background: #F86380;
-    border-radius: 5px;
-">
-    <div class="row__column row__column--compact">
-        <i class="fas fa-times"></i>
-    </div>
-    <div class="row__column text-center" style="font-weight: 600;">{{ $payload['message'] }}</div>
+<div class="bg-red-50 border border-red-100 text-red-700 flex py-2 px-4 items-center rounded-md {{ $payload['classes'] }}">
+    <i class="far fa-times fa-sm"></i>
+    <div class="flex-1 text-sm font-medium text-center">{{ $payload['message'] }}</div>
 </div>
