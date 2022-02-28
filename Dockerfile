@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 # Grab magical script that brings back balance throughout earth
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
