@@ -10,7 +10,7 @@ class TranslationsController extends Controller
     {
         $strings = [];
 
-        foreach (glob(resource_path('lang/' . Auth::user()->language . '/*.php')) as $file) {
+        foreach (glob(app()->langPath() . '/' . Auth::user()->language . '/*.php') as $file) {
             $fileName = basename($file, '.php');
 
             $strings[$fileName] = require $file;

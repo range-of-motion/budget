@@ -20,7 +20,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
       - name: Install Composer dependencies
         run: composer install --no-interaction
       - name: Run PHPCS
@@ -40,7 +40,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
       - name: Set up .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
       - name: Install Composer dependencies
@@ -68,7 +68,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
       - name: Set up .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
       - name: Install Composer dependencies
