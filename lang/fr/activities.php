@@ -2,22 +2,28 @@
 
 return [
     'transaction' => [
-        'created' => 'Created Transaction',
-        'deleted' => 'Deleted Transaction'
+        'created' => 'Opération créée',
+        'deleted' => 'Opération supprimée'
     ],
 
     'recurring' => [
-        'created' => 'Created Recurring',
-        'deleted' => 'Deleted Recurring'
+        'created' => 'Opération récurrente créée',
+        'deleted' => 'Opération récurrente supprimée'
     ],
 
     'tag' => [
-        'created' => 'Created Tag',
-        'deleted' => 'Deleted Tag'
+        'created' => 'Étiquette crée',
+        'deleted' => 'Étiquette supprimé',
+        'most_expensive' => 'Étiquettes les plus chers',
+        'filter' => 'Filtrer par étiquette'
     ],
 
     'import' => [
-        'created' => 'Created Import',
-        'deleted' => 'Deleted Import'
+        'created' => 'Import crée',
+        'deleted' => 'Import supprimé'
+    ],
+
+    'balance' => [
+        'daily' => 'Solde quotidien'
     ]
 ];

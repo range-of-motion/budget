@@ -30,5 +30,8 @@ return [
         'biweekly' => 'Biweekly',
         'weekly' => 'Weekly',
         'daily' => 'Daily'
-    ]
+    ],
+    'today' => 'Today',
+    'this_week' => 'This week',
+    'this_month' => 'This month'
 ];

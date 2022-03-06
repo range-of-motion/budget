@@ -5,5 +5,7 @@ return [
     'confirmed' => 'Ne correspond pas',
     'max' => [
         'string' => 'Ne peut pas être plus long que :max caractères'
-    ]
+    ],
+
+    'forbidden' => 'Non autorisé à utiliser cette ressource'
 ];

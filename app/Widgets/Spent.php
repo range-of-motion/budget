@@ -45,7 +45,7 @@ class Spent
         return view('widgets.spent', [
             'currencySymbol' => $currencySymbol,
             'spent' => Helper::formatNumber($spent / 100),
-            'period' => str_replace('_', ' ', $this->properties->period)
+            'period' => $this->properties->period
         ]);
     }
 }

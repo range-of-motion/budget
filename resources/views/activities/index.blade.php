@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', 'Activities')
+@section('title', __('pages.activities'))
 
 @section('body')
     <div class="wrapper my-3">
-        <h2>Activities</h2>
+        <h2>{{ __('pages.activities') }}</h2>
         <div class="box mt-3">
             @foreach ($activities as $activity)
                 <div class="box__section row">

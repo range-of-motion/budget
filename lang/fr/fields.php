@@ -12,6 +12,9 @@ return [
     'weekly_report' => 'Rapport Hebdomadaire',
     'default_transaction_type' => 'Type de transaction standard',
     'first_day_of_week' => 'Premier jour de la semaine',
-
+    'amount' => 'Montant',
+    'file' => 'Fichier',
+    'role' => 'Rôle',
+    'color' => 'Couleur',
     'period' => 'Période'
 ];

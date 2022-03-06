@@ -2,7 +2,7 @@
 
 return [
     "widget" => [
-        "balance" => "Balance",
-        "spent" => "Spent"
+        "balance" => "Solde",
+        "spent" => "Dépensé"
     ]
 ];

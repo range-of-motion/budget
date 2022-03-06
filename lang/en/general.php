@@ -27,6 +27,7 @@ return [
     'invite_someone' => 'Invite someone',
 
     'empty_state' => 'There aren\'t any :resource yet',
+    'empty_attachments' => 'No attachments for this :resource',
 
     'verify_account' => 'You still need to verify your account&mdash;please check your e-mail',
     'spaces_explanation' => 'Spaces can be used to separate your finances in Budget. For example—you can have a space for your personal finances and another space for your business\' finances.',
@@ -36,5 +37,8 @@ return [
     'invited_to' => 'You\'ve been invited to',
     'sent_by' => 'Sent by',
 
-    'of' => 'of'
+    'of' => 'of',
+    'or' => 'or',
+    'spent' => 'Spent',
+    'properties' => 'Properties'
 ];

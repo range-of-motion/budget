@@ -10,5 +10,11 @@ return [
     'verify' => 'Vérifier',
 
     'yes' => 'Oui',
-    'no' => 'Non'
+    'no' => 'Non',
+
+    'reset' => 'Réinitialiser',
+    'download' => 'Télécharger',
+    'resent' => 'Renvoyer',
+    'previous' => 'Précédent',
+    'next' => 'Suivant'
 ];

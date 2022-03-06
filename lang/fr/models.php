@@ -4,24 +4,27 @@ return [
     'budgets' => 'Budgets',
     'budget' => 'Budget',
 
-    'spaces' => 'Spaces',
-    'space' => 'Space',
+    'spaces' => 'Espaces',
+    'space' => 'Espace',
 
-    'tags' => 'Tags',
-    'tag' => 'Tag',
+    'tags' => 'Étiquettes',
+    'tag' => 'Étiquette',
 
-    'recurrings' => 'Recurrings',
-    'recurring' => 'Recurring',
+    'recurrings' => 'Récurrences',
+    'recurring' => 'Récurrent',
 
-    'earnings' => 'Earnings',
-    'earning' => 'Earning',
+    'earnings' => 'Gains',
+    'earning' => 'Gain',
 
-    'spendings' => 'Spendings',
-    'spending' => 'Spending',
+    'spendings' => 'Dépenses',
+    'spending' => 'Dépense',
 
-    'transactions' => 'Transactions',
-    'transaction' => 'Transaction',
+    'transactions' => 'Opérations',
+    'transaction' => 'Opération',
 
     'imports' => 'Imports',
-    'import' => 'Import'
+    'import' => 'Import',
+
+    'attachment' => 'Pièce jointe',
+    'attachments' => 'Pièces jointes'
 ];

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Dashboard')
+@section('title', __('general.dashboard'))
 
 @section('body')
     <div class="wrapper my-3">
@@ -15,7 +15,7 @@
         </div>
         @if (count($mostExpensiveTags))
             <div class="box mt-3">
-                <div class="box__section box__section--header">Most Expensive {{ __('models.tags') }}</div>
+                <div class="box__section box__section--header">{{ __('activities.tag.most_expensive') }}</div>
                 @foreach ($mostExpensiveTags as $index => $tag)
                     <div class="box__section row row--seperate">
                         <div class="row__column row__column--middle color-dark">
@@ -30,7 +30,7 @@
             </div>
         @endif
         <div class="box mt-3">
-            <div class="box__section box__section--header">Daily Balance</div>
+            <div class="box__section box__section--header">{{ __('activities.balance.daily') }}</div>
             <div class="box__section">
                 <div class="ct-chart ct-major-twelfth"></div>
             </div>

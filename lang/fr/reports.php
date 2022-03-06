@@ -2,12 +2,12 @@
 
 return [
     'weekly_balance' => [
-        'title' => 'Weekly Balance',
-        'description' => 'Weekly balance per year&mdash;displayed in a graph.'
+        'title' => 'Solde hebdomadaire',
+        'description' => 'Solde hebdomadaire par an, affiché sous forme de graphique.'
     ],
 
     'most_expensive_tags' => [
-        'title' => 'Most Expensive Tags',
-        'description' => 'All-time most expensive tags&mdash;find out what costs the most.'
+        'title' => 'Étiquettes les plus chères',
+        'description' => 'Étiquettes les plus chères de tous les temps&mdash;découvrez celles qui coûtent le plus cher.'
     ]
 ];

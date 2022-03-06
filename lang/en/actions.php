@@ -15,5 +15,11 @@ return [
     'invite' => 'Invite',
 
     'accept' => 'Accept',
-    'deny' => 'Deny'
+    'deny' => 'Deny',
+
+    'reset' => 'Reset',
+    'download' => 'Download',
+    'resent' => 'Resent',
+    'previous' => 'Previous',
+    'next' => 'Next'
 ];

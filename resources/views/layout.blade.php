@@ -129,7 +129,8 @@
                     padding: 15px;
                     color: #FFF;
                     background: #F86380;
-                ">{!! __('general.verify_account') !!} (or <form method="POST" action="{{ route('resend_verification_mail') }}" style="display: inline-block;">{{ csrf_field() }}<button class="button link">resend</button></form>)</div>
+                ">{!! __('general.verify_account') !!} ({{ __('general.or') }} <form method="POST" action="{{ route('resend_verification_mail') }}" style="display: inline-block;">{{ csrf_field() }}<button class="button link">
+                    {{ strtolower(__('actions.resent')) }}</button></form>)</div>
             @endif
             @if (session('verification_mail_status'))
                 <div class="wrapper mt-3">

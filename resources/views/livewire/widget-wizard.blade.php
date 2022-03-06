@@ -3,16 +3,16 @@
         <div class="box">
             <div class="box__section">
                 <div class="input input--small">
-                    <label>Type</label>
+                    <label>{{ __('fields.type') }}</label>
                     <select wire:model="selectedType">
                         @foreach ($types as $type)
-                            <option value="{{ $type }}">{{ ucfirst($type) }}</option>
+                            <option value="{{ $type }}">{{ __('configuration.widget.'.$type) }}</option>
                         @endforeach
                     </select>
                 </div>
                 @if (count($expectedProperties))
                     <div class="input input--small">
-                        <label>Properties</label>
+                        <label>{{ __('general.properties') }}</label>
                         @foreach ($expectedProperties as $key => $value)
                             <div>
                                 <div class="mb-05">{{ ucfirst($key) }}</div>
@@ -26,12 +26,12 @@
                     </div>
                 @endif
                 <div class="row">
-                    <button class="button mr-1" wire:click="persist">Create</button>
-                    <button class="button button--secondary" wire:click="toggle">Cancel</button>
+                    <button class="button mr-1" wire:click="persist">{{ __('actions.create') }}</button>
+                    <button class="button button--secondary" wire:click="toggle">{{ __('actions.cancel') }}</button>
                 </div>
             </div>
         </div>
     @else
-        <button wire:click="toggle" class="button">Create</button>
+        <button wire:click="toggle" class="button">{{ __('actions.create') }}</button>
     @endif
 </div>

@@ -23,5 +23,6 @@ return [
 
     'color' => 'Color',
 
-    'role' => 'Role'
+    'role' => 'Role',
+    'type' => 'Type'
 ];

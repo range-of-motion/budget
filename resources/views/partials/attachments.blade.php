@@ -1,5 +1,5 @@
 <div class="row row--separate row--bottom mt-3 mb-1">
-    <h3>Attachments</h3>
+    <h3>{{ __('models.attachments') }}</h3>
     <form method="POST" action="/attachments" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="hidden" name="transaction_type" value="{{ get_class($payload) === 'App\Models\Earning' ? 'earning' : 'spending' }}" />
@@ -9,7 +9,7 @@
 </div>
 <div class="box">
     @if (!$payload->attachments->count())
-        <div class="box__section text-center">No attachments for this transaction</div>
+        <div class="box__section text-center">{{ __('general.empty_attachments', ['resource' => strtolower(__('models.transaction'))]) }} </div>
     @endif
     @foreach ($payload->attachments as $attachment)
         <div class="box__section row">
@@ -20,7 +20,7 @@
                     <div class="mb-1" style="display: flex; align-items: center; justify-content: center; width: 200px; height: 200px; border-radius: 5px; background: #EEE;">
                         <i class="fas fa-file-pdf"></i>
                     </div>
-                    <a href="/attachments/{{ $attachment->id }}/download">Download</a>
+                    <a href="/attachments/{{ $attachment->id }}/download">{{ __('actions.download') }}</a>
                 @endif
             </div>
             <div class="ml-2">
