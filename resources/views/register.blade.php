@@ -2,7 +2,7 @@
 
 @section('tailwind', true)
 
-@section('title', 'Register')
+@section('title', __('auth.register'))
 
 @section('body')
     <div class="max-w-sm mx-auto my-12">
@@ -11,7 +11,7 @@
             <form method="POST">
                 {{ csrf_field() }}
                 <div class="mb-5">
-                    <label class="block mb-1 text-sm text-gray-700">{{ __('fiels.name') }}</label>
+                    <label class="block mb-1 text-sm text-gray-700">{{ __('fields.name') }}</label>
                     <input class="w-full px-3 py-2 text-sm border rounded-md" type="text" name="name" value="{{ old('name') }}" />
                     @include('partials.validation_error', ['payload' => 'name'])
                 </div>

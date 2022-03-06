@@ -2,7 +2,7 @@
 
 @section('tailwind', true)
 
-@section('title', 'Log in')
+@section('title', __('auth.login'))
 
 @section('body')
     <div class="max-w-sm mx-auto my-12">

@@ -21,5 +21,6 @@ return [
     'download' => 'Download',
     'resent' => 'Resent',
     'previous' => 'Previous',
-    'next' => 'Next'
+    'next' => 'Next',
+    'submit' => 'Submit'
 ];

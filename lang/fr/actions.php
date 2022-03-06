@@ -16,5 +16,6 @@ return [
     'download' => 'Télécharger',
     'resent' => 'Renvoyer',
     'previous' => 'Précédent',
-    'next' => 'Suivant'
+    'next' => 'Suivant',
+    'submit' => 'Soumettre'
 ];
