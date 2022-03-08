@@ -44,7 +44,7 @@
             </form>
         </div>
         <div class="mt-4 text-center">
-            <a class="text-sm transition text-primary-regular hover:text-primary-dark" href="/login">{{ __('auth.already_using') }} {{ __('auth.login') }}.</a>
+            <a class="text-sm transition text-primary-regular hover:text-primary-dark" href="{{ route('login') }}">{{ __('auth.already_using') }} {{ __('auth.login') }}.</a>
         </div>
     </div>
 @endsection

@@ -48,11 +48,15 @@
             }
         }
     }
+
+    .display_on_mobile {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 800px) {
     .navigation {
-        height: $dimensions-navigation-height * 1.2;
+        height: auto;
 
         .wrapper {
             flex-direction: column;
@@ -62,12 +66,12 @@
 
                 &:first-child {
                     padding-top: 0;
+                    justify-content: space-evenly;
+                    > li {
+                        padding: 10px;
+                    }
                 }
             }
-        }
-
-        .hidden {
-            display: none;
         }
     }
 }
