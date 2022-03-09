@@ -32,7 +32,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_DATABASE: budget_testing
-          MYSQL_ROOT_PASSWORD: helloworld123
+          MYSQL_ROOT_PASSWORD: root
         ports:
           - 3306:3306
     steps:
@@ -53,33 +53,3 @@ jobs:
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
       - name: Upload coverage
         run: bash <(curl -s https://codecov.io/bash)
-  dusk:
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: budget_testing
-          MYSQL_ROOT_PASSWORD: helloworld123
-        ports:
-          - 3306:3306
-    steps:
-      - uses: actions/checkout@v1
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
-      - name: Set up .env
-        run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
-      - name: Install Composer dependencies
-        run: composer install --no-interaction
-      - name: Generate key
-        run: php artisan key:generate
-      - name: Prepare database
-        run: php artisan migrate --database=testing
-      - name: Run Dusk
-        run: |
-          php artisan dusk:chrome-driver
-          nohup bash -c './vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &'
-          nohup bash -c 'php artisan serve > /dev/null 2>&1 &'
-          php artisan dusk

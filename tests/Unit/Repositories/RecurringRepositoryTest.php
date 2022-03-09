@@ -5,6 +5,7 @@ namespace Tests\Unit\Repositories;
 use App\Models\Recurring;
 use App\Models\Space;
 use App\Repositories\RecurringRepository;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 // TODO
@@ -13,6 +14,8 @@ use Tests\TestCase;
 
 class RecurringRepositoryTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $recurringRepository;
     private $space;
 
