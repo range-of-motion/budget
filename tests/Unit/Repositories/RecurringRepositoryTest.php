@@ -14,8 +14,6 @@ use Tests\TestCase;
 
 class RecurringRepositoryTest extends TestCase
 {
-    use RefreshDatabase;
-
     private $recurringRepository;
     private $space;
 
