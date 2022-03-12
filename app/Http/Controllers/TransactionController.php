@@ -30,11 +30,25 @@ class TransactionController extends Controller
         $filterBy = [];
 
         if ($request->get('filterBy')) {
-            $filterBy = explode('-', $request->get('filterBy'));
+            $filterBy = (array) $request->get('filterBy');
         }
 
+        $currentMonthIndex = (int)$request->get("monthIndex", 0);
+        $currentDate = new \DateTime();
+        $interval = new \DateInterval(("P" . abs($currentMonthIndex) . "M"));
+        if ($currentMonthIndex < 0) {
+            $currentDate->sub($interval);
+        } else {
+            $currentDate->add($interval);
+        }
+        $year = $currentDate->format("Y");
+        $month = $currentDate->format("m");
+
         return view('transactions.index', [
-            'yearMonths' => $this->repository->getTransactionsByYearMonth($filterBy),
+            'transactions' => $this->repository->getTransactionsByYearMonth($month, $year, $filterBy),
+            'currentMonthIndex' => $currentMonthIndex,
+            'month' => $currentDate->format("n"),
+            'year' => $year,
             'tags' => Tag::ofSpace(session('space_id'))->get()
         ]);
     }

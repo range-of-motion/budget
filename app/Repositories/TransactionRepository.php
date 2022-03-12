@@ -35,63 +35,40 @@ class TransactionRepository
         return $weeks;
     }
 
-    public function getTransactionsByYearMonth(array $filterBy = [])
+    /**
+     * Get All Transaction from month and year
+     * @param int $month
+     * @param int $year
+     * @param array $filterBy
+     * @return array
+     */
+    public function getTransactionsByYearMonth(int $month, int $year, array $filterBy = []): array
     {
-        $yearMonths = [];
+        $transactions = [];
+        $earnings = Earning::ofSpace(session('space_id'))
+            ->where('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$year, $month]);
 
-        // Populate yearMonths with earnings
-        foreach (Earning::ofSpace(session('space_id'))->get() as $earning) {
-            $shouldAdd = false;
-
-            if (!$filterBy) {
-                $shouldAdd = true;
-            }
-
-            if ($shouldAdd) {
-                $i = Carbon::parse($earning->happened_on)->format('Y-m');
-
-                if (!isset($yearMonths[$i])) {
-                    $yearMonths[$i] = [];
-                }
-
-                $yearMonths[$i][] = $earning;
-            }
+        if ($filterBy) {
+            var_dump($filterBy);
         }
 
+        foreach ($earnings as $earning) {
+            $transactions[] = $earning;
+        }
+
+        $spendings = Spending::ofSpace(session('space_id'))
+            ->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$year, $month])
+            ->get();
         // Populate yearMonths with spendings
-        foreach (Spending::ofSpace(session('space_id'))->get() as $spending) {
-            $shouldAdd = true;
-
-            // Filter
-            if (count($filterBy)) { // Check if any filters were provided
-                if ($filterBy[0] == 'tag') {
-                    if (!$spending->tag || $spending->tag->id != $filterBy[1]) {
-                        $shouldAdd = false;
-                    }
-                }
-            }
-
-            if ($shouldAdd) {
-                $i = Carbon::parse($spending->happened_on)->format('Y-m');
-
-                if (!isset($yearMonths[$i])) {
-                    $yearMonths[$i] = [];
-                }
-
-                $yearMonths[$i][] = $spending;
-            }
+        foreach ($spendings as $spending) {
+            $transactions[] = $spending;
         }
 
         // Sort transactions
-        foreach ($yearMonths as &$yearMonth) {
-            usort($yearMonth, function ($a, $b) {
-                return $a->happened_on < $b->happened_on;
-            });
-        }
+        usort($transactions, function ($a, $b) {
+            return $a->happened_on < $b->happened_on;
+        });
 
-        // Sort yearMonths
-        krsort($yearMonths);
-
-        return $yearMonths;
+        return $transactions;
     }
 }

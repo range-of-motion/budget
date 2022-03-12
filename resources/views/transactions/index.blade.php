@@ -9,7 +9,7 @@
                 <h2>{{ __('models.transactions') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.transactions') }}</a>
+                <a href="{{ route('transactions.create') }}" class="button">{{ __('actions.create') }} {{ __('models.transactions') }}</a>
             </div>
         </div>
         <div class="row row--responsive">
@@ -17,67 +17,72 @@
                 <div class="box">
                     <div class="box__section">
                         <div class="mb-2">
-                            <a href="/transactions">{{ __('actions.reset') }}</a>
+                            <a href="{{ route('transactions.index') }}">{{ __('actions.reset') }}</a>
                         </div>
                         <span>{{ __('activities.tag.filter') }}</span>
                         @foreach ($tags as $tag)
                             <div class="mt-1 ml-1">
-                                <a href="/transactions?filterBy=tag-{{ $tag->id }}" v-pre>{{ $tag->name }}</a>
+                                <a href="{{ route('transactions.index', [ 'filterBy' => ['tag' => $tag->id], "monthIndex" => $currentMonthIndex]) }}" v-pre>{{ $tag->name }}</a>
                             </div>
                         @endforeach
                     </div>
                 </div>
             </div>
             <div class="row__column">
-                @if ($yearMonths)
-                    @foreach ($yearMonths as $key => $transactions)
-                        <h2 class="{{ key($yearMonths) != $key ? 'mt-3' : '' }} mb-2">{{ __('calendar.months.' . ltrim(explode('-', $key)[1], 0)) }}, {{ explode('-', $key)[0] }}</h2>
+                <h2 class="mb-2">
+                    <a href="{{ route('transactions.index', ['monthIndex' => ($currentMonthIndex - 1) ]) }}"> {{ __('actions.previous') }} </a>
+                    {{ __('calendar.months.' . $month) }}, {{ $year }}
+                    <a href="{{ route('transactions.index', ['monthIndex' => ($currentMonthIndex + 1) ]) }}">{{ __('actions.next') }}</a>
+                </h2>
+                @if ($transactions)
+                    @foreach ($transactions as $key => $transaction)
                         <div class="box">
-                            @foreach ($transactions as $transaction)
-                                <div class="box__section row row--responsive">
-                                    <div class="row__column row__column--middle row row--middle">
-                                        <div v-pre>{{ $transaction->description }}</div>
-                                        <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}">
-                                            <i class="fas fa-info-circle fa-xs c-light ml-1"></i>
-                                        </a>
-                                        <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}/edit">
-                                            <i class="fas fa-pencil fa-xs c-light ml-1"></i>
-                                        </a>
-                                        <form action="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}" method="POST">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button class="button link">
-                                                <i class="fas fa-trash fa-xs c-light ml-1"></i>
-                                            </button>
-                                        </form>
+                            <div class="box__section row row--responsive">
+                                <div class="row__column row__column--middle row row--middle">
+                                    <div v-pre>
+                                        {{ $transaction->description }}
+                                        <br> {{ $transaction->happened_on->format('d') }} {{ __('calendar.months.' . $month) }}, {{ $year }}
                                     </div>
-                                    <div class="row__column">
-                                        @if ($transaction->tag)
-                                            <div class="row">
-                                                <div class="row__column row__column--compact row__column--middle mr-05" style="font-size: 12px;">
-                                                    <i class="fas fa-tag" style="color: #{{ $transaction->tag->color }};"></i>
-                                                </div>
-                                                <div class="row__column row__column--compact row__column--middle" v-pre>{{ $transaction->tag->name }}</div>
+                                    <a href="{{ route(get_class($transaction) === 'App\Models\Earning' ? 'earnings.show' : 'spendings.show', [ $transaction->id ]) }}">
+                                        <i class="fas fa-info-circle fa-xs c-light ml-1"></i>
+                                    </a>
+                                    <a href="{{ route(get_class($transaction) === 'App\Models\Earning' ? 'earnings.edit' : 'spendings.edit', [ $transaction->id ]) }}">
+                                        <i class="fas fa-pencil fa-xs c-light ml-1"></i>
+                                    </a>
+                                    <form action="{{ route(get_class($transaction) === 'App\Models\Earning' ? 'earnings.delete' : 'spendings.delete', [ $transaction->id ]) }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button class="button link">
+                                            <i class="fas fa-trash fa-xs c-light ml-1"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="row__column">
+                                    @if ($transaction->tag)
+                                        <div class="row">
+                                            <div class="row__column row__column--compact row__column--middle mr-05" style="font-size: 12px;">
+                                                <i class="fas fa-tag" style="color: #{{ $transaction->tag->color }};"></i>
                                             </div>
-                                        @endif
-                                    </div>
-                                    <div class="row__column row__column--compact w-50">
-                                        @if ($transaction->recurring_id)
-                                            <i class="fas fa-recycle"></i>
-                                        @endif
-                                    </div>
-                                    <div class="row__column row__column--compact row__column--middle w-150 row row--middle row--right {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">
-                                        <div class="row__column row__column--compact">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
-                                        <div class="row__column row__column--compact ml-1">
-                                            @if (get_class($transaction) == 'App\Models\Earning')
-                                                <i class="fas fa-arrow-alt-left fa-sm"></i>
-                                            @else
-                                                <i class="fas fa-arrow-alt-right fa-sm"></i>
-                                            @endif
+                                            <div class="row__column row__column--compact row__column--middle" v-pre>{{ $transaction->tag->name }}</div>
                                         </div>
+                                    @endif
+                                </div>
+                                <div class="row__column row__column--compact w-50">
+                                    @if ($transaction->recurring_id)
+                                        <i class="fas fa-recycle"></i>
+                                    @endif
+                                </div>
+                                <div class="row__column row__column--compact row__column--middle w-150 row row--middle row--right {{ get_class($transaction) == 'App\Models\Earning' ? 'color-green' : 'color-red' }}">
+                                    <div class="row__column row__column--compact">{!! $currency !!} {{ $transaction->formatted_amount }}</div>
+                                    <div class="row__column row__column--compact ml-1">
+                                        @if (get_class($transaction) == 'App\Models\Earning')
+                                            <i class="fas fa-arrow-alt-left fa-sm"></i>
+                                        @else
+                                            <i class="fas fa-arrow-alt-right fa-sm"></i>
+                                        @endif
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
                         </div>
                     @endforeach
                 @else
