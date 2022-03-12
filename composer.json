@@ -20,9 +20,9 @@
         "symfony/process": "^6.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.19",
+        "fakerphp/faker": "^1.9.1",
         "filp/whoops": "~2.0",
-        "mockery/mockery": "0.9.*",
+        "mockery/mockery": "^1.4.4",
         "phpunit/phpunit": "^9.0",
         "slevomat/coding-standard": "^7.0",
         "squizlabs/php_codesniffer": "^3.6"
