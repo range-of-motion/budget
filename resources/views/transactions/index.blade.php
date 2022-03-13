@@ -111,7 +111,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ mix('js/chartjs.js') }}"></script>
+    <script src="{{ asset('js/chartjs.js') }}"></script>
     <script>
         //TODO : change that on vueJs component
         function changeTab(evt, tabName) {
