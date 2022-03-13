@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Helper;
 use App\Models\Earning;
 use App\Models\Spending;
-use Carbon\Carbon;
 
 class TransactionRepository
 {
@@ -45,23 +44,29 @@ class TransactionRepository
     public function getTransactionsByYearMonth(int $month, int $year, array $filterBy = []): array
     {
         $transactions = [];
+        $ignoreEarnings = false;
         $earnings = Earning::ofSpace(session('space_id'))
-            ->where('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$year, $month]);
-
-        if ($filterBy) {
-            var_dump($filterBy);
-        }
-
-        foreach ($earnings as $earning) {
-            $transactions[] = $earning;
-        }
+            ->whereRaw('YEAR(`happened_on`) = ? AND MONTH(`happened_on`) = ?', [$year, $month]);
 
         $spendings = Spending::ofSpace(session('space_id'))
-            ->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$year, $month])
-            ->get();
-        // Populate yearMonths with spendings
-        foreach ($spendings as $spending) {
-            $transactions[] = $spending;
+            ->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$year, $month]);
+
+        if ($filterBy) {
+            if (array_key_exists("tag", $filterBy)) {
+                $spendings->whereIn('tag_id', [$filterBy['tag']]);
+                $ignoreEarnings = true;
+            }
+        }
+
+        //If we filter by tag, not show earning because not tag on this
+        if (!$ignoreEarnings) {
+            foreach ($earnings->get() as $transaction) {
+                $transactions[] = $transaction;
+            }
+        }
+
+        foreach ($spendings->get() as $transaction) {
+            $transactions[] = $transaction;
         }
 
         // Sort transactions

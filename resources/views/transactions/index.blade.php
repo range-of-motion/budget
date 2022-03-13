@@ -30,18 +30,18 @@
             </div>
             <div class="row__column">
                 <h2 class="mb-2">
-                    <a href="{{ route('transactions.index', ['monthIndex' => ($currentMonthIndex - 1) ]) }}"> {{ __('actions.previous') }} </a>
+                    <a href="{{ route('transactions.index', ['monthIndex' => ($currentMonthIndex - 1) ]) }}"><i class="fa fa-chevron-left"></i></a>
                     {{ __('calendar.months.' . $month) }}, {{ $year }}
-                    <a href="{{ route('transactions.index', ['monthIndex' => ($currentMonthIndex + 1) ]) }}">{{ __('actions.next') }}</a>
+                    <a href="{{ route('transactions.index', ['monthIndex' => ($currentMonthIndex + 1) ]) }}"><i class="fa fa-chevron-right"></i></a>
                 </h2>
                 @if ($transactions)
-                    @foreach ($transactions as $key => $transaction)
-                        <div class="box">
+                    <div class="box">
+                        @foreach ($transactions as $key => $transaction)
                             <div class="box__section row row--responsive">
                                 <div class="row__column row__column--middle row row--middle">
                                     <div v-pre>
                                         {{ $transaction->description }}
-                                        <br> {{ $transaction->happened_on->format('d') }} {{ __('calendar.months.' . $month) }}, {{ $year }}
+                                        <br> <span class="date">{{ $transaction->happened_on->format('d') }} {{ __('calendar.months.' . $month) }}, {{ $year }}</span>
                                     </div>
                                     <a href="{{ route(get_class($transaction) === 'App\Models\Earning' ? 'earnings.show' : 'spendings.show', [ $transaction->id ]) }}">
                                         <i class="fas fa-info-circle fa-xs c-light ml-1"></i>
@@ -83,8 +83,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 @else
                     <div class="box">
                         @include('partials.empty_state', ['payload' => 'transactions'])

@@ -25,7 +25,7 @@
 
     .box__section {
         padding: $dimensions-box-padding;
-
+        align-items: center;
         &:first-child {
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -41,6 +41,10 @@
             padding: 15px 20px;
             font-size: 14px;
             font-weight: 600;
+        }
+
+        .date {
+            font-size: 12px;
         }
     }
 
