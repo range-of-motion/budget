@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Space;
+use App\Models\Spending;
 use App\Models\Tag;
 use App\Repositories\CurrencyRepository;
 use App\Repositories\RecurringRepository;
@@ -44,8 +45,12 @@ class TransactionController extends Controller
         $year = $currentDate->format("Y");
         $month = $currentDate->format("m");
 
+        $transactions = $this->repository->getTransactionsByYearMonth($month, $year, $filterBy);
+        $transactionsChart = $this->getTransactionsForChart($transactions);
+
         return view('transactions.index', [
-            'transactions' => $this->repository->getTransactionsByYearMonth($month, $year, $filterBy),
+            'transactions' => $transactions,
+            'transactionsChart' => $transactionsChart,
             'currentMonthIndex' => $currentMonthIndex,
             'month' => $currentDate->format("n"),
             'year' => $year,
@@ -72,5 +77,41 @@ class TransactionController extends Controller
             'defaultCurrencyId' => Space::find(session('space_id'))->currency_id,
             'recurringsIntervals' => $this->recurringRepository->getSupportedIntervals()
         ]);
+    }
+
+    private function getTransactionsForChart(array $transactions): array
+    {
+        $transactionsChart = [];
+        $earningKey = __('models.earnings');
+        $earningColor = "#32a852"; //Green
+        $spendingKey = __('general.other');
+        $spendingColor = "#DCDCDC"; //Grey
+        foreach ($transactions as $transaction) {
+            $keyToUse = $earningKey;
+            $colorToUse = $earningColor;
+            $amount = (float)$transaction->formatted_amount;
+            //If spending we take tag name
+            if ($transaction instanceof Spending) {
+                $keyToUse = $spendingKey;
+                $colorToUse = $spendingColor;
+                $amount = -abs($amount);
+                if (! is_null($transaction->tag_id)) {
+                    $tag = $transaction->tag();
+                    $keyToUse = $tag->value('name');
+                    $colorToUse = (! empty($tag->value('color')) ? "#" . $tag->value('color') : $colorToUse);
+                }
+            }
+
+            if (!array_key_exists($keyToUse, $transactionsChart)) {
+                $transactionsChart[$keyToUse] = [
+                    'color' => $colorToUse,
+                    'amount' => 0
+                ];
+            }
+
+            $transactionsChart[$keyToUse]['amount'] += $amount;
+        }
+
+        return $transactionsChart;
     }
 }

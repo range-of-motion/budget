@@ -3,7 +3,7 @@
 @section('title', __('models.transactions'))
 
 @section('body')
-    <div class="wrapper my-3">
+    <div class="wrapper my-3" id="transactions-page">
         <div class="row mb-3">
             <div class="row__column row__column--middle">
                 <h2>{{ __('models.transactions') }}</h2>
@@ -34,8 +34,20 @@
                     {{ __('calendar.months.' . $month) }}, {{ $year }}
                     <a href="{{ route('transactions.index', ['monthIndex' => ($currentMonthIndex + 1) ]) }}"><i class="fa fa-chevron-right"></i></a>
                 </h2>
+                <ul class="flex flex-wrap border-b border-gray-200 dark:border-gray-700 mb-2" id="transaction-tabs">
+                    <li>
+                        <a href="#" onclick="changeTab(this, 'list')" aria-current="page" class="transaction-link inline-block py-4 px-4 text-sm font-medium text-center rounded-t-lg active">
+                            {{ __('fields.list') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="changeTab(this, 'chart')" class="transaction-link inline-block py-4 px-4 text-sm font-medium text-center rounded-t-lg">
+                            {{ __('fields.chart') }}
+                        </a>
+                    </li>
+                </ul>
                 @if ($transactions)
-                    <div class="box">
+                    <div class="box transaction-block" id="transaction-list">
                         @foreach ($transactions as $key => $transaction)
                             <div class="box__section row row--responsive">
                                 <div class="row__column row__column--middle row row--middle">
@@ -85,6 +97,10 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="transaction-block" id="transaction-chart" style="display: none;">
+                        <canvas id="transactionsChartBar"></canvas>
+                        <canvas id="transactionsChartCircle"></canvas>
+                    </div>
                 @else
                     <div class="box">
                         @include('partials.empty_state', ['payload' => 'transactions'])
@@ -93,4 +109,72 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{ mix('js/chartjs.js') }}"></script>
+    <script>
+        //TODO : change that on vueJs component
+        function changeTab(evt, tabName) {
+            // Declare all variables
+            let i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("transaction-block");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("transaction-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById("transaction-"+tabName).style.display = "block";
+            evt.className += " active";
+        }
+
+        @if ($transactionsChart)
+            let labels = [];
+            let transactionsData = [];
+            let transactionsColor = [];
+            let testDataset = [];
+            @foreach($transactionsChart as $label => $content)
+                testDataset.push({
+                    label: '{{ $label }}',
+                    data: ['{{ $content['amount'] }}'],
+                    backgroundColor: [ '{{ $content['color'] }}' ],
+                })
+                labels.push('{{ $label }}');
+                transactionsData.push('{{ $content['amount'] }}');
+                transactionsColor.push('{{ $content['color'] }}');
+            @endforeach
+
+            let label = '{{ __('models.transactions') }}';
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: transactionsData,
+                    backgroundColor: transactionsColor,
+                    hoverOffset: 2
+                }]
+            };
+
+            const barChart = new Chart(
+                document.getElementById('transactionsChartBar'),
+                {
+                    type: 'bar',
+                    data: data
+                }
+            );
+
+            const circleChart = new Chart(
+                document.getElementById('transactionsChartCircle'),
+                {
+                    type: 'doughnut',
+                    data: data
+                }
+            )
+        @endif
+
+    </script>
 @endsection

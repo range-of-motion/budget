@@ -61,4 +61,4 @@ const app = new Vue({
             input.focus()
         }
     }
-})
+});

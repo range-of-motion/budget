@@ -38,5 +38,6 @@ return [
     'of' => 'sur',
     'or' => 'ou',
     'spent' => 'Dépensé',
-    'properties' => 'Propriétés'
+    'properties' => 'Propriétés',
+    'other' => 'Other'
 ];

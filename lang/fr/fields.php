@@ -16,5 +16,7 @@ return [
     'file' => 'Fichier',
     'role' => 'Rôle',
     'color' => 'Couleur',
-    'period' => 'Période'
+    'period' => 'Période',
+    'list' => 'Liste',
+    'chart' => 'Graphique'
 ];

@@ -40,5 +40,6 @@ return [
     'of' => 'of',
     'or' => 'or',
     'spent' => 'Spent',
-    'properties' => 'Properties'
+    'properties' => 'Properties',
+    'other' => 'Other'
 ];

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="{{ Auth::check() ? Auth::user()->theme : ''}}">
     <head>
         <title>{{ View::hasSection('title') ? View::getSection('title') . ' - ' . config('app.name') : config('app.name') }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -83,7 +83,7 @@
                 </div>
             @endif
         </div>
-        <script src="/js/app.js"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
         @yield('scripts')
         @livewireScripts
     </body>

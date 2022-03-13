@@ -1,0 +1,21 @@
+#transactions-page {
+    #transaction-tabs {
+        li {
+            a.active {
+                background-color: $colors-light-background;
+            }
+        }
+    }
+}
+
+.theme-dark {
+    #transactions-page {
+        #transaction-tabs {
+            li {
+                a.active {
+                    background-color: $colors-dark-background;
+                }
+            }
+        }
+    }
+}

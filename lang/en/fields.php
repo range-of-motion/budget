@@ -24,5 +24,7 @@ return [
     'color' => 'Color',
 
     'role' => 'Role',
-    'type' => 'Type'
+    'type' => 'Type',
+    'list' => 'List',
+    'chart' => 'Chart'
 ];

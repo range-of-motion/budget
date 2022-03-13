@@ -13,6 +13,8 @@
 @import 'components/dropdown';
 @import 'components/helpers';
 
+@import 'pages/transactions.scss';
+
 body {
     &.theme-light {
         background: $colors-light-body;
