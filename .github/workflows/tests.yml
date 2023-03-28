@@ -41,12 +41,17 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Set up .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
       - name: Install Composer dependencies
         run: composer install --no-interaction
       - name: Generate key
         run: php artisan key:generate
+      - run: yarn install
+      - run: yarn build
       - name: Prepare database
         run: php artisan migrate --database=testing
       - name: Run PHPUnit
@@ -69,12 +74,17 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Set up .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
       - name: Install Composer dependencies
         run: composer install --no-interaction
       - name: Generate key
         run: php artisan key:generate
+      - run: yarn install
+      - run: yarn build
       - name: Prepare database
         run: php artisan migrate --database=testing
       - name: Run Dusk

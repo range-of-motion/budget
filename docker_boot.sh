@@ -9,7 +9,7 @@ if [ ! -z $BUDGET_SETUP ]; then
   php artisan storage:link
 
   yarn install
-  yarn production
+  yarn build
 
   php artisan migrate --force
 fi
