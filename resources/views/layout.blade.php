@@ -8,9 +8,9 @@
         <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js" integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,600i" />
         @if (View::hasSection('tailwind') && View::getSection('tailwind') == true)
-            <link rel="stylesheet" href="/css/tailwind.css" />
+            @vite('resources/assets/css/tailwind.css')
         @else
-            <link rel="stylesheet" href="/css/app.css" />
+            @vite('resources/assets/sass/app.scss')
         @endif
         <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css" />
         <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
@@ -159,7 +159,7 @@
                 </div>
             @endif
         </div>
-        <script src="/js/app.js"></script>
+        @vite('resources/assets/js/app.js')
         @yield('scripts')
         @livewireScripts
     </body>

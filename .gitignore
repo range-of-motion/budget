@@ -11,8 +11,6 @@ npm-debug.log
 yarn-error.log
 .env
 .DS_Store
-/public/css
-/public/mix-manifest.json
-/public/js
+/public/build
 version.txt
 .phpunit.result.cache
