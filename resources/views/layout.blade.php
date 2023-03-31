@@ -159,6 +159,7 @@
                 </div>
             @endif
         </div>
+        <script>{!! (new \App\Actions\GenerateTranslationsString())->execute() !!}</script>
         @vite('resources/assets/js/app.js')
         @yield('scripts')
         @livewireScripts

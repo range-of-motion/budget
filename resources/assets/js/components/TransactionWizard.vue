@@ -4,11 +4,11 @@
             <button
                 class="bg__button"
                 :class="{ 'bg__button--active': type == 'earning' }"
-                @click="switchType('earning')">Earning</button>
+                @click="switchType('earning')">{{ __('models.earning') }}</button>
             <button
                 class="bg__button"
                 :class="{ 'bg__button--active': type == 'spending' }"
-                @click="switchType('spending')">Spending</button>
+                @click="switchType('spending')">{{ __('models.spending') }}</button>
         </div>
         <div class="input" v-if="type == 'spending'">
             <label>Tag</label>
@@ -19,7 +19,7 @@
             <validation-error v-if="errors.tag_id" :message="errors.tag_id"></validation-error>
         </div>
         <div class="input">
-            <label>Date</label>
+            <label>{{ __('fields.date') }}</label>
             <date-picker
                 :first-day-of-week="firstDayOfWeek"
                 @DateUpdated="onDateUpdate"></date-picker>
@@ -28,12 +28,12 @@
             <validation-error v-if="errors.day" :message="errors.day"></validation-error>
         </div>
         <div class="input">
-            <label>Description</label>
+            <label>{{ __('fields.description') }}</label>
             <input type="text" v-model="description" :placeholder="type == 'earning' ? 'Paycheck February' : 'Birthday Present for Angela'" />
             <validation-error v-if="errors.description" :message="errors.description"></validation-error>
         </div>
         <div class="input">
-            <label>Amount</label>
+            <label>{{ __('fields.amount') }}</label>
             <div class="row">
                 <div class="row__column row__column--double">
                     <input type="text" v-model="amount" />
@@ -65,7 +65,7 @@
                         :key="'recurringsIntervals-' + interval"
                         class="bg__button"
                         :class="{ 'bg__button--active': recurringInterval == interval }"
-                        @click="switchRecurringInterval(interval)">{{ interval | capitalize }}</button>
+                        @click="switchRecurringInterval(interval)">{{ __('calendar.intervals.' + interval) }}</button>
                 </div>
                 <div class="input">
                     <label>How long will this spending go on for?</label>
@@ -99,7 +99,7 @@
             class="button"
             @click="createEarning">
             <span v-if="loading">Loading</span>
-            <span v-if="!loading">Create</span>
+            <span v-if="!loading">{{ __('actions.create') }}</span>
         </button>
         <div
             v-if="success"

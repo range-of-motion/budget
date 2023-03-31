@@ -43,6 +43,22 @@ Vue.directive('click-outside', {
     }
 })
 
+Vue.mixin({
+    methods: {
+        __(key) {
+            const parts = key.match(/([^[.\]])+/g);
+
+            const translation = parts.reduce((previous, i) => previous && previous[i], window.translations);
+
+            if (translation) {
+                return translation;
+            }
+
+            return key;
+        }
+    }
+})
+
 Vue.filter('capitalize', function (value) {
     if (!value) return '';
 
