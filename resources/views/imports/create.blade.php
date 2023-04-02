@@ -5,8 +5,8 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('actions.create') }} {{ __('models.import') }}</h2>
-        <div class="box mt-3">
-            <form method="POST" action="/imports" enctype="multipart/form-data" autocomplete="off">
+        <div class="mt-3 box">
+            <form method="POST" action="{{ route('imports.store') }}" enctype="multipart/form-data" autocomplete="off">
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">

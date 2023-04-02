@@ -1,6 +1,6 @@
 <div class="row row--separate row--bottom mt-3 mb-1">
     <h3>Attachments</h3>
-    <form method="POST" action="/attachments" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('attachments.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="hidden" name="transaction_type" value="{{ get_class($payload) === 'App\Models\Earning' ? 'earning' : 'spending' }}" />
         <input type="hidden" name="transaction_id" value="{{ $payload->id }}" />
@@ -24,7 +24,7 @@
                 @endif
             </div>
             <div class="ml-2">
-                <form method="POST" action="/attachments/{{ $attachment->id }}/delete">
+                <form method="POST" action="{{ route('attachments.destroy', ['id' => $attachment->id]) }}">
                     {{ csrf_field() }}
                     <button class="button link">
                         <i class="fas fa-trash-alt"></i>

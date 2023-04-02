@@ -5,7 +5,7 @@
 @section('body')
     <div class="wrapper my-3">
         <h2 class="mb-3">{{ __('actions.edit') }} {{ __('models.space') }}</h2>
-        <form method="POST" action="/spaces/{{ $space->id }}/update">
+        <form method="POST" action="{{ route('spaces.update', ['space' => $space->id]) }}">
             {{ csrf_field() }}
             <div class="box">
                 <div class="box__section row">
@@ -86,7 +86,7 @@
                                 @break
                         @endswitch
                     @endif
-                    <form method="POST" action="/spaces/{{ $space->id }}/invite">
+                    <form method="POST" action="{{ route('spaces.invite', ['space' => $space->id]) }}">
                         {{ csrf_field() }}
                         <div class="input input--small">
                             <label>{{ __('fields.email') }}</label>

@@ -5,8 +5,8 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('actions.create') }} {{ __('models.tag') }}</h2>
-        <div class="box mt-3">
-            <form method="POST" action="/tags" autocomplete="off">
+        <div class="mt-3 box">
+            <form method="POST" action="{{ route('tags.store') }}" autocomplete="off">
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">

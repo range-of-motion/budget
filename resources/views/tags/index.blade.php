@@ -36,7 +36,7 @@
                                 @if ($tag->budgets->count() || $tag->spendings->count())
                                     <i class="fas fa-trash-alt"></i>
                                 @else
-                                    <form method="POST" action="/tags/{{ $tag->id }}">
+                                    <form method="POST" action="{{ route('tags.destroy', ['tag' => $tag->id]) }}">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
                                         <button class="button link">

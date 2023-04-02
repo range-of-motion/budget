@@ -43,7 +43,7 @@
                                         <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}/edit">
                                             <i class="fas fa-pencil fa-xs c-light ml-1"></i>
                                         </a>
-                                        <form action="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}" method="POST">
+                                        <form action="{{ route((get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings') . '.destroy', [$transaction->id]) }}" method="POST">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
                                             <button class="button link">

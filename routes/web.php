@@ -44,9 +44,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/resend-verification-mail', ResendVerificationMailController::class)->name('resend_verification_mail');
 
-    Route::post('/attachments', [AttachmentController::class, 'store']);
+    Route::post('/attachments', [AttachmentController::class, 'store'])->name('store');
     Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'download']);
-    Route::post('/attachments/{id}/delete', [AttachmentController::class, 'delete']);
+    Route::post('/attachments/{id}/delete', [AttachmentController::class, 'delete'])->name('destroy');
 
     Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
 
@@ -58,20 +58,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::name('earnings.')->group(function () {
         Route::get('/earnings/{earning}', [EarningController::class, 'show'])->name('show');
         Route::get('/earnings/create', [EarningController::class, 'create'])->name('create');
-        Route::post('/earnings', [EarningController::class, 'store']);
+        Route::post('/earnings', [EarningController::class, 'store'])->name('store');
         Route::get('/earnings/{earning}/edit', [EarningController::class, 'edit'])->name('edit');
-        Route::patch('/earnings/{earning}', [EarningController::class, 'update']);
-        Route::delete('/earnings/{earning}', [EarningController::class, 'destroy']);
+        Route::patch('/earnings/{earning}', [EarningController::class, 'update'])->name('update');
+        Route::delete('/earnings/{earning}', [EarningController::class, 'destroy'])->name('destroy');
         Route::post('/earnings/{id}/restore', [EarningController::class, 'restore']);
     });
 
     Route::name('spendings.')->group(function () {
         Route::get('/spendings/{spending}', [SpendingController::class, 'show'])->name('show');
         Route::get('/spendings/create', [SpendingController::class, 'create'])->name('create');
-        Route::post('/spendings', [SpendingController::class, 'store']);
+        Route::post('/spendings', [SpendingController::class, 'store'])->name('store');
         Route::get('/spendings/{spending}/edit', [SpendingController::class, 'edit'])->name('edit');
-        Route::patch('/spendings/{spending}', [SpendingController::class, 'update']);
-        Route::delete('/spendings/{spending}', [SpendingController::class, 'destroy']);
+        Route::patch('/spendings/{spending}', [SpendingController::class, 'update'])->name('update');
+        Route::delete('/spendings/{spending}', [SpendingController::class, 'destroy'])->name('destroy');
         Route::post('/spendings/{id}/restore', [SpendingController::class, 'restore']);
     });
 
@@ -108,7 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/imports/{import}/prepare', [ImportController::class, 'postPrepare']);
         Route::get('/imports/{import}/complete', [ImportController::class, 'getComplete'])->name('complete');
         Route::post('/imports/{import}/complete', [ImportController::class, 'postComplete']);
-        Route::delete('/imports/{import}', [ImportController::class, 'destroy']);
+        Route::delete('/imports/{import}', [ImportController::class, 'destroy'])->name('destroy');
     });
 
     Route::name('activities.')->group(function () {
@@ -117,7 +117,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::name('settings.')->group(function () {
         Route::get('/settings', [SettingsController::class, 'getIndex'])->name('index');
-        Route::post('/settings', [SettingsController::class, 'postIndex']);
+        Route::post('/settings', [SettingsController::class, 'postIndex'])->name('store');
         Route::get('/settings/profile', [SettingsController::class, 'getProfile'])->name('profile');
         Route::get('/settings/account', [SettingsController::class, 'getAccount'])->name('account');
         Route::get('/settings/preferences', [SettingsController::class, 'getPreferences'])->name('preferences');
@@ -145,7 +145,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::name('ideas.')->group(function () {
         Route::get('/ideas/create', [IdeaController::class, 'create'])->name('create');
-        Route::post('/ideas', [IdeaController::class, 'store']);
+        Route::post('/ideas', [IdeaController::class, 'store'])->name('store');
     });
 
     Route::get('/translations', TranslationsController::class);

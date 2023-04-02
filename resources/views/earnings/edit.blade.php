@@ -5,8 +5,8 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('actions.edit') }} {{ __('models.earning') }}</h2>
-        <div class="box mt-3">
-            <form method="POST" action="/earnings/{{ $earning->id }}" autocomplete="off">
+        <div class="mt-3 box">
+            <form method="POST" action="{{ route('earnings.update', ['earning' => $earning->id]) }}" autocomplete="off">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
                 <div class="box__section">

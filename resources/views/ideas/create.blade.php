@@ -3,7 +3,7 @@
 @section('body')
     <div class="wrapper my-3">
         <div class="box">
-            <form method="POST" action="/ideas">
+            <form method="POST" action="{{ route('ideas.store') }}">
                 {{ csrf_field() }}
                 <div class="box__section">
                     <div class="input input--small">

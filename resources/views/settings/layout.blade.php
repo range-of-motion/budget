@@ -20,7 +20,7 @@
             </div>
             <div class="row__column">
                 @yield('settings_title')
-                <form method="POST" action="/settings" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('settings.store') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     @yield('settings_body')
                 </form>

@@ -5,8 +5,8 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('actions.create') }} {{ __('models.budget') }}</h2>
-        <div class="box mt-3">
-            <form method="POST" action="/budgets">
+        <div class="mt-3 box">
+            <form method="POST" action="{{ route('budgets.store') }}">
                 {{ csrf_field() }}
                 <div class="box__section">
                     @if (session()->has('message'))

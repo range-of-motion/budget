@@ -5,7 +5,7 @@
 @section('body')
     <div class="wrapper mw-400 my-3">
         <h2 class="mb-3">{{ __('actions.create') }} {{ __('models.recurring') }}</h2>
-        <form method="POST" action="/recurrings" autocomplete="off">
+        <form method="POST" action="{{ route('recurrings.store') }}" autocomplete="off">
             {{ csrf_field() }}
             <div class="input input--small">
                 <label>Day</label>
