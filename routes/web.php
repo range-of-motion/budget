@@ -23,6 +23,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TranslationsController;
 use App\Http\Controllers\VerifyController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
@@ -44,16 +45,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/resend-verification-mail', ResendVerificationMailController::class)->name('resend_verification_mail');
 
-    Route::post('/attachments', [AttachmentController::class, 'store'])->name('attachments.store');
-    Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'download'])->name('attachments.download');
-    Route::post('/attachments/{id}/delete', [AttachmentController::class, 'delete'])->name('attachments.destroy');
-
-    Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
-
-    Route::name('transactions.')->group(function () {
-        Route::get('/transactions', [TransactionController::class, 'index'])->name('index');
-        Route::get('/transactions/create', [TransactionController::class, 'create'])->name('create');
+    Route::name('attachments.')->group(function() {
+        Route::post('/attachments', [AttachmentController::class, 'store'])->name('store');
+        Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'download'])->name('download');
+        Route::post('/attachments/{id}/delete', [AttachmentController::class, 'delete'])->name('destroy');
     });
+
+    Route::resource('/transactions', TransactionController::class)->only(['index', 'create']);
 
     Route::name('earnings.')->group(function () {
         Route::get('/earnings/{earning}', [EarningController::class, 'show'])->name('show');
@@ -75,30 +73,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/spendings/{id}/restore', [SpendingController::class, 'restore']);
     });
 
-    Route::resource('/recurrings', RecurringController::class)->only([
-        'index',
-        'create',
-        'store',
-        'show'
-    ]);
+    Route::resource('/recurrings', RecurringController::class)->only(['index', 'create', 'store', 'show']);
 
-    Route::resource('/budgets', BudgetController::class)->only([
-        'index',
-        'create',
-        'store'
-    ]);
+    Route::resource('/budgets', BudgetController::class)->only(['index', 'create', 'store']);
 
-    Route::resource('/tags', TagController::class)->only([
-        'index',
-        'create',
-        'store',
-        'edit',
-        'update',
-        'destroy'
-    ]);
+    Route::resource('/tags', TagController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-    Route::get('/reports/{slug}', [ReportController::class, 'show'])->name('reports.show');
+    Route::resource('/reports', ReportController::class)->only(['index', 'show']);
 
     Route::name('imports.')->group(function () {
         Route::get('/imports', [ImportController::class, 'index'])->name('index');
@@ -111,9 +92,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/imports/{import}', [ImportController::class, 'destroy'])->name('destroy');
     });
 
-    Route::name('activities.')->group(function () {
-        Route::get('/activities', [ActivityController::class, 'index'])->name('index');
-    });
+    Route::resource('/activities', ActivityController::class)->only(['index']);
 
     Route::name('settings.')->group(function () {
         Route::get('/settings', [SettingsController::class, 'getIndex'])->name('index');
@@ -143,10 +122,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/spaces/{space}/invites/{invite}/deny', [SpaceInviteController::class, 'deny'])->name('deny');
     });
 
-    Route::name('ideas.')->group(function () {
-        Route::get('/ideas/create', [IdeaController::class, 'create'])->name('create');
-        Route::post('/ideas', [IdeaController::class, 'store'])->name('store');
-    });
+    Route::resource('/ideas', IdeaController::class)->only(['create', 'store']);
 
     Route::get('/translations', TranslationsController::class);
 });
