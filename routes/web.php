@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/resend-verification-mail', ResendVerificationMailController::class)->name('resend_verification_mail');
 
     Route::post('/attachments', [AttachmentController::class, 'store'])->name('attachments.store');
-    Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'attachments.download']);
+    Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'download'])->name('attachments.download');
     Route::post('/attachments/{id}/delete', [AttachmentController::class, 'delete'])->name('attachments.destroy');
 
     Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
