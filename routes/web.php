@@ -44,9 +44,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/resend-verification-mail', ResendVerificationMailController::class)->name('resend_verification_mail');
 
-    Route::post('/attachments', [AttachmentController::class, 'store'])->name('store');
-    Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'download']);
-    Route::post('/attachments/{id}/delete', [AttachmentController::class, 'delete'])->name('destroy');
+    Route::post('/attachments', [AttachmentController::class, 'store'])->name('attachments.store');
+    Route::get('/attachments/{attachment}/download', [AttachmentController::class, 'attachments.download']);
+    Route::post('/attachments/{id}/delete', [AttachmentController::class, 'delete'])->name('attachments.destroy');
 
     Route::get('/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
 
@@ -98,7 +98,7 @@ Route::group(['middleware' => ['auth']], function () {
     ]);
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-    Route::get('/reports/{slug}', [ReportController::class, 'show']);
+    Route::get('/reports/{slug}', [ReportController::class, 'show'])->name('reports.show');
 
     Route::name('imports.')->group(function () {
         Route::get('/imports', [ImportController::class, 'index'])->name('index');

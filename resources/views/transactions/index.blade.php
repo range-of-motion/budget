@@ -9,7 +9,7 @@
                 <h2>{{ __('models.transactions') }}</h2>
             </div>
             <div class="row__column row__column--compact row__column--middle">
-                <a href="/transactions/create" class="button">{{ __('actions.create') }} {{ __('models.transactions') }}</a>
+                <a href="{{ route('transactions.create') }}" class="button">{{ __('actions.create') }} {{ __('models.transactions') }}</a>
             </div>
         </div>
         <div class="row row--responsive">
@@ -17,12 +17,12 @@
                 <div class="box">
                     <div class="box__section">
                         <div class="mb-2">
-                            <a href="/transactions">Reset</a>
+                            <a href="{{ route('transactions.index') }}">Reset</a>
                         </div>
                         <span>Filter by Tag</span>
                         @foreach ($tags as $tag)
                             <div class="mt-1 ml-1">
-                                <a href="/transactions?filterBy=tag-{{ $tag->id }}" v-pre>{{ $tag->name }}</a>
+                                <a href="{{ route('transactions.index', ['filterBy' => 'tag-' . $tag->id]) }}" v-pre>{{ $tag->name }}</a>
                             </div>
                         @endforeach
                     </div>
@@ -37,10 +37,10 @@
                                 <div class="box__section row row--responsive">
                                     <div class="row__column row__column--middle row row--middle">
                                         <div v-pre>{{ $transaction->description }}</div>
-                                        <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}">
+                                        <a href="{{ route((get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings') . '.show', [$transaction->id]) }}">
                                             <i class="fas fa-info-circle fa-xs c-light ml-1"></i>
                                         </a>
-                                        <a href="/{{ get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings' }}/{{ $transaction->id }}/edit">
+                                        <a href="{{ route((get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings') . '.edit', [$transaction->id]) }}">
                                             <i class="fas fa-pencil fa-xs c-light ml-1"></i>
                                         </a>
                                         <form action="{{ route((get_class($transaction) === 'App\Models\Earning' ? 'earnings' : 'spendings') . '.destroy', [$transaction->id]) }}" method="POST">
