@@ -5,7 +5,7 @@
 @section('body')
     <div class="wrapper my-3">
         <h2 class="mb-3">{{ __('actions.edit') }} {{ __('models.space') }}</h2>
-        <form method="POST" action="/spaces/{{ $space->id }}/update">
+        <form method="POST" action="{{ route('spaces.update', ['space' => $space->id]) }}">
             {{ csrf_field() }}
             <div class="box">
                 <div class="box__section row">
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="row row--right mt-2">
-                <a class="button button--secondary mr-2" href="/settings/spaces">{{ __('actions.cancel') }}</a>
+                <a class="button button--secondary mr-2" href="{{ route('settings.spaces.index') }}">{{ __('actions.cancel') }}</a>
                 <button class="button">{{ __('actions.save') }}</button>
             </div>
         </form>
@@ -86,7 +86,7 @@
                                 @break
                         @endswitch
                     @endif
-                    <form method="POST" action="/spaces/{{ $space->id }}/invite">
+                    <form method="POST" action="{{ route('spaces.invite', ['space' => $space->id]) }}">
                         {{ csrf_field() }}
                         <div class="input input--small">
                             <label>{{ __('fields.email') }}</label>

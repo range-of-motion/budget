@@ -5,8 +5,8 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('actions.create') }} {{ __('models.budget') }}</h2>
-        <div class="box mt-3">
-            <form method="POST" action="/budgets">
+        <div class="mt-3 box">
+            <form method="POST" action="{{ route('budgets.store') }}">
                 {{ csrf_field() }}
                 <div class="box__section">
                     @if (session()->has('message'))
@@ -39,7 +39,7 @@
                 </div>
                 <div class="box__section box__section--highlight row row--right">
                     <div class="row__column row__column--compact row__column--middle">
-                        <a href="/budgets">{{ __('actions.cancel') }}</a>
+                        <a href="{{ route('budgets.index') }}">{{ __('actions.cancel') }}</a>
                     </div>
                     <div class="row__column row__column--compact ml-2">
                         <button class="button">{{ __('actions.create') }}</button>

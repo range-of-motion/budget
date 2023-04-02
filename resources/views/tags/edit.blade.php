@@ -5,8 +5,8 @@
 @section('body')
     <div class="wrapper my-3">
         <h2>{{ __('actions.edit') }} {{ __('models.tag') }}</h2>
-        <div class="box mt-3">
-            <form method="POST" action="/tags/{{ $tag->id }}">
+        <div class="mt-3 box">
+            <form method="POST" action="{{ route('tags.update', ['tag' => $tag->id]) }}">
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
                 <div class="box__section">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="box__section box__section--highlight row row--right">
                     <div class="row__column row__column--compact row__column--middle">
-                        <a href="/tags">{{ __('actions.cancel') }}</a>
+                        <a href="{{ route('tags.index') }}">{{ __('actions.cancel') }}</a>
                     </div>
                     <div class="row__column row__column--compact ml-2">
                         <button class="button">{{ __('actions.save') }}</button>
