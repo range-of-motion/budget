@@ -6,6 +6,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 # Install NGINX and other packages
 RUN apt-get update && \
     apt-get install -y \
+      git \
       nginx \
       cron \
       supervisor
@@ -26,7 +27,7 @@ RUN install-php-extensions pdo_mysql zip calendar gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Node.js and Yarn
-RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g yarn
 
