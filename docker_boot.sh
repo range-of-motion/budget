@@ -1,6 +1,7 @@
 #!/bin/bash
 
 chown -R www-data:www-data /var/www/storage
+chown -R www-data:www-data /var/www/bootstrap/cache
 
 if [ ! -z $BUDGET_SETUP ]; then
   composer install
