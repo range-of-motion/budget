@@ -50,18 +50,16 @@ class FetchConversionRate implements ShouldQueue
                 continue;
             }
 
-            $url = 'https://www.valutafx.com/' . $baseCurrency->iso . '-' . $targetCurrency->iso . '.htm';
+            $url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/' 
+                   . strtolower($baseCurrency->iso) . '/' . strtolower($targetCurrency->iso) . '.json';
 
             try {
                 $response = $client->request('GET', $url);
+                $decoded_response = json_decode($response->getBody(), true);
+                $rate = $decoded_response[strtolower($targetCurrency->iso)];
             } catch (Exception $e) {
                 continue;
             }
-
-            $crawler = new Crawler($response->getBody()->__toString());
-
-            $result = $crawler->filter('.converter-result > .rate-value')->first()->text();
-            $rate = str_replace(',', '', $result); // Get rid of any potential thousands separators
 
             $this->conversionRateRepository->createOrUpdate(
                 $baseCurrency->id,
