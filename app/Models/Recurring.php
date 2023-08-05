@@ -27,8 +27,6 @@ class Recurring extends Model
         'currency_id'
     ];
 
-    protected $dates = ['deleted_at'];
-
     protected $dispatchesEvents = [
         'created' => RecurringCreated::class,
         'deleted' => RecurringDeleted::class
