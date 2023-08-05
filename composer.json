@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-calendar": "*",
         "doctrine/dbal": "^2.8",
         "guzzlehttp/guzzle": "^7.0.1",
