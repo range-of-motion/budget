@@ -13,8 +13,6 @@ class Tag extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = ['space_id', 'name', 'color'];
 
     protected $dispatchesEvents = [

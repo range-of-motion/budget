@@ -18,8 +18,6 @@ class Space extends Model
         'name'
     ];
 
-    protected $dates = ['deleted_at'];
-
     // Relations
     public function users()
     {
