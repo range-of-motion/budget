@@ -27,8 +27,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::get('/prototype', \App\Http\Controllers\PrototypeController::class);
-
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'store']);
@@ -133,3 +131,9 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
+
+Route::prefix('prototype')
+    ->group(function () {
+        Route::get('/', fn () => 'Hello world');
+        Route::get('/{any}', \App\Http\Controllers\PrototypeController::class);
+    });

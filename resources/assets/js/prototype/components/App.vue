@@ -1,9 +1,7 @@
 <script setup>
-//
+
 </script>
 
 <template>
-    <div>
-        <div>Hello world</div>
-    </div>
+    <router-view></router-view>
 </template>
