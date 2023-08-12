@@ -33,7 +33,7 @@ _Budget website is down for the moment. You can host yourself or donate [PayPal]
 
 ## Installation
 
-* Clone the repository (`git clone https://github.com/range-of-motion/budget.git`)
+* Clone the repository (`git clone https://github.com/Deltwin/budget.git`)
     * You should always check out a tag, since the `master` branch might not always be stable (`git checkout TAG`)
 * Install dependencies (`composer install --no-dev -o`)
 * Run installation command (`php artisan budget:install`)
