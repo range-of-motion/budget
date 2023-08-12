@@ -8,7 +8,7 @@
 
 Budget is an open-source web application that helps you keep track of your finances.
 
-You can use Budget by hosting it yourself, or using [the instance hosted by us](https://budgethq.com).
+_Budget website is down for the moment. You can host yourself or donate [PayPal](https://paypal.me/pay2secure) If you want an online version already deployed._
 
 ![Product](https://user-images.githubusercontent.com/9268822/46098425-a8877300-c1c4-11e8-9293-f43ceb9d6f97.png)
 
@@ -71,4 +71,5 @@ It may take a few minutes before the process is completed and you're able to use
 
 ## Contact
 
+* [Deltwin](mailto:ytdeltwin@gmail.com) :accessibility:
 * [Discord](https://discord.gg/QFQdvy3)
