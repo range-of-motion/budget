@@ -57,19 +57,7 @@ class BudgetUpdate extends Command
         shell_exec('php artisan migrate --force');
 
         // Transpile front-end assets
-        $nodePackageManager = null;
-
-        if ($this->doesBinaryExist('npm')) {
-            $nodePackageManager = 'npm';
-        } elseif ($this->doesBinaryExist('yarn')) {
-            $nodePackageManager = 'yarn';
-        }
-
-        if (!$nodePackageManager) {
-            $this->warn('Neither NPM nor Yarn were found, could not update front-end assets');
-        } else {
-            shell_exec($nodePackageManager . ' install && ' . $nodePackageManager . ' run production');
-        }
+        shell_exec('npm run build');
 
         // Destroy existing sessions
         shell_exec('rm ' . storage_path() . '/framework/sessions/*');

@@ -8,8 +8,8 @@ if [ ! -z $BUDGET_SETUP ]; then
   php artisan key:generate
   php artisan storage:link
 
-  yarn install
-  yarn build
+  npm install
+  npm run build
 
   php artisan migrate --force
 fi
