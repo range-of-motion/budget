@@ -50,8 +50,8 @@ jobs:
         run: composer install --no-interaction
       - name: Generate key
         run: php artisan key:generate
-      - run: yarn install
-      - run: yarn build
+      - run: npm install --force
+      - run: npm run build
       - name: Prepare database
         run: php artisan migrate --database=testing
       - name: Run PHPUnit
@@ -83,8 +83,8 @@ jobs:
         run: composer install --no-interaction
       - name: Generate key
         run: php artisan key:generate
-      - run: yarn install
-      - run: yarn build
+      - run: npm install --force
+      - run: npm run build
       - name: Prepare database
         run: php artisan migrate --database=testing
       - name: Run Dusk
