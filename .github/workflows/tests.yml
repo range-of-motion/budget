@@ -50,7 +50,7 @@ jobs:
         run: composer install --no-interaction
       - name: Generate key
         run: php artisan key:generate
-      - run: npm install --force
+      - run: npm install
       - run: npm run build
       - name: Prepare database
         run: php artisan migrate --database=testing
@@ -83,7 +83,7 @@ jobs:
         run: composer install --no-interaction
       - name: Generate key
         run: php artisan key:generate
-      - run: npm install --force
+      - run: npm install
       - run: npm run build
       - name: Prepare database
         run: php artisan migrate --database=testing
