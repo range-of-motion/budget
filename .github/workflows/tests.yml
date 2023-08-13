@@ -43,7 +43,7 @@ jobs:
           php-version: '8.1'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - name: Set up .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
       - name: Install Composer dependencies
@@ -76,7 +76,7 @@ jobs:
           php-version: '8.1'
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - name: Set up .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
       - name: Install Composer dependencies
