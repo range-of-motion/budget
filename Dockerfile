@@ -6,6 +6,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 # Install NGINX and other packages
 RUN apt-get update && \
     apt-get install -y \
+      git \
       nginx \
       cron \
       supervisor
@@ -29,4 +30,23 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
+ARG BUDGET_VERSION
+
+ADD https://github.com/range-of-motion/budget/archive/refs/tags/v$BUDGET_VERSION.tar.gz /tmp/budget.tar.gz
+
+RUN tar --strip-components=1 -xf /tmp/budget.tar.gz -C /var/www
+
 WORKDIR /var/www
+
+RUN composer install --no-dev --no-interaction
+
+RUN npm install && \
+    npm run build
+
+RUN cp .env.docker .env
+
+RUN php artisan storage:link
+
+RUN chown -R www-data:www-data /var/www
+
+ENTRYPOINT ["/var/www/entrypoint.sh"]
