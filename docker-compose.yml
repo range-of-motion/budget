@@ -17,10 +17,5 @@ services:
 
   app:
     build: ./
-    environment:
-      - BUDGET_SETUP
-    volumes:
-      - .:/var/www
     ports:
       - 8080:80
-    command: ./docker_boot.sh
