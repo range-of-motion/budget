@@ -48,7 +48,7 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git describe --always --tags > version.txt"
+            "php artisan app:update-version-file"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate"
