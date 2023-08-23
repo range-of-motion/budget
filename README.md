@@ -61,6 +61,49 @@ If you just want an environment that takes care of the webserver, PHP and databa
 
 `docker-compose up -d`
 
+### Self-hosted e.g. on your Synology NAS
+
+Use the following docker-compose config to create a stack in your Portainer instance. 
+
+App will be accesible on `YourNasIP:5566`. 
+
+Edit the port number in the config below if required. 
+
+You may want to set up a [reverse proxy](https://mariushosting.com/synology-how-to-use-reverse-proxy/) if you want your service to be accessible from the outside World. 
+
+> After containers are created allow a healthy amount of time for the database container to apply all migrations. It can take up to 15 mins. You can monitor the process by inspecting container logs.
+
+```version: "3.8"
+services:
+  app:
+    image: "rangeofmotion/budget:0.15.0" # choose tag version
+    ports:
+      - "5566:80"
+    environment:
+      - DB_DATABASE="budget_app"
+      - DB_USERNAME="budget"
+      - DB_PASSWORD="your-db-password" # Provide db user password
+      - DB_HOST="db"
+    depends_on:
+      - db
+  db:
+    image: "mysql:5.7"
+    environment:
+      MYSQL_ROOT_PASSWORD: "your-root-user-db-password" # Set root user db password
+      MYSQL_DATABASE: "budget_app"
+      MYSQL_USER: "budget"
+      MYSQL_PASSWORD: "your-db-password" # Set db user password
+    volumes:
+      - "/volume1/docker/budget/db:/var/lib/mysql" # create the following directory on your NAS /volume1/docker/budget/db
+    restart: always
+    ports:
+      - "3306:3306"
+volumes:
+  db:
+    driver: local
+```
+
+
 ### Automatic
 
 If you want everything to be installed and set-up from start to finish, you should use this option. By providing the `BUDGET_SETUP` environment variable, a script will run that does everything you need–whether it's installing Composer dependencies or compiling front-end assets.
