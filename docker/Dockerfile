@@ -12,13 +12,13 @@ RUN apt-get update && \
       supervisor
 
 # Configure NGINX
-COPY nginx.conf /etc/nginx/sites-enabled/default
+COPY docker/nginx.conf /etc/nginx/sites-enabled/default
 
 # Configure cron
-COPY cron.conf /etc/cron.d/budget
+COPY docker/cron.conf /etc/cron.d/budget
 
 # Configure Supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/budget.conf
+COPY docker/supervisord.conf /etc/supervisor/conf.d/budget.conf
 
 # Install PHP extensions
 RUN install-php-extensions pdo_mysql zip calendar gd
@@ -30,13 +30,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
-ARG BUDGET_VERSION
+# Copy current repository data
+COPY . /var/www
 
-ADD https://github.com/range-of-motion/budget/archive/refs/tags/v$BUDGET_VERSION.tar.gz /tmp/budget.tar.gz
+# Change permissions
+RUN chown -R www-data:www-data /var/www
 
-RUN tar --strip-components=1 -xf /tmp/budget.tar.gz -C /var/www
-
+# Set working directory
 WORKDIR /var/www
+
+# Switch to web user
+USER www-data
 
 RUN composer install --no-dev --no-interaction
 
@@ -47,6 +51,6 @@ RUN cp .env.docker .env
 
 RUN php artisan storage:link
 
-RUN chown -R www-data:www-data /var/www
+USER root
 
-ENTRYPOINT ["/var/www/entrypoint.sh"]
+CMD ["/var/www/entrypoint.sh"]
