@@ -35,7 +35,7 @@ class BudgetInstall extends Command
         $this->executeCommand(['npm', 'install']);
 
         $this->info('Compiling front-end assets');
-        $this->executeCommand(['npm', 'run', 'production']);
+        $this->executeCommand(['npm', 'run', 'build']);
 
         $this->executeCommand(['cp', '.env.example', '.env']);
         $this->executeCommand(['php', 'artisan', 'key:generate']);
