@@ -79,7 +79,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('/tags', TagController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
-    Route::resource('/reports', ReportController::class)->only(['index', 'show']);
+    Route::name('reports.')->group(function () {
+        Route::get('/reports', [ReportController::class, 'index'])->name('index');
+        Route::get('/reports/{slug}', [ReportController::class, 'show'])->name('show');
+    });
 
     Route::name('imports.')->group(function () {
         Route::get('/imports', [ImportController::class, 'index'])->name('index');
