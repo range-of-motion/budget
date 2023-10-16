@@ -47,11 +47,11 @@ class SpaceInvite extends Model
             }
 
             if ($this->accepted === true) {
-                return 'Accepted (' . date('d-m', strtotime($this->updated_at)) . ')';
+                return 'Accepted (' . $this->updated_at->format('d-m') . ')';
             }
 
             if ($this->accepted === false) {
-                return 'Denied (' . date('d-m', strtotime($this->updated_at)) . ')';
+                return 'Denied (' . $this->updated_at->format('d-m') . ')';
             }
 
             return 'Unknown';
