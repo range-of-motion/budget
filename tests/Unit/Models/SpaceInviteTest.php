@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\SpaceInvite;
+use Carbon\Carbon;
 use Tests\TestCase;
 
 class SpaceInviteTest extends TestCase
@@ -19,15 +20,17 @@ class SpaceInviteTest extends TestCase
         $acceptedSpaceInvite = SpaceInvite::factory()
             ->make([
                 'accepted' => true,
+                'updated_at' => Carbon::parse('2021-02-14'),
             ]);
 
-        $this->assertStringStartsWith('Accepted', $acceptedSpaceInvite->status);
+        $this->assertEquals('Accepted (14-02)', $acceptedSpaceInvite->status);
 
         $deniedSpaceInvite = SpaceInvite::factory()
             ->make([
                 'accepted' => false,
+                'updated_at' => Carbon::parse('2021-02-14'),
             ]);
 
-        $this->assertStringStartsWith('Denied', $deniedSpaceInvite->status);
+        $this->assertEquals('Denied (14-02)', $deniedSpaceInvite->status);
     }
 }
