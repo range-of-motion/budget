@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\TransactionCreated;
 use App\Events\TransactionDeleted;
 use App\Helper;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -37,9 +38,7 @@ class Spending extends Model
 
     public function getFormattedHappenedOnAttribute()
     {
-        $secondsDifference = strtotime(date('Y-m-d')) - strtotime($this->happened_on);
-
-        return ($secondsDifference / 60 / 60 / 24) . ' days ago';
+        return Carbon::now()->diffInDays(Carbon::parse($this->happened_on)) . ' days ago';
     }
 
     // Relations
