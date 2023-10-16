@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helper;
 use App\Repositories\BudgetRepository;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,18 +33,18 @@ class Budget extends Model
     }
 
     // Accessors
-    public function getFormattedAmountAttribute()
+    protected function formattedAmount(): Attribute
     {
-        return Helper::formatNumber($this->amount / 100);
+        return Attribute::make(fn () => Helper::formatNumber($this->amount / 100));
     }
 
-    public function getSpentAttribute()
+    protected function spent(): Attribute
     {
-        return (new BudgetRepository())->getSpentById($this->id);
+        return Attribute::make(fn () => (new BudgetRepository())->getSpentById($this->id));
     }
 
-    public function getFormattedSpentAttribute()
+    protected function formattedSpent(): Attribute
     {
-        return Helper::formatNumber($this->spent / 100);
+        return Attribute::make(fn () => Helper::formatNumber($this->spent / 100));
     }
 }

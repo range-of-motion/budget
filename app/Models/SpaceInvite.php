@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,20 +39,22 @@ class SpaceInvite extends Model
     }
 
     // Accessors
-    public function getStatusAttribute(): string
+    protected function status(): Attribute
     {
-        if ($this->accepted === null) {
-            return 'Pending';
-        }
+        return Attribute::make(function () {
+            if ($this->accepted === null) {
+                return 'Pending';
+            }
 
-        if ($this->accepted === true) {
-            return 'Accepted (' . date('d-m', strtotime($this->updated_at)) . ')';
-        }
+            if ($this->accepted === true) {
+                return 'Accepted (' . date('d-m', strtotime($this->updated_at)) . ')';
+            }
 
-        if ($this->accepted === false) {
-            return 'Denied (' . date('d-m', strtotime($this->updated_at)) . ')';
-        }
+            if ($this->accepted === false) {
+                return 'Denied (' . date('d-m', strtotime($this->updated_at)) . ')';
+            }
 
-        return 'Unknown';
+            return 'Unknown';
+        });
     }
 }
