@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -49,9 +50,11 @@ class User extends Authenticatable
     }
 
     // Accessors
-    public function getAvatarAttribute($avatar)
+    protected function avatar(): Attribute
     {
-        return $avatar ? '/storage/avatars/' . $avatar : 'https://via.placeholder.com/250';
+        return Attribute::make(
+            fn (?string $value) => $value ? '/storage/avatars/' . $value : 'https://via.placeholder.com/250'
+        );
     }
 
     // Relations

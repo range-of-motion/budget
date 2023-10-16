@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\RecurringCreated;
 use App\Events\RecurringDeleted;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,22 +34,26 @@ class Recurring extends Model
     ];
 
     // Accessors
-    public function getDueDaysAttribute()
+    protected function dueDays(): Attribute
     {
-        if ($this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on)) {
-            if (date('j') > $this->day) {
-                return date('t') - date('j') + $this->day;
+        return Attribute::make(function () {
+            if ($this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on)) {
+                if (date('j') > $this->day) {
+                    return date('t') - date('j') + $this->day;
+                }
+
+                return $this->day - date('j');
             }
 
-            return $this->day - date('j');
-        }
-
-        return 0;
+            return 0;
+        });
     }
 
-    public function getStatusAttribute()
+    protected function status(): Attribute
     {
-        return $this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on);
+        return Attribute::make(function () {
+            return $this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on);
+        });
     }
 
     // Relations

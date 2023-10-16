@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Exception;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
@@ -32,23 +33,27 @@ class Attachment extends Model
     }
 
     // Accessors
-    public function getFileB64Attribute()
+    protected function fileB64(): Attribute
     {
-        $file = Storage::get($this->file_path);
+        return Attribute::make(function () {
+            $file = Storage::get($this->file_path);
 
-        if (!$file) {
-            return null;
-        }
+            if (!$file) {
+                return null;
+            }
 
-        $type = pathinfo($this->file_path, PATHINFO_EXTENSION);
+            $type = pathinfo($this->file_path, PATHINFO_EXTENSION);
 
-        return 'data:image/' . $type . ';base64,' . base64_encode($file);
+            return 'data:image/' . $type . ';base64,' . base64_encode($file);
+        });
     }
 
-    public function getFileTypeAttribute()
+    protected function fileType(): Attribute
     {
-        $parts = explode('.', $this->file_path);
+        return Attribute::make(function () {
+            $parts = explode('.', $this->file_path);
 
-        return $parts[count($parts) - 1];
+            return $parts[count($parts) - 1];
+        });
     }
 }

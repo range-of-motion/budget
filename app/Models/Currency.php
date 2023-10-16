@@ -19,7 +19,7 @@ class Currency extends Model
     // Accessors
     protected function isoLowercased(): Attribute
     {
-        return Attribute::make(fn (mixed $value, array $attributes) => strtolower($attributes['iso']));
+        return Attribute::make(fn () => strtolower($this->iso));
     }
 
     // Scopes

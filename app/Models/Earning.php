@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Events\TransactionCreated;
 use App\Events\TransactionDeleted;
 use App\Helper;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,16 +30,14 @@ class Earning extends Model
     ];
 
     // Accessors
-    public function getFormattedAmountAttribute()
+    protected function formattedAmount(): Attribute
     {
-        return Helper::formatNumber($this->amount / 100);
+        return Attribute::make(fn () => Helper::formatNumber($this->amount / 100));
     }
 
-    public function getFormattedHappenedOnAttribute()
+    protected function formattedHappenedOn(): Attribute
     {
-        $secondsDifference = strtotime(date('Y-m-d')) - strtotime($this->happened_on);
-
-        return ($secondsDifference / 60 / 60 / 24) . ' days ago';
+        return Attribute::make(fn () => Carbon::now()->diffInDays(Carbon::parse($this->happened_on)) . ' days ago');
     }
 
     // Relations

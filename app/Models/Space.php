@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -65,9 +66,9 @@ class Space extends Model
     }
 
     // Accessors
-    public function getAbbreviatedNameAttribute(): string
+    protected function abbreviatedName(): Attribute
     {
-        return Str::limit($this->name, 3);
+        return Attribute::make(fn () => Str::limit($this->name, 3));
     }
 
     //

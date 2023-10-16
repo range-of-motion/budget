@@ -10,6 +10,16 @@ use App\Models\Space;
 
 class SpaceTest extends TestCase
 {
+    public function testAbbreviatedNameAttribute(): void
+    {
+        $space = Space::factory()
+            ->create([
+                'name' => 'Hello world',
+            ]);
+
+        $this->assertEquals('Hel...', $space->abbreviated_name);
+    }
+
     public function testMonthlyBalance()
     {
         $space = Space::factory()->create();
