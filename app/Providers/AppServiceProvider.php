@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Helper;
 use App\Models\Space;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 use Auth;
 
@@ -11,6 +12,8 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        JsonResource::withoutWrapping();
+
         view()->composer('*', function ($view) {
             $selectedSpace = session('space_id') ? Space::find(session('space_id')) : null;
 

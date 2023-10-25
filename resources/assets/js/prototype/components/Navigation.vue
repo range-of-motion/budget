@@ -1,0 +1,20 @@
+<script setup>
+import { ArrowRightLeft, Home } from 'lucide-vue';
+</script>
+
+<template>
+    <div class="flex items-center h-16 bg-white border-b border-gray-200">
+        <div class="mx-auto flex-1 max-w-5xl">
+            <div class="flex space-x-4">
+                <router-link class="flex items-center py-1 px-3 text-gray-500 hover:text-black" :to="{ name: 'dashboard' }">
+                    <Home :size="16" />
+                    <span class="ml-2 text-sm">Dashboard</span>
+                </router-link>
+                <router-link class="flex items-center py-1 px-3 text-gray-500 hover:text-black" :to="{ name: 'transactions.index' }">
+                    <ArrowRightLeft :size="16" />
+                    <span class="ml-2 text-sm">Transactions</span>
+                </router-link>
+            </div>
+        </div>
+    </div>
+</template>
