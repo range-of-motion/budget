@@ -14,6 +14,8 @@ const logIn = () => {
             const json = response.data;
 
             if (json.token) {
+                localStorage.setItem('api_key', json.token);
+
                 router.push('dashboard');
             }
 

@@ -56,7 +56,7 @@ const getTransactionsBySpan = (span) => {
 };
 
 const fetchTransactions = () => {
-    fetch('/api/transactions')
+    fetch('/api/transactions', { headers: { 'api-key': localStorage.getItem('api_key') } })
         .then(response => response.json())
         .then(data => {
             transactions.value = data;
