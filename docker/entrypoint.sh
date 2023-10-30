@@ -10,6 +10,6 @@ php artisan config:cache
 
 php artisan migrate --force
 
-supervisord -n -c supervisord.conf
+supervisord -n -c docker/supervisord.conf
 
 exec "$@"

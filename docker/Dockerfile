@@ -12,13 +12,10 @@ RUN apt-get update && \
       supervisor
 
 # Configure NGINX
-COPY nginx.conf /etc/nginx/sites-enabled/default
+COPY docker/nginx.conf /etc/nginx/sites-enabled/default
 
 # Configure cron
-COPY cron.conf /etc/cron.d/budget
-
-# Configure Supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/budget.conf
+COPY docker/cron.conf /etc/cron.d/budget
 
 # Install PHP extensions
 RUN install-php-extensions pdo_mysql zip calendar gd
@@ -45,4 +42,4 @@ RUN php artisan storage:link
 
 RUN chown -R www-data:www-data /var/www
 
-ENTRYPOINT ["/var/www/entrypoint.sh"]
+ENTRYPOINT ["/var/www/docker/entrypoint.sh"]
