@@ -12,10 +12,10 @@ services:
       MYSQL_PASSWORD: 'test'
       MYSQL_RANDOM_ROOT_PASSWORD: 1
     ports:
-      - 3306:3306
+      - "33061:3306"
     command: --default-authentication-plugin=mysql_native_password
 
   app:
     build: ./
     ports:
-      - 8080:80
+      - "8080:80"
