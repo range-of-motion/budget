@@ -14,8 +14,16 @@ services:
     ports:
       - "33061:3306"
     command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysql", "-ubudget", "-ptest", "--execute", "SHOW DATABASES;"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
 
   app:
     build: ./
+    depends_on:
+      database:
+        condition: service_healthy
     ports:
       - "8080:80"
