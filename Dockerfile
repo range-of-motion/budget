@@ -30,11 +30,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs
 
-ARG BUDGET_VERSION
-
-ADD https://github.com/range-of-motion/budget/archive/refs/tags/v$BUDGET_VERSION.tar.gz /tmp/budget.tar.gz
-
-RUN tar --strip-components=1 -xf /tmp/budget.tar.gz -C /var/www
+COPY . /var/www
 
 WORKDIR /var/www
 
