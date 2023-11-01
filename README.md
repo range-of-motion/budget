@@ -52,21 +52,15 @@ php artisan budget:update
 
 ## Docker
 
-You can get set-up with Budget using Docker.
+You can get set-up with Budget using Docker and Docker Compose. The advantage of using Docker Compose is that it will set you up with a MySQL database.
 
-### Do it yourself
+### Docker
 
-If you just want an environment that takes care of the webserver, PHP and database, you should use this option. It will spin up the services required to run Budget, but not do any of the setting up for the application (activities such as installing Composer dependencies or generating an application key).
+You can either build the Docker image yourself, or use the ones available on [Docker Hub](https://hub.docker.com/r/rangeofmotion/budget).
 
-`docker-compose up -d`
+### Docker Compose
 
-### Automatic
-
-If you want everything to be installed and set-up from start to finish, you should use this option. By providing the `BUDGET_SETUP` environment variable, a script will run that does everything you need–whether it's installing Composer dependencies or compiling front-end assets.
-
-It may take a few minutes before the process is completed and you're able to use Budget.
-
-`BUDGET_SETUP=1 docker-compose up -d`
+Assuming you already have Docker Compose installed, simply run `docker-compose up -d` and you're good to go.
 
 ## Contact
 
