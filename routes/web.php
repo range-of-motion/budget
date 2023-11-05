@@ -135,5 +135,5 @@ Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 Route::prefix('prototype')
     ->group(function () {
         Route::get('/', fn () => 'Hello world');
-        Route::get('/{any}', \App\Http\Controllers\PrototypeController::class);
+        Route::get('/{any}', \App\Http\Controllers\PrototypeController::class)->where('any', '.*');
     });

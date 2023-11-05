@@ -6,6 +6,7 @@ import App from './components/App.vue';
 import Login from './screens/Login.vue';
 import Dashboard from './screens/Dashboard.vue';
 import TransactionsIndex from './screens/Transactions/Index.vue';
+import TransactionsCreate from './screens/Transactions/Create.vue';
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,10 @@ const routes = [
         path: '/prototype/transactions',
         name: 'transactions.index',
         component: TransactionsIndex,
+    }, {
+        path: '/prototype/transactions/create',
+        name: 'transactions.create',
+        component: TransactionsCreate,
     },
 ];
 

@@ -33,4 +33,46 @@ class TransactionController extends Controller
 
         return TransactionResource::collection($transactions);
     }
+
+    public function store(Request $request)
+    {
+        $apiKey = ApiKey::query()
+            ->where('token', $request->header('api-key'))
+            ->first();
+
+        if (!$apiKey) {
+            abort(401);
+        }
+
+        $spaceId = $apiKey->user->spaces()->first()->id;
+
+        $request->validate([
+            'type' => 'in:earning,spending',
+            // TODO
+        ]);
+
+        if ($request->input('type') === 'earning') {
+            Earning::create([
+                'space_id' => $spaceId,
+                'recurring_id' => null, // TODO
+                'happened_on' => $request->input('happened_on'),
+                'description' => $request->input('description'),
+                'amount' => $request->input('amount')
+            ]);
+        }
+
+        if ($request->input('type') === 'spending') {
+            Spending::create([
+                'space_id' => $spaceId,
+                'import_id' => null, // TODO
+                'recurring_id' => null, // TODO
+                'tag_id' => null, // TODO
+                'happened_on' => $request->input('happened_on'),
+                'description' => $request->input('description'),
+                'amount' => $request->input('amount')
+            ]);
+        }
+
+        return [];
+    }
 }
