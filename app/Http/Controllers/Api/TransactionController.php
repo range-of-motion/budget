@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TransactionResource;
-use App\Models\ApiKey;
 use App\Models\Earning;
 use App\Models\Spending;
 use Illuminate\Http\Request;
@@ -13,13 +12,8 @@ class TransactionController extends Controller
 {
     public function index(Request $request)
     {
-        $apiKey = ApiKey::query()
-            ->where('token', $request->header('api-key'))
-            ->first();
-
-        if (!$apiKey) {
-            abort(401);
-        }
+        /** @var ApiKey $apiKey */
+        $apiKey = $request->get('apiKey');
 
         $transactions = collect();
 
@@ -36,13 +30,8 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        $apiKey = ApiKey::query()
-            ->where('token', $request->header('api-key'))
-            ->first();
-
-        if (!$apiKey) {
-            abort(401);
-        }
+        /** @var ApiKey $apiKey */
+        $apiKey = $request->get('apiKey');
 
         $spaceId = $apiKey->user->spaces()->first()->id;
 

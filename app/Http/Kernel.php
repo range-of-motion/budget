@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'resolve-api-key' => \App\Http\Middleware\ResolveApiKey::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'stripe' => \App\Http\Middleware\RedirectIfStripeAbsent::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
