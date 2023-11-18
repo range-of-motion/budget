@@ -23,6 +23,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TranslationsController;
 use App\Http\Controllers\VerifyController;
+use App\Http\Middleware\CheckIfSpaPrototypeIsEnabled;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -133,6 +134,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 
 Route::prefix('prototype')
+    ->middleware(CheckIfSpaPrototypeIsEnabled::class)
     ->group(function () {
         Route::get('/', fn () => 'Hello world');
         Route::get('/{any}', \App\Http\Controllers\PrototypeController::class)->where('any', '.*');
