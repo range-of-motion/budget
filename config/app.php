@@ -227,4 +227,6 @@ return [
      */
 
     'disable_registration' => env('DISABLE_REGISTRATION', false),
+
+    'spa_prototype_enabled' => env('SPA_PROTOTYPE_ENABLED', true),
 ];
