@@ -1,8 +1,10 @@
 <script setup>
 import axios from 'axios';
-import { ref } from 'vue';
+import { getCurrentInstance, ref } from 'vue';
 
 import Navigation from '../../components/Navigation.vue';
+
+const router = getCurrentInstance().proxy.$router;
 
 const type = ref('earning');
 const happened_on = ref('2023-11-02');
@@ -21,7 +23,7 @@ const create = () => {
         },
     })
         .then(() => {
-            alert('wtf, dat werkte');
+            router.push({ name: 'transactions.index' });
         })
         .catch(() => {
             alert('Something went wrong');

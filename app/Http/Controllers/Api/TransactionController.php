@@ -36,8 +36,11 @@ class TransactionController extends Controller
         $spaceId = $apiKey->user->spaces()->first()->id;
 
         $request->validate([
-            'type' => 'in:earning,spending',
-            // TODO
+            'type' => ['required', 'in:earning,spending'],
+            // 'tag_id' => ['nullable', 'exists:tags,id'], // TODO CHECK IF TAG BELONGS TO USER
+            'happened_on' => ['required', 'date', 'date_format:Y-m-d'],
+            'description' => ['required', 'max:255'],
+            'amount' => ['required', 'regex:/^\d*(\.\d{1,2})?$/'],
         ]);
 
         if ($request->input('type') === 'earning') {
@@ -46,7 +49,7 @@ class TransactionController extends Controller
                 'recurring_id' => null, // TODO
                 'happened_on' => $request->input('happened_on'),
                 'description' => $request->input('description'),
-                'amount' => $request->input('amount')
+                'amount' => (int) ($request->input('amount') * 100),
             ]);
         }
 
@@ -58,7 +61,7 @@ class TransactionController extends Controller
                 'tag_id' => null, // TODO
                 'happened_on' => $request->input('happened_on'),
                 'description' => $request->input('description'),
-                'amount' => $request->input('amount')
+                'amount' => (int) ($request->input('amount') * 100),
             ]);
         }
 
