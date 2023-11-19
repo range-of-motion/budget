@@ -38,6 +38,10 @@ class SettingsController extends Controller
             $apiKey->user()->update(['theme' => $request->get('theme')]);
         }
 
-        return response()->json([]);
+        return response()
+            ->json([
+                'language' => $apiKey->user->language,
+                'theme' => $apiKey->user->theme,
+            ]);
     }
 }
