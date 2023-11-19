@@ -15,6 +15,10 @@ const logIn = () => {
 
             if (json.token) {
                 localStorage.setItem('api_key', json.token);
+                localStorage.setItem('theme', json.theme);
+
+                const e = new Event('themeChanged');
+                document.dispatchEvent(e);
 
                 router.push('dashboard');
             }
@@ -31,16 +35,16 @@ const logIn = () => {
 
 <template>
     <div class="flex items-center justify-center min-h-screen">
-        <div class="flex-1 max-w-sm p-5 space-y-5 bg-white border rounded-lg">
+        <div class="flex-1 max-w-sm p-5 space-y-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
             <div>
-                <label class="block mb-2 text-sm">E-mail</label>
-                <input class="w-full px-3.5 py-2.5 text-sm border rounded-lg" type="email" v-model="email" />
+                <label class="block mb-2 text-sm dark:text-white">E-mail</label>
+                <input class="w-full px-3.5 py-2.5 text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg" type="email" v-model="email" />
             </div>
             <div>
-                <label class="block mb-2 text-sm">Password</label>
-                <input class="w-full px-3.5 py-2.5 text-sm border rounded-lg" type="password" v-model="password" @keyup.enter="logIn" />
+                <label class="block mb-2 text-sm dark:text-white">Password</label>
+                <input class="w-full px-3.5 py-2.5 text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg" type="password" v-model="password" @keyup.enter="logIn" />
             </div>
-            <button class="w-full py-3 text-sm text-white bg-gray-900 rounded-lg" @click="logIn">Log in</button>
+            <button class="w-full py-3 text-sm text-white bg-gray-900 dark:bg-gray-950 rounded-lg" @click="logIn">Log in</button>
         </div>
     </div>
 </template>

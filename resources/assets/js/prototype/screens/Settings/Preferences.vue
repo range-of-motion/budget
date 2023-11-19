@@ -19,8 +19,13 @@ const retrieve = () => {
 const update = () => {
     axios
         .post('/api/settings', { language: language.value, theme: theme.value }, { headers: { 'api-key': localStorage.getItem('api_key') } })
-        .then(() => {
+        .then(response => {
             // Done
+
+            localStorage.setItem('theme', response.data.theme);
+
+            const e = new Event('themeChanged');
+            document.dispatchEvent(e);
         })
         .catch(() => {
             alert('Unable to save');
@@ -34,11 +39,11 @@ onMounted(() => retrieve());
     <div>
         <Navigation />
         <div class="my-10 mx-auto max-w-3xl">
-            <div class="p-5 bg-white border border-gray-200 rounded-lg">
+            <div class="p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
                 <div class="space-y-5 max-w-xs">
                     <div>
-                        <div class="mb-2 text-sm">Language</div>
-                        <select class="px-3.5 py-2.5 w-full text-sm border border-gray-200 rounded-lg appearance-none" v-model="language" @change="update">
+                        <div class="mb-2 text-sm dark:text-white">Language</div>
+                        <select class="px-3.5 py-2.5 w-full text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg appearance-none" v-model="language" @change="update">
                             <option value="en">English</option>
                             <option value="nl">Dutch</option>
                             <option value="dk">Danish</option>
@@ -49,8 +54,8 @@ onMounted(() => retrieve());
                         </select>
                     </div>
                     <div>
-                        <div class="mb-2 text-sm">Theme</div>
-                        <select class="px-3.5 py-2.5 w-full text-sm border border-gray-200 rounded-lg appearance-none" v-model="theme" @change="update">
+                        <div class="mb-2 text-sm dark:text-white">Theme</div>
+                        <select class="px-3.5 py-2.5 w-full text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg appearance-none" v-model="theme" @change="update">
                             <option value="light">Light</option>
                             <option value="dark">Dark</option>
                         </select>

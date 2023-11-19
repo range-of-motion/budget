@@ -42,6 +42,8 @@ class LogInController extends Controller
             return response()
                 ->json([
                     'token' => $apiKey->token,
+                    'language' => Auth::user()->language,
+                    'theme' => Auth::user()->theme,
                 ]);
         } else {
             $userByEmail = User::query()
