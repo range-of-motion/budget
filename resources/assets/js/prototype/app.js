@@ -7,6 +7,7 @@ import Login from './screens/Login.vue';
 import Dashboard from './screens/Dashboard.vue';
 import TransactionsIndex from './screens/Transactions/Index.vue';
 import TransactionsCreate from './screens/Transactions/Create.vue';
+import SettingsPreferences from './screens/Settings/Preferences.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,10 @@ const routes = [
         path: '/prototype/transactions/create',
         name: 'transactions.create',
         component: TransactionsCreate,
+    }, {
+        path: '/prototype/settings/preferences',
+        name: 'settings.preferences',
+        component: SettingsPreferences,
     },
 ];
 
