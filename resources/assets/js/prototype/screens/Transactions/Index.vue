@@ -88,7 +88,7 @@ onMounted(() => {
                                 </span>
                                 <span class="text-sm text-gray-500">{{ transaction.tag.name }}</span>
                             </div>
-                            <div class="w-20 text-right text-sm" :class="'text-' + (transaction.type === 'earning' ? 'green' : 'red') + '-600'">+{{ (transaction.amount / 100).toFixed(2) }}</div>
+                            <div class="w-20 text-right text-sm" :class="'text-' + (transaction.type === 'earning' ? 'green' : 'red') + '-600'">{{ transaction.type === 'earning' ? '+' : '-' }}{{ (transaction.amount / 100).toFixed(2) }}</div>
                         </div>
                     </div>
                 </div>
