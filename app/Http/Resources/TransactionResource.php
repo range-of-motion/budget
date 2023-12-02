@@ -14,6 +14,7 @@ class TransactionResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'tag' => !$isEarning && $this->tag_id ? new TagResource($this->tag) : null,
             'type' => $isEarning ? 'earning' : 'spending',
             'happened_on' => $this->happened_on,
             'description' => $this->description,
