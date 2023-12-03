@@ -8,7 +8,10 @@ fi
 
 php artisan config:cache
 
-php artisan migrate --force
+databaseHost=$(awk -F= '$1 == "DB_HOST" {print $2}' .env)
+databasePort=$(awk -F= '$1 == "DB_PORT" {print $2}' .env)
+
+./docker/wait-for-it.sh $databaseHost:$databasePort -t 90 -- php artisan migrate --force
 
 supervisord -n -c docker/supervisord.conf
 
