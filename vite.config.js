@@ -14,6 +14,7 @@ export default defineConfig({
             'resources/assets/sass/app.scss',
             'resources/assets/css/tailwind.css',
             'resources/assets/js/app.js',
+            'resources/assets/js/prototype/app.js',
         ]),
         vue(),
     ],
