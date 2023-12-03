@@ -7,7 +7,7 @@ import Navigation from '../../components/Navigation.vue';
 const router = getCurrentInstance().proxy.$router;
 
 const type = ref('earning');
-const happened_on = ref('2023-11-02');
+const happened_on = ref(new Date().toJSON().slice(0, 10));
 const description = ref('');
 const amount = ref(10.00);
 
