@@ -6,14 +6,26 @@ import Navigation from '../../components/Navigation.vue';
 
 const router = getCurrentInstance().proxy.$router;
 
+const tags = ref([]);
+
 const type = ref('earning');
+const tagId = ref(null);
 const happened_on = ref(new Date().toJSON().slice(0, 10));
 const description = ref('');
 const amount = ref(10.00);
 
+const fetchTags = () => {
+    fetch('/api/tags', { headers: { 'api-key': localStorage.getItem('api_key') } })
+        .then(response => response.json())
+        .then(data => {
+            tags.value = data;
+        });
+};
+
 const create = () => {
     axios.post('/api/transactions', {
         type: type.value,
+        tag_id: tagId.value,
         happened_on: happened_on.value,
         description: description.value,
         amount: amount.value,
@@ -29,6 +41,8 @@ const create = () => {
             alert('Something went wrong');
         });
 };
+
+fetchTags();
 </script>
 
 <template>
@@ -42,7 +56,10 @@ const create = () => {
                 </div>
                 <div v-if="type === 'spending'">
                     <label class="mb-2 block text-sm dark:text-white">Tag</label>
-                    <input class="w-full px-3.5 py-2.5 text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg" type="text" value="Coming soon" disabled />
+                    <select class="w-full px-3.5 py-2.5 text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg appearance-none" v-model="tagId">
+                        <option :value="null">-</option>
+                        <option v-for="tag in tags" :key="tag.id" :value="tag.id">{{ tag.name }}</option>
+                    </select>
                 </div>
                 <div>
                     <label class="mb-2 block text-sm dark:text-white">Date</label>

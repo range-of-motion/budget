@@ -37,7 +37,7 @@ class TransactionController extends Controller
 
         $request->validate([
             'type' => ['required', 'in:earning,spending'],
-            // 'tag_id' => ['nullable', 'exists:tags,id'], // TODO CHECK IF TAG BELONGS TO USER
+            'tag_id' => ['nullable', 'exists:tags,id'], // TODO: CHECK IF TAG BELONGS TO USER
             'happened_on' => ['required', 'date', 'date_format:Y-m-d'],
             'description' => ['required', 'max:255'],
             'amount' => ['required', 'regex:/^\d*(\.\d{1,2})?$/'],
@@ -58,7 +58,7 @@ class TransactionController extends Controller
                 'space_id' => $spaceId,
                 'import_id' => null, // TODO
                 'recurring_id' => null, // TODO
-                'tag_id' => null, // TODO
+                'tag_id' => $request->input('tag_id'),
                 'happened_on' => $request->input('happened_on'),
                 'description' => $request->input('description'),
                 'amount' => (int) ($request->input('amount') * 100),
