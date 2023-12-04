@@ -11,5 +11,8 @@
     <body class="bg-gray-50 dark:bg-gray-900">
         <div id="app"></div>
         @vite('resources/assets/js/prototype/app.js')
+        <script>
+            window.versionNumber = '{{ $versionNumber }}';
+        </script>
     </body>
 </html>
