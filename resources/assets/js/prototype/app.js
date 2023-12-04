@@ -9,6 +9,8 @@ import TransactionsIndex from './screens/Transactions/Index.vue';
 import TransactionsCreate from './screens/Transactions/Create.vue';
 import SettingsPreferences from './screens/Settings/Preferences.vue';
 
+Vue.prototype.versionNumber = window.versionNumber;
+
 Vue.use(VueRouter);
 
 const routes = [
