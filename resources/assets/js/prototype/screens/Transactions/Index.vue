@@ -49,11 +49,15 @@ const getMonthName = (month) => {
 };
 
 const getTransactionsBySpan = (span) => {
-    return transactions.value.filter(transaction => {
-        const happenedOn = new Date(transaction.happened_on);
+    return transactions.value
+        .filter(transaction => {
+            const happenedOn = new Date(transaction.happened_on);
 
-        return happenedOn.getMonth() + 1 === span.month && happenedOn.getFullYear() === span.year;
-    });
+            return happenedOn.getMonth() + 1 === span.month && happenedOn.getFullYear() === span.year;
+        })
+        .sort((a, b) => {
+            return b.id - a.id;
+        });
 };
 
 const fetchTransactions = () => {
