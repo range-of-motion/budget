@@ -10,9 +10,11 @@ const tags = ref([]);
 
 const type = ref('earning');
 const tagId = ref(null);
-const happened_on = ref(new Date().toJSON().slice(0, 10));
+const happenedOn = ref(new Date().toJSON().slice(0, 10));
 const description = ref('');
 const amount = ref(10.00);
+const isRecurring = ref(false);
+const recurringInterval = ref('monthly');
 
 const fetchTags = () => {
     fetch('/api/tags', { headers: { 'api-key': localStorage.getItem('api_key') } })
@@ -23,23 +25,45 @@ const fetchTags = () => {
 };
 
 const create = () => {
-    axios.post('/api/transactions', {
-        type: type.value,
-        tag_id: tagId.value,
-        happened_on: happened_on.value,
-        description: description.value,
-        amount: amount.value,
-    }, {
-        headers: {
-            'api-key': localStorage.getItem('api_key'),
-        },
-    })
-        .then(() => {
-            router.push({ name: 'transactions.index' });
+    if (isRecurring.value === true) {
+        axios.post('/api/recurrings', {
+            type: type.value,
+            interval: recurringInterval.value,
+            day: happenedOn.value.split('-')[2],
+            start: happenedOn.value,
+            tag_id: tagId.value,
+            description: description.value,
+            amount: amount.value,
+        }, {
+            headers: {
+                'api-key': localStorage.getItem('api_key'),
+            },
         })
-        .catch(() => {
-            alert('Something went wrong');
-        });
+            .then(() => {
+                router.push({ name: 'transactions.index' });
+            })
+            .catch(() => {
+                alert('Something went wrong');
+            });
+    } else {
+        axios.post('/api/transactions', {
+            type: type.value,
+            tag_id: tagId.value,
+            happened_on: happenedOn.value,
+            description: description.value,
+            amount: amount.value,
+        }, {
+            headers: {
+                'api-key': localStorage.getItem('api_key'),
+            },
+        })
+            .then(() => {
+                router.push({ name: 'transactions.index' });
+            })
+            .catch(() => {
+                alert('Something went wrong');
+            });
+    }
 };
 
 fetchTags();
@@ -63,7 +87,7 @@ fetchTags();
                 </div>
                 <div>
                     <label class="mb-2 block text-sm dark:text-white">Date</label>
-                    <input class="w-full px-3.5 py-2.5 text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg" type="text" v-model="happened_on" />
+                    <input class="w-full px-3.5 py-2.5 text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg" type="text" v-model="happenedOn" />
                 </div>
                 <div>
                     <label class="mb-2 block text-sm dark:text-white">Description</label>
@@ -72,6 +96,17 @@ fetchTags();
                 <div>
                     <label class="mb-2 block text-sm dark:text-white">Amount</label>
                     <input class="w-full px-3.5 py-2.5 text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg" type="text" v-model="amount" />
+                </div>
+                <div class="flex space-x-2">
+                    <button class="mt-0.5 w-5 h-5 border rounded-md" :class="{ 'bg-gray-900 border-none': isRecurring }" @click="isRecurring = !isRecurring"></button>
+                    <button class="flex-1 text-left text-sm dark:text-white" @click="isRecurring = !isRecurring">This is a recurring transaction—create it for me in the future</button>
+                </div>
+                <div v-if="isRecurring" class="flex flex-wrap gap-2">
+                    <button class="px-3 py-2 text-sm border border-gray-200 rounded-lg" :class="{ 'bg-gray-100': recurringInterval === 'yearly' }" @click="recurringInterval = 'yearly'">Yearly</button>
+                    <button class="px-3 py-2 text-sm border border-gray-200 rounded-lg" :class="{ 'bg-gray-100': recurringInterval === 'monthly' }" @click="recurringInterval = 'monthly'">Monthly</button>
+                    <button class="px-3 py-2 text-sm border border-gray-200 rounded-lg" :class="{ 'bg-gray-100': recurringInterval === 'biweekly' }" @click="recurringInterval = 'biweekly'">Biweekly</button>
+                    <button class="px-3 py-2 text-sm border border-gray-200 rounded-lg" :class="{ 'bg-gray-100': recurringInterval === 'weekly' }" @click="recurringInterval = 'weekly'">Weekly</button>
+                    <button class="px-3 py-2 text-sm border border-gray-200 rounded-lg" :class="{ 'bg-gray-100': recurringInterval === 'daily' }" @click="recurringInterval = 'daily'">Daily</button>
                 </div>
                 <button class="w-full py-3 text-sm text-white bg-gray-900 dark:bg-gray-950 rounded-lg" @click="create()">Create</button>
             </div>
