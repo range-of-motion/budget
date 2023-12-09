@@ -1,5 +1,5 @@
 <script setup>
-import { ArrowRightLeft, Home, LogOut, PlusCircle, Settings2 } from 'lucide-vue';
+import { ArrowRightLeft, Home, LogOut, PlusCircle, RotateCcw, Settings2 } from 'lucide-vue';
 import { getCurrentInstance } from 'vue';
 
 const router = getCurrentInstance().proxy.$router;
@@ -27,6 +27,9 @@ const logOut = () => {
             <div class="flex items-center space-x-4">
                 <router-link class="flex py-1 px-3 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white" :to="{ name: 'transactions.create' }">
                     <PlusCircle :size="20" :strokeWidth="1.6" />
+                </router-link>
+                <router-link class="flex py-1 px-3 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white" :to="{ name: 'activities' }">
+                    <RotateCcw :size="16" />
                 </router-link>
                 <router-link class="flex py-1 px-3 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white" :to="{ name: 'settings.preferences' }">
                     <Settings2 :size="16" />

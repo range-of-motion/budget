@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\LogInController;
 use App\Http\Controllers\Api\RecurringController;
 use App\Http\Controllers\Api\SettingsController;
@@ -19,6 +20,8 @@ Route::middleware('resolve-api-key')
 
         Route::resource('tags', TagController::class)
             ->only(['index']);
+
+        Route::get('/activities', ActivitiesController::class);
 
         Route::resource('settings', SettingsController::class)
             ->only(['index', 'store']);
