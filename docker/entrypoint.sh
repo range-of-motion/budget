@@ -8,8 +8,8 @@ fi
 
 php artisan config:cache
 
-databaseHost=$(awk -F= '$1 == "DB_HOST" {print $2}' .env)
-databasePort=$(awk -F= '$1 == "DB_PORT" {print $2}' .env)
+databaseHost=$(php artisan tinker --execute="echo config('database.connections.mysql.host')")
+databasePort=$(php artisan tinker --execute="echo config('database.connections.mysql.port')")
 
 ./docker/wait-for-it.sh $databaseHost:$databasePort -t 90 -- php artisan migrate --force
 
