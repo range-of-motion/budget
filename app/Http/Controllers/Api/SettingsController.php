@@ -17,6 +17,7 @@ class SettingsController extends Controller
             ->json([
                 'language' => $apiKey->user->language,
                 'theme' => $apiKey->user->theme,
+                'weekly_report' => $apiKey->user->weekly_report,
             ]);
     }
 
@@ -25,6 +26,7 @@ class SettingsController extends Controller
         $request->validate([
             'language' => 'nullable|string|in:en,nl,dk,de,fr,pt,ru',
             'theme' => 'nullable|string|in:light,dark',
+            'weekly_report' => 'nullable|boolean',
         ]);
 
         /** @var ApiKey $apiKey */
@@ -38,10 +40,15 @@ class SettingsController extends Controller
             $apiKey->user()->update(['theme' => $request->get('theme')]);
         }
 
+        if ($request->has('weekly_report')) {
+            $apiKey->user()->update(['weekly_report' => $request->get('weekly_report')]);
+        }
+
         return response()
             ->json([
                 'language' => $apiKey->user->language,
                 'theme' => $apiKey->user->theme,
+                'weekly_report' => $apiKey->user->weekly_report,
             ]);
     }
 }

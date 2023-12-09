@@ -6,6 +6,7 @@ import Navigation from '../../components/Navigation.vue';
 
 const language = ref('en');
 const theme = ref('light');
+const weeklyReport = ref(false);
 
 const retrieve = () => {
     axios
@@ -13,12 +14,19 @@ const retrieve = () => {
         .then(response => {
             language.value = response.data.language;
             theme.value = response.data.theme;
+            weeklyReport.value = response.data.weekly_report;
         });
+};
+
+const toggleWeeklyReport = () => {
+    weeklyReport.value = !weeklyReport.value;
+
+    update();
 };
 
 const update = () => {
     axios
-        .post('/api/settings', { language: language.value, theme: theme.value }, { headers: { 'api-key': localStorage.getItem('api_key') } })
+        .post('/api/settings', { language: language.value, theme: theme.value, weekly_report: weeklyReport.value }, { headers: { 'api-key': localStorage.getItem('api_key') } })
         .then(response => {
             // Done
 
@@ -59,6 +67,12 @@ onMounted(() => retrieve());
                             <option value="light">Light</option>
                             <option value="dark">Dark</option>
                         </select>
+                    </div>
+                    <div>
+                        <div class="mb-2 text-sm dark:text-white">Weekly report</div>
+                        <button class="relative flex w-9 h-6 bg-gray-200 rounded-full" :class="{ 'bg-gray-900': weeklyReport }" @click="toggleWeeklyReport()">
+                            <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full" :class="{ 'left-auto right-0.5': weeklyReport }"></span>
+                        </button>
                     </div>
                 </div>
             </div>
