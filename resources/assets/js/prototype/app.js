@@ -7,6 +7,7 @@ import Login from './screens/Login.vue';
 import Dashboard from './screens/Dashboard.vue';
 import TransactionsIndex from './screens/Transactions/Index.vue';
 import TransactionsCreate from './screens/Transactions/Create.vue';
+import Activities from './screens/Activities.vue';
 import SettingsPreferences from './screens/Settings/Preferences.vue';
 
 Vue.prototype.versionNumber = window.versionNumber;
@@ -30,6 +31,10 @@ const routes = [
         path: '/prototype/transactions/create',
         name: 'transactions.create',
         component: TransactionsCreate,
+    }, {
+        path: '/prototype/activities',
+        name: 'activities',
+        component: Activities,
     }, {
         path: '/prototype/settings/preferences',
         name: 'settings.preferences',
