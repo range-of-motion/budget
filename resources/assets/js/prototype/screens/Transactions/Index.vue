@@ -56,7 +56,7 @@ const getTransactionsBySpan = (span) => {
             return happenedOn.getMonth() + 1 === span.month && happenedOn.getFullYear() === span.year;
         })
         .sort((a, b) => {
-            return b.happened_on - a.happened_on;
+            return new Date(b.happened_on) - new Date(a.happened_on);
         });
 };
 
