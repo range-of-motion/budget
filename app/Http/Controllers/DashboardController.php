@@ -35,7 +35,11 @@ class DashboardController extends Controller
             'mostExpensiveTags' => $mostExpensiveTags,
 
             'daysInMonth' => $daysInMonth,
-            'dailyBalance' => $this->dashboardRepository->getDailyBalance($currentYear, $currentMonth)
+            'dailyBalance' => $this->dashboardRepository->getDailyBalance(
+                session('space_id'),
+                $currentYear,
+                $currentMonth,
+            )
         ]);
     }
 }

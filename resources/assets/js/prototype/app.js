@@ -1,3 +1,4 @@
+import ApexCharts from 'apexcharts';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -9,6 +10,8 @@ import TransactionsIndex from './screens/Transactions/Index.vue';
 import TransactionsCreate from './screens/Transactions/Create.vue';
 import Activities from './screens/Activities.vue';
 import SettingsPreferences from './screens/Settings/Preferences.vue';
+
+window.ApexCharts = ApexCharts;
 
 Vue.prototype.versionNumber = window.versionNumber;
 

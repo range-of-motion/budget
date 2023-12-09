@@ -19,6 +19,7 @@
         "vue-loader": "^17.2.2"
     },
     "dependencies": {
+        "apexcharts": "^3.44.2",
         "axios": "^1.6.0",
         "lucide-vue": "^0.292.0",
         "vue-color": "^2.7.0",
