@@ -1,5 +1,5 @@
 <script setup>
-import { Construction } from "lucide-vue";
+import { onMounted } from 'vue';
 
 import Navigation from '../components/Navigation.vue';
 
@@ -14,15 +14,85 @@ const getTimeSensitiveGreeting = () => {
         return 'Good evening';
     }
 };
+
+const fetchChartData = () => {
+    fetch('/api/dashboard', { headers: { 'api-key': localStorage.getItem('api_key') } })
+        .then(response => response.json())
+        .then(data => {
+            const options = {
+                chart: {
+                    type: 'line',
+
+                    toolbar: {
+                        show: false,
+                    },
+
+                    animations: {
+                        enabled: false,
+                    },
+                },
+
+                series: [
+                    {
+                        name: 'Balance',
+                        data: Object.values(data.daily_balance),
+                    },
+                ],
+
+                stroke: {
+                    width: 2,
+                    colors: ['#000'],
+                },
+
+                tooltip: {
+                    enabled: false,
+                },
+
+                grid: {
+                    padding: {
+                        top: -10,
+                        bottom: -10,
+                    },
+                },
+
+                xaxis: {
+                    show: false,
+
+                    labels: {
+                        show: false
+                    },
+
+                    axisBorder: {
+                        show: false
+                    },
+
+                    axisTicks: {
+                        show: false
+                    }
+                }
+            };
+
+            const chart = new ApexCharts(document.querySelector("#chart"), options);
+
+            chart.render();
+        });
+};
+
+onMounted(() => {
+    fetchChartData();
+});
 </script>
 
 <template>
     <div>
         <Navigation />
         <div class="my-10 mx-auto max-w-3xl">
-            <div class="flex flex-col items-center text-gray-400">
-                <Construction :size="32" :strokeWidth="1.5" />
-                <div class="mt-2 text-center text-sm">{{ getTimeSensitiveGreeting() }} and<br /> welcome to the prototype.</div>
+            <div class="mb-5">
+                <div class="font-medium">{{ getTimeSensitiveGreeting() }}</div>
+                <div class="mt-1 text-sm text-gray-500">Here is your balance throughout the month</div>
+            </div>
+            <div class="p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+                <div id="chart"></div>
             </div>
         </div>
     </div>

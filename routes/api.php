@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ActivitiesController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\LogInController;
 use App\Http\Controllers\Api\RecurringController;
 use App\Http\Controllers\Api\SettingsController;
@@ -12,6 +13,8 @@ Route::post('/log-in', LogInController::class);
 
 Route::middleware('resolve-api-key')
     ->group(function () {
+        Route::get('/dashboard', DashboardController::class);
+
         Route::resource('transactions', TransactionController::class)
             ->only(['index', 'store']);
 

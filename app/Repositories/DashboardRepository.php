@@ -35,7 +35,7 @@ class DashboardRepository
             ->sum('amount');
     }
 
-    public function getDailyBalance(string $year, string $month): array
+    public function getDailyBalance(int $spaceId, string $year, string $month): array
     {
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
@@ -43,11 +43,11 @@ class DashboardRepository
         $dailyBalance = [];
 
         for ($i = 1; $i <= $daysInMonth; $i++) {
-            $balanceTick -= Spending::ofSpace(session('space_id'))
+            $balanceTick -= Spending::ofSpace($spaceId)
                 ->where('happened_on', $year . '-' . $month . '-' . $i)
                 ->sum('amount');
 
-            $balanceTick += Earning::ofSpace(session('space_id'))
+            $balanceTick += Earning::ofSpace($spaceId)
                 ->where('happened_on', $year . '-' . $month . '-' . $i)
                 ->sum('amount');
 
