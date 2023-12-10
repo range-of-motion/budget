@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api;
 
+use App\Models\Activity;
 use App\Models\ApiKey;
 use App\Models\Earning;
 use App\Models\Space;
@@ -44,6 +45,16 @@ class TransactionControllerTest extends TestCase
                 'happened_on' => '2021-01-01',
                 'description' => 'Helping grandma',
                 'amount' => 1050,
+            ],
+        );
+
+        $this->assertDatabaseHas(
+            Activity::class,
+            [
+                'space_id' => $space->id,
+                'user_id' => $user->id,
+                'entity_type' => 'earning', // TODO: create enum
+                'action' => 'transaction.created', // TODO: also create enum
             ],
         );
     }

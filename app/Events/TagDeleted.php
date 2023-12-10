@@ -21,6 +21,8 @@ class TagDeleted
 
         if (Auth::check()) {
             $userId = Auth::user()->id;
+        } elseif (request()->get('apiKey')) {
+            $userId = request()->get('apiKey')->user_id;
         }
 
         Activity::create([
