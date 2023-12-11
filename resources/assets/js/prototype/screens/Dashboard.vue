@@ -1,7 +1,10 @@
 <script setup>
+import colors from 'tailwindcss/colors';
 import { onMounted } from 'vue';
 
 import Navigation from '../components/Navigation.vue';
+
+const isDarkMode = document.querySelector('html').classList.contains('dark');
 
 const getTimeSensitiveGreeting = () => {
     const hour = new Date().getHours();
@@ -40,8 +43,8 @@ const fetchChartData = () => {
                 ],
 
                 stroke: {
+                    colors: [isDarkMode ? colors.white : colors.black],
                     width: 2,
-                    colors: ['#000'],
                 },
 
                 tooltip: {
@@ -49,6 +52,8 @@ const fetchChartData = () => {
                 },
 
                 grid: {
+                    borderColor: isDarkMode ? colors.gray[700] : null,
+
                     padding: {
                         top: -10,
                         bottom: -10,
@@ -69,7 +74,15 @@ const fetchChartData = () => {
                     axisTicks: {
                         show: false
                     }
-                }
+                },
+
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: [isDarkMode ? colors.gray[400] : null],
+                        },
+                    },
+                },
             };
 
             const chart = new ApexCharts(document.querySelector("#chart"), options);
@@ -88,8 +101,8 @@ onMounted(() => {
         <Navigation />
         <div class="my-10 mx-auto max-w-3xl">
             <div class="mb-5">
-                <div class="font-medium">{{ getTimeSensitiveGreeting() }}</div>
-                <div class="mt-1 text-sm text-gray-500">Here is your balance throughout the month</div>
+                <div class="font-medium dark:text-white">{{ getTimeSensitiveGreeting() }}</div>
+                <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">Here is your balance throughout the month</div>
             </div>
             <div class="p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
                 <div id="chart"></div>
