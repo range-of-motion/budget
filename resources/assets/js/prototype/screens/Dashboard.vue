@@ -7,11 +7,11 @@ const getTimeSensitiveGreeting = () => {
     const hour = new Date().getHours();
 
     if (hour < 12) {
-        return 'Good morning';
+        return 'goodMorning';
     } else if (hour < 18) {
-        return 'Good afternoon';
+        return 'goodAfternoon';
     } else {
-        return 'Good evening';
+        return 'goodEvening';
     }
 };
 
@@ -88,8 +88,8 @@ onMounted(() => {
         <Navigation />
         <div class="my-10 mx-auto max-w-3xl">
             <div class="mb-5">
-                <div class="font-medium">{{ getTimeSensitiveGreeting() }}</div>
-                <div class="mt-1 text-sm text-gray-500">Here is your balance throughout the month</div>
+                <div class="font-medium">{{ $t(getTimeSensitiveGreeting()) }}</div>
+                <div class="mt-1 text-sm text-gray-500">{{ $t('dailyBalanceGraphDescription') }}</div>
             </div>
             <div class="p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
                 <div id="chart"></div>

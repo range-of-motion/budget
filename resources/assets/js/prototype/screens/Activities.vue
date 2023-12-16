@@ -27,7 +27,7 @@ fetchActivities();
                             <div class="absolute -left-2.5 w-5 h-5 bg-gray-100 border border-gray-300 ring-8 ring-white rounded-full"></div>
                             <div class="pl-5">
                                 <div class="-mt-px text-sm">
-                                    <span>{{ activity.user ? activity.user.name : 'Budget' }} {{ activity.action.split('.')[1] }} {{ activity.action.split('.')[0] }} #{{ activity.entity_id }}</span>
+                                    <span>{{ activity.user ? activity.user.name : 'Budget' }} {{ $t('activities.' + activity.action, { id: activity.entity_id }) }}</span>
                                 </div>
                                 <div class="mt-1 text-xs text-gray-500">{{ new Date(activity.occurred_at).toJSON().split('T')[0] }}</div>
                             </div>
