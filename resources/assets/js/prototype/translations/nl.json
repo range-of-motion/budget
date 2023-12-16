@@ -1,0 +1,59 @@
+{
+    "amount": "Bedrag",
+    "create": "Creëer",
+    "dailyBalanceGraphDescription": "Dit is je balans gedurende deze maand",
+    "dashboard": "Dashboard",
+    "date": "Datum",
+    "description": "Omschrijving",
+    "earning": "Inkomst",
+    "earningDescriptionPlaceholder": "Salaris Februari",
+    "email": "E-mail",
+    "goodAfternoon": "Goedemiddag",
+    "goodEvening": "Goedenavond",
+    "goodMorning": "Goedemorgen",
+    "language": "Taal",
+    "logIn": "Log in",
+    "password": "Wachtwoord",
+    "recurringDescription": "Dit is een terugkerende transactie–maak deze in de toekomst voor mij aan",
+    "spending": "Uitgave",
+    "spendingDescriptionPlaceholder": "Verjaardagscadeau voor Angela",
+    "tag": "Etiket",
+    "theme": "Thema",
+    "transactions": "Transacties",
+    "weeklyReport": "Wekelijks rapport",
+
+    "activities": {
+        "tag": {
+            "created": "heeft tag #{id} gemaakt",
+            "deleted": "heeft tag #{id} verwijderd"
+        },
+
+        "transaction": {
+            "created": "heeft transactie #{id} gemaakt",
+            "deleted": "heeft transactie #{id} verwijderd"
+        }
+    },
+
+    "intervals": {
+        "daily": "Dagelijks",
+        "weekly": "Wekelijks",
+        "biweekly": "Tweewekelijks",
+        "monthly": "Maandelijks",
+        "yearly": "Jaarlijks"
+    },
+
+    "months": {
+        "january": "Januari",
+        "february": "Februari",
+        "march": "Maart",
+        "april": "April",
+        "may": "Mei",
+        "june": "Juni",
+        "july": "Juli",
+        "august": "Augustus",
+        "september": "September",
+        "october": "Oktober",
+        "november": "November",
+        "december": "December"
+    }
+}

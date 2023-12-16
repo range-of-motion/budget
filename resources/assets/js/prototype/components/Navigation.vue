@@ -17,11 +17,11 @@ const logOut = () => {
             <div class="flex space-x-4">
                 <router-link class="flex items-center py-1 px-3 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white" :to="{ name: 'dashboard' }">
                     <Home :size="16" />
-                    <span class="ml-2 text-sm">Dashboard</span>
+                    <span class="ml-2 text-sm">{{ $t('dashboard') }}</span>
                 </router-link>
                 <router-link class="flex items-center py-1 px-3 text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white" :to="{ name: 'transactions.index' }">
                     <ArrowRightLeft :size="16" />
-                    <span class="ml-2 text-sm">Transactions</span>
+                    <span class="ml-2 text-sm">{{ $t('transactions') }}</span>
                 </router-link>
             </div>
             <div class="flex items-center space-x-4">

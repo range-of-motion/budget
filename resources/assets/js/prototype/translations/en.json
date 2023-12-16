@@ -1,0 +1,59 @@
+{
+    "amount": "Amount",
+    "create": "Create",
+    "dailyBalanceGraphDescription": "Here is your balance throughout the month",
+    "dashboard": "Dashboard",
+    "date": "Date",
+    "description": "Description",
+    "earning": "Earning",
+    "earningDescriptionPlaceholder": "Paycheck February",
+    "email": "E-mail",
+    "goodAfternoon": "Good afternoon",
+    "goodEvening": "Good evening",
+    "goodMorning": "Good morning",
+    "language": "Language",
+    "logIn": "Log in",
+    "password": "Password",
+    "recurringDescription": "This is a recurring transaction—create it for me in the future",
+    "spending": "Spending",
+    "spendingDescriptionPlaceholder": "Birthday present for Angela",
+    "tag": "Tag",
+    "theme": "Theme",
+    "transactions": "Transactions",
+    "weeklyReport": "Weekly report",
+
+    "activities": {
+        "tag": {
+            "created": "created tag #{id}",
+            "deleted": "deleted tag #{id}"
+        },
+
+        "transaction": {
+            "created": "created transaction #{id}",
+            "deleted": "deleted transaction #{id}"
+        }
+    },
+
+    "intervals": {
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "biweekly": "Biweekly",
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+    },
+
+    "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+    }
+}

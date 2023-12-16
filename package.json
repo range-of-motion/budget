@@ -23,6 +23,7 @@
         "axios": "^1.6.0",
         "lucide-vue": "^0.292.0",
         "vue-color": "^2.7.0",
+        "vue-i18n": "^8.28.2",
         "vue-router": "3"
     }
 }

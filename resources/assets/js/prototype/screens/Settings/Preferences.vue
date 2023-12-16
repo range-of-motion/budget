@@ -30,10 +30,10 @@ const update = () => {
         .then(response => {
             // Done
 
+            localStorage.setItem('language', response.data.language);
             localStorage.setItem('theme', response.data.theme);
 
-            const e = new Event('themeChanged');
-            document.dispatchEvent(e);
+            document.dispatchEvent(new Event('settingsChanged'));
         })
         .catch(() => {
             alert('Unable to save');
@@ -50,7 +50,7 @@ onMounted(() => retrieve());
             <div class="p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
                 <div class="space-y-5 max-w-xs">
                     <div>
-                        <div class="mb-2 text-sm dark:text-white">Language</div>
+                        <div class="mb-2 text-sm dark:text-white">{{ $t('language') }}</div>
                         <select class="px-3.5 py-2.5 w-full text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg appearance-none" v-model="language" @change="update">
                             <option value="en">English</option>
                             <option value="nl">Dutch</option>
@@ -62,14 +62,14 @@ onMounted(() => retrieve());
                         </select>
                     </div>
                     <div>
-                        <div class="mb-2 text-sm dark:text-white">Theme</div>
+                        <div class="mb-2 text-sm dark:text-white">{{ $t('theme') }}</div>
                         <select class="px-3.5 py-2.5 w-full text-sm dark:text-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg appearance-none" v-model="theme" @change="update">
                             <option value="light">Light</option>
                             <option value="dark">Dark</option>
                         </select>
                     </div>
                     <div>
-                        <div class="mb-2 text-sm dark:text-white">Weekly report</div>
+                        <div class="mb-2 text-sm dark:text-white">{{ $t('weeklyReport') }}</div>
                         <button class="relative flex w-9 h-6 bg-gray-200 rounded-full" :class="{ 'bg-gray-900': weeklyReport }" @click="toggleWeeklyReport()">
                             <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full" :class="{ 'left-auto right-0.5': weeklyReport }"></span>
                         </button>

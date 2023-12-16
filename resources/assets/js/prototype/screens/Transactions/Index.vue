@@ -31,18 +31,18 @@ const spans = computed(() => {
 
 const getMonthName = (month) => {
     const months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december',
     ];
 
     return months[month - 1];
@@ -79,7 +79,7 @@ onMounted(() => {
         <div class="max-w-3xl mx-auto my-10 space-y-10">
             <div v-for="span in spans" class="flex">
                 <div class="w-48">
-                    <div class="font-medium dark:text-white">{{ getMonthName(span.month) }}</div>
+                    <div class="font-medium dark:text-white">{{ $t('months.' + getMonthName(span.month)) }}</div>
                     <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ span.year }}</div>
                 </div>
                 <div class="flex-1">
