@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ActivitiesController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\ImportController;
 use App\Http\Controllers\Api\LogInController;
 use App\Http\Controllers\Api\RecurringController;
 use App\Http\Controllers\Api\SettingsController;
@@ -25,6 +26,9 @@ Route::middleware('resolve-api-key')
             ->only(['index']);
 
         Route::get('/activities', ActivitiesController::class);
+
+        Route::resource('imports', ImportController::class)
+            ->only(['index']);
 
         Route::resource('settings', SettingsController::class)
             ->only(['index', 'store']);

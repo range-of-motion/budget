@@ -11,6 +11,7 @@ import Login from './screens/Login.vue';
 import Dashboard from './screens/Dashboard.vue';
 import TransactionsIndex from './screens/Transactions/Index.vue';
 import TransactionsCreate from './screens/Transactions/Create.vue';
+import ImportsIndex from './screens/Imports/Index.vue';
 import Activities from './screens/Activities.vue';
 import SettingsPreferences from './screens/Settings/Preferences.vue';
 
@@ -39,6 +40,10 @@ const routes = [
         path: '/prototype/transactions/create',
         name: 'transactions.create',
         component: TransactionsCreate,
+    }, {
+        path: '/prototype/imports',
+        name: 'imports.index',
+        component: ImportsIndex,
     }, {
         path: '/prototype/activities',
         name: 'activities',
