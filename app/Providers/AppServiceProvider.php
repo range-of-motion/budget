@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Helper;
 use App\Models\Space;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
@@ -24,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
                 'userName' => Auth::check() ? Auth::user()->name : null,
                 'currency' => $selectedSpace ? $selectedSpace->currency->symbol : '-',
                 'selectedSpace' => $selectedSpace,
-                'arePlansEnabled' => Helper::arePlansEnabled(),
                 'suggestionBoxEnabled' => env('SUGGESTION_BOX_ENABLED', false),
                 'versionNumber' => $versionNumber
             ]);

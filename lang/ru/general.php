@@ -18,7 +18,6 @@ return [
     'profile' => 'Профиль',
     'account' => 'Учетная запись',
     'preferences' => 'Предпочтения',
-    'billing' => 'Биллинг',
 
     'general' => 'Общее',
     'members' => 'Члены',

@@ -2,11 +2,9 @@
 
 namespace App\Console;
 
-use App\Helper;
 use App\Jobs\FetchConversionRates;
 use App\Jobs\ProcessRecurrings;
 use App\Jobs\SendWeeklyReports;
-use App\Jobs\SyncStripeSubscriptions;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -29,11 +27,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new SyncStripeSubscriptions())->everyMinute()->when(function () {
-            return Helper::arePlansEnabled();
-        });
-
-        // Daily
         $schedule->job(new ProcessRecurrings())->daily();
         $schedule->job(new FetchConversionRates())->daily();
 

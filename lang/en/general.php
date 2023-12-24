@@ -18,7 +18,6 @@ return [
     'profile' => 'Profile',
     'account' => 'Account',
     'preferences' => 'Preferences',
-    'billing' => 'Billing',
 
     'general' => 'General',
     'members' => 'Members',
