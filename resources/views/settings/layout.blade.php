@@ -11,9 +11,6 @@
                         <li><a href="{{ route('settings.account') }}"><i class="fas fa-lock fa-sm"></i> {{ __('general.account') }}</a></li>
                         <li><a href="{{ route('settings.preferences') }}"><i class="fas fa-sliders-h fa-sm"></i> {{ __('general.preferences') }}</a></li>
                         <li><a href="{{ route('settings.dashboard') }}"><i class="fas fa-home fa-sm"></i> {{ __('general.dashboard') }}</a></li>
-                        @if ($arePlansEnabled)
-                            <li><a href="{{ route('settings.billing') }}"><i class="fas fa-wallet fa-sm"></i> {{ __('general.billing') }}</a></li>
-                        @endif
                         <li><a href="{{ route('settings.spaces.index') }}"><i class="fas fa-rocket fa-sm"></i> {{ __('models.spaces') }}</a></li>
                     </ul>
                 </div>

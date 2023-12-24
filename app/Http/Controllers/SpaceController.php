@@ -31,12 +31,6 @@ class SpaceController extends Controller
             'currency_id' => 'required|exists:currencies,id'
         ]);
 
-        if (!$request->user()->can('create', Space::class)) {
-            $request->session()->flash('maximum_reached', true);
-
-            return redirect()->route('spaces.create');
-        }
-
         (new CreateSpaceAction())->execute($request->name, $request->currency_id, Auth::id());
 
         return redirect()->route('settings.spaces.index');
