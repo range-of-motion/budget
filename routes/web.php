@@ -5,7 +5,6 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EarningController;
-use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
@@ -122,8 +121,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/spaces/{space}/invites/{invite}/accept', [SpaceInviteController::class, 'accept'])->name('accept');
         Route::post('/spaces/{space}/invites/{invite}/deny', [SpaceInviteController::class, 'deny'])->name('deny');
     });
-
-    Route::resource('/ideas', IdeaController::class)->only(['create', 'store']);
 
     Route::get('/translations', TranslationsController::class);
 });

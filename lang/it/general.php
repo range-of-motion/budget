@@ -29,7 +29,6 @@ return [
 
     'verify_account' => 'Devi ancora verificare l\'account&mdash;controlla la tua e-mail',
     'spaces_explanation' => 'Gli spazi possono essere usati per separare le finanze. Per esempio puoi creare uno spazio per le tue finanze personali e uno per la tua attività professionale.',
-    'got_a_suggestion' => 'Ho un suggerimento',
 
     'invite' => 'Invito',
     'invited_to' => 'Sei stato inviato in',
