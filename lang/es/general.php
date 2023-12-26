@@ -29,7 +29,6 @@ return [
 
     'verify_account' => 'Aún necesitas confirmar tu cuenta&mdash;por favor, comprueba tu correo electrónico',
     'spaces_explanation' => 'Los espacios pueden usarse para separar tus finanzas en Budget. Por ejemplo—tú puedes tener un espacio para tus gastos personales y otro para tus gastos laborales',
-    'got_a_suggestion' => 'Recibir una sugerencia',
 
     'invite' => 'Invitar',
     'invited_to' => 'Tú has invitado a',

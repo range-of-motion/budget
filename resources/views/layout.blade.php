@@ -150,13 +150,7 @@
             @endif
             @yield('body')
             @if (auth()->check())
-                <div class="text-center mb-3">
-                    @if ($suggestionBoxEnabled)
-                        <a class="fs-sm" href="{{ route('ideas.create') }}">{{ __('general.got_a_suggestion') }}?</a> &middot; {{ $versionNumber }}
-                    @else
-                        {{ $versionNumber }}
-                    @endif
-                </div>
+                <div class="text-center mb-3">{{ $versionNumber }}</div>
             @endif
         </div>
         @vite('resources/assets/js/app.js')
