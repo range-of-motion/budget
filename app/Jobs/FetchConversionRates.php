@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Repositories\CurrencyRepository;
+use App\Models\Currency;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -16,13 +16,9 @@ class FetchConversionRates implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    private $currencyRepository;
-
-    public function handle(CurrencyRepository $currencyRepository): void
+    public function handle(): void
     {
-        $this->currencyRepository = $currencyRepository;
-
-        foreach ($this->currencyRepository->getAll() as $currency) {
+        foreach (Currency::query()->get() as $currency) {
             FetchConversionRate::dispatch($currency->id);
         }
     }
