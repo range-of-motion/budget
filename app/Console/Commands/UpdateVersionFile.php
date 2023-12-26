@@ -4,18 +4,18 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+/**
+ * Ignoring this command from code coverage as it is dependent on whether Git is
+ * installed or not, which can vary from machine to machine.
+ *
+ * @codeCoverageIgnore
+ */
 class UpdateVersionFile extends Command
 {
     protected $signature = 'app:update-version-file';
 
     protected $description = 'Updates the version in version.txt';
 
-    /**
-     * Ignoring this command from code coverage as it is dependent on whether Git is
-     * installed or not, which can vary from machine to machine.
-     *
-     * @codeCoverageIgnore
-     */
     public function handle(): int
     {
         if (trim(shell_exec('git rev-parse --is-inside-work-tree')) !== 'true') {

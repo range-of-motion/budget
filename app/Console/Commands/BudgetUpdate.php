@@ -5,15 +5,17 @@ namespace App\Console\Commands;
 use Exception;
 use Illuminate\Console\Command;
 
+/**
+ * Ignoring this command from code coverage as it is dependent on binaries
+ * that may or may not be installed on the machine.
+ *
+ * @codeCoverageIgnore
+ */
 class BudgetUpdate extends Command
 {
     protected $signature = 'budget:update';
-    protected $description = 'Update the application to the latest version';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Update the application to the latest version';
 
     private function doesBinaryExist(string $name): bool
     {

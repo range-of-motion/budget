@@ -6,15 +6,17 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
+/**
+ * Ignoring this command from code coverage as it is dependent on binaries
+ * that may or may not be installed on the machine.
+ *
+ * @codeCoverageIgnore
+ */
 class BudgetInstall extends Command
 {
     protected $signature = 'budget:install';
-    protected $description = 'Runs most of the commands needed to make Budget work';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Runs most of the commands needed to make Budget work';
 
     private function executeCommand($command): string
     {
