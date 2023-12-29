@@ -12,7 +12,7 @@ class ResetPassword extends Mailable
     use SerializesModels;
 
     public function __construct(
-        protected $token
+        protected $token,
     ) {
         //
     }

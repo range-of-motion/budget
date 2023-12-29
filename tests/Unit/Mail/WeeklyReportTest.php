@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Unit\Mail;
+namespace Tests\Unit\Mail;
 
 use App\Mail\WeeklyReport;
 use App\Models\Space;
