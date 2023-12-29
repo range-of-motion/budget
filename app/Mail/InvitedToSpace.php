@@ -12,11 +12,10 @@ class InvitedToSpace extends Mailable
     use Queueable;
     use SerializesModels;
 
-    protected $invite;
-
-    public function __construct(SpaceInvite $invite)
-    {
-        $this->invite = $invite;
+    public function __construct(
+        protected SpaceInvite $invite,
+    ) {
+        //
     }
 
     public function build()
