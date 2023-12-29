@@ -12,11 +12,10 @@ class VerifyRegistration extends Mailable
     use Queueable;
     use SerializesModels;
 
-    protected $user;
-
-    public function __construct(User $user)
-    {
-        $this->user = $user;
+    public function __construct(
+        protected User $user,
+    ) {
+        //
     }
 
     public function build()

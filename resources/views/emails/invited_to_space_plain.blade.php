@@ -1,4 +1,4 @@
-{{ $invite->inviter->name }} has invited you to "{{ $invite->space->name }}"
+{{ $invite->inviter->name }} has invited you to "{{ $invite->space->name }}".
 
 Use the link below to check out your invite.
 

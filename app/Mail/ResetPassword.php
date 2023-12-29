@@ -11,11 +11,10 @@ class ResetPassword extends Mailable
     use Queueable;
     use SerializesModels;
 
-    protected $token;
-
-    public function __construct($token)
-    {
-        $this->token = $token;
+    public function __construct(
+        protected $token,
+    ) {
+        //
     }
 
     public function build()
