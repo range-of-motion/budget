@@ -6,25 +6,22 @@ use App\Actions\CreateUserAction;
 use App\Actions\StoreSpaceInSessionAction;
 use App\Actions\SendVerificationMailAction;
 use App\Models\Currency;
+use App\Models\LoginAttempt;
 use App\Models\User;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
-use App\Repositories\LoginAttemptRepository;
 use App\Repositories\SpaceRepository;
 use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
     private $spaceRepository;
-    private $loginAttemptRepository;
 
     public function __construct(
         SpaceRepository $spaceRepository,
-        LoginAttemptRepository $loginAttemptRepository
     ) {
         $this->spaceRepository = $spaceRepository;
-        $this->loginAttemptRepository = $loginAttemptRepository;
     }
 
     public function index()
@@ -54,7 +51,12 @@ class RegisterController extends Controller
 
         Auth::loginUsingId($user->id);
 
-        $this->loginAttemptRepository->create($user->id, $request->ip(), false);
+        LoginAttempt::query()
+            ->create([
+                'user_id' => $user->id,
+                'ip' => $request->ip(),
+                'failed' => false,
+            ]);
 
         (new StoreSpaceInSessionAction())->execute($user->spaces[0]->id);
 
