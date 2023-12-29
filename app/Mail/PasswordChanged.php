@@ -11,11 +11,10 @@ class PasswordChanged extends Mailable
     use Queueable;
     use SerializesModels;
 
-    protected $updated_at;
-
-    public function __construct($updated_at)
-    {
-        $this->updated_at = $updated_at;
+    public function __construct(
+        protected $updated_at,
+    ) {
+        //
     }
 
     public function build()
