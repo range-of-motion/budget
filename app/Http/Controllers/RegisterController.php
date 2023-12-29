@@ -7,23 +7,15 @@ use App\Actions\StoreSpaceInSessionAction;
 use App\Actions\SendVerificationMailAction;
 use App\Models\Currency;
 use App\Models\LoginAttempt;
+use App\Models\Space;
 use App\Models\User;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
-use App\Repositories\SpaceRepository;
 use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    private $spaceRepository;
-
-    public function __construct(
-        SpaceRepository $spaceRepository,
-    ) {
-        $this->spaceRepository = $spaceRepository;
-    }
-
     public function index()
     {
         if (config('app.disable_registration')) {
@@ -44,7 +36,13 @@ class RegisterController extends Controller
         $request->validate(User::getValidationRulesForRegistration());
 
         $user = (new CreateUserAction())->execute($request->name, $request->email, $request->password);
-        $space = $this->spaceRepository->create($request->currency, $user->name . '\'s Space');
+
+        $space = Space::query()
+            ->create([
+                'currency_id' => $request->currency,
+                'name' => $user->name . '\'s Space',
+            ]);
+
         $user->spaces()->attach($space->id, ['role' => 'admin']);
 
         (new SendVerificationMailAction())->execute($user->id);
