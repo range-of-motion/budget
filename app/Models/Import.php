@@ -31,10 +31,4 @@ class Import extends Model
     {
         return $this->hasMany(Spending::class);
     }
-
-    // Scopes
-    public function scopeOfSpace($query, $spaceId)
-    {
-        return $query->where('space_id', $spaceId);
-    }
 }

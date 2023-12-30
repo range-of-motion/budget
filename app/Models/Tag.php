@@ -41,10 +41,4 @@ class Tag extends Model
     {
         return self::randomColorPart() . self::randomColorPart() . self::randomColorPart();
     }
-
-    // Scopes
-    public function scopeOfSpace($query, $spaceId)
-    {
-        return $query->where('space_id', $spaceId);
-    }
 }

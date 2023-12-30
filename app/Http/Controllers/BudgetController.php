@@ -30,7 +30,10 @@ class BudgetController extends Controller
 
     public function create()
     {
-        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
+        $tags = Tag::query()
+            ->where('space_id', session('space_id'))
+            ->latest()
+            ->get();
 
         return view('budgets.create', ['tags' => $tags]);
     }

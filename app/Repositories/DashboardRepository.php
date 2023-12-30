@@ -30,7 +30,8 @@ class DashboardRepository
     // TODO MOVE TO SPENDINGREPOSITORY IN FUTURE
     public function getTotalAmountSpent(string $year, string $month)
     {
-        return Spending::ofSpace(session('space_id'))
+        return Spending::query()
+            ->where('space_id', session('space_id'))
             ->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [$year, $month])
             ->sum('amount');
     }
@@ -43,11 +44,13 @@ class DashboardRepository
         $dailyBalance = [];
 
         for ($i = 1; $i <= $daysInMonth; $i++) {
-            $balanceTick -= Spending::ofSpace($spaceId)
+            $balanceTick -= Spending::query()
+                ->where('space_id', $spaceId)
                 ->where('happened_on', $year . '-' . $month . '-' . $i)
                 ->sum('amount');
 
-            $balanceTick += Earning::ofSpace($spaceId)
+            $balanceTick += Earning::query()
+                ->where('space_id', $spaceId)
                 ->where('happened_on', $year . '-' . $month . '-' . $i)
                 ->sum('amount');
 

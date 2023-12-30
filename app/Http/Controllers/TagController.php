@@ -17,7 +17,10 @@ class TagController extends Controller
 
     public function index()
     {
-        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
+        $tags = Tag::query()
+            ->where('space_id', session('space_id'))
+            ->latest()
+            ->get();
 
         return view('tags.index', ['tags' => $tags]);
     }

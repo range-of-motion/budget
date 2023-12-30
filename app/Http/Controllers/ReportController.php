@@ -33,7 +33,7 @@ class ReportController extends Controller
 
     private function mostExpensiveTags()
     {
-        $totalSpent = Spending::ofSpace(session('space_id'))->sum('amount');
+        $totalSpent = Spending::query()->where('space_id', session('space_id'))->sum('amount');
         $mostExpensiveTags = $this->tagRepository->getMostExpensiveTags(session('space_id'));
 
         return view('reports.most_expensive_tags', compact('totalSpent', 'mostExpensiveTags'));

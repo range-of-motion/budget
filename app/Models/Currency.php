@@ -21,10 +21,4 @@ class Currency extends Model
     {
         return Attribute::make(fn () => strtolower($this->iso));
     }
-
-    // Scopes
-    public function scopeOfSpace($query, $spaceId)
-    {
-        return $query->where('space_id', $spaceId);
-    }
 }
