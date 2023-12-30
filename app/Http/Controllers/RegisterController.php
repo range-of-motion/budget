@@ -6,27 +6,16 @@ use App\Actions\CreateUserAction;
 use App\Actions\StoreSpaceInSessionAction;
 use App\Actions\SendVerificationMailAction;
 use App\Models\Currency;
+use App\Models\LoginAttempt;
+use App\Models\Space;
 use App\Models\User;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\Controller;
 
-use App\Repositories\LoginAttemptRepository;
-use App\Repositories\SpaceRepository;
 use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    private $spaceRepository;
-    private $loginAttemptRepository;
-
-    public function __construct(
-        SpaceRepository $spaceRepository,
-        LoginAttemptRepository $loginAttemptRepository
-    ) {
-        $this->spaceRepository = $spaceRepository;
-        $this->loginAttemptRepository = $loginAttemptRepository;
-    }
-
     public function index()
     {
         if (config('app.disable_registration')) {
@@ -47,14 +36,25 @@ class RegisterController extends Controller
         $request->validate(User::getValidationRulesForRegistration());
 
         $user = (new CreateUserAction())->execute($request->name, $request->email, $request->password);
-        $space = $this->spaceRepository->create($request->currency, $user->name . '\'s Space');
+
+        $space = Space::query()
+            ->create([
+                'currency_id' => $request->currency,
+                'name' => $user->name . '\'s Space',
+            ]);
+
         $user->spaces()->attach($space->id, ['role' => 'admin']);
 
         (new SendVerificationMailAction())->execute($user->id);
 
         Auth::loginUsingId($user->id);
 
-        $this->loginAttemptRepository->create($user->id, $request->ip(), false);
+        LoginAttempt::query()
+            ->create([
+                'user_id' => $user->id,
+                'ip' => $request->ip(),
+                'failed' => false,
+            ]);
 
         (new StoreSpaceInSessionAction())->execute($user->spaces[0]->id);
 

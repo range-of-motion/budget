@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\Currency;
 use App\Repositories\ConversionRateRepository;
-use App\Repositories\CurrencyRepository;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
@@ -19,24 +19,19 @@ class FetchConversionRate implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    protected $baseCurrencyId;
-
-    private $currencyRepository;
     private $conversionRateRepository;
 
-    public function __construct(int $baseCurrencyId)
+    public function __construct(protected int $baseCurrencyId)
     {
-        $this->baseCurrencyId = $baseCurrencyId;
+        //
     }
 
-    public function handle(
-        CurrencyRepository $currencyRepository,
-        ConversionRateRepository $conversionRateRepository
-    ): void {
-        $this->currencyRepository = $currencyRepository;
+    public function handle(ConversionRateRepository $conversionRateRepository): void
+    {
         $this->conversionRateRepository = $conversionRateRepository;
 
-        $baseCurrency = $this->currencyRepository->getById($this->baseCurrencyId);
+        /** @var Currency $baseCurrency */
+        $baseCurrency = Currency::query()->find($this->baseCurrencyId);
 
         if (!$baseCurrency || !$baseCurrency->iso) {
             return;
@@ -44,7 +39,7 @@ class FetchConversionRate implements ShouldQueue
 
         $client = new Client();
 
-        foreach ($this->currencyRepository->getAll() as $targetCurrency) {
+        foreach (Currency::query()->get() as $targetCurrency) {
             if (!$targetCurrency->iso || $baseCurrency->iso === $targetCurrency->iso) {
                 continue;
             }

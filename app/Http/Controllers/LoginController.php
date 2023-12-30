@@ -3,20 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Actions\StoreSpaceInSessionAction;
+use App\Models\LoginAttempt;
 use App\Models\User;
-use App\Repositories\LoginAttemptRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    private $loginAttemptRepository;
-
-    public function __construct(LoginAttemptRepository $loginAttemptRepository)
-    {
-        $this->loginAttemptRepository = $loginAttemptRepository;
-    }
-
     public function index()
     {
         return view('login');
@@ -32,7 +25,12 @@ class LoginController extends Controller
         ) {
             $user = Auth::user();
 
-            $this->loginAttemptRepository->create($user->id, $request->ip(), false);
+            LoginAttempt::query()
+                ->create([
+                    'user_id' => $user->id,
+                    'ip' => $request->ip(),
+                    'failed' => false,
+                ]);
 
             (new StoreSpaceInSessionAction())->execute($user->spaces[0]->id);
 
@@ -41,7 +39,12 @@ class LoginController extends Controller
             if ($request->input('email')) {
                 $user = User::where('email', $request->input('email'))->first();
 
-                $this->loginAttemptRepository->create($user ? $user->id : null, $request->ip(), true);
+                LoginAttempt::query()
+                    ->create([
+                        'user_id' => $user ? $user->id : null,
+                        'ip' => $request->ip(),
+                        'failed' => true,
+                    ]);
             }
 
             $request->flash();

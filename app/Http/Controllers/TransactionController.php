@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use App\Models\Space;
 use App\Models\Tag;
-use App\Repositories\CurrencyRepository;
 use App\Repositories\RecurringRepository;
 use App\Repositories\TransactionRepository;
 use Illuminate\Http\Request;
@@ -12,16 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    private $currencyRepository;
     private $recurringRepository;
 
     public function __construct(
         TransactionRepository $transactionRepository,
-        CurrencyRepository $currencyRepository,
         RecurringRepository $recurringRepository
     ) {
         $this->repository = $transactionRepository;
-        $this->currencyRepository = $currencyRepository;
         $this->recurringRepository = $recurringRepository;
     }
 
@@ -50,9 +47,18 @@ class TransactionController extends Controller
             ];
         }
 
+        $spaceCurrencyId = Space::find(session('space_id'))->currency_id;
+
+        $currencies = Currency::select('currencies.*')
+            ->leftJoin('conversion_rates AS cr', 'cr.base_currency_id', '=', 'currencies.id')
+            ->where('cr.target_currency_id', $spaceCurrencyId)
+            ->orWhere('currencies.id', $spaceCurrencyId)
+            ->groupBy('currencies.id')
+            ->get();
+
         return view('transactions.create', [
             'tags' => $tags,
-            'currencies' => $this->currencyRepository->getIfConversionRatePresent(),
+            'currencies' => $currencies,
             'defaultTransactionType' => Auth::user()->default_transaction_type,
             'firstDayOfWeek' => Auth::user()->first_day_of_week,
             'defaultCurrencyId' => Space::find(session('space_id'))->currency_id,
