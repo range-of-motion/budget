@@ -25,7 +25,10 @@ class SpendingController extends Controller
 
     public function create()
     {
-        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
+        $tags = Tag::query()
+            ->where('space_id', session('space_id'))
+            ->latest()
+            ->get();
 
         return view('spendings.create', ['tags' => $tags]);
     }
@@ -71,7 +74,10 @@ class SpendingController extends Controller
     {
         $this->authorize('edit', $spending);
 
-        $tags = Tag::ofSpace(session('space_id'))->latest()->get();
+        $tags = Tag::query()
+            ->where('space_id', session('space_id'))
+            ->latest()
+            ->get();
 
         return view('spendings.edit', compact('tags', 'spending'));
     }

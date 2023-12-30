@@ -22,7 +22,8 @@ class Spent
         $currencySymbol = $space->currency->symbol;
 
         if ($this->properties->period === 'today') {
-            $spent = Spending::ofSpace(session('space_id'))
+            $spent = Spending::query()
+                ->where('space_id', session('space_id'))
                 ->whereRaw('DATE(happened_on) = ?', [date('Y-m-d')])
                 ->sum('amount');
         }
@@ -31,13 +32,15 @@ class Spent
             $monday = date('Y-m-d', strtotime('monday this week'));
             $sunday = date('Y-m-d', strtotime('sunday this week'));
 
-            $spent = Spending::ofSpace(session('space_id'))
+            $spent = Spending::query()
+                ->where('space_id', session('space_id'))
                 ->whereRaw('DATE(happened_on) >= ? AND DATE(happened_ON) <= ?', [$monday, $sunday])
                 ->sum('amount');
         }
 
         if ($this->properties->period === 'this_month') {
-            $spent = Spending::ofSpace(session('space_id'))
+            $spent = Spending::query()
+                ->where('space_id', session('space_id'))
                 ->whereRaw('YEAR(happened_on) = ? AND MONTH(happened_on) = ?', [date('Y'), date('n')])
                 ->sum('amount');
         }

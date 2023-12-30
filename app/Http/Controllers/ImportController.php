@@ -21,7 +21,7 @@ class ImportController extends Controller
     public function index()
     {
         return view('imports.index')->with([
-            'imports' => Import::ofSpace(session('space_id'))->latest()->get()
+            'imports' => Import::query()->where('space_id', session('space_id'))->latest()->get()
         ]);
     }
 
@@ -97,7 +97,9 @@ class ImportController extends Controller
     {
         $this->authorize('modify', $import);
 
-        $tags = Tag::ofSpace(session('space_id'))->get();
+        $tags = Tag::query()
+            ->where('space_id', session('space_id'))
+            ->get();
 
         $file = fopen(storage_path('app/imports/' . $import->file), 'r');
 

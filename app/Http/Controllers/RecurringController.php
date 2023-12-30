@@ -20,7 +20,10 @@ class RecurringController extends Controller
 
     public function index()
     {
-        $recurrings = Recurring::ofSpace(session('space_id'))->latest()->get();
+        $recurrings = Recurring::query()
+            ->where('space_id', session('space_id'))
+            ->latest()
+            ->get();
 
         return view('recurrings.index', ['recurrings' => $recurrings]);
     }
@@ -36,7 +39,7 @@ class RecurringController extends Controller
     {
         $tags = [];
 
-        foreach (Tag::ofSpace(session('space_id'))->get() as $tag) {
+        foreach (Tag::query()->where('space_id', session('space_id'))->get() as $tag) {
             $tags[] = ['key' => $tag->id, 'label' => $tag->name];
         }
 

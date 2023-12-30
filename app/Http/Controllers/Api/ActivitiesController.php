@@ -14,7 +14,9 @@ class ActivitiesController extends Controller
         /** @var ApiKey $apiKey */
         $apiKey = $request->get('apiKey');
 
-        $activities = Activity::ofSpace($apiKey->user->spaces()->first()->id)->get();
+        $activities = Activity::query()
+            ->where('space_id', $apiKey->user->spaces()->first()->id)
+            ->get();
 
         return ActivityResource::collection($activities);
     }

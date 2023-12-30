@@ -21,11 +21,13 @@ class TransactionRepository
         }
 
         for ($i = 1; $i <= 53; $i++) { // This used to be 52, IDK what happens after we moved it to 53
-            $balance += Earning::ofSpace(session('space_id'))
+            $balance += Earning::query()
+                ->where('space_id', session('space_id'))
                 ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
                 ->sum('amount');
 
-            $balance -= Spending::ofSpace(session('space_id'))
+            $balance -= Spending::query()
+                ->where('space_id', session('space_id'))
                 ->whereRaw('YEAR(happened_on) = ? AND WEEK(happened_on, ?) = ?', [$year, $weekMode, $i])
                 ->sum('amount');
 
@@ -40,7 +42,7 @@ class TransactionRepository
         $yearMonths = [];
 
         // Populate yearMonths with earnings
-        foreach (Earning::ofSpace(session('space_id'))->get() as $earning) {
+        foreach (Earning::query()->where('space_id', session('space_id'))->get() as $earning) {
             $shouldAdd = false;
 
             if (!$filterBy) {
@@ -59,7 +61,7 @@ class TransactionRepository
         }
 
         // Populate yearMonths with spendings
-        foreach (Spending::ofSpace(session('space_id'))->get() as $spending) {
+        foreach (Spending::query()->where('space_id', session('space_id'))->get() as $spending) {
             $shouldAdd = true;
 
             // Filter
