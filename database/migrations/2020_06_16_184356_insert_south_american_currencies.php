@@ -35,7 +35,11 @@ class InsertSouthAmericanCurrencies extends Migration
             ], [
                 'name' => 'Venezuelan Bolivar',
                 'symbol' => 'VES'
+            ], [
+                'name' => 'New Mexican Peso',
+                'symbol' => 'MXN'
             ]
+                                    
         ]);
     }
 
