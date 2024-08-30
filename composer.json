@@ -10,7 +10,7 @@
         "doctrine/dbal": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.4",
-        "laravel/dusk": "^7.0",
+        "laravel/dusk": "^8.2",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.3",
