@@ -73,7 +73,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.2'
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -89,7 +89,7 @@ jobs:
         run: php artisan migrate --database=testing
       - name: Run Dusk
         run: |
-          php artisan dusk:chrome-driver $(google-chrome -version | awk '{ print $3 }' | cut -d . -f 1)
-          nohup bash -c './vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &'
-          nohup bash -c 'php artisan serve > /dev/null 2>&1 &'
+          php artisan dusk:chrome-driver --detect
+          ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
+          php artisan serve --no-reload &
           php artisan dusk
