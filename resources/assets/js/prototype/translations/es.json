@@ -1,0 +1,59 @@
+{
+    "amount": "Importe",
+    "create": "Crear",
+    "dailyBalanceGraphDescription": "Este es tu saldo a lo largo del mes",
+    "dashboard": "Dashboard",
+    "date": "Fecha",
+    "description": "Descripción",
+    "earning": "Ingreso",
+    "earningDescriptionPlaceholder": "Sueldo de febrero",
+    "email": "Correo",
+    "goodAfternoon": "Buenas tardes",
+    "goodEvening": "Buenas noches",
+    "goodMorning": "Buenos días",
+    "language": "Idioma",
+    "logIn": "Iniciar sesión",
+    "password": "Contraseña",
+    "recurringDescription": "Esta es una transacción recurrente—créala para el futuro",
+    "spending": "Gasto",
+    "spendingDescriptionPlaceholder": "Regalo de cumpleaños para Angela",
+    "tag": "Etiqueta",
+    "theme": "Tema",
+    "transactions": "Transacciones",
+    "weeklyReport": "Informe semanal",
+
+    "activities": {
+        "tag": {
+            "created": "creó la etiqueta #{id}",
+            "deleted": "eliminó la etiqueta #{id}"
+        },
+
+        "transaction": {
+            "created": "creó la transacción #{id}",
+            "deleted": "eliminó la transacción #{id}"
+        }
+    },
+
+    "intervals": {
+        "daily": "Diario",
+        "weekly": "Semanal",
+        "biweekly": "Quincenal",
+        "monthly": "Mensual",
+        "yearly": "Anual"
+    },
+
+    "months": {
+        "january": "Enero",
+        "february": "Febrero",
+        "march": "Marzo",
+        "april": "Abril",
+        "may": "Mayo",
+        "june": "Junio",
+        "july": "Julio",
+        "august": "Agosto",
+        "september": "Septiembre",
+        "october": "Octubre",
+        "november": "Noviembre",
+        "december": "Diciembre"
+    }
+}

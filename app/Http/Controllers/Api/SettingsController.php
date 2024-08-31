@@ -24,7 +24,7 @@ class SettingsController extends Controller
     public function store(Request $request): JsonResponse
     {
         $request->validate([
-            'language' => 'nullable|string|in:en,nl,dk,de,fr,pt,ru',
+            'language' => 'nullable|string|in:en,nl,dk,de,fr,es,pt,ru',
             'theme' => 'nullable|string|in:light,dark',
             'weekly_report' => 'nullable|boolean',
         ]);
