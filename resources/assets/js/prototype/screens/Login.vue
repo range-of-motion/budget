@@ -1,11 +1,12 @@
 <script setup>
 import axios from 'axios';
-import { Loader2 } from 'lucide-vue';
-import { getCurrentInstance, ref } from 'vue';
+import { XCircle, Loader2 } from 'lucide-vue';
+import { getCurrentInstance, ref, watch } from 'vue';
 
 const router = getCurrentInstance().proxy.$router;
 
 const isBusy = ref(false);
+const showError = ref(false);
 const email = ref('');
 const password = ref('');
 
@@ -29,18 +30,24 @@ const logIn = () => {
 
             if (json.error) {
                 isBusy.value = false;
+                showError.value = true;
                 password.value = '';
-
-                alert('Unable to log in');
             }
         })
         .catch(() => {
             isBusy.value = false;
+            showError.value = true;
             password.value = '';
-
-            alert('Unable to log in');
         });
 };
+
+watch(showError, value => {
+    if (value === true) {
+        setTimeout(() => {
+            showError.value = false;
+        }, 5000);
+    }
+});
 </script>
 
 <template>
@@ -63,6 +70,12 @@ const logIn = () => {
                 </button>
             </div>
             <div class="mt-5 text-sm text-center dark:text-white">{{ versionNumber }}</div>
+        </div>
+        <div v-if="showError" class="absolute top-0 left-0 right-0 flex">
+            <div class="mt-10 mx-auto py-3 px-5 flex bg-white border border-gray-200 rounded-lg shadow-sm">
+                <XCircle class="text-red-600" :size="20" />
+                <div class="ml-3 text-sm">Unable to log in</div>
+            </div>
         </div>
     </div>
 </template>
