@@ -50,9 +50,8 @@ class FetchConversionRate implements ShouldQueue
             }
 
             $url = sprintf(
-                'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/%s/%s.json',
+                'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/%s.json',
                 $baseCurrency->iso_lowercased,
-                $targetCurrency->iso_lowercased,
             );
 
             try {
@@ -60,7 +59,7 @@ class FetchConversionRate implements ShouldQueue
 
                 $decoded_response = json_decode($response->getBody(), true);
 
-                $rate = $decoded_response[$targetCurrency->iso_lowercased];
+                $rate = $decoded_response[$baseCurrency->iso_lowercased][$targetCurrency->iso_lowercased];
             } catch (Exception $e) {
                 continue;
             }
