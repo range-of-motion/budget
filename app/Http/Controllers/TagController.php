@@ -8,11 +8,8 @@ use App\Repositories\TagRepository;
 
 class TagController extends Controller
 {
-    private $tagRepository;
-
-    public function __construct(TagRepository $tagRepository)
+    public function __construct(private readonly TagRepository $tagRepository)
     {
-        $this->tagRepository = $tagRepository;
     }
 
     public function index()

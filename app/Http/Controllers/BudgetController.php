@@ -12,13 +12,8 @@ use Illuminate\Validation\ValidationException;
 
 class BudgetController extends Controller
 {
-    private $budgetRepository;
-    private $tagRepository;
-
-    public function __construct(BudgetRepository $budgetRepository, TagRepository $tagRepository)
+    public function __construct(private readonly BudgetRepository $budgetRepository, private readonly TagRepository $tagRepository)
     {
-        $this->budgetRepository = $budgetRepository;
-        $this->tagRepository = $tagRepository;
     }
 
     public function index()

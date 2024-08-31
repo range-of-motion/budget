@@ -60,7 +60,7 @@ class FetchConversionRate implements ShouldQueue
                 $decoded_response = json_decode($response->getBody(), true);
 
                 $rate = $decoded_response[$baseCurrency->iso_lowercased][$targetCurrency->iso_lowercased];
-            } catch (Exception $e) {
+            } catch (Exception) {
                 continue;
             }
 

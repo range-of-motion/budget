@@ -11,11 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class ImportController extends Controller
 {
-    private $spendingRepository;
-
-    public function __construct(SpendingRepository $spendingRepository)
+    public function __construct(private readonly SpendingRepository $spendingRepository)
     {
-        $this->spendingRepository = $spendingRepository;
     }
 
     public function index()

@@ -10,11 +10,8 @@ use Illuminate\Support\Str;
 
 class AttachmentController extends Controller
 {
-    private $attachmentRepository;
-
-    public function __construct(AttachmentRepository $attachmentRepository)
+    public function __construct(private readonly AttachmentRepository $attachmentRepository)
     {
-        $this->attachmentRepository = $attachmentRepository;
     }
 
     public function store(Request $request)

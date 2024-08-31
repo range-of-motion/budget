@@ -39,7 +39,7 @@ class Widget extends Model
          */
 
         return Attribute::make(
-            get: fn ($value) => json_decode($value),
+            get: fn ($value) => json_decode((string) $value),
             set: fn ($value) => json_encode($value, JSON_FORCE_OBJECT),
         );
     }

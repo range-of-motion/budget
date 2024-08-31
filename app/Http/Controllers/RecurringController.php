@@ -11,11 +11,8 @@ use App\Repositories\RecurringRepository;
 
 class RecurringController extends Controller
 {
-    private $recurringRepository;
-
-    public function __construct(RecurringRepository $recurringRepository)
+    public function __construct(private readonly RecurringRepository $recurringRepository)
     {
-        $this->recurringRepository = $recurringRepository;
     }
 
     public function index()
@@ -54,7 +51,7 @@ class RecurringController extends Controller
             session('space_id'),
             $request->type,
             $request->interval,
-            (int) ltrim($request->input('day'), 0),
+            (int) ltrim((string) $request->input('day'), 0),
             $request->start,
             $request->input('end', null),
             $request->input('tag', null),

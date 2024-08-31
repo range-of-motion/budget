@@ -51,9 +51,7 @@ class Recurring extends Model
 
     protected function status(): Attribute
     {
-        return Attribute::make(function () {
-            return $this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on);
-        });
+        return Attribute::make(fn() => $this->starts_on <= date('Y-m-d') && ($this->ends_on >= date('Y-m-d') || !$this->ends_on));
     }
 
     // Relations

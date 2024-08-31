@@ -95,11 +95,11 @@ class SpaceController extends Controller
                 $authenticatedUser->id,
                 $request->role
             );
-        } catch (SpaceInviteInviteeAlreadyPresentException $e) {
+        } catch (SpaceInviteInviteeAlreadyPresentException) {
             return redirect()
                 ->route('spaces.edit', ['space' => $space->id])
                 ->with('inviteStatus', 'present');
-        } catch (SpaceInviteAlreadyExistsException $e) {
+        } catch (SpaceInviteAlreadyExistsException) {
             return redirect()
                 ->route('spaces.edit', ['space' => $space->id])
                 ->with('inviteStatus', 'exists');
