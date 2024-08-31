@@ -8,13 +8,8 @@ use App\Repositories\DashboardRepository;
 
 class DashboardController extends Controller
 {
-    private $dashboardRepository;
-    private $tagRepository;
-
-    public function __construct(DashboardRepository $dashboardRepository, TagRepository $tagRepository)
+    public function __construct(private readonly DashboardRepository $dashboardRepository, private readonly TagRepository $tagRepository)
     {
-        $this->dashboardRepository = $dashboardRepository;
-        $this->tagRepository = $tagRepository;
     }
 
     public function __invoke(Request $request)

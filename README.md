@@ -24,7 +24,7 @@ You can use Budget by hosting it yourself, or using [the instance hosted by us](
 
 ## Requirements
 
-* PHP 8.1 or higher
+* PHP 8.2 or higher
 * HTTP server (for example Apache or NGINX)
 * MySQL
 * Composer

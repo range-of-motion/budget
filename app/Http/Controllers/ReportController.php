@@ -9,13 +9,8 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    private $transactionRepository;
-    private $tagRepository;
-
-    public function __construct(TransactionRepository $transactionRepository, TagRepository $tagRepository)
+    public function __construct(private readonly TransactionRepository $transactionRepository, private readonly TagRepository $tagRepository)
     {
-        $this->transactionRepository = $transactionRepository;
-        $this->tagRepository = $tagRepository;
     }
 
     public function index()

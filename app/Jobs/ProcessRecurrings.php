@@ -83,22 +83,22 @@ class ProcessRecurrings implements ShouldQueue
 
                 switch ($recurring->interval) {
                     case 'daily':
-                        $cursorDate = date('Y-m-d', strtotime('+1 day', strtotime($cursorDate)));
+                        $cursorDate = date('Y-m-d', strtotime('+1 day', strtotime((string) $cursorDate)));
                         break;
 
                     case 'weekly':
-                        $cursorDate = date('Y-m-d', strtotime('+1 week', strtotime($cursorDate)));
+                        $cursorDate = date('Y-m-d', strtotime('+1 week', strtotime((string) $cursorDate)));
                         break;
 
                     case 'biweekly':
-                        $cursorDate = date('Y-m-d', strtotime('+2 weeks', strtotime($cursorDate)));
+                        $cursorDate = date('Y-m-d', strtotime('+2 weeks', strtotime((string) $cursorDate)));
                         break;
 
                     // Monthly is a different story, because of the different lengths of the months
                     // See below
 
                     case 'yearly':
-                        $cursorDate = date('Y-m-d', strtotime('+1 year', strtotime($cursorDate)));
+                        $cursorDate = date('Y-m-d', strtotime('+1 year', strtotime((string) $cursorDate)));
                         break;
                 }
 
@@ -115,8 +115,8 @@ class ProcessRecurrings implements ShouldQueue
                  * Hence why this next piece of code exists :shrug:
                  */
                 if ($recurring->interval === 'monthly') {
-                    $year = date('Y', strtotime($cursorDate));
-                    $month = date('n', strtotime($cursorDate));
+                    $year = date('Y', strtotime((string) $cursorDate));
+                    $month = date('n', strtotime((string) $cursorDate));
                     $day = date('j', strtotime($startingDate));
 
                     $month++;
@@ -147,12 +147,12 @@ class ProcessRecurrings implements ShouldQueue
                 if ($recurring->type === 'spending') {
                     $this->spendingRepository->create(
                         $recurring->space_id,
-                        null,
                         $recurring->id,
                         $recurring->tag_id,
                         $occuranceDate,
                         $recurring->description,
-                        $amount
+                        $amount,
+                        null
                     );
                 }
 

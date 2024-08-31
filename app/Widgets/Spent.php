@@ -8,11 +8,8 @@ use App\Models\Spending;
 
 class Spent
 {
-    private $properties;
-
-    public function __construct(object $properties)
+    public function __construct(private readonly object $properties)
     {
-        $this->properties = $properties;
     }
 
     public function render()

@@ -11,15 +11,8 @@ use App\Repositories\EarningRepository;
 
 class EarningController extends Controller
 {
-    private $earningRepository;
-    private $conversionRateRepository;
-
-    public function __construct(
-        EarningRepository $earningRepository,
-        ConversionRateRepository $conversionRateRepository
-    ) {
-        $this->earningRepository = $earningRepository;
-        $this->conversionRateRepository = $conversionRateRepository;
+    public function __construct(private readonly EarningRepository $earningRepository, private readonly ConversionRateRepository $conversionRateRepository)
+    {
     }
 
     public function show(Request $request, Earning $earning)

@@ -12,11 +12,8 @@ use Illuminate\Support\Str;
 
 class ResetPasswordController extends Controller
 {
-    private $passwordResetRepository;
-
-    public function __construct(PasswordResetRepository $passwordResetRepository)
+    public function __construct(private readonly PasswordResetRepository $passwordResetRepository)
     {
-        $this->passwordResetRepository = $passwordResetRepository;
     }
 
     public function get(Request $request)

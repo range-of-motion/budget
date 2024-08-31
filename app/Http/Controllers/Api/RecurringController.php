@@ -33,7 +33,7 @@ class RecurringController extends Controller
             'space_id' => $space->id,
             'type' => $request->input('type'),
             'interval' => $request->input('interval'),
-            'day' => (int) ltrim($request->input('day'), 0),
+            'day' => (int) ltrim((string) $request->input('day'), 0),
             'starts_on' => $request->input('start'),
             'ends_on' => $request->input('end'),
             'tag_id' => $request->input('tag_id'),

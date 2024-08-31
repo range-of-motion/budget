@@ -12,15 +12,8 @@ use Illuminate\Http\Request;
 
 class SpendingController extends Controller
 {
-    private $spendingRepository;
-    private $conversionRateRepository;
-
-    public function __construct(
-        SpendingRepository $spendingRepository,
-        ConversionRateRepository $conversionRateRepository
-    ) {
-        $this->spendingRepository = $spendingRepository;
-        $this->conversionRateRepository = $conversionRateRepository;
+    public function __construct(private readonly SpendingRepository $spendingRepository, private readonly ConversionRateRepository $conversionRateRepository)
+    {
     }
 
     public function create()
@@ -59,7 +52,6 @@ class SpendingController extends Controller
 
         $this->spendingRepository->create(
             session('space_id'),
-            null,
             null,
             $request->input('tag_id'),
             $request->input('date'),

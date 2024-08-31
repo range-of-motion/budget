@@ -10,11 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    private $loginAttemptRepository;
-
-    public function __construct(LoginAttemptRepository $loginAttemptRepository)
+    public function __construct(private readonly LoginAttemptRepository $loginAttemptRepository)
     {
-        $this->loginAttemptRepository = $loginAttemptRepository;
     }
 
     public function index()

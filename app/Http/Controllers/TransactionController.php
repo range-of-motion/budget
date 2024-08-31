@@ -12,17 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    private $currencyRepository;
-    private $recurringRepository;
-
     public function __construct(
         TransactionRepository $transactionRepository,
-        CurrencyRepository $currencyRepository,
-        RecurringRepository $recurringRepository
+        private readonly CurrencyRepository $currencyRepository,
+        private readonly RecurringRepository $recurringRepository
     ) {
         $this->repository = $transactionRepository;
-        $this->currencyRepository = $currencyRepository;
-        $this->recurringRepository = $recurringRepository;
     }
 
     public function index(Request $request)
@@ -30,7 +25,7 @@ class TransactionController extends Controller
         $filterBy = [];
 
         if ($request->get('filterBy')) {
-            $filterBy = explode('-', $request->get('filterBy'));
+            $filterBy = explode('-', (string) $request->get('filterBy'));
         }
 
         return view('transactions.index', [

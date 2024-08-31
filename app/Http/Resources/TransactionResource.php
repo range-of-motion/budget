@@ -10,7 +10,7 @@ class TransactionResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $isEarning = get_class($this->resource) === Earning::class;
+        $isEarning = $this->resource::class === Earning::class;
 
         return [
             'id' => $this->id,

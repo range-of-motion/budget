@@ -16,15 +16,8 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    private $spaceRepository;
-    private $loginAttemptRepository;
-
-    public function __construct(
-        SpaceRepository $spaceRepository,
-        LoginAttemptRepository $loginAttemptRepository
-    ) {
-        $this->spaceRepository = $spaceRepository;
-        $this->loginAttemptRepository = $loginAttemptRepository;
+    public function __construct(private readonly SpaceRepository $spaceRepository, private readonly LoginAttemptRepository $loginAttemptRepository)
+    {
     }
 
     public function index()

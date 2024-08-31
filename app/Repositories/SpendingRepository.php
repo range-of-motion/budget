@@ -20,12 +20,12 @@ class SpendingRepository
 
     public function create(
         int $spaceId,
-        ?int $importId = null,
         ?int $recurringId,
         ?int $tagId,
         string $date,
         string $description,
-        int $amount
+        int $amount,
+        ?int $importId = null
     ): Spending {
         return Spending::create([
             'space_id' => $spaceId,
