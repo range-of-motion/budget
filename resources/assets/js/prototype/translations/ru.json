@@ -1,0 +1,59 @@
+{
+    "amount": "Сумма",
+    "create": "Создать",
+    "dailyBalanceGraphDescription": "Здесь отображается ваш баланс в течение месяца",
+    "dashboard": "Панель приборов",
+    "date": "Дата",
+    "description": "Описание",
+    "earning": "Доход",
+    "earningDescriptionPlaceholder": "Зарплата за февраль",
+    "email": "Эл. адрес",
+    "goodAfternoon": "Добрый день",
+    "goodEvening": "Добрый вечер",
+    "goodMorning": "Доброе утро",
+    "language": "Язык",
+    "logIn": "Войти",
+    "password": "Пароль",
+    "recurringDescription": "Это повторяющаяся транзакция—создайте ее для меня в будущем",
+    "spending": "Расход",
+    "spendingDescriptionPlaceholder": "Подарок на день рождения для Анжелы",
+    "tag": "Тег",
+    "theme": "Тема",
+    "transactions": "Транзакции",
+    "weeklyReport": "Еженедельный отчет",
+
+    "activities": {
+        "tag": {
+            "created": "создал тег #{id}",
+            "deleted": "удалил тег #{id}"
+        },
+
+        "transaction": {
+            "created": "создал транзакцию #{id}",
+            "deleted": "удалил транзакцию #{id}"
+        }
+    },
+
+    "intervals": {
+        "daily": "Ежедневно",
+        "weekly": "Еженедельно",
+        "biweekly": "Раз в две недели",
+        "monthly": "Ежемесячно",
+        "yearly": "Ежегодно"
+    },
+
+    "months": {
+        "january": "Январь",
+        "february": "Февраль",
+        "march": "Март",
+        "april": "Апрель",
+        "may": "Май",
+        "june": "Июнь",
+        "july": "Июль",
+        "august": "Август",
+        "september": "Сентябрь",
+        "october": "Октябрь",
+        "november": "Ноябрь",
+        "december": "Декабрь"
+    }
+}
