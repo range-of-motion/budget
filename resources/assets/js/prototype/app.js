@@ -8,6 +8,7 @@ import translations from './translations';
 import App from './components/App.vue';
 
 import Login from './screens/Login.vue';
+import Register from './screens/Register.vue';
 import Dashboard from './screens/Dashboard.vue';
 import TransactionsIndex from './screens/Transactions/Index.vue';
 import TransactionsCreate from './screens/Transactions/Create.vue';
@@ -27,6 +28,10 @@ const routes = [
         path: '/prototype/login',
         name: 'login',
         component: Login,
+    }, {
+        path: '/prototype/register',
+        name: 'register',
+        component: Register,
     }, {
         path: '/prototype/dashboard',
         name: 'dashboard',

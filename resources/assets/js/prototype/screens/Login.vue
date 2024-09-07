@@ -69,7 +69,9 @@ watch(showError, value => {
                     </div>
                 </button>
             </div>
-            <div class="mt-5 text-sm text-center dark:text-white">{{ versionNumber }}</div>
+            <div class="mt-4 text-sm text-center">
+                <router-link class="text-gray-500 dark:text-white" :to="{ name: 'register' }">First time here? Register.</router-link>
+            </div>
         </div>
         <div v-if="showError" class="absolute top-0 left-0 right-0 flex">
             <div class="mt-10 mx-auto py-3 px-5 flex bg-white border border-gray-200 rounded-lg shadow-sm">
