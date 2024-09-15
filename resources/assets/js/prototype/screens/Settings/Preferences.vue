@@ -57,6 +57,7 @@ onMounted(() => retrieve());
                             <option value="dk">Danish</option>
                             <option value="de">German</option>
                             <option value="fr">French</option>
+                            <option value="es">Spanish</option>
                             <option value="pt">Portuguese</option>
                             <option value="ru">Russian</option>
                         </select>
