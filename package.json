@@ -5,25 +5,16 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@vitejs/plugin-vue2": "^2.2.0",
+        "@vitejs/plugin-vue": "^5.1.4",
         "autoprefixer": "^10.4.2",
-        "cross-env": "^7.0.3",
-        "laravel-vite-plugin": "^0.7.4",
-        "lodash": "^4.17.21",
+        "laravel-vite-plugin": "^1.0.5",
         "postcss": "^8.4.31",
-        "sass": "^1.22.7",
-        "sass-loader": "^13.3.2",
         "tailwindcss": "^3.0.23",
-        "vite": "^4.5.5",
-        "vue": "^2.7",
-        "vue-loader": "^17.2.2"
+        "vite": "^5.4.6"
     },
     "dependencies": {
-        "apexcharts": "^3.44.2",
-        "axios": "^1.7.4",
-        "lucide-vue": "^0.292.0",
-        "vue-color": "^2.7.0",
-        "vue-i18n": "^8.28.2",
-        "vue-router": "3"
-    }
+        "@inertiajs/vue3": "^1.2.0",
+        "vue": "^3.5.6"
+    },
+    "type": "module"
 }

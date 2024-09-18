@@ -9,6 +9,7 @@
         "ext-calendar": "*",
         "doctrine/dbal": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "inertiajs/inertia-laravel": "^1.3",
         "intervention/image": "^2.4",
         "laravel/dusk": "^8.2",
         "laravel/framework": "^10.0",
