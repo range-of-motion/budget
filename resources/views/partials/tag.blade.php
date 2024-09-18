@@ -1,1 +1,0 @@
-<span style="border-radius: 5px; background: #{{ $payload->color }}; color: #FFF; padding: 5px 10px; font-size: 14px; font-weight: 600;" v-pre><i class="fas fa-tag fa-xs"></i> {{ $payload->name }}</span>
