@@ -40,8 +40,12 @@
                 </div>
                 <div class="row__column ml-2">
                     <select v-model="selectedCurrencyId">
-                        <option v-for="currency in currencies" :key="'currencies-' + currency.id" :value="currency.id">
-                            <span v-html="currency.symbol"></span>
+                        <option
+                            v-for="currency in currencies"
+                            :key="'currencies-' + currency.id"
+                            :value="currency.id"
+                            v-html="currency.symbol == currency.iso ? currency.symbol : `${currency.iso} ${currency.symbol}`"
+                        >
                         </option>
                     </select>
                 </div>
