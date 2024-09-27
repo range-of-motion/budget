@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', IndexController::class)->name('index');
 
 Route::get('/log-in', [LogInController::class, 'index'])->name('log-in');
+Route::post('/log-in', [LogInController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
