@@ -13,7 +13,7 @@
         "laravel/dusk": "^8.2",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.3",
+        "livewire/livewire": "^3.5",
         "nesbot/carbon": "^2.32",
         "symfony/dom-crawler": "^5.1",
         "symfony/process": "^6.0"
