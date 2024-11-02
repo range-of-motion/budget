@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LogInController;
 use App\Http\Controllers\LogOutController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('index');
@@ -18,3 +19,5 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
