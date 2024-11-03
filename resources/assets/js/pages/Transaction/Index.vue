@@ -1,4 +1,5 @@
 <script setup>
+import { Tag } from 'lucide-vue-next';
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -62,10 +63,10 @@ const getTransactionsBySpan = (span) => {
 
 <template>
     <div class="my-10 mx-auto max-w-3xl">
-        <div class="mb-10">
+        <div class="mb-5">
             <div class="font-bold text-xl">Transactions</div>
         </div>
-        <div class="space-y-10">
+        <div class="space-y-5">
             <div v-for="span in spans" class="flex">
                 <div class="w-48">
                     <div class="font-semibold">{{ getMonthName(span.month) }}</div>
@@ -76,7 +77,7 @@ const getTransactionsBySpan = (span) => {
                         <div class="flex items-center justify-between" v-for="transaction in getTransactionsBySpan(span)">
                             <div class="flex-1 text-sm text-gray-500">{{ transaction.description }}</div>
                             <div v-if="transaction.tag_id" class="flex-1 flex items-center">
-                                <svg class="h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>
+                                <Tag class="mr-1" :size="14" />
                                 <span class="text-sm text-gray-500">{{ transaction.tag.name }}</span>
                             </div>
                             <div class="w-20 text-right text-sm" :class="'text-' + (transaction.type === 'earning' ? 'green' : 'red') + '-600'" v-html="(transaction.type === 'earning' ? '+' : '-') + props.currency + (transaction.amount / 100).toFixed(2)"></div>
