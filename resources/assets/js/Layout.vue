@@ -22,6 +22,9 @@ const user = computed(() => page.props.auth.user);
                     </Link>
                 </div>
                 <div class="flex space-x-5">
+                    <Link class="flex items-center text-gray-500 hover:text-black" href="/transactions/create">
+                        <svg class="h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                    </Link>
                     <Link class="flex items-center text-gray-500 hover:text-black" href="/log-out">
                         <svg class="h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
                     </Link>
