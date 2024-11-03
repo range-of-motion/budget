@@ -23,6 +23,7 @@ class TransactionController extends Controller
             ->each(fn (Earning $earning) => $transactions->push($earning));
 
         Spending::query()
+            ->with('tag')
             ->where('space_id', $space->id)
             ->each(fn (Spending $spending) => $transactions->push($spending));
 
